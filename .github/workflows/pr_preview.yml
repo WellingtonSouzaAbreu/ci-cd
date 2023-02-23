@@ -28,9 +28,3 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-
-      - name: 💬 Comment in Slack
-        uses: slackapi/slack-github-action@v1.17.0
-        with:
-          channel-id: deployments
-          slack-message: 'New deployment is ready!\n- Preview: ${{ steps.preview.outputs.projectQR }}'
