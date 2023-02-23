@@ -5,8 +5,6 @@ on: [pull_request]
 jobs:
   publish_preview:
     runs-on: ubuntu-latest
-	permissions:
-      pull-requests: write
     defaults:
       run:
         working-directory: ./app
