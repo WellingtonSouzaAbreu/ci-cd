@@ -32,15 +32,6 @@ jobs:
       - name: Publish preview
         run: eas update --branch preview --auto 
 
-	  - name: Comment deployment link
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-        with:
-          msg: >
-            Awesome!
-
-
       - name: Comment preview
         uses: expo/expo-github-action/preview-comment@v7
         with:
