@@ -29,13 +29,16 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Publish preview
-        run: eas update --branch preview --auto 
-
-      - name: Comment preview
-        uses: mshick/add-pr-comment@v2
+      - name: Create preview comment
+        uses: expo/expo-github-action/preview-comment@v8
+        id: preview
         with:
-          message: |
-            **Hello**
-            🌏
-            !
+          comment: true
+          project: ./app
+          channel: pr-${{ github.event.number }}
+
+      - name: 💬 Comment in Slack
+        uses: slackapi/slack-github-action@v1.17.0
+        with:
+          channel-id: deployments
+          slack-message: 'New deployment is ready!\n- Preview: ${{ steps.preview.outputs.projectQR }}'
