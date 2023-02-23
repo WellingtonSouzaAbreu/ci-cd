@@ -28,14 +28,3 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Publish preview
-        run: eas update --branch preview --auto 
-
-      - name: Comment preview
-        uses: mshick/add-pr-comment@v2
-        with:
-          message: |
-            **Hello**
-            🌏
-            !
