@@ -32,8 +32,10 @@ jobs:
       - name: Publish preview
         run: eas update --branch preview --auto 
 
-      - name: Comment preview
-        uses: expo/expo-github-action/preview-comment@v7
+	  - name: Comment preview
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         with:
-          project: ./app
-          channel: pr-${{ github.event.number }}
+          msg: >
+            Awesome!
