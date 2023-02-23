@@ -37,3 +37,10 @@ jobs:
         with:
           project: ./app
           channel: pr-${{ github.event.number }}
+
+	- uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            **Hello**
+            🌏
+            !
