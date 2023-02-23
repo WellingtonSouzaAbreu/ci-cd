@@ -29,14 +29,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Create preview comment
-        uses: expo/expo-github-action/preview-comment@v8
-        id: preview
-        with:
-          comment: true
-          project: ./app
-          channel: pr-${{ github.event.number }}
-
       - name: 💬 Comment in Slack
         uses: slackapi/slack-github-action@v1.17.0
         with:
