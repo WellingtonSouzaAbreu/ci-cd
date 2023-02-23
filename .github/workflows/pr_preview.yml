@@ -33,12 +33,7 @@ jobs:
         run: eas update --branch preview --auto 
 
       - name: Comment preview
-        uses: expo/expo-github-action/preview-comment@v7
-        with:
-          project: ./app
-          channel: pr-${{ github.event.number }}
-
-	- uses: mshick/add-pr-comment@v2
+        uses: mshick/add-pr-comment@v2
         with:
           message: |
             **Hello**
