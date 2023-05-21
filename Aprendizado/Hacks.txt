@@ -1,0 +1,5 @@
+Omit<User, 'id'> Pega toda a tipagem de User com exceção do id
+
+
+Object.assign(this, props) => Atribui todas as propridaddes de props para this
+
