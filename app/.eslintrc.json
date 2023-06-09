@@ -7,9 +7,10 @@
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
         "airbnb",
-        "airbnb/hooks"
+        "airbnb/hooks",
+        "solid"
     ],
-    "overrides": [],
+    "overrides": [ ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
@@ -17,11 +18,12 @@
     "plugins": [
         "@typescript-eslint",
         "react",
-        "react-native"
+        "react-native",
+        "import-helpers"
     ],
     "ignorePatterns": [
         "assets/**/**",
-        "services/firebase/index.ts",
+        // "services/firebase/*",
         "ignoredLogs.ts",
         "*.d.ts",
         "*.json",
@@ -31,9 +33,87 @@
     "rules": {
         "import/no-default-export": "warn",
         "import/prefer-default-export": "off",
+        "import/extensions": "off",
+        "import/no-unresolved": 0, // TODO config
+        "import/no-extraneous-dependencies": [ // TODO config
+            "off",
+            {
+                "devDependencies": true,
+                "optionalDependencies": false,
+                "peerDependencies": false,
+                "bundledDependencies": false,
+                "packageDir": [
+                    "./",
+                    "./services/firebase"
+                ]
+            }
+        ],
+        "import-helpers/order-imports": [
+            "warn",
+            { // example configuration
+                "newlinesBetween": "always",
+                "groups": [
+                    [ "/^react/", "/^expo/" ],
+                    [ "module" ],
+                    [ "/^@contexts/" ],
+                    [ "/^routes/", "/^types/", "/types/", "/^@contexts/types/" ],
+                    [ "/^@common/auxiliaryFunctions/", "/^@services/", "/^@utils/" ],
+                    [ "/^@common/screenDimensions/", "/^@common/theme/", "/^@assets/" ],
+                    [ "/^@components/" ],
+                    [ "/styles/" ]
+                ],
+                "alphabetize": { "order": "asc", "ignoreCase": true }
+            }
+        ],
         "no-multiple-empty-lines": "warn",
         "no-multi-spaces": "warn",
         "key-spacing": "warn",
+        "array-bracket-spacing": "off",
+        "curly": [
+            "warn",
+            "multi-line",
+            "consistent"
+        ],
+        "object-curly-newline": [
+            "warn",
+            {
+                "ObjectExpression": {
+                    "multiline": true,
+                    "minProperties": 3
+                },
+                "ObjectPattern": {
+                    "multiline": true,
+                    "minProperties": 3
+                },
+                "ImportDeclaration": {
+                    "multiline": true,
+                    "minProperties": 5
+                },
+                "ExportDeclaration": {
+                    "multiline": true,
+                    "minProperties": 4
+                }
+            }
+        ],
+        "object-property-newline": [
+            "warn",
+            {
+                "allowAllPropertiesOnSameLine": false
+            }
+        ],
+        "max-len": [
+            "warn",
+            {
+                "code": 80,
+                "ignorePattern": "^import\\s.*",
+                "ignoreComments": true,
+                "ignoreTrailingComments": true,
+                "ignoreUrls": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true
+            }
+        ],
         "no-tabs": "off",
         /*   "react/props-types": [
             "error",
@@ -55,10 +135,6 @@
             "warn",
             "tab"
         ],
-        "linebreak-style": [
-            "warn",
-            "windows"
-        ],
         "semi": [
             "warn",
             "never"
@@ -67,10 +143,6 @@
             "warn",
             "single"
         ],
-        "jsx-quotes": [
-            "warn",
-            "prefer-single"
-        ],
         "no-unused-vars": [
             "warn",
             {
@@ -78,6 +150,13 @@
                 "caughtErrors": "none"
             }
         ],
+        "comma-dangle": "off",
+        "linebreak-style": "off",
+        "jsx-quotes": [
+            "warn",
+            "prefer-single"
+        ],
+        "react/jsx-max-props-per-line": [ "warn", { "maximum": 1 } ],
         "react/jsx-indent-props": [
             "warn",
             "tab"
