@@ -18,7 +18,8 @@
     "plugins": [
         "@typescript-eslint",
         "react",
-        "react-native"
+        "react-native",
+        "import-helpers"
     ],
     "ignorePatterns": [
         "assets/**/**",
@@ -45,6 +46,23 @@
                     "./",
                     "./services/firebase"
                 ]
+            }
+        ],
+        "import-helpers/order-imports": [
+            "warn",
+            { // example configuration
+                "newlinesBetween": "always",
+                "groups": [
+                    [ "/^react/", "/^expo/" ],
+                    [ "module" ],
+                    [ "/^@contexts/" ],
+                    [ "/^routes/", "/^types/", "/types/", "/^@contexts/types/" ],
+                    [ "/^@common/auxiliaryFunctions/", "/^@services/", "/^@utils/" ],
+                    [ "/^@common/screenDimensions/", "/^@common/theme/", "/^@assets/" ],
+                    [ "/^@components/" ],
+                    [ "/styles/" ]
+                ],
+                "alphabetize": { "order": "asc", "ignoreCase": true }
             }
         ],
         "no-multiple-empty-lines": "warn",
