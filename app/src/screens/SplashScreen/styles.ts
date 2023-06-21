@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 import { relativeScreenHeight } from '@utils/screenDimensions'
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     flex: 1;
     align-items: center;
     justify-content: center;

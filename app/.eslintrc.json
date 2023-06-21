@@ -18,7 +18,8 @@
 	"plugins": [
 		"@typescript-eslint",
 		"react",
-		"react-native"
+		"react-native",
+		"import-helpers"
 	],
 	"ignorePatterns": [
 		"assets/**/**",
@@ -49,17 +50,16 @@
 		],
 		"import-helpers/order-imports": [
 			"warn",
-			{
+			{ // example configuration
 				"newlinesBetween": "always",
 				"groups": [
 					[
 						"/^react/",
-						"/^expo/",
+						"/^expo/"
+					],
+					[
 						"module"
 					],
-					/* [
-						"module"
-					], */
 					[
 						"/^@contexts/"
 					],
@@ -131,7 +131,7 @@
 		"max-len": [
 			"warn",
 			{
-				"code": 80,
+				"code": 100,
 				"ignorePattern": "^import\\s.*",
 				"ignoreComments": true,
 				"ignoreTrailingComments": true,
