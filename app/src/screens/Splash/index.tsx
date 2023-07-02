@@ -2,25 +2,29 @@ import React from 'react'
 import { ActivityIndicator } from 'react-native'
 
 import { useFonts } from '@expo-google-fonts/inter'
+import { SplashScreenProps } from '@routes/stack/StartupStack/screenProps'
 
 import { getAppFonts } from '@utils/fonts'
 import { relativeScreenWidth } from '@utils/screenDimensions'
 
 import Logo from '@assets/icons/logo.svg'
 
-import { Container, Credits } from './styles'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-function SplashScreen() {
+import { Credits } from './styles'
+
+function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 
 	return (
-		<Container>
+		<ScreenContainer>
 			{
 				fontsAreLoaded
 					? (
 						<Logo
 							width={relativeScreenWidth(15)}
 							height={relativeScreenWidth(15)}
+							onPress={() => navigation.navigate('SelectAuthRegister')}
 						/>
 					)
 					: (
@@ -31,8 +35,8 @@ function SplashScreen() {
 					)
 			}
 			<Credits>{'from nobody'}</Credits>
-		</Container>
+		</ScreenContainer>
 	)
 }
 
-export { SplashScreen }
+export { Splash }
