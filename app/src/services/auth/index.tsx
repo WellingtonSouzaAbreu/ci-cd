@@ -3,15 +3,13 @@ import * as LocalAuthentication from 'expo-local-authentication'
 type HandleMethodWithAuthentication = () => void
 
 async function handleMethodWithAuthentication(secureMethod: HandleMethodWithAuthentication) {
-	/*
-	const handleLocalAuthentication = async () => {
+	/* const handleLocalAuthentication = async () => {
 		try {
 			await handleActionWithAuthentication(loggar)
 		} catch (err) {
 			console.log(err)
 		}
-	}
-	 */
+	} */
 
 	const config = {
 		cancelLabel: 'cancelLabel',

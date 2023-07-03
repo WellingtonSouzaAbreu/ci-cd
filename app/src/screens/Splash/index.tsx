@@ -3,6 +3,7 @@ import { ActivityIndicator } from 'react-native'
 
 import { useFonts } from '@expo-google-fonts/inter'
 import { SplashScreenProps } from '@routes/stack/StartupStack/screenProps'
+import { useTheme } from 'styled-components/native'
 
 import { getAppFonts } from '@utils/fonts'
 import { relativeScreenWidth } from '@utils/screenDimensions'
@@ -16,6 +17,8 @@ import { Credits } from './styles'
 function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 
+	const theme = useTheme()
+
 	return (
 		<ScreenContainer>
 			{
@@ -28,10 +31,7 @@ function Splash({ navigation }: SplashScreenProps) {
 						/>
 					)
 					: (
-						<ActivityIndicator
-							size={'large'}
-							color={'#2D9964'}
-						/>
+						<ActivityIndicator size={'large'} color={theme.green1} />
 					)
 			}
 			<Credits>{'from nobody'}</Credits>
