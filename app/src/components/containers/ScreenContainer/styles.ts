@@ -1,7 +1,14 @@
+import { ViewStyle } from 'react-native'
+
 import styled from 'styled-components/native'
 
-export const Container = styled.TouchableOpacity`
+interface ContainerProps {
+	justifyContent: ViewStyle['justifyContent']
+	alignItems: ViewStyle['alignItems']
+}
+
+export const Container = styled.View<ContainerProps>`
     flex: 1;
-    align-items: center;
-    justify-content: center;
+    justify-content: ${({ justifyContent }) => justifyContent};
+    align-items: ${({ alignItems }) => alignItems};
 `

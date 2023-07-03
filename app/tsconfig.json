@@ -4,13 +4,30 @@
 		"strict": false,
 		"baseUrl": "./",
 		"paths": {
-			"@assets/*": [ "src/assets/*" ],
-			"@components/*": [ "./src/components/*" ],
-			"@contexts/*": [ "./src/contexts/*" ],
-			"@routes/*": [ "./src/routes/*" ],
-			"@services/*": [ "./src/services/*" ],
-			"@screens/*": [ "./src/screens/*" ],
-			"@utils/*": [ "./src/utils/*" ]
+			"@assets/*": [
+				"src/assets/*"
+			],
+			"@components/*": [
+				"./src/components/*"
+			],
+			"@contexts/*": [
+				"./src/contexts/*"
+			],
+			"@routes/*": [
+				"./src/routes/*"
+			],
+			"@services/*": [
+				"./src/services/*"
+			],
+			"@screens/*": [
+				"./src/screens/*"
+			],
+			"@utils/*": [
+				"./src/utils/*"
+			],
+			"@common/*": [
+				"./src/common/*"
+			]
 		}
 	}
 }

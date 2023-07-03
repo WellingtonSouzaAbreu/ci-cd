@@ -6,7 +6,7 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 
 function SelectAuthRegister() {
 	return (
-		<ScreenContainer>
+		<ScreenContainer justifyContent={'center'}>
 			<LogoIcon width={30} height={30} />
 		</ScreenContainer>
 	)
