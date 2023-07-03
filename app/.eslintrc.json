@@ -129,6 +129,10 @@
 				"allowAllPropertiesOnSameLine": false
 			}
 		],
+		"max-lines-per-function": [
+			"warn",
+			100
+		],
 		"max-len": [
 			"warn",
 			{
@@ -191,6 +195,7 @@
 			}
 		],
 		"react/require-default-props": "warn",
+		"react-hooks/exhaustive-deps": "off",
 		"react/jsx-indent-props": [
 			"warn",
 			"tab"

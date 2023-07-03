@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ActivityIndicator } from 'react-native'
 
 import { useFonts } from '@expo-google-fonts/inter'
 import { SplashScreenProps } from '@routes/stack/StartupStack/screenProps'
 import { useTheme } from 'styled-components/native'
 
+import { handleMethodWithAuthentication } from '@services/auth'
 import { getAppFonts } from '@utils/fonts'
 import { relativeScreenWidth } from '@utils/screenDimensions'
 
@@ -15,9 +16,44 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { Credits } from './styles'
 
 function Splash({ navigation }: SplashScreenProps) {
-	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
+	// const {} = useContext()
 
+	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 	const theme = useTheme()
+
+	const navigateToAuthRegisterScreen = () => {
+		navigation.reset({
+			index: 0,
+			routes: [{ name: 'SelectAuthRegister' }]
+		})
+	}
+
+	const navigateToHomeScreen = () => {
+		navigation.reset({
+			index: 0,
+			routes: [{ name: 'SelectAuthRegister' }]
+		})
+	}
+
+	const performQuickLogout = async () => {
+		navigateToAuthRegisterScreen()
+	}
+
+	const initializeSession = async () => {
+		const hasLocalUserData = true // Check local user
+
+		if (hasLocalUserData) {
+			setTimeout(async () => handleMethodWithAuthentication(performQuickLogout), 1000)
+		} else {
+			setTimeout(async () => navigateToHomeScreen(), 1000)
+		}
+	}
+
+	useEffect(() => {
+		if (fontsAreLoaded) {
+			initializeSession()
+		}
+	}, [navigation, fontsAreLoaded])
 
 	return (
 		<ScreenContainer>
