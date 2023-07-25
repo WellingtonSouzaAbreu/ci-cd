@@ -71,7 +71,7 @@ function Splash({ navigation }: SplashScreenProps) {
 						<ActivityIndicator size={'large'} color={theme.green1} />
 					)
 			}
-			<Credits>{'from nobody'}</Credits>
+			<Credits>{'from tonsa'}</Credits>
 		</ScreenContainer>
 	)
 }

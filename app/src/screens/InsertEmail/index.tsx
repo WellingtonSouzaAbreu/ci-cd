@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import { useTheme } from 'styled-components'
 
+import { performSignup } from '@services/firebase/user/signin'
+
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
@@ -19,6 +21,10 @@ function InsertEmail() {
 		return true
 	}
 
+	const submitEmail = async () => {
+		console.log('sasd')
+	}
+
 	return (
 		<ScreenContainer
 			topSafeAreaColor={theme.green4}
@@ -28,7 +34,7 @@ function InsertEmail() {
 				title={'Insira seu email'}
 				errorMessage={'Esse email não é válido!'}
 				validateField={() => validateEmail(email)}
-				onSubmit={() => console.log(email)}
+				onSubmit={submitEmail}
 			>
 				<LineInput
 					value={email}

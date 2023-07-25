@@ -21,6 +21,8 @@ const firebaseConfig = {
 	measurementId: firebaseMeasurementId
 }
 
+console.log(firebaseConfig)
+
 const Firebase = initializeApp(firebaseConfig)
 
 const firestore = getFirestore(Firebase)
