@@ -1,28 +1,34 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
+import { InsertEmailScreenProps } from '@routes/stack/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
-import { performSignup } from '@services/firebase/user/signin'
+import { RegisterContext } from '@contexts/RegisterContext'
 
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-function InsertEmail() {
-	const [email, setEmail] = useState<string>('')
+function InsertEmail({ navigation }: InsertEmailScreenProps) {
+	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
+
+	const [email, setEmail] = useState<string>('well@gmail.com')
 
 	const theme = useTheme()
 
-	const validateEmail = (textEmail: string) => {
+	const validateEmail = (dirtyEmail: string) => {
 		const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-		if (!textEmail.includes('@')) return false
+		const cleanEmail = dirtyEmail.trim()
+
+		if (!cleanEmail.includes('@')) return false
 		if (!regexEmail.test(email)) return false
 		return true
 	}
 
 	const submitEmail = async () => {
-		console.log('sasd')
+		setUserRegistrationDataOnContext({ email })
+		navigation.navigate('InsertPassword')
 	}
 
 	return (
