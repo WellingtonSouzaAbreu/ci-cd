@@ -1,9 +1,5 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-default-export */
-import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
-
 import {
 	firebaseAuthDomain,
 	firebaseApiKey,
@@ -12,6 +8,9 @@ import {
 	firebaseAppId,
 	firebaseMeasurementId
 } from '@env'
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
 	authDomain: firebaseAuthDomain,

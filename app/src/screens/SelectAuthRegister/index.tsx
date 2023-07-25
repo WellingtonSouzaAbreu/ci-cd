@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { SelectAuthRegisterScreenProps } from '@routes/stack/RegisterStack/screenProps'
+
 import { relativeScreenWidth } from '@utils/screenDimensions'
 
 import LogoIcon from '@assets/icons/logo.svg'
@@ -12,7 +14,11 @@ import {
 	AppName, BodyContainer, FooterContainer, HeaderContainer, PresentationText
 } from './styles'
 
-function SelectAuthRegister() {
+function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
+	const navigateToRegisterStack = () => {
+		navigation.navigate('InsertEmail')
+	}
+
 	return (
 		<ScreenContainer>
 			<HeaderContainer>
@@ -25,9 +31,12 @@ function SelectAuthRegister() {
 			</BodyContainer>
 
 			<FooterContainer>
-				<PrimaryButton label={'Criar conta'} filled={false} />
+				<PrimaryButton
+					label={'Criar conta'} filled={false}
+					onPress={navigateToRegisterStack}
+				/>
 				<VerticalSpacing />
-				<PrimaryButton label={'Entrar'} />
+				<PrimaryButton label={'Entrar'} onPress={() => false} />
 			</FooterContainer>
 		</ScreenContainer>
 	)

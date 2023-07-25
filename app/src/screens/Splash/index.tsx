@@ -5,7 +5,7 @@ import { useFonts } from '@expo-google-fonts/inter'
 import { SplashScreenProps } from '@routes/stack/StartupStack/screenProps'
 import { useTheme } from 'styled-components/native'
 
-import { handleMethodWithAuthentication } from '@services/auth'
+// import { handleMethodWithAuthentication } from '@services/auth'
 import { getAppFonts } from '@utils/fonts'
 import { relativeScreenWidth } from '@utils/screenDimensions'
 
@@ -24,29 +24,30 @@ function Splash({ navigation }: SplashScreenProps) {
 	const navigateToAuthRegisterScreen = () => {
 		navigation.reset({
 			index: 0,
-			routes: [{ name: 'SelectAuthRegister' }]
+			routes: [{ name: 'RegisterStack' }]
 		})
 	}
 
-	const navigateToHomeScreen = () => {
+	/* const navigateToHomeScreen = () => {
 		navigation.reset({
 			index: 0,
-			routes: [{ name: 'SelectAuthRegister' }]
+			routes: [{ name: 'RegisterStack' }]
 		})
-	}
+	} */
 
 	const performQuickLogout = async () => {
 		navigateToAuthRegisterScreen()
 	}
 
 	const initializeSession = async () => {
-		const hasLocalUserData = true // Check local user
+		// const hasLocalUserData = true // Check local user
 
-		if (hasLocalUserData) {
+		performQuickLogout()
+		/* if (hasLocalUserData) {
 			setTimeout(async () => handleMethodWithAuthentication(performQuickLogout), 1000)
 		} else {
 			setTimeout(async () => navigateToHomeScreen(), 1000)
-		}
+		} */
 	}
 
 	useEffect(() => {
@@ -56,14 +57,14 @@ function Splash({ navigation }: SplashScreenProps) {
 	}, [navigation, fontsAreLoaded])
 
 	return (
-		<ScreenContainer>
+		<ScreenContainer justifyContent={'center'}>
 			{
 				fontsAreLoaded
 					? (
 						<Logo
 							width={relativeScreenWidth(15)}
 							height={relativeScreenWidth(15)}
-							onPress={() => navigation.navigate('SelectAuthRegister')}
+							onPress={() => navigation.navigate('RegisterStack')}
 						/>
 					)
 					: (
