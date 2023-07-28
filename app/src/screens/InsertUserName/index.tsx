@@ -41,7 +41,7 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 			>
 				<LineInput
 					value={userName}
-					placeholder={'UserName...'}
+					placeholder={'Nome completo...'}
 					onChangeText={setUserName}
 				/>
 			</FormContainer>

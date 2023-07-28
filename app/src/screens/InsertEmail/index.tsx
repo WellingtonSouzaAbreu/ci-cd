@@ -11,6 +11,7 @@ import { emailAlreadyRegistred } from '@services/firebase/user/emailAlreadyRegis
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
+import { CustomModal } from '@components/modals/CustomModal'
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
@@ -44,6 +45,7 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 			topSafeAreaColor={theme.green4}
 			padding={0}
 		>
+			<CustomModal visibility closeModal={() => null} />
 			<FormContainer
 				title={'Insira seu email'}
 				errorMessage={'Esse email não é válido!'}
