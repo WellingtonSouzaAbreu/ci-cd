@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TextInputProps } from 'react-native'
 
-import { Container, CustomTextInput } from './styles'
+import { Container, CustomTextInput, ToggleSecretTextIcon } from './styles'
 
-function LineInput({ ...props }: TextInputProps) {
+interface LineInputProps extends TextInputProps {
+	secretText?: boolean
+}
+
+function LineInput({ ...props }: LineInputProps) {
+	const [secretTextIsVisible, setSecretTextIsVisible] = useState(props.secretText)
+
+	const toggleSecretTextVisibility = () => {
+		setSecretTextIsVisible((previousVisibility) => !previousVisibility)
+	}
+
 	return (
 		<Container>
-			<CustomTextInput {...props} />
+			<CustomTextInput
+				{...props}
+				secureTextEntry={secretTextIsVisible}
+			/>
+			{props.secretText && <ToggleSecretTextIcon onPress={toggleSecretTextVisibility} />}
 		</Container>
 	)
 }
+
+LineInput.defaultProps = { secretText: false }
 
 export { LineInput }

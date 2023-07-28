@@ -16,7 +16,7 @@ import {
 
 function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 	const navigateToRegisterStack = () => {
-		navigation.navigate('InsertEmail')
+		navigation.navigate('InsertUserName')
 	}
 
 	return (

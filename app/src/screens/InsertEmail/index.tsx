@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react'
+import { Alert } from 'react-native'
 
 import { InsertEmailScreenProps } from '@routes/stack/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { RegisterContext } from '@contexts/RegisterContext'
+
+import { emailAlreadyRegistred } from '@services/firebase/user/emailAlreadyRegistred'
 
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
@@ -28,7 +31,12 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 
 	const submitEmail = async () => {
 		setUserRegistrationDataOnContext({ email })
-		navigation.navigate('InsertPassword')
+
+		if (await emailAlreadyRegistred(email)) {
+			Alert.alert('Ops', 'Esse email já foi cadastrado!')
+		} else {
+			navigation.navigate('InsertPassword')
+		}
 	}
 
 	return (

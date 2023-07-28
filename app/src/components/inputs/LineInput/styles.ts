@@ -12,11 +12,20 @@ export const Container = styled.View`
 `
 
 export const CustomTextInput = styled.TextInput`
-	height: ${relativeScreenHeight(6)}px;
 	width: 100%;
+	height: ${relativeScreenHeight(6)}px;
 	padding-vertical: ${relativeScreenDensity(8)}px;
 	padding-horizontal: ${relativeScreenDensity(16)}px;
 	font-family: ${appFonts.Inter400Regular};
 	font-size: ${appFonts.size.medium1};
 	color: ${({ theme }) => theme.black1};
+`
+
+export const ToggleSecretTextIcon = styled.TouchableOpacity`
+	position: absolute;
+	right: 10px;
+	top: ${relativeScreenDensity(11)}px;
+	height: ${relativeScreenDensity(26)}px;
+	width: ${relativeScreenDensity(26)}px;
+	background-color: red;
 `

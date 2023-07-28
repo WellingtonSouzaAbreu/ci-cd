@@ -7,11 +7,11 @@ async function performSignup(email: string, password: string) {
 		.then((userCredential) => {
 			console.log(userCredential.user)
 			console.log('deu bom')
+			return true
 		})
 		.catch((error) => {
-			const errorMessage = error.message
-			console.log(errorMessage)
-			console.log('deu ruim')
+			console.log(error)
+			return false
 		})
 }
 

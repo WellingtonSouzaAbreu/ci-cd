@@ -4,6 +4,7 @@ import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { InsertEmail } from '@screens/InsertEmail'
 import { InsertPassword } from '@screens/InsertPassword'
+import { InsertUserName } from '@screens/InsertUserName'
 import { SelectAuthRegister } from '@screens/SelectAuthRegister'
 
 import { RegisterProvider } from '@contexts/RegisterContext'
@@ -24,6 +25,7 @@ function RegisterStack() {
 				}}
 			>
 				<Stack.Screen name={'SelectAuthRegister'} component={SelectAuthRegister} />
+				<Stack.Screen name={'InsertUserName'} component={InsertUserName} />
 				<Stack.Screen name={'InsertEmail'} component={InsertEmail} />
 				<Stack.Screen name={'InsertPassword'} component={InsertPassword} />
 			</Stack.Navigator>

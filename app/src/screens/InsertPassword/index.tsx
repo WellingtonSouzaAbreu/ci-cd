@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
+import { Alert } from 'react-native'
 
-import { InsertPasswordScreenProps } from '@routes/stack/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { RegisterContext } from '@contexts/RegisterContext'
@@ -11,7 +11,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-function InsertPassword({ navigation }: InsertPasswordScreenProps) {
+function InsertPassword() {
 	const { userData } = useContext(RegisterContext)
 
 	const [password, setPassword] = useState<string>('')
@@ -26,7 +26,12 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	}
 
 	const submitPassword = async () => {
-		await performSignup(userData.email, password)
+		try {
+			await performSignup(userData.email, password)
+		} catch (err) {
+			console.log(err)
+			Alert.alert('Ops!', err)
+		}
 	}
 
 	return (
@@ -35,7 +40,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 			padding={0}
 		>
 			<FormContainer
-				title={'Insira sua senha'}
+				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}
 				validateField={() => validatePassword(password)}
 				onSubmit={submitPassword}
@@ -43,7 +48,8 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 				<LineInput
 					value={password}
 					placeholder={'Senha...'}
-					keyboardType={'visible-password'}
+					secretText
+					secureTextEntry
 					onChangeText={setPassword}
 				/>
 			</FormContainer>
