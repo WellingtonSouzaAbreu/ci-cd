@@ -17,6 +17,8 @@ module.exports = function (api) {
 						'@screens': './src/screens',
 						'@utils': './src/utils',
 						'@common': './src/common',
+						'@presentation': './src/presentation',
+						'@domain': './src/domain',
 					}
 				}
 			]

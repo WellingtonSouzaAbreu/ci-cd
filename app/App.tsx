@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { StartupStack } from '@routes/stack/StartupStack'
 import { ThemeProvider } from 'styled-components'
 
-import { defaultTheme } from '@common/theme'
+import { defaultTheme } from '@presentation/common/theme'
 
 export default function App() {
 	return (

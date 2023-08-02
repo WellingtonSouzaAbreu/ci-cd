@@ -8,7 +8,7 @@
 				"src/assets/*"
 			],
 			"@components/*": [
-				"./src/components/*"
+				"src/presentation/components/*"
 			],
 			"@contexts/*": [
 				"./src/contexts/*"
@@ -20,14 +20,20 @@
 				"./src/services/*"
 			],
 			"@screens/*": [
-				"./src/screens/*"
+				"src/presentation/screens/*"
 			],
 			"@utils/*": [
-				"./src/utils/*"
+				"src/presentation/utils/*"
 			],
 			"@common/*": [
-				"./src/common/*"
-			]
+				"src/presentation/common/*"
+			],
+			"@presentation/*": [
+				"./src/presentation/*"
+			],
+			"@domain/*": [
+				"./src/domain/*"
+			],
 		}
 	}
 }
