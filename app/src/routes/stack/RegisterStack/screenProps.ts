@@ -6,3 +6,4 @@ export type SelectAuthRegisterScreenProps = NativeStackScreenProps<RegisterStack
 export type InsertUserNameScreenProps = NativeStackScreenProps<RegisterStackParamList, 'InsertUserName'>
 export type InsertEmailScreenProps = NativeStackScreenProps<RegisterStackParamList, 'InsertEmail'>
 export type InsertPasswordScreenProps = NativeStackScreenProps<RegisterStackParamList, 'InsertPassword'>
+export type WelcomeNewUserScreenProps = NativeStackScreenProps<RegisterStackParamList, 'WelcomeNewUser'>

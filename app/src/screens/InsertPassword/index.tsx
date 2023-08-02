@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 
+import { InsertPasswordScreenProps } from '@routes/stack/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { AlertContext } from '@contexts/AlertContext'
@@ -11,7 +12,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-function InsertPassword() {
+function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
 	const { userData } = useContext(RegisterContext)
 
@@ -29,6 +30,7 @@ function InsertPassword() {
 	const submitPassword = async () => {
 		try {
 			await performSignup(userData.email, password)
+			navigation.navigate('WelcomeNewUser')
 		} catch (err) {
 			console.log(err)
 			showContextModal('Ops!', err)
@@ -43,6 +45,7 @@ function InsertPassword() {
 			<FormContainer
 				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}
+				buttonLabel={'Criar conta'}
 				validateField={() => validatePassword(password)}
 				onSubmit={submitPassword}
 			>

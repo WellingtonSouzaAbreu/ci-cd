@@ -16,7 +16,7 @@ interface FormContainerProps {
 	buttonLabel?: string
 	errorMessage?: string
 	children: ReactElement | ReactElement[]
-	validateField: () => boolean
+	validateField?: () => boolean
 	onSubmit: () => void
 }
 
@@ -63,7 +63,8 @@ function FormContainer({ ...props }: FormContainerProps) {
 FormContainer.defaultProps = {
 	title: 'title',
 	buttonLabel: 'Continuar',
-	errorMessage: 'Algo deu errado!'
+	errorMessage: 'Algo deu errado!',
+	validateField: () => true
 }
 
 export { FormContainer }

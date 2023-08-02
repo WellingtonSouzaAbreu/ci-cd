@@ -30,7 +30,7 @@ function LineInput({ ...props }: LineInputProps) {
 						<FontAwesome
 							name={secretTextIsVisible ? 'eye' : 'eye-slash'}
 							size={relativeScreenDensity(25)}
-							color={'black'}
+							color={'green'}
 						/>
 					</ToggleSecretTextIcon>
 				)
