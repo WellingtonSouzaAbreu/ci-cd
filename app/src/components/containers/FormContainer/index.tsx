@@ -1,7 +1,9 @@
-import React, { ReactElement } from 'react'
-import { Alert, Platform, StatusBar } from 'react-native'
+import React, { ReactElement, useContext } from 'react'
+import { Platform, StatusBar } from 'react-native'
 
 import { useTheme } from 'styled-components'
+
+import { AlertContext } from '@contexts/AlertContext'
 
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
 
@@ -19,10 +21,12 @@ interface FormContainerProps {
 }
 
 function FormContainer({ ...props }: FormContainerProps) {
+	const { showContextModal } = useContext(AlertContext)
+
 	const theme = useTheme()
 
 	const throwError = () => {
-		Alert.alert('Ops!', props.errorMessage)
+		showContextModal('Ops!', props.errorMessage)
 	}
 
 	const performSubmit = () => {

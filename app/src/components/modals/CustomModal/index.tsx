@@ -1,6 +1,8 @@
 import React from 'react'
 import { Modal, StatusBar } from 'react-native'
 
+import { relativeScreenHeight } from '@utils/screenDimensions'
+
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
 
 import {
@@ -8,9 +10,14 @@ import {
 	ContentInner,
 	Content,
 	TouchCloseArea,
+	Title,
+	Description,
 } from './styles'
 
 interface CustomModalProps {
+	title?: string
+	description?: string
+	buttonText?: string
 	visibility: boolean
 	closeModal: () => void
 }
@@ -28,8 +35,12 @@ function CustomModal({ ...props }: CustomModalProps) {
 				<TouchCloseArea onPress={props.closeModal} />
 				<Content>
 					<ContentInner>
+						<Title>{props.title}</Title>
+						<Description>{props.description}</Description>
 						<PrimaryButton
-							onPress={() => null}
+							label={props.buttonText}
+							customHeight={relativeScreenHeight(6)}
+							onPress={props.closeModal}
 						/>
 					</ContentInner>
 				</Content>
@@ -37,6 +48,12 @@ function CustomModal({ ...props }: CustomModalProps) {
 			</Container>
 		</Modal>
 	)
+}
+
+CustomModal.defaultProps = {
+	title: 'Ops!',
+	description: '',
+	buttonText: 'entendi'
 }
 
 export { CustomModal }

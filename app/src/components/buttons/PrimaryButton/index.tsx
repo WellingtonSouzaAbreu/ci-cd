@@ -9,6 +9,7 @@ interface PrimaryButtonProps {
 	filled?: boolean
 	label?: string
 	labelColor?: string
+	customHeight?: number
 	onPress: () => void
 }
 
@@ -20,6 +21,7 @@ function PrimaryButton({ ...props }: PrimaryButtonProps) {
 			activeOpacity={0.7}
 			buttonColor={props.buttonColor || theme.green4}
 			filled={props.filled}
+			customHeight={props.customHeight}
 			onPress={props.onPress}
 		>
 			<ButtonLabel
@@ -36,7 +38,8 @@ PrimaryButton.defaultProps = {
 	buttonColor: '',
 	filled: true,
 	label: 'button',
-	labelColor: ''
+	labelColor: '',
+	customHeight: 0
 }
 
 export { PrimaryButton }

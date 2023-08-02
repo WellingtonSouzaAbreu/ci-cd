@@ -6,6 +6,7 @@ import { relativeScreenHeight } from '@utils/screenDimensions'
 interface ContainerProps {
 	buttonColor?: string
 	filled?: boolean
+	customHeight?: number
 }
 
 interface ButtonLabelProps {
@@ -15,7 +16,7 @@ interface ButtonLabelProps {
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
 	width: 100%;
-	height: ${relativeScreenHeight(9)}px;
+	height: ${({ customHeight }) => customHeight || relativeScreenHeight(9)}px;
 	align-items: center;
 	justify-content: center;
 	border-radius: ${100}px;

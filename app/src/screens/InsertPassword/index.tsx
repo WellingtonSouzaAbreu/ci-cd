@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import { Alert } from 'react-native'
 
 import { useTheme } from 'styled-components'
 
+import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
 import { performSignup } from '@services/firebase/user/signup'
@@ -12,6 +12,7 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
 function InsertPassword() {
+	const { showContextModal } = useContext(AlertContext)
 	const { userData } = useContext(RegisterContext)
 
 	const [password, setPassword] = useState<string>('')
@@ -30,7 +31,7 @@ function InsertPassword() {
 			await performSignup(userData.email, password)
 		} catch (err) {
 			console.log(err)
-			Alert.alert('Ops!', err)
+			showContextModal('Ops!', err)
 		}
 	}
 
@@ -48,6 +49,7 @@ function InsertPassword() {
 				<LineInput
 					value={password}
 					placeholder={'Senha...'}
+					maxLength={25}
 					secretText
 					secureTextEntry
 					onChangeText={setPassword}

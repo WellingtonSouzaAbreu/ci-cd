@@ -1,3 +1,4 @@
+import { appFonts } from '@common/fonts'
 import styled from 'styled-components/native'
 
 import { relativeScreenDensity } from '@utils/screenDimensions'
@@ -25,7 +26,21 @@ export const ContentInner = styled.View`
 	width: 100%;
 	background-color: white;
 	padding: ${relativeScreenDensity(25)}px;
-	padding-top: ${relativeScreenDensity(15)}px;
 	border-radius: ${relativeScreenDensity(10)}px;
 	justify-content: space-between;
+	align-items: center;
+`
+
+export const Title = styled.Text`
+	text-align: center;
+	font-family: ${appFonts.Inter700Bold};
+	font-size: ${appFonts.size.small3};
+	padding-bottom: ${relativeScreenDensity(30)}px;
+`
+
+export const Description = styled.Text`
+	text-align: center;
+	font-family: ${appFonts.Inter400Regular};
+	font-size: ${appFonts.size.small3};
+	padding-bottom: ${relativeScreenDensity(30)}px;
 `

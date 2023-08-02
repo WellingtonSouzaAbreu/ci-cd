@@ -23,9 +23,10 @@ export const CustomTextInput = styled.TextInput`
 
 export const ToggleSecretTextIcon = styled.TouchableOpacity`
 	position: absolute;
-	right: 10px;
-	top: ${relativeScreenDensity(11)}px;
-	height: ${relativeScreenDensity(26)}px;
-	width: ${relativeScreenDensity(26)}px;
-	background-color: red;
+	right: ${relativeScreenDensity(10)}px;
+	top: ${relativeScreenDensity(7)}px;
+	height: ${relativeScreenDensity(30)}px;
+	width: ${relativeScreenDensity(30)}px;
+	align-items: center;
+	justify-content: center;
 `

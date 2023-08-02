@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { Alert } from 'react-native'
 
 import { InsertEmailScreenProps } from '@routes/stack/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
+import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
 import { emailAlreadyRegistred } from '@services/firebase/user/emailAlreadyRegistred'
@@ -11,9 +11,9 @@ import { emailAlreadyRegistred } from '@services/firebase/user/emailAlreadyRegis
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
-import { CustomModal } from '@components/modals/CustomModal'
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
+	const { showContextModal } = useContext(AlertContext)
 	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
 
 	const [email, setEmail] = useState<string>('well@gmail.com')
@@ -34,7 +34,7 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 		setUserRegistrationDataOnContext({ email })
 
 		if (await emailAlreadyRegistred(email)) {
-			Alert.alert('Ops', 'Esse email já foi cadastrado!')
+			showContextModal('Ops', 'Esse email já foi cadastrado!')
 		} else {
 			navigation.navigate('InsertPassword')
 		}
@@ -45,7 +45,6 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 			topSafeAreaColor={theme.green4}
 			padding={0}
 		>
-			<CustomModal visibility closeModal={() => null} />
 			<FormContainer
 				title={'Insira seu email'}
 				errorMessage={'Esse email não é válido!'}

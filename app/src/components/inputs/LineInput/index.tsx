@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { TextInputProps } from 'react-native'
 
+import { FontAwesome } from '@expo/vector-icons'
+
+import { relativeScreenDensity } from '@utils/screenDimensions'
+
 import { Container, CustomTextInput, ToggleSecretTextIcon } from './styles'
 
 interface LineInputProps extends TextInputProps {
@@ -20,7 +24,17 @@ function LineInput({ ...props }: LineInputProps) {
 				{...props}
 				secureTextEntry={secretTextIsVisible}
 			/>
-			{props.secretText && <ToggleSecretTextIcon onPress={toggleSecretTextVisibility} />}
+			{
+				props.secretText && (
+					<ToggleSecretTextIcon onPress={toggleSecretTextVisibility}>
+						<FontAwesome
+							name={secretTextIsVisible ? 'eye' : 'eye-slash'}
+							size={relativeScreenDensity(25)}
+							color={'black'}
+						/>
+					</ToggleSecretTextIcon>
+				)
+			}
 		</Container>
 	)
 }
