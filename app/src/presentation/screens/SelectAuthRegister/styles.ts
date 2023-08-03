@@ -1,5 +1,6 @@
-import { appFonts } from '@presentation/common/fonts'
 import styled from 'styled-components/native'
+
+import { appFonts } from '@presentation/common/fonts'
 
 export const CentralizedContainer = styled.View`
 	flex: 1;

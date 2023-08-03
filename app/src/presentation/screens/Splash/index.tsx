@@ -1,19 +1,19 @@
+import { useFonts } from '@expo-google-fonts/inter'
 import React, { useEffect } from 'react'
 import { ActivityIndicator } from 'react-native'
-
-import { useFonts } from '@expo-google-fonts/inter'
-import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
 import { useTheme } from 'styled-components/native'
 
-// import { handleMethodWithAuthentication } from '@services/auth'
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import Logo from '@assets/icons/logo.svg'
+import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
 
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
+// import { handleMethodWithAuthentication } from '@services/auth'
 
 import { Credits } from './styles'
+import Logo from '@presentation/assets/icons/logo.svg'
+
+import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
 function Splash({ navigation }: SplashScreenProps) {
 	// const {} = useContext()

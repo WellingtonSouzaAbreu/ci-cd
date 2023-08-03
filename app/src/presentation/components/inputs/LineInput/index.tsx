@@ -1,7 +1,6 @@
+import { FontAwesome } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { TextInputProps } from 'react-native'
-
-import { FontAwesome } from '@expo/vector-icons'
 
 import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
 

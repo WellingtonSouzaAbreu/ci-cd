@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-
-import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { RegisterContext } from '@contexts/RegisterContext'
+
+import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
 import { userNameIsValid } from '@presentation/adapters/UserAdapter'
 

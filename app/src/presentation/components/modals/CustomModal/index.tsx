@@ -3,8 +3,6 @@ import { Modal, StatusBar } from 'react-native'
 
 import { relativeScreenHeight } from '@presentation/utils/screenDimensions'
 
-import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
-
 import {
 	Container,
 	ContentInner,
@@ -13,6 +11,8 @@ import {
 	Title,
 	Description,
 } from './styles'
+
+import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
 
 interface CustomModalProps {
 	title?: string

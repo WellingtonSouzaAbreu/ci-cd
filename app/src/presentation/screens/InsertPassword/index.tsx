@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-
-import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
+
+import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
 import { passwordIsValid, performSignup } from '@presentation/adapters/UserAdapter'
 

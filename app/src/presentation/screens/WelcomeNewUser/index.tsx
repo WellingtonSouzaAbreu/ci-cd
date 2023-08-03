@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
-
-import { appFonts } from '@presentation/common/fonts'
 import { useTheme } from 'styled-components'
 
+import { appFonts } from '@presentation/common/fonts'
 import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
 
 import { PresentationCarousel } from '@presentation/components/carousel/PresentationCarousel'

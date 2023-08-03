@@ -48,6 +48,21 @@
 				]
 			}
 		],
+		"import/order": [
+			"off",
+			{
+				"groups": [
+					"index",
+					"sibling",
+					"parent",
+					"internal",
+					"external",
+					"builtin",
+					"object",
+					"type"
+				]
+			}
+		],
 		"import-helpers/order-imports": [
 			"warn",
 			{ // example configuration
@@ -55,7 +70,9 @@
 				"groups": [
 					[
 						"/^react/",
-						"/^expo/"
+						"/^@expo/",
+						"/^expo/",
+						"/^styled-components/"
 					],
 					[
 						"module"
@@ -64,35 +81,26 @@
 						"/^@contexts/"
 					],
 					[
-						"/^routes/",
-						"/^types/",
+						"/^@routes/",
+						"/^@types/",
 						"/types/",
 						"/^@contexts/types/"
 					],
 					[
-						"/^@common/auxiliaryFunctions/",
-						"/^@services/",
-						"/^@utils/",
-						"/^@commom/",
-						"/^@presentation/commom/",
-						"/^@presentation/utils/"
+						"/^@services/"
 					],
 					[
-						"/^@common/screenDimensions/",
-						"/^@common/theme/",
-						"/^@assets/"
+						"/^@presentation/common/screenDimensions/",
+						"/^@presentation/common/theme/",
+						"/^@presentation/assets/",
+						"/^./styles/"
 					],
 					[
 						"/^@presentation/adapters/"
 					],
 					[
-						"/^@components/",
-						"/^@screens/",
 						"/^@presentation/components/",
 						"/^@presentation/screens/"
-					],
-					[
-						"/styles/"
 					]
 				],
 				"alphabetize": {

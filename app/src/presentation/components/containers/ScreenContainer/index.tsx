@@ -1,6 +1,5 @@
 import React from 'react'
 import { StatusBar, ViewStyle } from 'react-native'
-
 import { useTheme } from 'styled-components'
 
 import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
