@@ -19,6 +19,8 @@ module.exports = function (api) {
 						'@common': './src/common',
 						'@presentation': './src/presentation',
 						'@domain': './src/domain',
+						'@infrastructure': './src/infrastructure',
+						'@data': './src/data',
 					}
 				}
 			]

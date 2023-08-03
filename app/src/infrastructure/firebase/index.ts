@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-default-export */
 import {
 	firebaseAuthDomain,
 	firebaseApiKey,

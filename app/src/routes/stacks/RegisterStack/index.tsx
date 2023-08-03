@@ -2,16 +2,17 @@ import 'react-native-gesture-handler'
 import React from 'react'
 
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+
+import { AlertProvider } from '@contexts/AlertContext'
+import { RegisterProvider } from '@contexts/RegisterContext'
+
+import { RegisterStackParamList } from '@routes/stacks/RegisterStack/types'
+
 import { InsertEmail } from '@presentation/screens/InsertEmail'
 import { InsertPassword } from '@presentation/screens/InsertPassword'
 import { InsertUserName } from '@presentation/screens/InsertUserName'
 import { SelectAuthRegister } from '@presentation/screens/SelectAuthRegister'
 import { WelcomeNewUser } from '@presentation/screens/WelcomeNewUser'
-
-import { AlertProvider } from '@contexts/AlertContext'
-import { RegisterProvider } from '@contexts/RegisterContext'
-
-import { RegisterStackParamList } from '@routes/stack/RegisterStack/types'
 
 const Stack = createStackNavigator<RegisterStackParamList>()
 
@@ -20,7 +21,7 @@ function RegisterStack() {
 		<AlertProvider>
 			<RegisterProvider>
 				<Stack.Navigator
-					initialRouteName={'WelcomeNewUser'}
+					initialRouteName={'SelectAuthRegister'}
 					screenOptions={{
 						headerShown: false,
 						gestureEnabled: true,

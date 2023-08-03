@@ -2,11 +2,10 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
 
-import { NavigationContainer } from '@react-navigation/native'
-import { StartupStack } from '@routes/stack/StartupStack'
-import { ThemeProvider } from 'styled-components'
-
 import { defaultTheme } from '@presentation/common/theme'
+import { NavigationContainer } from '@react-navigation/native'
+import { StartupStack } from '@routes/stacks/StartupStack'
+import { ThemeProvider } from 'styled-components'
 
 export default function App() {
 	return (

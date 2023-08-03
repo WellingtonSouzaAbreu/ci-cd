@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react'
 
-import { InsertPasswordScreenProps } from '@routes/stack/RegisterStack/screenProps'
+import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
-import { performSignup } from '@services/firebase/user/signup'
-
-import { passwordIsValid } from '@presentation/adapters/UserAdapter'
+import { passwordIsValid, performSignup } from '@presentation/adapters/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
@@ -24,7 +22,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 
 	const submitPassword = async () => {
 		try {
-			await performSignup(userData.email, password)
+			await performSignup(userData.name, userData.email, password)
 			navigation.navigate('WelcomeNewUser')
 		} catch (err) {
 			console.log(err)

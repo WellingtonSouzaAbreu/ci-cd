@@ -2,9 +2,10 @@ import 'react-native-gesture-handler'
 import React from 'react'
 
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-import { Splash } from '@presentation/screens/Splash'
 
-import { StartupStackParamList } from '@routes/stack/StartupStack/types'
+import { StartupStackParamList } from '@routes/stacks/StartupStack/types'
+
+import { Splash } from '@presentation/screens/Splash'
 
 import { RegisterStack } from '../RegisterStack'
 

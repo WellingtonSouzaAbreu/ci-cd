@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react'
 
-import { InsertEmailScreenProps } from '@routes/stack/RegisterStack/screenProps'
+import { emailAlreadyRegistred } from '@data/firestore/user/emailAlreadyRegistred'
+import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
-
-import { emailAlreadyRegistred } from '@services/firebase/user/emailAlreadyRegistred'
 
 import { emailIsValid } from '@presentation/adapters/UserAdapter'
 

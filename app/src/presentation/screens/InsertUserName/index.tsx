@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 
-import { InsertUserNameScreenProps } from '@routes/stack/RegisterStack/screenProps'
+import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 import { useTheme } from 'styled-components'
 
 import { RegisterContext } from '@contexts/RegisterContext'

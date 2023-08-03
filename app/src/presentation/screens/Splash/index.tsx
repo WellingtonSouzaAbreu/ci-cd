@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { ActivityIndicator } from 'react-native'
 
 import { useFonts } from '@expo-google-fonts/inter'
-import { SplashScreenProps } from '@routes/stack/StartupStack/screenProps'
+import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
 import { useTheme } from 'styled-components/native'
 
 // import { handleMethodWithAuthentication } from '@services/auth'
