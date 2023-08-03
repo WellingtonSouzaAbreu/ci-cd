@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler'
-import React from 'react'
-
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+import React from 'react'
 
 import { StartupStackParamList } from '@routes/stacks/StartupStack/types'
 

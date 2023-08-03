@@ -70,12 +70,19 @@
 				"groups": [
 					[
 						"/^react/",
+						"/^@react/",
 						"/^@expo/",
 						"/^expo/",
 						"/^styled-components/"
 					],
 					[
 						"module"
+					],
+					[
+						"/^@domain/"
+					],
+					[
+						"/^@data/"
 					],
 					[
 						"/^@contexts/"

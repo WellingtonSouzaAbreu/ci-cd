@@ -1,6 +1,8 @@
-import { createUser } from '@data/firestore/user/createUser'
-import { updateRemoteUser } from '@data/firestore/user/updateUser'
 import { createNewUser } from '@domain/entities/user'
+
+import { createUser } from '@data/firestore/user/createUser'
+import { updateRemoteUser } from '@data/firestore/user/updateRemoteUser'
+import { updateLocalUser } from '@data/localStorage/user/updateLocalUser'
 
 async function signupUC(name: string, email: string, password: string) {
 	const userRegistrationData = createNewUser(name, email, password)
@@ -11,7 +13,11 @@ async function signupUC(name: string, email: string, password: string) {
 	const newUserId = newUser.user.uid
 
 	await updateRemoteUser(newUserId, userRegistrationData) // data/firestore
-	/* await saveUserOnLocalStorate() */ // data/localStorage
+	await updateLocalUser({ // data/localStorage
+		...userRegistrationData,
+		userId: newUserId
+	})
+
 	/* await updateUserContext() */
 }
 

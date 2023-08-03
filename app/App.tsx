@@ -1,11 +1,12 @@
 /* eslint-disable import/no-default-export */
+import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { StatusBar } from 'react-native'
+import { ThemeProvider } from 'styled-components'
+
+import { StartupStack } from '@routes/stacks/StartupStack'
 
 import { defaultTheme } from '@presentation/common/theme'
-import { NavigationContainer } from '@react-navigation/native'
-import { StartupStack } from '@routes/stacks/StartupStack'
-import { ThemeProvider } from 'styled-components'
 
 export default function App() {
 	return (

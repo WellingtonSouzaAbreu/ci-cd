@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler'
-import React from 'react'
-
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+import React from 'react'
 
 import { AlertProvider } from '@contexts/AlertContext'
 import { RegisterProvider } from '@contexts/RegisterContext'
