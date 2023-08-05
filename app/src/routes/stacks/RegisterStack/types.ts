@@ -4,4 +4,6 @@ export type RegisterStackParamList = {
 	InsertEmail: undefined
 	InsertPassword: undefined
 	WelcomeNewUser: undefined
+
+	Home: undefined
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
 function Home() {
 	return (

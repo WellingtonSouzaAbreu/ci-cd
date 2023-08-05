@@ -7,3 +7,5 @@ export type InsertUserNameScreenProps = NativeStackScreenProps<RegisterStackPara
 export type InsertEmailScreenProps = NativeStackScreenProps<RegisterStackParamList, 'InsertEmail'>
 export type InsertPasswordScreenProps = NativeStackScreenProps<RegisterStackParamList, 'InsertPassword'>
 export type WelcomeNewUserScreenProps = NativeStackScreenProps<RegisterStackParamList, 'WelcomeNewUser'>
+
+export type HomeScreenProps = NativeStackScreenProps<RegisterStackParamList, 'Home'>

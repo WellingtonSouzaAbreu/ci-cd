@@ -22,7 +22,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 
 	const submitPassword = async () => {
 		try {
-			await performSignup(userData.name, userData.email, password)
+			// await performSignup(userData.name, userData.email, password)
 			navigation.navigate('WelcomeNewUser')
 		} catch (err) {
 			console.log(err)

@@ -4,12 +4,6 @@
 		"strict": false,
 		"baseUrl": "./",
 		"paths": {
-			"@assets/*": [
-				"src/assets/*"
-			],
-			"@components/*": [
-				"src/presentation/components/*"
-			],
 			"@contexts/*": [
 				"./src/contexts/*"
 			],
@@ -18,15 +12,6 @@
 			],
 			"@services/*": [
 				"./src/services/*"
-			],
-			"@screens/*": [
-				"src/presentation/screens/*"
-			],
-			"@utils/*": [
-				"src/presentation/utils/*"
-			],
-			"@common/*": [
-				"src/presentation/common/*"
 			],
 			"@presentation/*": [
 				"./src/presentation/*"
