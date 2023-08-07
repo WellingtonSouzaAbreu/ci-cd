@@ -1,11 +1,10 @@
 import React, { ReactElement, useState } from 'react'
-import { View } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 import uuid from 'react-uuid'
 
 import { screenHeight, screenWidth } from '@presentation/utils/screenDimensions'
 
-import { CarouselActiveIndicatorItem, CarouselInactiveIndicatorItem, CarouselIndicatorContainer } from './styles'
+import { CarouselActiveIndicatorItem, CarouselInactiveIndicatorItem, CarouselIndicatorContainer, Container } from './styles'
 
 interface CustomCarouselProps {
 	height?: number
@@ -23,7 +22,7 @@ function CustomCarousel({ ...props }: CustomCarouselProps) {
 	))
 
 	return (
-		<>
+		<Container>
 			<Carousel
 				data={props.children}
 				autoPlay
@@ -31,17 +30,13 @@ function CustomCarousel({ ...props }: CustomCarouselProps) {
 				height={props.height}
 				autoPlayInterval={3000}
 				loop
-				renderItem={({ item, index }) => (
-					<View>
-						{props.children[index]}
-					</View>
-				)}
+				renderItem={({ index }) => props.children[index]}
 				onSnapToItem={(index: number) => setCurrentCarouselIndex(index)}
 			/>
-			<CarouselIndicatorContainer>
+			<CarouselIndicatorContainer width={props.width}>
 				{renderCarouselIndicators()}
 			</CarouselIndicatorContainer>
-		</>
+		</Container>
 	)
 }
 

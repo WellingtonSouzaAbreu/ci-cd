@@ -1,31 +1,36 @@
 import styled from 'styled-components/native'
 
-export const CarouselIndicatorContainer = styled.View`
-    position: absolute;
+import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
+
+interface CarouselIndicatorContainerProps {
+	width?: number
+}
+
+export const CarouselIndicatorContainer = styled.View<CarouselIndicatorContainerProps>`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    bottom: 30px;
-    width: 100%;
+    width: ${({ width }) => width}px;
 `
+
+export const Container = styled.View`
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+`
+
 export const CarouselActiveIndicatorItem = styled.View`
-    height: 15px;
-    width: 16px;
-    border-right-width: 3px;
+    height: ${relativeScreenDensity(5)}px;
+    width: ${relativeScreenDensity(25)}px;
     border-radius: 10px;
-    border-width: 1px;
-
-    border-color: yellow;
-    background-color: red};
+	background-color: ${({ theme }) => theme.green5};
     margin-horizontal: 2px;
 `
 
-export const CarouselInactiveIndicatorItem = styled.View`
-    height: 6px;
-    width: 6px;
-    border-radius: 10px;
-    border-width: 2px;
-    border-color: black;
-    background-color: black;
-    margin-horizontal: 2px;
+export const CarouselInactiveIndicatorItem = styled.View` /* TODO do not import theme*/
+	height: ${relativeScreenDensity(5)}px;
+	width: ${relativeScreenDensity(15)}px;
+	border-radius: 10px;
+	background-color: ${({ theme }) => theme.gray2};
+	margin-horizontal: 2px;
 `

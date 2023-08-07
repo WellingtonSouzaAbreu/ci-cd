@@ -20,7 +20,7 @@ function RegisterStack() {
 		<AlertProvider>
 			<RegisterProvider>
 				<Stack.Navigator
-					initialRouteName={'WelcomeNewUser'}
+					initialRouteName={'SelectAuthRegister'}
 					screenOptions={{
 						headerShown: false,
 						gestureEnabled: true,

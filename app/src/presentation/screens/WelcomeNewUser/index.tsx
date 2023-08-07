@@ -5,13 +5,16 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { useTheme } from 'styled-components'
 
 import { appFonts } from '@presentation/common/fonts'
-import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
+import { relativeScreenDensity, relativeScreenHeight } from '@presentation/utils/screenDimensions'
 
 import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
+import { CarouselContext, CarouselItemText, Content } from './styles'
+import CheckedList from '@presentation/assets/images/checkedList.svg'
+import EmbraceMoney from '@presentation/assets/images/embraceMoney.svg'
+import MoneyBag from '@presentation/assets/images/moneyBag.svg'
+
 import { CustomCarousel } from '@presentation/components/carousel/CustomCarousel'
-import { PresentationCarousel } from '@presentation/components/carousel/PresentationCarousel'
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
@@ -48,10 +51,24 @@ function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
 				validateField={() => termsOfServiceHasAccepted}
 				onSubmit={submitTermsAndConditions}
 			>
-				<CustomCarousel>
-					<PrimaryButton onPress={() => null} />
-					<PrimaryButton onPress={() => null} />
-				</CustomCarousel>
+				<Content>
+					<CustomCarousel
+						height={relativeScreenHeight(35)}
+					>
+						<CarouselContext>
+							<MoneyBag height={'80%'} width={'70%'} />
+							<CarouselItemText>{'Gerencie sua grana'}</CarouselItemText>
+						</CarouselContext>
+						<CarouselContext>
+							<CheckedList height={'80%'} width={'70%'} />
+							<CarouselItemText>{'Tudo organizado'}</CarouselItemText>
+						</CarouselContext>
+						<CarouselContext>
+							<EmbraceMoney height={'80%'} width={'70%'} />
+							<CarouselItemText>{'E tenha controle  da sua vida financeira'}</CarouselItemText>
+						</CarouselContext>
+					</CustomCarousel>
+				</Content>
 				<BouncyCheckbox
 					size={relativeScreenDensity(20)}
 					fillColor={theme.green1}
