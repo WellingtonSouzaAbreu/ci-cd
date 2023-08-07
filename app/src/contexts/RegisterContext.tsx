@@ -1,10 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-type UserRegistrationData = {
-	email?: string
-	password?: string
-	name?: string
-}
+import { UserRegistrationData } from 'src/@types/entities/user'
 
 type UserAuthData = {
 	token: string

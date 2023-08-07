@@ -48,6 +48,21 @@
 				]
 			}
 		],
+		"import/order": [
+			"off",
+			{
+				"groups": [
+					"index",
+					"sibling",
+					"parent",
+					"internal",
+					"external",
+					"builtin",
+					"object",
+					"type"
+				]
+			}
+		],
 		"import-helpers/order-imports": [
 			"warn",
 			{ // example configuration
@@ -55,36 +70,44 @@
 				"groups": [
 					[
 						"/^react/",
-						"/^expo/"
+						"/^@react/",
+						"/^@expo/",
+						"/^expo/",
+						"/^styled-components/"
 					],
 					[
 						"module"
 					],
 					[
+						"/^@domain/"
+					],
+					[
+						"/^@data/"
+					],
+					[
 						"/^@contexts/"
 					],
 					[
-						"/^routes/",
-						"/^types/",
+						"/^@routes/",
+						"/^@types/",
 						"/types/",
 						"/^@contexts/types/"
 					],
 					[
-						"/^@common/auxiliaryFunctions/",
-						"/^@services/",
-						"/^@utils/",
-						"/^@commom/"
+						"/^@services/"
 					],
 					[
-						"/^@common/screenDimensions/",
-						"/^@common/theme/",
-						"/^@assets/"
+						"/^@presentation/common/screenDimensions/",
+						"/^@presentation/common/theme/",
+						"/^@presentation/assets/",
+						"/^./styles/"
 					],
 					[
-						"/^@components/"
+						"/^@presentation/adapters/"
 					],
 					[
-						"/styles/"
+						"/^@presentation/components/",
+						"/^@presentation/screens/"
 					]
 				],
 				"alphabetize": {
@@ -93,6 +116,7 @@
 				}
 			}
 		],
+		"@typescript-eslint/no-explicit-any": "off",
 		"no-multiple-empty-lines": "warn",
 		"no-multi-spaces": "warn",
 		"key-spacing": "warn",
