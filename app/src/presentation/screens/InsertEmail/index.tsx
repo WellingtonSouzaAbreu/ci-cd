@@ -18,7 +18,7 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
 	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
 
-	const [email, setEmail] = useState<string>('@gmail.com')
+	const [email, setEmail] = useState<string>('')
 
 	const theme = useTheme()
 

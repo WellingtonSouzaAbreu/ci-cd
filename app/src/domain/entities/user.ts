@@ -1,7 +1,6 @@
-const createNewUser = (name: string, email: string, password: string) => ({
+const createNewUser = (name: string, email: string) => ({
 	name,
 	email,
-	password,
 	createdAt: Date.now(),
 	updatedAt: Date.now(),
 })

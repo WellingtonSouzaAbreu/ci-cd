@@ -1,11 +1,13 @@
 import 'react-native-gesture-handler'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { TextStyle } from 'react-native'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { useTheme } from 'styled-components'
 
 import { appFonts } from '@presentation/common/fonts'
 import { relativeScreenDensity, relativeScreenHeight } from '@presentation/utils/screenDimensions'
+
+import { RegisterContext } from '@contexts/RegisterContext'
 
 import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
@@ -19,12 +21,17 @@ import { FormContainer } from '@presentation/components/containers/FormContainer
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
 function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
+	const { userData } = useContext(RegisterContext)
+
 	const [termsOfServiceHasAccepted, setTermsOfServiceHasAccepted] = useState<boolean>(false)
 
 	const theme = useTheme()
 
 	const submitTermsAndConditions = async () => {
-		navigation.navigate('Home')
+		navigation.reset({
+			index: 0,
+			routes: [{ name: 'Home' }]
+		})
 	}
 
 	const styles = {
@@ -46,7 +53,7 @@ function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
 			padding={0}
 		>
 			<FormContainer
-				title={'Tudo certo, Mario?'}
+				title={`Tudo certo, ${userData.name.split(' ')[0]}?`}
 				errorMessage={'Você deve aceitar os termos e condições primeiro!'}
 				validateField={() => termsOfServiceHasAccepted}
 				onSubmit={submitTermsAndConditions}
