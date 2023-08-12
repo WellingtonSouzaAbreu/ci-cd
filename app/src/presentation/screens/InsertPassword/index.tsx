@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import { AlertContext } from '@contexts/AlertContext'
+import { LoaderContext } from '@contexts/LoaderContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
 import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
@@ -14,6 +15,7 @@ import { LineInput } from '@presentation/components/inputs/LineInput'
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
+	const { setLoaderIsVisible } = useContext(LoaderContext)
 	const { userData } = useContext(RegisterContext)
 
 	const [password, setPassword] = useState<string>('')
@@ -22,7 +24,10 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 
 	const submitPassword = async () => {
 		try {
+			setLoaderIsVisible(true)
 			await performSignup(userData.name, userData.email, password)
+			setLoaderIsVisible(false)
+
 			navigation.navigate('WelcomeNewUser')
 		} catch (err: any) {
 			console.log(err.message)
