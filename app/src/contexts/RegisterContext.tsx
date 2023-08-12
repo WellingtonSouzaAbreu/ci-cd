@@ -1,10 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { UserRegistrationData } from 'src/@types/entities/user'
-
-type UserAuthData = {
-	token: string
-}
+import { UserAuthData, UserRegistrationData } from 'src/@types/entities/user'
 
 type RegisterContextMethods = {
 	setUserRegistrationDataOnContext: (data: UserRegistrationData) => void

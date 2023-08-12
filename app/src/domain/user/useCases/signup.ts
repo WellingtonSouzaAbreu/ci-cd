@@ -18,7 +18,7 @@ async function signupUC(name: string, email: string, password: string) {
 		userId: newUserId
 	})
 
-	/* await updateUserContext() */
+	/* await updateUserContext() */ // TODO Update UserContext
 }
 
 export { signupUC }

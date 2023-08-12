@@ -2,21 +2,21 @@ import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import { AlertContext } from '@contexts/AlertContext'
+import { AuthContext } from '@contexts/AuthContext'
 import { LoaderContext } from '@contexts/LoaderContext'
-import { RegisterContext } from '@contexts/RegisterContext'
 
-import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
-import { passwordIsValid, performSignup } from '@presentation/adapters/UserAdapter'
+import { passwordIsValid, performSignin } from '@presentation/adapters/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-function InsertPassword({ navigation }: InsertPasswordScreenProps) {
+function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
 	const { setLoaderIsVisible } = useContext(LoaderContext)
-	const { userData } = useContext(RegisterContext)
+	const { userAuthData } = useContext(AuthContext)
 
 	const [password, setPassword] = useState<string>('')
 
@@ -25,13 +25,14 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await performSignup(userData.name, userData.email, password)
+			await performSignin(userAuthData.email, password)
 			setLoaderIsVisible(false)
-			navigation.navigate('WelcomeNewUser')
+			navigation.navigate('Home')
 		} catch (err: any) {
 			setLoaderIsVisible(false)
-			console.log(err.message)
-			showContextModal('Ops!', err.message)
+			setTimeout(() => { // TODO check more elegant way to show error message
+				showContextModal('Ops!', err.message)
+			}, 300)
 		}
 	}
 
@@ -60,4 +61,4 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	)
 }
 
-export { InsertPassword }
+export { InsertPasswordAccount }

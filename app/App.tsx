@@ -6,6 +6,7 @@ import React from 'react'
 import { StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 
+import { AlertProvider } from '@contexts/AlertContext'
 import { LoaderProvider } from '@contexts/LoaderContext/index'
 
 import { StartupStack } from '@routes/stacks/StartupStack'
@@ -16,10 +17,12 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<ThemeProvider theme={defaultTheme}>
-				<LoaderProvider>
-					<StatusBar backgroundColor={'green'} />
-					<StartupStack />
-				</LoaderProvider>
+				<AlertProvider>
+					<LoaderProvider>
+						<StatusBar backgroundColor={'green'} />
+						<StartupStack />
+					</LoaderProvider>
+				</AlertProvider>
 			</ThemeProvider>
 		</NavigationContainer>
 	)

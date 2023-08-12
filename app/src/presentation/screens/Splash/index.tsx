@@ -24,7 +24,7 @@ function Splash({ navigation }: SplashScreenProps) {
 	const navigateToAuthRegisterScreen = () => {
 		navigation.reset({
 			index: 0,
-			routes: [{ name: 'RegisterStack' }]
+			routes: [{ name: 'SelectAuthRegister' }]
 		})
 	}
 

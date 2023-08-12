@@ -1,4 +1,5 @@
 import { handleMethodWithAuthenticationUC } from '@domain/user/useCases/localAuthUC'
+import { signinUC } from '@domain/user/useCases/signin'
 import { signupUC } from '@domain/user/useCases/signup'
 import { validateUserNameUC, validateEmailUC, validatePasswordUC } from '@domain/user/useCases/validateUserFieldsUC'
 
@@ -20,6 +21,10 @@ async function performSignup(name: string, email: string, password: string) {
 	return signupUC(name, email, password)
 }
 
+async function performSignin(email: string, password: string) {
+	return signinUC(email, password)
+}
+
 async function handleAuthenticatedMethod(secureMethod: HandleMethodWithAuthentication) {
 	return handleMethodWithAuthenticationUC(secureMethod)
 }
@@ -29,5 +34,6 @@ export {
 	emailIsValid,
 	passwordIsValid,
 	performSignup,
+	performSignin,
 	handleAuthenticatedMethod
 }

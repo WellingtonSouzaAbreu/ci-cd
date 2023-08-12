@@ -4,9 +4,9 @@ import { useTheme } from 'styled-components'
 import { emailAlreadyRegistred } from '@data/firestore/user/emailAlreadyRegistred'
 
 import { AlertContext } from '@contexts/AlertContext'
-import { RegisterContext } from '@contexts/RegisterContext'
+import { AuthContext } from '@contexts/AuthContext'
 
-import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
 import { emailIsValid } from '@presentation/adapters/UserAdapter'
 
@@ -14,20 +14,21 @@ import { FormContainer } from '@presentation/components/containers/FormContainer
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-function InsertEmail({ navigation }: InsertEmailScreenProps) {
+function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
-	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
+	const { setUserAuthDataOnContext } = useContext(AuthContext)
 
 	const [email, setEmail] = useState<string>('')
 
 	const theme = useTheme()
 
 	const submitEmail = async () => {
-		if (await emailAlreadyRegistred(email)) {
-			showContextModal('Ops', 'Esse email já foi cadastrado!')
+		if (!await emailAlreadyRegistred(email)) {
+			showContextModal('Ops', 'Esse email não está cadastrado!')
 		} else {
-			setUserRegistrationDataOnContext({ email })
-			navigation.navigate('InsertPassword')
+			setUserAuthDataOnContext({ email })
+			console.log('email to login')
+			navigation.navigate('InsertPasswordAccount')
 		}
 	}
 
@@ -53,4 +54,4 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	)
 }
 
-export { InsertEmail }
+export { InsertEmailAccount }

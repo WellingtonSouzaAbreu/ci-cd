@@ -2,7 +2,7 @@ import React from 'react'
 
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { SelectAuthRegisterScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+import { SelectAuthRegisterScreenProps } from '@routes/stacks/StartupStack/screenProps'
 
 import {
 	AppName,
@@ -19,7 +19,11 @@ import { ScreenContainer } from '@presentation/components/containers/ScreenConta
 
 function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 	const navigateToRegisterStack = () => {
-		navigation.navigate('InsertUserName')
+		navigation.navigate('RegisterStack')
+	}
+
+	const navigateToSiginStack = () => {
+		navigation.navigate('SigninStack')
 	}
 
 	return (
@@ -39,7 +43,10 @@ function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 					onPress={navigateToRegisterStack}
 				/>
 				<VerticalSpacing />
-				<PrimaryButton label={'Entrar'} onPress={() => false} />
+				<PrimaryButton
+					label={'Entrar'}
+					onPress={navigateToSiginStack}
+				/>
 			</FooterContainer>
 		</ScreenContainer>
 	)
