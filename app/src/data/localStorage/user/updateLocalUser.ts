@@ -10,7 +10,7 @@ async function updateLocalUser(userData: any, mergeStoragedData?: boolean) { // 
 
 		let mergedData = {}
 		if (mergeStoragedData) {
-			mergedData = await getLocalUserData() // THis is a bad pratice // TODO
+			mergedData = await getLocalUserData() // THis is a bad pratice // TODO Injeção de dependência?
 			console.log(mergedData)
 		}
 

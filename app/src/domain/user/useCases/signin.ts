@@ -1,6 +1,4 @@
-import { signinByEmailPassword } from '@data/firestore/user/signinByEmailPassword'
-import { updateRemoteUser } from '@data/firestore/user/updateRemoteUser'
-import { updateLocalUser } from '@data/localStorage/user/updateLocalUser'
+import { signinByEmailPassword } from '@data/remoteStorage/user/signinByEmailPassword'
 
 async function signinUC(email: string, password: string) {
 	try {
@@ -19,7 +17,7 @@ async function signinUC(email: string, password: string) {
 			case 'auth/wrong-password':
 				throw new Error('Senha incorreta!')
 			case 'auth/too-many-requests':
-				throw new Error('Foram feitas muitas tentativas de login para esta conta, tente novamente mais tarde!')
+				throw new Error('Foram feitas muitas tentativas de login, tente novamente mais tarde!')
 			default:
 				throw new Error('Houve um problema com o login, tente novamente mais tarde!')
 		}

@@ -17,7 +17,7 @@ function passwordIsValid(password: string) {
 	return validatePasswordUC(password)
 }
 
-async function performSignup(name: string, email: string, password: string) {
+async function performSignup(name: string, email: string, password: string) { // TODO Realizar injeção de dependência para salvar no contexto
 	return signupUC(name, email, password)
 }
 

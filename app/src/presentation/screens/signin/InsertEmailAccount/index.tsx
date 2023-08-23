@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { emailAlreadyRegistred } from '@data/firestore/user/emailAlreadyRegistred'
+import { emailAlreadyRegistred } from '@data/remoteStorage/user/emailAlreadyRegistred'
 
 import { AlertContext } from '@contexts/AlertContext'
 import { AuthContext } from '@contexts/AuthContext'
