@@ -5,11 +5,13 @@ import { RegisterContext } from '@contexts/RegisterContext'
 
 import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { userNameIsValid } from '@presentation/adapters/UserAdapter'
+import { UserAdapter } from '@presentation/adapters/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
+
+const { userNameIsValid } = UserAdapter()
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)

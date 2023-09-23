@@ -5,10 +5,6 @@ import { validateUserNameUC, validateEmailUC, validatePasswordUC } from '@domain
 
 import { HandleMethodWithAuthentication } from 'src/@types/entities/paramFunctions'
 
-function userNameIsValid(name: string) {
-	return validateUserNameUC(name)
-}
-
 function emailIsValid(email: string) {
 	return validateEmailUC(email)
 }
@@ -29,8 +25,16 @@ async function handleAuthenticatedMethod(secureMethod: HandleMethodWithAuthentic
 	return handleMethodWithAuthenticationUC(secureMethod)
 }
 
+const UserAdapter = () => {
+	return {
+		userNameIsValid: (name: string) => {
+			return validateUserNameUC(name)
+		}
+	}
+}
+
 export {
-	userNameIsValid,
+	UserAdapter,
 	emailIsValid,
 	passwordIsValid,
 	performSignup,

@@ -147,6 +147,7 @@
 				}
 			}
 		],
+		"arrow-body-style": "off",
 		"object-property-newline": [
 			"warn",
 			{
