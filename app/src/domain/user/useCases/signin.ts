@@ -1,14 +1,16 @@
 import { signinByEmailPassword } from '@data/remoteStorage/user/signinByEmailPassword'
 
-async function signinUC(email: string, password: string) {
+import { UserMethod } from 'src/@types/entities/user'
+
+async function signinUC(email: string, password: string, updateUserContext: UserMethod) {
 	try {
 		const userCredential = await signinByEmailPassword(email, password)
 		console.log(userCredential.user.uid)
 
-		// await getRemoteUser()
-		// await updateLocalUser(userRegistrationData) // data/localStorage
+		// await getRemoteUser() // TODO getRemoteUser
+		// await updateLocalUser(userRegistrationData) // data/localStorage // TODO Update local é de outra camada
 
-		/* await updateUserContext() */ // TODO Update UserContext
+		// await updateUserContext({}) //
 	} catch (err) {
 		console.log(err.code)
 		switch (err.code) {

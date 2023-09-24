@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components'
 import { AlertContext } from '@contexts/AlertContext'
 import { AuthContext } from '@contexts/AuthContext'
 import { LoaderContext } from '@contexts/LoaderContext'
+import { UserDataContext } from '@contexts/UserDataContext'
 
 import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
@@ -19,6 +20,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const { showContextModal } = useContext(AlertContext)
 	const { setLoaderIsVisible } = useContext(LoaderContext)
 	const { userAuthData } = useContext(AuthContext)
+	const { setUserDataOnContext } = useContext(UserDataContext)
 
 	const [password, setPassword] = useState<string>('')
 
@@ -27,7 +29,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await performSignin(userAuthData.email, password)
+			await performSignin(userAuthData.email, password, setUserDataOnContext)
 			setLoaderIsVisible(false)
 			navigation.navigate('Home')
 		} catch (err: any) {

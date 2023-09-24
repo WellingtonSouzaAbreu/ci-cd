@@ -24,8 +24,8 @@ const UserAdapter = () => {
 			return signupUC(userRegistrationData, updateUserContext)
 		},
 
-		performSignin: async (email: string, password: string) => {
-			return signinUC(email, password)
+		performSignin: async (email: string, password: string, updateUserContext: UserMethod) => {
+			return signinUC(email, password, updateUserContext)
 		},
 
 		handleAuthenticatedMethod: async (secureMethod: HandleMethodWithAuthentication) => {
