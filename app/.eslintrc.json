@@ -220,6 +220,8 @@
 				"maximum": 2
 			}
 		],
+		"default-case": "off",
+		"consistent-return": "off",
 		"react/require-default-props": "warn",
 		"react-hooks/exhaustive-deps": "off",
 		"react/jsx-indent-props": [

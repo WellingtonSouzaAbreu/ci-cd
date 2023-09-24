@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components'
 import { AlertContext } from '@contexts/AlertContext'
 import { LoaderContext } from '@contexts/LoaderContext'
 import { RegisterContext } from '@contexts/RegisterContext'
+import { UserDataContext } from '@contexts/UserDataContext'
 
 import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
@@ -18,7 +19,8 @@ const { passwordIsValid, performSignup } = UserAdapter()
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
 	const { setLoaderIsVisible } = useContext(LoaderContext)
-	const { userData } = useContext(RegisterContext)
+	const { userRegistrationData } = useContext(RegisterContext)
+	const { userData, setUserDataOnContext } = useContext(UserDataContext)
 
 	const [password, setPassword] = useState<string>('')
 
@@ -27,13 +29,18 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await performSignup(userData.name, userData.email, password) // TODO Realizar injeção de dependência
-			setLoaderIsVisible(false)
+			console.log(userData)
+			await performSignup(userRegistrationData.name, userRegistrationData.email, password, setUserDataOnContext)
 			navigation.navigate('WelcomeNewUser')
 		} catch (err: any) {
+			console.log(err.code)
+			switch (err.code) {
+				case 'auth/email-already-in-use': return showContextModal('Ops!', 'O email já está sendo utilizado')
+			}
+
+			return showContextModal('Ops!', err.code)
+		} finally {
 			setLoaderIsVisible(false)
-			console.log(err.message)
-			showContextModal('Ops!', err.message)
 		}
 	}
 

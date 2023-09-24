@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { AlertProvider } from '@contexts/AlertContext'
 import { LoaderProvider } from '@contexts/LoaderContext/index'
+import { UserDataProvider } from '@contexts/UserDataContext'
 
 import { StartupStack } from '@routes/stacks/StartupStack'
 
@@ -18,7 +19,9 @@ export default function App() {
 			<ThemeProvider theme={defaultTheme}>
 				<AlertProvider>
 					<LoaderProvider>
-						<StartupStack />
+						<UserDataProvider>
+							<StartupStack />
+						</UserDataProvider>
 					</LoaderProvider>
 				</AlertProvider>
 			</ThemeProvider>

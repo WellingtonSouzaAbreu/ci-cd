@@ -3,7 +3,9 @@ import { createNewUser } from '@domain/entities/user'
 import { updateLocalUser } from '@data/localStorage/user/updateLocalUser'
 import { createUser, updateRemoteUser } from '@data/remoteStorage/gatewayAdapters/UserGatewayAdapter'
 
-async function signupUC(name: string, email: string, password: string) {
+import { UserData } from 'src/@types/entities/user'
+
+async function signupUC(name: string, email: string, password: string, updateUserContext: (user: UserData) => any) { // TODO import props as object
 	const userRegistrationData = createNewUser(name, email)
 
 	const newUser = await createUser(userRegistrationData.email, password)
@@ -11,13 +13,16 @@ async function signupUC(name: string, email: string, password: string) {
 
 	const newUserId = newUser.user.uid
 
-	await updateRemoteUser(newUserId, userRegistrationData) // firestore
-	await updateLocalUser({ // localStorage // TODO Injetar a dependência de consultar os dados locais
+	/* await updateRemoteUser(newUserId, userRegistrationData) // firestore
+	await updateLocalUser({ 								// localStorage
 		...userRegistrationData,
 		userId: newUserId
-	})
+	}) */
 
-	/* await updateUserContext() */ // TODO Update UserContext
+	await updateUserContext({ 								// localStorage
+		...userRegistrationData,
+		userId: newUserId
+	}) // TODO Update UserContext
 }
 
 export { signupUC }
