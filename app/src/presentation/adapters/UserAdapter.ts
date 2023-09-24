@@ -4,7 +4,7 @@ import { signupUC } from '@domain/user/useCases/signup'
 import { validateUserNameUC, validateEmailUC, validatePasswordUC } from '@domain/user/useCases/validateUserFieldsUC'
 
 import { HandleMethodWithAuthentication } from 'src/@types/entities/paramFunctions'
-import { UserData } from 'src/@types/entities/user'
+import { UserMethod, UserRegistrationData } from 'src/@types/entities/user'
 
 const UserAdapter = () => {
 	return {
@@ -20,8 +20,8 @@ const UserAdapter = () => {
 			return validatePasswordUC(password)
 		},
 
-		performSignup: async (name: string, email: string, password: string, updateUserContext: (user: UserData) => any) => { // TODO Realizar injeção de dependência para salvar no contexto
-			return signupUC(name, email, password, updateUserContext)
+		performSignup: async (userRegistrationData: UserRegistrationData, updateUserContext: UserMethod) => {
+			return signupUC(userRegistrationData, updateUserContext)
 		},
 
 		performSignin: async (email: string, password: string) => {

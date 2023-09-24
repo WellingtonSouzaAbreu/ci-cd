@@ -20,7 +20,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
 	const { setLoaderIsVisible } = useContext(LoaderContext)
 	const { userRegistrationData } = useContext(RegisterContext)
-	const { userData, setUserDataOnContext } = useContext(UserDataContext)
+	const { setUserDataOnContext } = useContext(UserDataContext)
 
 	const [password, setPassword] = useState<string>('')
 
@@ -29,8 +29,10 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			console.log(userData)
-			await performSignup(userRegistrationData.name, userRegistrationData.email, password, setUserDataOnContext)
+			await performSignup({
+				...userRegistrationData,
+				password
+			}, setUserDataOnContext)
 			navigation.navigate('WelcomeNewUser')
 		} catch (err: any) {
 			console.log(err.code)
