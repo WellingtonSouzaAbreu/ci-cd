@@ -8,11 +8,13 @@ import { AuthContext } from '@contexts/AuthContext'
 
 import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
-import { emailIsValid } from '@presentation/adapters/UserAdapter'
+import { UserAdapter } from '@presentation/adapters/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
+
+const { emailIsValid } = UserAdapter()
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const { showContextModal } = useContext(AlertContext)

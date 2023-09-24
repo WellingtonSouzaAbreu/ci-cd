@@ -10,9 +10,9 @@ function validateEmailUC(email: string) {
 	return emailIsValid
 }
 
-function validatePasswordUC(email: string) {
-	const emailIsValid = validatePassword(email)
-	return emailIsValid
+function validatePasswordUC(password: string) {
+	const passwordIsValid = validatePassword(password)
+	return passwordIsValid
 }
 
 export { validateUserNameUC, validateEmailUC, validatePasswordUC }

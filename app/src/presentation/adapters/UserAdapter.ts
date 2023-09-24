@@ -5,39 +5,32 @@ import { validateUserNameUC, validateEmailUC, validatePasswordUC } from '@domain
 
 import { HandleMethodWithAuthentication } from 'src/@types/entities/paramFunctions'
 
-function emailIsValid(email: string) {
-	return validateEmailUC(email)
-}
-
-function passwordIsValid(password: string) {
-	return validatePasswordUC(password)
-}
-
-async function performSignup(name: string, email: string, password: string) { // TODO Realizar injeção de dependência para salvar no contexto
-	return signupUC(name, email, password)
-}
-
-async function performSignin(email: string, password: string) {
-	return signinUC(email, password)
-}
-
-async function handleAuthenticatedMethod(secureMethod: HandleMethodWithAuthentication) {
-	return handleMethodWithAuthenticationUC(secureMethod)
-}
-
 const UserAdapter = () => {
 	return {
 		userNameIsValid: (name: string) => {
 			return validateUserNameUC(name)
+		},
+
+		emailIsValid: (email: string) => {
+			return validateEmailUC(email)
+		},
+
+		passwordIsValid: (password: string) => {
+			return validatePasswordUC(password)
+		},
+
+		performSignup: async (name: string, email: string, password: string) => { // TODO Realizar injeção de dependência para salvar no contexto
+			return signupUC(name, email, password)
+		},
+
+		performSignin: async (email: string, password: string) => {
+			return signinUC(email, password)
+		},
+
+		handleAuthenticatedMethod: async (secureMethod: HandleMethodWithAuthentication) => {
+			return handleMethodWithAuthenticationUC(secureMethod)
 		}
 	}
 }
 
-export {
-	UserAdapter,
-	emailIsValid,
-	passwordIsValid,
-	performSignup,
-	performSignin,
-	handleAuthenticatedMethod
-}
+export { UserAdapter }

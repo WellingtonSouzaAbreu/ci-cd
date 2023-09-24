@@ -8,11 +8,13 @@ import { RegisterContext } from '@contexts/RegisterContext'
 
 import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { emailIsValid } from '@presentation/adapters/UserAdapter'
+import { UserAdapter } from '@presentation/adapters/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
+
+const { emailIsValid } = UserAdapter()
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
