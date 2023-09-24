@@ -4,8 +4,8 @@ import React from 'react'
 
 import { StartupStackParamList } from '@routes/stacks/StartupStack/types'
 
-import { SelectAuthRegister } from '@presentation/screens/SelectAuthRegister'
-import { Splash } from '@presentation/screens/Splash'
+import { SelectAuthRegister } from '@presentation/screens/startup/SelectAuthRegister'
+import { Splash } from '@presentation/screens/startup/Splash'
 
 import { RegisterStack } from '../RegisterStack'
 import { SigninStack } from '../SigninStack'

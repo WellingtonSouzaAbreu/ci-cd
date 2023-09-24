@@ -1,10 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+import { UserData } from 'src/@types/entities/user'
+
 import { getLocalUserData } from './getLocalUserData'
 
 const isValidObject = (object: unknown) => typeof object === 'object' && object !== null
 
-async function updateLocalUser(userData: any, mergeStoragedData?: boolean) { // TODO Type UserCollection
+async function updateLocalUser(userData: UserData, mergeStoragedData?: boolean) {
 	try {
 		if (!isValidObject(userData)) throw new Error('O Objeto de usuário não é um objeto válido!')
 

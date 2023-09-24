@@ -5,7 +5,7 @@ import { AuthProvider } from '@contexts/AuthContext'
 
 import { SigninStackParamList } from '@routes/stacks/SigninStack/types'
 
-import { Home } from '@presentation/screens/Home'
+import { Home } from '@presentation/screens/home/Home'
 import { InsertEmailAccount } from '@presentation/screens/signin/InsertEmailAccount'
 import { InsertPasswordAccount } from '@presentation/screens/signin/insertPasswordAccount'
 

@@ -27,7 +27,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await performSignup(userData.name, userData.email, password)
+			await performSignup(userData.name, userData.email, password) // TODO Realizar injeção de dependência
 			setLoaderIsVisible(false)
 			navigation.navigate('WelcomeNewUser')
 		} catch (err: any) {

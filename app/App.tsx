@@ -3,7 +3,6 @@ import 'react-native-gesture-handler'
 
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-import { StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 
 import { AlertProvider } from '@contexts/AlertContext'
@@ -19,7 +18,6 @@ export default function App() {
 			<ThemeProvider theme={defaultTheme}>
 				<AlertProvider>
 					<LoaderProvider>
-						<StatusBar backgroundColor={'green'} />
 						<StartupStack />
 					</LoaderProvider>
 				</AlertProvider>

@@ -1,5 +1,7 @@
 import { UserCredential } from 'firebase/auth'
 
+import { UserData } from 'src/@types/entities/user'
+
 import { createUser as createUserRepository } from '../user/createUser'
 import { updateRemoteUser as updateRemoteUserRepository } from '../user/updateRemoteUser'
 
@@ -7,7 +9,7 @@ async function createUser(email: string, password: string): Promise<UserCredenti
 	return createUserRepository(email, password)
 }
 
-async function updateRemoteUser(userId: string, userData: any) { // TODO Type UserCollection, CollectionFIcara como entities
+async function updateRemoteUser(userId: string, userData: UserData) {
 	return updateRemoteUserRepository(userId, userData)
 }
 

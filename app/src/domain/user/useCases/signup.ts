@@ -11,8 +11,8 @@ async function signupUC(name: string, email: string, password: string) {
 
 	const newUserId = newUser.user.uid
 
-	await updateRemoteUser(newUserId, userRegistrationData) // data/firestore
-	await updateLocalUser({ // data/localStorage // TODO Injetar a dependência de consultar os dados locais
+	await updateRemoteUser(newUserId, userRegistrationData) // firestore
+	await updateLocalUser({ // localStorage // TODO Injetar a dependência de consultar os dados locais
 		...userRegistrationData,
 		userId: newUserId
 	})

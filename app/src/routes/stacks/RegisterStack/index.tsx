@@ -5,11 +5,11 @@ import { RegisterProvider } from '@contexts/RegisterContext'
 
 import { RegisterStackParamList } from '@routes/stacks/RegisterStack/types'
 
-import { Home } from '@presentation/screens/Home'
-import { InsertEmail } from '@presentation/screens/InsertEmail'
-import { InsertPassword } from '@presentation/screens/InsertPassword'
-import { InsertUserName } from '@presentation/screens/InsertUserName'
-import { WelcomeNewUser } from '@presentation/screens/WelcomeNewUser'
+import { Home } from '@presentation/screens/home/Home'
+import { InsertEmail } from '@presentation/screens/signup/InsertEmail'
+import { InsertPassword } from '@presentation/screens/signup/InsertPassword'
+import { InsertUserName } from '@presentation/screens/signup/InsertUserName'
+import { WelcomeNewUser } from '@presentation/screens/signup/WelcomeNewUser'
 
 const Stack = createStackNavigator<RegisterStackParamList>()
 

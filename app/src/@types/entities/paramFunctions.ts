@@ -1,1 +1,1 @@
-export type HandleMethodWithAuthentication = any // TODO Type
+export type HandleMethodWithAuthentication = any // TODO Type as joker function

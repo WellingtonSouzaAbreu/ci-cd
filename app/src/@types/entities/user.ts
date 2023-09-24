@@ -9,3 +9,9 @@ export type UserAuthData = {
 	password?: string
 	token?: string
 }
+
+export type UserData = {
+	userId?: string
+	email?: string
+	name?: string
+}
