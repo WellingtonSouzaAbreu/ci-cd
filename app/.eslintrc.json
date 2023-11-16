@@ -154,6 +154,7 @@
 				"allowAllPropertiesOnSameLine": false
 			}
 		],
+		"no-use-before-define": "off",
 		"max-lines-per-function": [
 			"warn",
 			100

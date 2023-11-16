@@ -1,6 +1,7 @@
 import { useFonts } from '@expo-google-fonts/inter'
+import * as Updates from 'expo-updates'
 import React, { useEffect } from 'react'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
 import { getAppFonts } from '@presentation/utils/fonts'
@@ -20,6 +21,44 @@ function Splash({ navigation }: SplashScreenProps) {
 
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 	const theme = useTheme()
+
+	useEffect(() => {
+		checkUpdates()
+	}, [])
+
+	const checkUpdates = async () => {
+		await onFetchUpdateAsync()
+	}
+
+	const onFetchUpdateAsync = async () => {
+		try {
+			const update = await hasUpdates()
+			if (update.isAvailable) {
+				// setConfirmationModalIsVisible(true)
+				Alert.alert('Has Update', '', [
+					{
+						text: 'OK',
+						onPress: Updates.reloadAsync,
+					},
+				])
+			} else {
+				setTimeout(() => {
+					initializeSession()
+				}, 3000)
+			}
+		} catch (error: any) {
+			console.log(error)
+			setTimeout(() => {
+				initializeSession()
+			}, 3000)
+		}
+	}
+
+	const hasUpdates = async () => {
+		// eslint-disable-next-line no-undef
+		if (__DEV__) return { isAvailable: false }
+		return Updates.checkForUpdateAsync()
+	}
 
 	const navigateToAuthRegisterScreen = () => {
 		navigation.reset({

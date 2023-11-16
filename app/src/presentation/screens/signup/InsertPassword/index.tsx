@@ -36,7 +36,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 			navigation.navigate('WelcomeNewUser')
 		} catch (err: any) {
 			console.log(err.code)
-			switch (err.code) {
+			switch (err.code) { // TODO internalizar tratativa de erro
 				case 'auth/email-already-in-use': return showContextModal('Ops!', 'O email já está sendo utilizado')
 			}
 

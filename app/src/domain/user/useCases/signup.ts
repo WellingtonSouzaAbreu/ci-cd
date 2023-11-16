@@ -6,7 +6,7 @@ import { createUser, updateRemoteUser } from '@data/remoteStorage/gatewayAdapter
 import { UserMethod, UserRegistrationData } from 'src/@types/entities/user'
 
 async function signupUC(userRegistrationData: UserRegistrationData, updateUserContext: UserMethod) {
-	const userData = createNewUser(userRegistrationData)
+	const userData = createNewUser(userRegistrationData) // TODO Implementar try catch como no signin
 
 	const { password } = userRegistrationData
 
@@ -15,14 +15,14 @@ async function signupUC(userRegistrationData: UserRegistrationData, updateUserCo
 
 	const newUserId = newUser.user.uid
 
-	await updateRemoteUser(newUserId, userData)				// firestore
+	await updateRemoteUser(newUserId, userData)
 
-	await updateLocalUser({ 								// localStorage
+	await updateLocalUser({
 		...userData,
 		userId: newUserId
 	})
 
-	await updateUserContext({ 								// context
+	await updateUserContext({
 		...userData,
 		userId: newUserId
 	})
