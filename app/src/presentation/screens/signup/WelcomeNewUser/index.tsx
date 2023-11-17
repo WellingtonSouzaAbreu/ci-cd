@@ -21,7 +21,7 @@ import { FormContainer } from '@presentation/components/containers/FormContainer
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
 function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
-	const { userData } = useContext(RegisterContext)
+	const { userRegistrationData } = useContext(RegisterContext)
 
 	const [termsOfServiceHasAccepted, setTermsOfServiceHasAccepted] = useState<boolean>(false)
 
@@ -47,13 +47,21 @@ function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
 		}
 	}
 
+	const getUserName = () => {
+		if (userRegistrationData && !userRegistrationData.name) return 'amigo'
+		if (userRegistrationData.name.includes(' ')) {
+			return userRegistrationData.name.split(' ')[0]
+		}
+		return userRegistrationData.name
+	}
+
 	return (
 		<ScreenContainer
 			topSafeAreaColor={theme.green4}
 			padding={0}
 		>
 			<FormContainer
-				title={`Tudo certo, ${userData.name.split(' ')[0]}?`}
+				title={`Tudo certo, ${getUserName()}?`}
 				errorMessage={'Você deve aceitar os termos e condições primeiro!'}
 				validateField={() => termsOfServiceHasAccepted}
 				onSubmit={submitTermsAndConditions}

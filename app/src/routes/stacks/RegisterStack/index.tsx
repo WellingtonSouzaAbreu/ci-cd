@@ -17,7 +17,7 @@ function RegisterStack() {
 	return (
 		<RegisterProvider>
 			<Stack.Navigator
-				initialRouteName={'InsertUserName'}
+				initialRouteName={'WelcomeNewUser'}
 				screenOptions={{
 					headerShown: false,
 					gestureEnabled: true,

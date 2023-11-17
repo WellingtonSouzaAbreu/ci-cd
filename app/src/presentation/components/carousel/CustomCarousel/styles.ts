@@ -22,7 +22,7 @@ export const Container = styled.View`
 export const CarouselActiveIndicatorItem = styled.View`
     height: ${relativeScreenDensity(5)}px;
     width: ${relativeScreenDensity(25)}px;
-    border-radius: 10px; // TODO Remove static
+    border-radius: ${relativeScreenDensity(7)}px;
 	background-color: ${({ theme }) => theme.green5};
     margin-horizontal: 2px;
 `
