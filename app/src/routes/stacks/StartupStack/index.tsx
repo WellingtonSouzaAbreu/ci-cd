@@ -4,6 +4,7 @@ import React from 'react'
 
 import { StartupStackParamList } from '@routes/stacks/StartupStack/types'
 
+import { Home } from '@presentation/screens/home/Home'
 import { SelectAuthRegister } from '@presentation/screens/startup/SelectAuthRegister'
 import { Splash } from '@presentation/screens/startup/Splash'
 
@@ -26,6 +27,7 @@ function StartupStack() {
 			<Stack.Screen name={'SelectAuthRegister'} component={SelectAuthRegister} />
 			<Stack.Screen name={'RegisterStack'} component={RegisterStack} />
 			<Stack.Screen name={'SigninStack'} component={SigninStack} />
+			<Stack.Screen name={'Home'} component={Home} />
 		</Stack.Navigator>
 	)
 }

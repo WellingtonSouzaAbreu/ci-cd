@@ -6,3 +6,5 @@ export type SplashScreenProps = NativeStackScreenProps<StartupStackParamList, 'S
 export type SelectAuthRegisterScreenProps = NativeStackScreenProps<StartupStackParamList, 'SelectAuthRegister'>
 export type RegisterStackScreenProps = NativeStackScreenProps<StartupStackParamList, 'RegisterStack'>
 export type SigninStackScreenProps = NativeStackScreenProps<StartupStackParamList, 'SigninStack'>
+
+export type HomeScreenProps = NativeStackScreenProps<StartupStackParamList, 'Home'>

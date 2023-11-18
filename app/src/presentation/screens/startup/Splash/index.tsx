@@ -7,18 +7,21 @@ import { useTheme } from 'styled-components/native'
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
+import { UserGatewayLocalAdapter } from '@data/localStorage/gatewayAdapters/UserGatewayLocalAdapter'
 
-// import { handleMethodWithAuthentication } from '@services/auth'
+import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
 
 import { Credits } from './styles'
 import Logo from '@presentation/assets/icons/logo.svg'
 
+import { UserAdapter } from '@presentation/adapters/UserAdapter'
+
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
-function Splash({ navigation }: SplashScreenProps) {
-	// const {} = useContext()
+const { handleAuthenticatedMethod } = UserAdapter()
+const { hasValidLocalUser } = UserGatewayLocalAdapter()
 
+function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 	const theme = useTheme()
 
@@ -42,15 +45,12 @@ function Splash({ navigation }: SplashScreenProps) {
 					},
 				])
 			} else {
-				setTimeout(() => {
-					initializeSession()
-				}, 3000)
+				initializeSession()
 			}
 		} catch (error: any) {
-			console.log(error)
-			setTimeout(() => {
-				initializeSession()
-			}, 3000)
+			// console.log(error)
+			console.log('No Updates catch')
+			initializeSession()
 		}
 	}
 
@@ -60,6 +60,27 @@ function Splash({ navigation }: SplashScreenProps) {
 		return Updates.checkForUpdateAsync()
 	}
 
+	const initializeSession = async () => {
+		const hasLocalUserData = await hasValidLocalUser()
+
+		setTimeout(async () => {
+			if (hasLocalUserData) {
+				const res = await handleAuthenticatedMethod(performQuickSingin)
+				console.log(res)
+				if (res) {
+					return navigateToHomeScreen()
+				}
+				return navigateToAuthRegisterScreen()
+			}
+
+			navigateToAuthRegisterScreen()
+		}, 2000)
+	}
+
+	const performQuickSingin = async () => {
+		navigateToHomeScreen()
+	}
+
 	const navigateToAuthRegisterScreen = () => {
 		navigation.reset({
 			index: 0,
@@ -67,27 +88,11 @@ function Splash({ navigation }: SplashScreenProps) {
 		})
 	}
 
-	/* const navigateToHomeScreen = () => {
+	const navigateToHomeScreen = () => {
 		navigation.reset({
 			index: 0,
-			routes: [{ name: 'RegisterStack' }]
+			routes: [{ name: 'Home' }]
 		})
-	} */
-
-	const performQuickSingin = async () => {
-		// navigateToHomeScreen()
-		navigateToAuthRegisterScreen()
-	}
-
-	const initializeSession = async () => {
-		// const hasLocalUserData = true // Check local user
-
-		performQuickSingin()
-		/* if (hasLocalUserData) {
-			setTimeout(async () => handleMethodWithAuthentication(performQuickSingin), 1000)
-		} else {
-			setTimeout(async () => navigateToHomeScreen(), 1000)
-		} */
 	}
 
 	useEffect(() => {

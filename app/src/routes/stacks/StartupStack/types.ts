@@ -3,4 +3,6 @@ export type StartupStackParamList = {
 	SelectAuthRegister: undefined
 	RegisterStack: undefined
 	SigninStack: undefined
+
+	Home: undefined
 }

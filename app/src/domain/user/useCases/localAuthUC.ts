@@ -12,9 +12,10 @@ async function handleMethodWithAuthenticationUC(secureMethod: HandleMethodWithAu
 	const hasAuth = await LocalAuthentication.authenticateAsync(config)
 	if (hasAuth.success) {
 		secureMethod()
-	} else {
-		throw new Error('Authentication failed')
+		return true
 	}
+
+	throw new Error('Authentication failed')
 }
 
 export { handleMethodWithAuthenticationUC }
