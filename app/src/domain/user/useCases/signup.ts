@@ -1,11 +1,13 @@
 import { createNewUser } from '@domain/entities/user'
 
 import { updateLocalUser } from '@data/localStorage/user/updateLocalUser'
-import { createUser, updateRemoteUser } from '@data/remoteStorage/gatewayAdapters/UserGatewayAdapter'
+import { UserGatewayAdapter } from '@data/remoteStorage/gatewayAdapters/UserGatewayAdapter'
 
 import { UserMethod, UserRegistrationData } from 'src/@types/entities/user'
 
 async function signupUC(userRegistrationData: UserRegistrationData, updateUserContext: UserMethod) {
+	const { createUser, updateRemoteUser } = UserGatewayAdapter()
+
 	const userData = createNewUser(userRegistrationData) // TODO Implementar try catch como no signin
 
 	const { password } = userRegistrationData

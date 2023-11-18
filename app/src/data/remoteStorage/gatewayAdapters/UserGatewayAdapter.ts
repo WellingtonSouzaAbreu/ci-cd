@@ -5,12 +5,16 @@ import { UserData } from 'src/@types/entities/user'
 import { createUser as createUserRepository } from '../user/createUser'
 import { updateRemoteUser as updateRemoteUserRepository } from '../user/updateRemoteUser'
 
-async function createUser(email: string, password: string): Promise<UserCredential> {
-	return createUserRepository(email, password)
+const UserGatewayAdapter = () => {
+	return {
+		createUser: async (email: string, password: string): Promise<UserCredential> => {
+			return createUserRepository(email, password)
+		},
+
+		updateRemoteUser: async (userId: string, userData: UserData) => {
+			return updateRemoteUserRepository(userId, userData)
+		}
+	}
 }
 
-async function updateRemoteUser(userId: string, userData: UserData) {
-	return updateRemoteUserRepository(userId, userData)
-}
-
-export { createUser, updateRemoteUser }
+export { UserGatewayAdapter }
