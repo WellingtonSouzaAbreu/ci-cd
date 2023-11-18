@@ -65,15 +65,10 @@ function Splash({ navigation }: SplashScreenProps) {
 
 		setTimeout(async () => {
 			if (hasLocalUserData) {
-				const res = await handleAuthenticatedMethod(performQuickSingin)
-				console.log(res)
-				if (res) {
-					return navigateToHomeScreen()
-				}
+				await handleAuthenticatedMethod(performQuickSingin)
+			} else {
 				return navigateToAuthRegisterScreen()
 			}
-
-			navigateToAuthRegisterScreen()
 		}, 2000)
 	}
 
