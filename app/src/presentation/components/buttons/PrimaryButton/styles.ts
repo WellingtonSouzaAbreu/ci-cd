@@ -7,6 +7,7 @@ interface ContainerProps {
 	buttonColor?: string
 	filled?: boolean
 	customHeight?: number
+	relativeWidth?: string
 }
 
 interface ButtonLabelProps {
@@ -15,7 +16,7 @@ interface ButtonLabelProps {
 }
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
-	width: 100%;
+	width: ${({ relativeWidth }) => relativeWidth};
 	height: ${({ customHeight }) => customHeight || relativeScreenHeight(9)}px;
 	align-items: center;
 	justify-content: center;

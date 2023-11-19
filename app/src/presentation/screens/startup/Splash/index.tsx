@@ -48,8 +48,7 @@ function Splash({ navigation }: SplashScreenProps) {
 				initializeSession()
 			}
 		} catch (error: any) {
-			// console.log(error)
-			console.log('No Updates catch')
+			console.log(error)
 			initializeSession()
 		}
 	}
