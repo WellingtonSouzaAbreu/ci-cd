@@ -1,121 +1,179 @@
 {
-    "env": {
-        "es2021": true,
-        "node": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "airbnb",
-        "airbnb/hooks",
-        "solid"
-    ],
-    "overrides": [ ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "react",
-        "react-native",
-        "import-helpers"
-    ],
-    "ignorePatterns": [
-        "assets/**/**",
-        // "services/firebase/*",
-        "ignoredLogs.ts",
-        "*.d.ts",
-        "*.json",
-        "*.svg",
-        "*.sql"
-    ],
-    "rules": {
-        "import/no-default-export": "warn",
-        "import/prefer-default-export": "off",
-        "import/extensions": "off",
-        "import/no-unresolved": 0, // TODO config
-        "import/no-extraneous-dependencies": [ // TODO config
-            "off",
-            {
-                "devDependencies": true,
-                "optionalDependencies": false,
-                "peerDependencies": false,
-                "bundledDependencies": false,
-                "packageDir": [
-                    "./",
-                    "./services/firebase"
-                ]
-            }
-        ],
-        "import-helpers/order-imports": [
-            "warn",
-            { // example configuration
-                "newlinesBetween": "always",
-                "groups": [
-                    [ "/^react/", "/^expo/" ],
-                    [ "module" ],
-                    [ "/^@contexts/" ],
-                    [ "/^routes/", "/^types/", "/types/", "/^@contexts/types/" ],
-                    [ "/^@common/auxiliaryFunctions/", "/^@services/", "/^@utils/" ],
-                    [ "/^@common/screenDimensions/", "/^@common/theme/", "/^@assets/" ],
-                    [ "/^@components/" ],
-                    [ "/styles/" ]
-                ],
-                "alphabetize": { "order": "asc", "ignoreCase": true }
-            }
-        ],
-        "no-multiple-empty-lines": "warn",
-        "no-multi-spaces": "warn",
-        "key-spacing": "warn",
-        "array-bracket-spacing": "off",
-        "curly": [
-            "warn",
-            "multi-line",
-            "consistent"
-        ],
-        "object-curly-newline": [
-            "warn",
-            {
-                "ObjectExpression": {
-                    "multiline": true,
-                    "minProperties": 3
-                },
-                "ObjectPattern": {
-                    "multiline": true,
-                    "minProperties": 3
-                },
-                "ImportDeclaration": {
-                    "multiline": true,
-                    "minProperties": 5
-                },
-                "ExportDeclaration": {
-                    "multiline": true,
-                    "minProperties": 4
-                }
-            }
-        ],
-        "object-property-newline": [
-            "warn",
-            {
-                "allowAllPropertiesOnSameLine": false
-            }
-        ],
-        "max-len": [
-            "warn",
-            {
-                "code": 80,
-                "ignorePattern": "^import\\s.*",
-                "ignoreComments": true,
-                "ignoreTrailingComments": true,
-                "ignoreUrls": true,
-                "ignoreStrings": true,
-                "ignoreTemplateLiterals": true,
-                "ignoreRegExpLiterals": true
-            }
-        ],
-        "no-tabs": "off",
-        /*   "react/props-types": [
+	"env": {
+		"es2021": true,
+		"node": true
+	},
+	"extends": [
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"airbnb",
+		"airbnb/hooks",
+		"solid"
+	],
+	"overrides": [],
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"react",
+		"react-native",
+		"import-helpers"
+	],
+	"ignorePatterns": [
+		"assets/**/**",
+		// "services/firebase/*",
+		"ignoredLogs.ts",
+		"*.d.ts",
+		"tsconfig.json",
+		"*.svg",
+		"*.sql"
+	],
+	"rules": {
+		"import/no-default-export": "warn",
+		"import/prefer-default-export": "off",
+		"import/extensions": "off",
+		"import/no-unresolved": 0, // TODO config
+		"import/no-extraneous-dependencies": [ // TODO config
+			"off",
+			{
+				"devDependencies": true,
+				"optionalDependencies": false,
+				"peerDependencies": false,
+				"bundledDependencies": false,
+				"packageDir": [
+					"./",
+					"./services/firebase"
+				]
+			}
+		],
+		"import/order": [
+			"off",
+			{
+				"groups": [
+					"index",
+					"sibling",
+					"parent",
+					"internal",
+					"external",
+					"builtin",
+					"object",
+					"type"
+				]
+			}
+		],
+		"import-helpers/order-imports": [
+			"warn",
+			{ // example configuration
+				"newlinesBetween": "always",
+				"groups": [
+					[
+						"/^react/",
+						"/^@react/",
+						"/^@expo/",
+						"/^expo/",
+						"/^styled-components/"
+					],
+					[
+						"module"
+					],
+					[
+						"/^@domain/"
+					],
+					[
+						"/^@data/"
+					],
+					[
+						"/^@contexts/"
+					],
+					[
+						"/^@routes/",
+						"/^@types/",
+						"/types/",
+						"/^@contexts/types/"
+					],
+					[
+						"/^@services/"
+					],
+					[
+						"/^@presentation/common/screenDimensions/",
+						"/^@presentation/common/theme/",
+						"/^@presentation/assets/",
+						"/^./styles/"
+					],
+					[
+						"/^@presentation/adapters/"
+					],
+					[
+						"/^@presentation/components/",
+						"/^@presentation/screens/"
+					]
+				],
+				"alphabetize": {
+					"order": "asc",
+					"ignoreCase": true
+				}
+			}
+		],
+		"@typescript-eslint/no-explicit-any": "off",
+		"no-multiple-empty-lines": "warn",
+		"no-multi-spaces": "warn",
+		"key-spacing": "warn",
+		"array-bracket-spacing": "off",
+		"curly": [
+			"warn",
+			"multi-line",
+			"consistent"
+		],
+		"object-curly-newline": [
+			"warn",
+			{
+				"ObjectExpression": {
+					"multiline": true,
+					"minProperties": 4
+				},
+				"ObjectPattern": {
+					"multiline": true,
+					"minProperties": 4
+				},
+				"ImportDeclaration": {
+					"multiline": true,
+					"minProperties": 5
+				},
+				"ExportDeclaration": {
+					"multiline": true,
+					"minProperties": 4
+				}
+			}
+		],
+		"arrow-body-style": "off",
+		"object-property-newline": [
+			"warn",
+			{
+				"allowAllPropertiesOnSameLine": false
+			}
+		],
+		"no-use-before-define": "off",
+		"max-lines-per-function": [
+			"warn",
+			100
+		],
+		"max-len": [
+			"warn",
+			{
+				"code": 150,
+				"ignorePattern": "^import\\s.*",
+				"ignoreComments": true,
+				"ignoreTrailingComments": true,
+				"ignoreUrls": true,
+				"ignoreStrings": true,
+				"ignoreTemplateLiterals": true,
+				"ignoreRegExpLiterals": true
+			}
+		],
+		"no-tabs": "off",
+		/*   "react/props-types": [
             "error",
             {
                 "ignore": [
@@ -124,59 +182,69 @@
                 ]
             }
         ], */
-        "indent": [
-            "warn",
-            "tab",
-            {
-                "SwitchCase": 1
-            }
-        ],
-        "react/jsx-indent": [
-            "warn",
-            "tab"
-        ],
-        "semi": [
-            "warn",
-            "never"
-        ],
-        "quotes": [
-            "warn",
-            "single"
-        ],
-        "no-unused-vars": [
-            "warn",
-            {
-                "args": "none",
-                "caughtErrors": "none"
-            }
-        ],
-        "comma-dangle": "off",
-        "linebreak-style": "off",
-        "jsx-quotes": [
-            "warn",
-            "prefer-single"
-        ],
-        "react/jsx-max-props-per-line": [ "warn", { "maximum": 1 } ],
-        "react/jsx-indent-props": [
-            "warn",
-            "tab"
-        ],
-        "react/jsx-curly-brace-presence": [
-            "warn",
-            {
-                "props": "always",
-                "children": "always"
-            }
-        ],
-        "react/jsx-filename-extension": [
-            1,
-            {
-                "extensions": [
-                    ".jsx",
-                    ".tsx",
-                    ".ts"
-                ]
-            }
-        ]
-    }
+		"indent": [
+			"warn",
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"react/jsx-indent": [
+			"warn",
+			"tab"
+		],
+		"semi": [
+			"warn",
+			"never"
+		],
+		"quotes": [
+			"warn",
+			"single"
+		],
+		"no-unused-vars": [
+			"warn",
+			{
+				"args": "none",
+				"caughtErrors": "none"
+			}
+		],
+		"comma-dangle": "off",
+		"linebreak-style": "off",
+		"jsx-quotes": [
+			"warn",
+			"prefer-single"
+		],
+		"react/jsx-props-no-spreading": "off",
+		"react/jsx-max-props-per-line": [
+			"warn",
+			{
+				"maximum": 2
+			}
+		],
+		"default-case": "off",
+		"consistent-return": "off",
+		"react/require-default-props": "warn",
+		"react-hooks/exhaustive-deps": "off",
+		"react/jsx-indent-props": [
+			"warn",
+			"tab"
+		],
+		"react/jsx-curly-brace-presence": [
+			"warn",
+			{
+				"props": "always",
+				"children": "always"
+			}
+		],
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [
+					".jsx",
+					".tsx",
+					".ts"
+				]
+			}
+		]
+	}
 }

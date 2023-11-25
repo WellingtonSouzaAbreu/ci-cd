@@ -25,6 +25,25 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-updates",
+        {
+          "username": "wellington-souza-abreu"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "90191256-79b6-4c42-9ae7-057ec3857e63"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/90191256-79b6-4c42-9ae7-057ec3857e63"
     }
   }
 }

@@ -1,5 +1,5 @@
 Single Responsability Principle
- - Cada função, componente, classe deve ter apenas uma responsabilidade
+ - Cada função, componente, módulo, classe deve ter apenas uma responsabilidade
 
 Open Closed Principle
  - Sistemas abertos para extenção e fechados para alterações na camada de abstração  - 
