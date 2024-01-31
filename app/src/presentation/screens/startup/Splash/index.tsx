@@ -35,8 +35,7 @@ function Splash({ navigation }: SplashScreenProps) {
 		try {
 			const update = await hasUpdates()
 			if (update.isAvailable) {
-				// setConfirmationModalIsVisible(true)
-				Alert.alert('Has Update', '', [
+				Alert.alert('Atualização disponível', 'Vai ser rapidinho, você nem vai perceber', [
 					{
 						text: 'OK',
 						onPress: Updates.reloadAsync,
@@ -60,13 +59,11 @@ function Splash({ navigation }: SplashScreenProps) {
 	const initializeSession = async () => {
 		const hasLocalUserData = await hasValidLocalUser(userRepositoryAdapter)
 
-		setTimeout(async () => {
-			if (hasLocalUserData) {
-				await handleAuthenticatedMethod(performQuickSingin)
-			} else {
-				return navigateToAuthRegisterScreen()
-			}
-		}, 2000)
+		if (hasLocalUserData) {
+			await handleAuthenticatedMethod(performQuickSingin)
+		} else {
+			return navigateToAuthRegisterScreen()
+		}
 	}
 
 	const performQuickSingin = async () => {
