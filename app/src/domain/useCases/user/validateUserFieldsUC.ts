@@ -1,4 +1,4 @@
-import { validateUserName, validateEmail, validatePassword } from '../rules/validateUserFields'
+import { validateUserName, validateEmail, validatePassword } from '../../rules/user/validateUserFields'
 
 function validateUserNameUC(name: string) {
 	const nameIsValid = validateUserName(name)

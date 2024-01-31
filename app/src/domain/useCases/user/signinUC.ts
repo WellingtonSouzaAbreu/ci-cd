@@ -1,6 +1,6 @@
-import { signinByEmailPassword } from '@data/remoteStorage/user/signinByEmailPassword'
-
 import { UserMethod } from 'src/@types/entities/user'
+
+import { signinByEmailPassword } from '@data/remoteRespository/user/signinByEmailPassword'
 
 async function signinUC(email: string, password: string, updateUserContext: UserMethod) {
 	try {

@@ -25,10 +25,7 @@ function RegisterProvider({ children }: RegisterProviderProps) {
 	const [userRegistrationData, setUserRegistrationDataContext] = useState<UserRegistrationData>()
 
 	const setUserRegistrationDataOnContext = async (data: UserRegistrationData) => {
-		setUserRegistrationDataContext({
-			...userRegistrationData,
-			...data
-		})
+		setUserRegistrationDataContext({ ...userRegistrationData, ...data })
 	}
 
 	const registerProviderData = useMemo(() => ({

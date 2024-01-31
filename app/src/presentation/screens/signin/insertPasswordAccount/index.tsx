@@ -8,7 +8,7 @@ import { UserDataContext } from '@contexts/UserDataContext'
 
 import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
-import { UserAdapter } from '@presentation/adapters/UserAdapter'
+import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'

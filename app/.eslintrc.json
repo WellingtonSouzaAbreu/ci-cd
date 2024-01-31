@@ -82,9 +82,6 @@
 						"/^@domain/"
 					],
 					[
-						"/^@data/"
-					],
-					[
 						"/^@contexts/"
 					],
 					[
@@ -97,13 +94,14 @@
 						"/^@services/"
 					],
 					[
+						"/^@presentation/adapters/",
+						"/^@data/"
+					],
+					[
 						"/^@presentation/common/screenDimensions/",
 						"/^@presentation/common/theme/",
 						"/^@presentation/assets/",
 						"/^./styles/"
-					],
-					[
-						"/^@presentation/adapters/"
 					],
 					[
 						"/^@presentation/components/",
@@ -151,7 +149,7 @@
 		"object-property-newline": [
 			"warn",
 			{
-				"allowAllPropertiesOnSameLine": false
+				"allowAllPropertiesOnSameLine": true
 			}
 		],
 		"no-use-before-define": "off",
@@ -162,7 +160,7 @@
 		"max-len": [
 			"warn",
 			{
-				"code": 150,
+				"code": 170,
 				"ignorePattern": "^import\\s.*",
 				"ignoreComments": true,
 				"ignoreTrailingComments": true,

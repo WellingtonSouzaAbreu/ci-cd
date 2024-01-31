@@ -5,7 +5,7 @@ import { RegisterContext } from '@contexts/RegisterContext'
 
 import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { UserAdapter } from '@presentation/adapters/UserAdapter'
+import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'

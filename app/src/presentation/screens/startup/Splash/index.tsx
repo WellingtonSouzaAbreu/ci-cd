@@ -7,19 +7,17 @@ import { useTheme } from 'styled-components/native'
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { UserGatewayLocalAdapter } from '@data/localStorage/gatewayAdapters/UserGatewayLocalAdapter'
-
 import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
+
+import { userRepositoryAdapter } from '@data/user/userRepositoryAdapter'
+import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
 
 import { Credits } from './styles'
 import Logo from '@presentation/assets/icons/logo.svg'
 
-import { UserAdapter } from '@presentation/adapters/UserAdapter'
-
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
-const { handleAuthenticatedMethod } = UserAdapter()
-const { hasValidLocalUser } = UserGatewayLocalAdapter()
+const { hasValidLocalUser, handleAuthenticatedMethod } = UserAdapter()
 
 function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
@@ -60,7 +58,7 @@ function Splash({ navigation }: SplashScreenProps) {
 	}
 
 	const initializeSession = async () => {
-		const hasLocalUserData = await hasValidLocalUser()
+		const hasLocalUserData = await hasValidLocalUser(userRepositoryAdapter)
 
 		setTimeout(async () => {
 			if (hasLocalUserData) {
