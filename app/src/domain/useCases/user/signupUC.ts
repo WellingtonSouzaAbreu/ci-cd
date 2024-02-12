@@ -1,17 +1,23 @@
 import { createNewUser } from '@domain/entities/user'
 import { UserRegistrationData } from '@domain/entities/user/types'
 
-import { createUser } from '@data/remoteRespository/user/createUser'
+import { AuthenticationServiceAdapter } from '@services/authentication/AuthenticationServiceAdapter'
 
 async function signupUC(userRegistrationData: UserRegistrationData) {
-	const userData = createNewUser(userRegistrationData)
+	const { registerUser } = AuthenticationServiceAdapter()
 
-	const { password } = userRegistrationData
+	try {
+		const userData = createNewUser(userRegistrationData)
 
-	const newUser = await createUser(userData.email, password)
-	if (!newUser) throw new Error('Houve um problema com o novo usuário criado!')
+		const { password } = userRegistrationData
 
-	return { ...userData, userId: newUser.user.uid }
+		const newUser = await registerUser(userData.email, password)
+		if (!newUser) throw new Error('Houve um problema com o novo usuário criado!')
+
+		return { ...userData, userId: newUser.user.uid }
+	} catch (err) {
+		throw new Error('Houve um problema com o novo usuário criado!')
+	}
 }
 
 export { signupUC }

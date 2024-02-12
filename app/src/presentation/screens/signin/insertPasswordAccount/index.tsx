@@ -8,7 +8,7 @@ import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/Si
 
 import { AlertContext } from '@contexts/AlertContext'
 
-import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'

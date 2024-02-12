@@ -1,8 +1,8 @@
-import { firebaseAuth } from '@infrastructure/firebase/config'
+import { firebaseAuthentication } from '@infrastructure/firebase/config'
 import { fetchSignInMethodsForEmail } from 'firebase/auth'
 
 async function emailAlreadyRegistred(email: string) {
-	return fetchSignInMethodsForEmail(firebaseAuth, email)
+	return fetchSignInMethodsForEmail(firebaseAuthentication, email)
 		.then((signinMethods) => !!(signinMethods && signinMethods.length))
 		.catch((error) => {
 			console.log(error)

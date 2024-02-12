@@ -12,11 +12,13 @@ function UserAdapter(): UserAdapterInterface {
 		userNameIsValid: validateUserNameUC,
 		emailIsValid: validateEmailUC,
 		passwordIsValid: validatePasswordUC,
+
 		performSignup: signupUC,
 		performSignin: signinUC,
-		updateUserRepository: updateUserRepositoryUC,
-		hasValidLocalUser: hasValidLocalUserUC,
 
+		updateUserRepository: updateUserRepositoryUC,
+
+		hasValidLocalUser: hasValidLocalUserUC,
 		handleAuthenticatedMethod: handleMethodWithAuthenticationUC
 	}
 }
