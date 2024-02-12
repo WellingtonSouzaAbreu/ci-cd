@@ -12,7 +12,7 @@ async function handleMethodWithAuthenticationUC(secureMethod: HandleMethodWithAu
 
 		const hasAuth = await LocalAuthentication.authenticateAsync(config)
 		if (hasAuth.success) {
-			secureMethod()
+			await secureMethod()
 			return true
 		}
 		throw new Error('Houve um erro ao realizar a autenticação com os dados locais')

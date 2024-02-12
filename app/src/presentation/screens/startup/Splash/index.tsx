@@ -8,8 +8,9 @@ import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/scre
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 
 import { Credits } from './styles'
 import Logo from '@presentation/assets/icons/logo.svg'
@@ -23,8 +24,10 @@ function Splash({ navigation }: SplashScreenProps) {
 	const theme = useTheme()
 
 	useEffect(() => {
-		checkUpdates()
-	}, [])
+		if (fontsAreLoaded) {
+			checkUpdates()
+		}
+	}, [navigation, fontsAreLoaded])
 
 	const checkUpdates = async () => {
 		await onFetchUpdateAsync()
@@ -41,7 +44,7 @@ function Splash({ navigation }: SplashScreenProps) {
 					},
 				])
 			} else {
-				initializeSession()
+				return initializeSession()
 			}
 		} catch (error: any) {
 			console.log(error)
@@ -86,12 +89,6 @@ function Splash({ navigation }: SplashScreenProps) {
 			routes: [{ name: 'Home' }]
 		})
 	}
-
-	useEffect(() => {
-		if (fontsAreLoaded) {
-			initializeSession()
-		}
-	}, [navigation, fontsAreLoaded])
 
 	return (
 		<ScreenContainer justifyContent={'center'}>

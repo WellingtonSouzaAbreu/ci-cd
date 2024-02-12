@@ -34,8 +34,8 @@
 		"import/no-default-export": "warn",
 		"import/prefer-default-export": "off",
 		"import/extensions": "off",
-		"import/no-unresolved": 0, // TODO config
-		"import/no-extraneous-dependencies": [ // TODO config
+		"import/no-unresolved": 0,
+		"import/no-extraneous-dependencies": [
 			"off",
 			{
 				"devDependencies": true,

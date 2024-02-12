@@ -6,9 +6,9 @@ import { LoaderContext } from '@presentation/contexts/LoaderContext'
 import { UserDataContext } from '@presentation/contexts/UserDataContext'
 import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
 
-import { AlertContext } from '@contexts/AlertContext'
-
 import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
+import { AlertContext } from '@contexts/AlertContext'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
@@ -34,7 +34,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 			navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
 		} catch (err: any) {
 			setLoaderIsVisible(false)
-			setTimeout(() => { // TODO check more elegant way to show error message
+			setTimeout(() => { // NOTE check more elegant way to show error message
 				showContextModal('Ops!', err.message)
 			}, 300)
 		}
