@@ -6,11 +6,11 @@ interface UserAdapterInterface {
 	userNameIsValid: (name: string) => boolean
 	emailIsValid: (name: string) => boolean
 	passwordIsValid: (name: string) => boolean
-	hasValidLocalUser: (userRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<boolean>
+	hasValidLocalUser: (UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<boolean>
 
 	performSignup: (userRegistrationData: UserRegistrationData) => Promise<UserData>
 	performSignin: (email: string, password: string, updateUserContext: UserMethod) => Promise<void>
-	updateUserRepository: (user: UserData, userRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<void>
+	updateUserRepository: (user: UserData, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<void>
 
 	handleAuthenticatedMethod: (secureMethod: any) => Promise<any>
 }

@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { AlertContext } from '@contexts/AlertContext'
-import { AuthContext } from '@contexts/AuthContext'
-import { LoaderContext } from '@contexts/LoaderContext'
-import { UserDataContext } from '@contexts/UserDataContext'
+import { AuthContext } from '@presentation/contexts/AuthContext'
+import { LoaderContext } from '@presentation/contexts/LoaderContext'
+import { UserDataContext } from '@presentation/contexts/UserDataContext'
+import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
 
-import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
+import { AlertContext } from '@contexts/AlertContext'
 
 import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
 
@@ -31,7 +31,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 			setLoaderIsVisible(true)
 			await performSignin(userAuthData.email, password, setUserDataOnContext)
 			setLoaderIsVisible(false)
-			navigation.navigate('Home')
+			navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
 		} catch (err: any) {
 			setLoaderIsVisible(false)
 			setTimeout(() => { // TODO check more elegant way to show error message
@@ -48,7 +48,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 			<FormContainer
 				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}
-				buttonLabel={'Criar conta'}
+				buttonLabel={'Acessar conta'}
 				validateField={() => passwordIsValid(password)}
 				onSubmit={submitPassword}
 			>

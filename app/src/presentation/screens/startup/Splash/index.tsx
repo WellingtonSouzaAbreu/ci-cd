@@ -1,15 +1,16 @@
 import { useFonts } from '@expo-google-fonts/inter'
 import * as Updates from 'expo-updates'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ActivityIndicator, Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
+import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/screenProps'
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
+import { AlertContext } from '@contexts/AlertContext'
 
-import { userRepositoryAdapter } from '@data/user/userRepositoryAdapter'
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
 
 import { Credits } from './styles'
@@ -20,6 +21,8 @@ import { ScreenContainer } from '@presentation/components/containers/ScreenConta
 const { hasValidLocalUser, handleAuthenticatedMethod } = UserAdapter()
 
 function Splash({ navigation }: SplashScreenProps) {
+	const { showContextModal } = useContext(AlertContext)
+
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 	const theme = useTheme()
 
@@ -57,12 +60,16 @@ function Splash({ navigation }: SplashScreenProps) {
 	}
 
 	const initializeSession = async () => {
-		const hasLocalUserData = await hasValidLocalUser(userRepositoryAdapter)
+		try {
+			const hasLocalUserData = await hasValidLocalUser(UserRepositoryAdapter)
 
-		if (hasLocalUserData) {
-			await handleAuthenticatedMethod(performQuickSingin)
-		} else {
-			return navigateToAuthRegisterScreen()
+			if (hasLocalUserData) {
+				await handleAuthenticatedMethod(performQuickSingin)
+			} else {
+				return navigateToAuthRegisterScreen()
+			}
+		} catch (err) {
+			navigateToAuthRegisterScreen()
 		}
 	}
 

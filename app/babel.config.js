@@ -11,8 +11,8 @@ module.exports = function (api) {
 				{
 					root: ['./src'],
 					alias: {
-						'@contexts': './src/contexts',
-						'@routes': './src/routes',
+						'@contexts': './src/presentation/contexts',
+						'@routes': './src/presentation/routes',
 						'@services': './src/services',
 						'@presentation': './src/presentation',
 						'@domain': './src/domain',

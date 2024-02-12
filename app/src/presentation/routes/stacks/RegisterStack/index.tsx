@@ -3,7 +3,7 @@ import React from 'react'
 
 import { RegisterProvider } from '@contexts/RegisterContext'
 
-import { RegisterStackParamList } from '@routes/stacks/RegisterStack/types'
+import { RegisterStackParamList } from '@presentation/routes/stacks/RegisterStack/types'
 
 import { Home } from '@presentation/screens/home/Home'
 import { InsertEmail } from '@presentation/screens/signup/InsertEmail'
@@ -17,7 +17,7 @@ function RegisterStack() {
 	return (
 		<RegisterProvider>
 			<Stack.Navigator
-				initialRouteName={'WelcomeNewUser'}
+				initialRouteName={'InsertUserName'}
 				screenOptions={{
 					headerShown: false,
 					gestureEnabled: true,

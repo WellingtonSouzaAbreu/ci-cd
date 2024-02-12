@@ -8,7 +8,7 @@ export const Container = styled.View`
 	overflow: hidden;
 	border-radius: ${relativeScreenDensity(3)}px;
 	border-bottom-width: ${relativeScreenDensity(3)}px;
-	border-bottom-color: ${({ theme }) => theme.green5}
+	border-bottom-color: ${({ theme }) => theme.green5};
 `
 
 export const CustomTextInput = styled.TextInput`
@@ -19,6 +19,7 @@ export const CustomTextInput = styled.TextInput`
 	font-family: ${appFonts.Inter400Regular};
 	font-size: ${appFonts.size.medium1};
 	color: ${({ theme }) => theme.black1};
+	text-transform: lowercase;
 `
 
 export const ToggleSecretTextIcon = styled.TouchableOpacity`

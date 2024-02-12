@@ -12,9 +12,7 @@ async function signupUC(userRegistrationData: UserRegistrationData) {
 	const newUser = await createUser(userData.email, password)
 	if (!newUser) throw new Error('Houve um problema com o novo usuário criado!')
 
-	const newUserId = newUser.user.uid
-
-	return { ...userData, userId: newUserId }
+	return { ...userData, userId: newUser.user.uid }
 }
 
 export { signupUC }

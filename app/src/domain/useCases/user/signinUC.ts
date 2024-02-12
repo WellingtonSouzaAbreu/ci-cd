@@ -1,8 +1,6 @@
-import { UserMethod } from 'src/@types/entities/user'
-
 import { signinByEmailPassword } from '@data/remoteRespository/user/signinByEmailPassword'
 
-async function signinUC(email: string, password: string, updateUserContext: UserMethod) {
+async function signinUC(email: string, password: string) {
 	try {
 		const userCredential = await signinByEmailPassword(email, password)
 		console.log(userCredential.user.uid)

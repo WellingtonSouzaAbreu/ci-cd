@@ -1,7 +1,7 @@
 import { UserRepositoryAdapterInterface } from '@data/user/UserRepositoryAdapterInterface'
 
-async function hasValidLocalUserUC(userRepositoryAdapter: () => UserRepositoryAdapterInterface) {
-	const { local } = userRepositoryAdapter()
+async function hasValidLocalUserUC(UserRepositoryAdapter: () => UserRepositoryAdapterInterface) {
+	const { local } = UserRepositoryAdapter()
 	const storagedUserData = await local.getLocalUserData()
 
 	try {

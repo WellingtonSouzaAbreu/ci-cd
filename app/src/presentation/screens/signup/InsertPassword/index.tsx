@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
+import { LoaderContext } from '@presentation/contexts/LoaderContext'
+import { UserDataContext } from '@presentation/contexts/UserDataContext'
+import { InsertPasswordScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
+
 import { AlertContext } from '@contexts/AlertContext'
-import { LoaderContext } from '@contexts/LoaderContext'
 import { RegisterContext } from '@contexts/RegisterContext'
-import { UserDataContext } from '@contexts/UserDataContext'
 
-import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-
-import { userRepositoryAdapter } from '@data/user/userRepositoryAdapter'
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
@@ -32,7 +32,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 			setLoaderIsVisible(true)
 
 			const createdUser = await performSignup({ ...userRegistrationData, password })
-			await updateUserRepository(createdUser, userRepositoryAdapter)
+			await updateUserRepository(createdUser, UserRepositoryAdapter)
 			setUserDataOnContext(createdUser)
 
 			navigation.navigate('WelcomeNewUser')

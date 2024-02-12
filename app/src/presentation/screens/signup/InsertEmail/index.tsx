@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
+import { InsertEmailScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
-import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-
+import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
 import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'

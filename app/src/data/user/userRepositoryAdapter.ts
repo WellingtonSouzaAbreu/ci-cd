@@ -5,7 +5,7 @@ import { updateRemoteUser } from '@data/remoteRespository/user/updateRemoteUser'
 
 import { UserRepositoryAdapterInterface } from './UserRepositoryAdapterInterface'
 
-function userRepositoryAdapter(): UserRepositoryAdapterInterface {
+function UserRepositoryAdapter(): UserRepositoryAdapterInterface {
 	return {
 		local: {
 			getLocalUserData,
@@ -14,9 +14,8 @@ function userRepositoryAdapter(): UserRepositoryAdapterInterface {
 		remote: {
 			createUser,
 			updateRemoteUser
-
 		}
 	}
 }
 
-export { userRepositoryAdapter }
+export { UserRepositoryAdapter }

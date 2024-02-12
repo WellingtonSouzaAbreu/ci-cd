@@ -5,11 +5,10 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { useTheme } from 'styled-components'
 
 import { appFonts } from '@presentation/common/fonts'
+import { WelcomeNewUserScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 import { relativeScreenDensity, relativeScreenHeight } from '@presentation/utils/screenDimensions'
 
 import { RegisterContext } from '@contexts/RegisterContext'
-
-import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
 import { CarouselContext, CarouselItemText, Content } from './styles'
 import CheckedList from '@presentation/assets/images/checkedList.svg'
@@ -28,10 +27,7 @@ function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
 	const theme = useTheme()
 
 	const submitTermsAndConditions = async () => {
-		navigation.reset({
-			index: 0,
-			routes: [{ name: 'Home' }]
-		})
+		navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
 	}
 
 	const styles = {
