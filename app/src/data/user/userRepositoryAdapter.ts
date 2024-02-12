@@ -7,8 +7,8 @@ import { UserRepositoryAdapterInterface } from './UserRepositoryAdapterInterface
 function UserRepositoryAdapter(): UserRepositoryAdapterInterface {
 	return {
 		local: {
-			getLocalUserData,
-			updateLocalUser
+			getLocalUserData: getLocalUserData,
+			updateLocalUser: updateLocalUser
 		},
 		remote: { updateRemoteUser }
 	}

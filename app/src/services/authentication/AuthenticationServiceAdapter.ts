@@ -1,8 +1,12 @@
 import { AuthenticationServiceAdapterInterface } from './AuthenticationServiceAdapterInterface'
-import { registerUser } from './methods/registerUser'
+import { signinByEmailPassword } from './methods/signinByEmailPassword'
+import { signupByEmailPassword } from './methods/signupByEmailPassword'
 
 function AuthenticationServiceAdapter(): AuthenticationServiceAdapterInterface {
-	return { registerUser }
+	return {
+		signupByEmailPassword: signupByEmailPassword,
+		signinByEmailPassword: signinByEmailPassword
+	}
 }
 
 export { AuthenticationServiceAdapter }

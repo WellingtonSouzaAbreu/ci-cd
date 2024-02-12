@@ -3,7 +3,7 @@ import * as LocalAuthentication from 'expo-local-authentication'
 import { HandleMethodWithAuthentication } from '@domain/entities/limbo/types'
 
 async function handleMethodWithAuthenticationUC(secureMethod: HandleMethodWithAuthentication) {
-	try {
+	try { // TODO Migrar método e configs para authentication
 		const config = {
 			cancelLabel: 'cancelLabel',
 			promptMessage: 'Confirme sua identidade',

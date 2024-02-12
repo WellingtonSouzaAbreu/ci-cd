@@ -124,6 +124,7 @@
 			"multi-line",
 			"consistent"
 		],
+		"object-shorthand": "off",
 		"object-curly-newline": [
 			"warn",
 			{

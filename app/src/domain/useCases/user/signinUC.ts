@@ -1,14 +1,14 @@
-import { signinByEmailPassword } from '@data/remoteRespository/user/signinByEmailPassword'
+import { AuthenticationServiceAdapter } from '@services/authentication/AuthenticationServiceAdapter'
 
 async function signinUC(email: string, password: string) {
+	const { signinByEmailPassword } = AuthenticationServiceAdapter()
+
 	try {
 		const userCredential = await signinByEmailPassword(email, password)
 		console.log(userCredential.user.uid)
 
-		// await getRemoteUser() // TODO getRemoteUser
-		// await updateLocalUser(userRegistrationData) // data/localStorage // TODO Update local é de outra camada
-
-		// await updateUserContext({}) //
+		// const remoteUserData = await getRemoteUser()  // TODO Implementar método para obter usuário remoto
+		// await updateLocalUser(userRegistrationData) // TODO Chamar método para atualizar o usuário local
 	} catch (err) {
 		console.log(err.code)
 		switch (err.code) {
@@ -19,7 +19,7 @@ async function signinUC(email: string, password: string) {
 			case 'auth/too-many-requests':
 				throw new Error('Foram feitas muitas tentativas de login, tente novamente mais tarde!')
 			default:
-				throw new Error('Houve um problema com o login, tente novamente mais tarde!')
+				throw new Error('Houve um problema com o login, verifique sua conexão com a internet e tente novamente em alguns instantes!')
 		}
 	}
 }

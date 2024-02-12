@@ -1,11 +1,12 @@
 import { FirebaseInfraAdapter } from '@infrastructure/firebase/FirebaseInfraAdapter'
+import { doc, setDoc } from 'firebase/firestore'
 
 import { UserData } from '@domain/entities/user/types'
 
-const { firebaseFirestore, docRef, setDoc } = FirebaseInfraAdapter()
+const { firebaseFirestore } = FirebaseInfraAdapter()
 
 async function updateRemoteUser(userId: string, userData: UserData) {
-	const documentReference = docRef(firebaseFirestore, 'users', userId)
+	const documentReference = doc(firebaseFirestore, 'users', userId)
 	return setDoc(documentReference, userData, { merge: true })
 }
 
