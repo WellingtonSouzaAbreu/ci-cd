@@ -1,4 +1,4 @@
-import { UserData } from 'src/@types/entities/user'
+import { UserData } from '@domain/entities/user/types'
 
 import { UserRepositoryAdapterInterface } from '@data/user/UserRepositoryAdapterInterface'
 

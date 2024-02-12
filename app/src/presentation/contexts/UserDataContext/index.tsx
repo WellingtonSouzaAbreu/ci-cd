@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { UserData } from 'src/@types/entities/user'
+import { UserData } from '@domain/entities/user/types'
 
 type UserDataContextMethods = {
 	setUserDataOnContext: (data: UserData) => void

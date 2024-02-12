@@ -1,6 +1,6 @@
 import { UserCredential } from 'firebase/auth'
 
-import { UserData } from 'src/@types/entities/user'
+import { UserData } from '@domain/entities/user/types'
 
 interface UserRepositoryAdapterInterface {
 	local: {

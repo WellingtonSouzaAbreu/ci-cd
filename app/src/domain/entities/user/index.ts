@@ -1,4 +1,4 @@
-import { UserRegistrationData } from 'src/@types/entities/user'
+import { UserRegistrationData } from '@domain/entities/user/types'
 
 const createNewUser = (userRegistrationData: UserRegistrationData) => ({
 	name: userRegistrationData.name,

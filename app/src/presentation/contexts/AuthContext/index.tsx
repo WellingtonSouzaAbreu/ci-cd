@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { UserAuthData } from 'src/@types/entities/user'
+import { UserAuthData } from '@domain/entities/user/types'
 
 type AuthContextMethods = {
 	setUserAuthDataOnContext: (data: UserAuthData) => void

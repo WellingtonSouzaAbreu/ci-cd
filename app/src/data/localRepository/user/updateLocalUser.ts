@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { UserData } from 'src/@types/entities/user'
+import { UserData } from '@domain/entities/user/types'
 
 import { getLocalUserData } from './getLocalUserData'
 

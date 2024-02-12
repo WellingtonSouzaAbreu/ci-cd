@@ -1,6 +1,6 @@
 import * as LocalAuthentication from 'expo-local-authentication'
 
-import { HandleMethodWithAuthentication } from 'src/@types/entities/paramFunctions'
+import { HandleMethodWithAuthentication } from '@domain/entities/limbo/types'
 
 async function handleMethodWithAuthenticationUC(secureMethod: HandleMethodWithAuthentication) {
 	try {

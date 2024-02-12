@@ -1,7 +1,7 @@
 import { firestore } from '@infrastructure/firebase'
 import { doc, setDoc } from 'firebase/firestore'
 
-import { UserData } from 'src/@types/entities/user'
+import { UserData } from '@domain/entities/user/types'
 
 async function updateRemoteUser(userId: string, userData: UserData) {
 	const documentReference = doc(firestore, 'users', userId)

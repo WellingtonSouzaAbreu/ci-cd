@@ -1,6 +1,5 @@
 import { createNewUser } from '@domain/entities/user'
-
-import { UserRegistrationData } from 'src/@types/entities/user'
+import { UserRegistrationData } from '@domain/entities/user/types'
 
 import { createUser } from '@data/remoteRespository/user/createUser'
 

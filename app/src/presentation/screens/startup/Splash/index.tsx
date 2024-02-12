@@ -1,14 +1,12 @@
 import { useFonts } from '@expo-google-fonts/inter'
 import * as Updates from 'expo-updates'
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { ActivityIndicator, Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
 import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/screenProps'
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
-
-import { AlertContext } from '@contexts/AlertContext'
 
 import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 import { UserAdapter } from '@presentation/adapters/user/UserAdapter'
@@ -21,8 +19,6 @@ import { ScreenContainer } from '@presentation/components/containers/ScreenConta
 const { hasValidLocalUser, handleAuthenticatedMethod } = UserAdapter()
 
 function Splash({ navigation }: SplashScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
-
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 	const theme = useTheme()
 
