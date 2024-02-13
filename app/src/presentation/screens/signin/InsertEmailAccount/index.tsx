@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components'
 import { AuthContext } from '@presentation/contexts/AuthContext'
 import { InsertEmailAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
 
-import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 
 import { AlertContext } from '@contexts/AlertContext'
 
@@ -14,7 +14,7 @@ import { FormContainer } from '@presentation/components/containers/FormContainer
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { emailIsValid } = UserAdapter()
+const { emailIsValid } = UserUseCaseAdapter()
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const { showContextModal } = useContext(AlertContext)

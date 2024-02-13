@@ -8,16 +8,16 @@ import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/scre
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 
-import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
+import { UserRepositoryAdapter } from '@data/user/userRepositoryAdapter'
 
 import { Credits } from './styles'
 import Logo from '@presentation/assets/icons/logo.svg'
 
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
-const { hasValidLocalUser, handleAuthenticatedMethod } = UserAdapter()
+const { hasValidLocalUser, handleAuthenticatedMethod } = UserUseCaseAdapter()
 
 function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })

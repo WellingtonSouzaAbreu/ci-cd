@@ -5,9 +5,9 @@ import { signupUC } from '@domain/useCases/user/signupUC'
 import { updateUserRepositoryUC } from '@domain/useCases/user/updateUserRepositoryUC'
 import { validateUserNameUC, validateEmailUC, validatePasswordUC } from '@domain/useCases/user/validateUserFieldsUC'
 
-import { UserAdapterInterface } from './UserAdapterInterface'
+import { UserUseCaseAdapterInterface } from './UserUseCaseAdapterInterface'
 
-function UserAdapter(): UserAdapterInterface {
+function UserUseCaseAdapter(): UserUseCaseAdapterInterface {
 	return {
 		userNameIsValid: validateUserNameUC,
 		emailIsValid: validateEmailUC,
@@ -23,4 +23,4 @@ function UserAdapter(): UserAdapterInterface {
 	}
 }
 
-export { UserAdapter }
+export { UserUseCaseAdapter }

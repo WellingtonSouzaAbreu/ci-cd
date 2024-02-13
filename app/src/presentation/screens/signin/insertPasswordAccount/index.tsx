@@ -6,7 +6,7 @@ import { LoaderContext } from '@presentation/contexts/LoaderContext'
 import { UserDataContext } from '@presentation/contexts/UserDataContext'
 import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
 
-import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 
 import { AlertContext } from '@contexts/AlertContext'
 
@@ -14,7 +14,7 @@ import { FormContainer } from '@presentation/components/containers/FormContainer
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { passwordIsValid, performSignin } = UserAdapter()
+const { passwordIsValid, performSignin } = UserUseCaseAdapter()
 
 function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps) {
 	const { showContextModal } = useContext(AlertContext)

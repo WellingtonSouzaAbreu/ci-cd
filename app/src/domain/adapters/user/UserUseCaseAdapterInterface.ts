@@ -2,7 +2,7 @@ import { UserData, UserMethod, UserRegistrationData } from '@domain/entities/use
 
 import { UserRepositoryAdapterInterface } from '@data/user/UserRepositoryAdapterInterface'
 
-interface UserAdapterInterface {
+interface UserUseCaseAdapterInterface {
 	userNameIsValid: (name: string) => boolean
 	emailIsValid: (name: string) => boolean
 	passwordIsValid: (name: string) => boolean
@@ -15,4 +15,4 @@ interface UserAdapterInterface {
 	handleAuthenticatedMethod: (secureMethod: any) => Promise<any>
 }
 
-export { UserAdapterInterface }
+export { UserUseCaseAdapterInterface }
