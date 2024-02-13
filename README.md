@@ -1,2 +1,3 @@
 # finance
-Aplicação mobile para gerenciar gastos
+Aplicação mobile para gerenciar receitas e despesas
+
