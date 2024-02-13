@@ -4,10 +4,11 @@ import { useTheme } from 'styled-components'
 import { AuthContext } from '@presentation/contexts/AuthContext'
 import { InsertEmailAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
 
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
 import { AlertContext } from '@contexts/AlertContext'
 
 import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
-import { UserAdapter } from '@domain/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'

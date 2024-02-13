@@ -5,11 +5,12 @@ import { LoaderContext } from '@presentation/contexts/LoaderContext'
 import { UserDataContext } from '@presentation/contexts/UserDataContext'
 import { InsertPasswordScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
 import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
-import { UserAdapter } from '@domain/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'

@@ -3,11 +3,12 @@ import { useTheme } from 'styled-components'
 
 import { InsertEmailScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
 import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
-import { UserAdapter } from '@domain/adapters/user/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'

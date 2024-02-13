@@ -3,9 +3,9 @@ import { useTheme } from 'styled-components'
 
 import { InsertUserNameScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 
-import { RegisterContext } from '@contexts/RegisterContext'
-
 import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
+import { RegisterContext } from '@contexts/RegisterContext'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
