@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
+import { InsertUserNameScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
+
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
 import { RegisterContext } from '@contexts/RegisterContext'
-
-import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-
-import { UserAdapter } from '@presentation/adapters/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'

@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
+import { AuthContext } from '@presentation/contexts/AuthContext'
+import { LoaderContext } from '@presentation/contexts/LoaderContext'
+import { UserDataContext } from '@presentation/contexts/UserDataContext'
+import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
+
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
 import { AlertContext } from '@contexts/AlertContext'
-import { AuthContext } from '@contexts/AuthContext'
-import { LoaderContext } from '@contexts/LoaderContext'
-import { UserDataContext } from '@contexts/UserDataContext'
-
-import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
-
-import { UserAdapter } from '@presentation/adapters/UserAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
@@ -31,10 +31,10 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 			setLoaderIsVisible(true)
 			await performSignin(userAuthData.email, password, setUserDataOnContext)
 			setLoaderIsVisible(false)
-			navigation.navigate('Home')
+			navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
 		} catch (err: any) {
 			setLoaderIsVisible(false)
-			setTimeout(() => { // TODO check more elegant way to show error message
+			setTimeout(() => { // NOTE check more elegant way to show error message
 				showContextModal('Ops!', err.message)
 			}, 300)
 		}
@@ -48,7 +48,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 			<FormContainer
 				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}
-				buttonLabel={'Criar conta'}
+				buttonLabel={'Acessar conta'}
 				validateField={() => passwordIsValid(password)}
 				onSubmit={submitPassword}
 			>

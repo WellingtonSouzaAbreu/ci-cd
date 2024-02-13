@@ -5,10 +5,10 @@
 		"baseUrl": "./",
 		"paths": {
 			"@contexts/*": [
-				"./src/contexts/*"
+				"src/presentation/contexts/*"
 			],
 			"@routes/*": [
-				"./src/routes/*"
+				"src/presentation/routes/*"
 			],
 			"@services/*": [
 				"./src/services/*"

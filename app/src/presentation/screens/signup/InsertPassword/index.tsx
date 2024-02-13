@@ -1,20 +1,22 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
+import { LoaderContext } from '@presentation/contexts/LoaderContext'
+import { UserDataContext } from '@presentation/contexts/UserDataContext'
+import { InsertPasswordScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
+
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
+
 import { AlertContext } from '@contexts/AlertContext'
-import { LoaderContext } from '@contexts/LoaderContext'
 import { RegisterContext } from '@contexts/RegisterContext'
-import { UserDataContext } from '@contexts/UserDataContext'
 
-import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-
-import { UserAdapter } from '@presentation/adapters/UserAdapter'
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { passwordIsValid, performSignup } = UserAdapter()
+const { passwordIsValid, performSignup, updateUserRepository } = UserAdapter()
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
@@ -22,21 +24,22 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { userRegistrationData } = useContext(RegisterContext)
 	const { setUserDataOnContext } = useContext(UserDataContext)
 
-	const [password, setPassword] = useState<string>('')
+	const [password, setPassword] = useState<string>('a')
 
 	const theme = useTheme()
 
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await performSignup({
-				...userRegistrationData,
-				password
-			}, setUserDataOnContext)
+
+			const createdUser = await performSignup({ ...userRegistrationData, password })
+			await updateUserRepository(createdUser, UserRepositoryAdapter)
+			setUserDataOnContext(createdUser)
+
 			navigation.navigate('WelcomeNewUser')
 		} catch (err: any) {
 			console.log(err.code)
-			switch (err.code) { // TODO internalizar tratativa de erro
+			switch (err.code) {
 				case 'auth/email-already-in-use': return showContextModal('Ops!', 'O email já está sendo utilizado')
 			}
 

@@ -27,7 +27,7 @@ export const CarouselActiveIndicatorItem = styled.View`
     margin-horizontal: 2px;
 `
 
-export const CarouselInactiveIndicatorItem = styled.View` /* TODO do not import theme*/
+export const CarouselInactiveIndicatorItem = styled.View` /* TODO BUG não importa theme com autocomplete*/
 	height: ${relativeScreenDensity(5)}px;
 	width: ${relativeScreenDensity(15)}px;
 	border-radius: 10px;

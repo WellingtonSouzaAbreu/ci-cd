@@ -4,30 +4,30 @@ import React, { useEffect } from 'react'
 import { ActivityIndicator, Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
+import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/screenProps'
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { UserGatewayLocalAdapter } from '@data/localStorage/gatewayAdapters/UserGatewayLocalAdapter'
+import { UserAdapter } from '@domain/adapters/user/UserAdapter'
 
-import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 
 import { Credits } from './styles'
 import Logo from '@presentation/assets/icons/logo.svg'
 
-import { UserAdapter } from '@presentation/adapters/UserAdapter'
-
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
-const { handleAuthenticatedMethod } = UserAdapter()
-const { hasValidLocalUser } = UserGatewayLocalAdapter()
+const { hasValidLocalUser, handleAuthenticatedMethod } = UserAdapter()
 
 function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
 	const theme = useTheme()
 
 	useEffect(() => {
-		checkUpdates()
-	}, [])
+		if (fontsAreLoaded) {
+			checkUpdates()
+		}
+	}, [navigation, fontsAreLoaded])
 
 	const checkUpdates = async () => {
 		await onFetchUpdateAsync()
@@ -37,15 +37,14 @@ function Splash({ navigation }: SplashScreenProps) {
 		try {
 			const update = await hasUpdates()
 			if (update.isAvailable) {
-				// setConfirmationModalIsVisible(true)
-				Alert.alert('Has Update', '', [
+				Alert.alert('Atualização disponível', 'Vai ser rapidinho, você nem vai perceber', [
 					{
 						text: 'OK',
 						onPress: Updates.reloadAsync,
 					},
 				])
 			} else {
-				initializeSession()
+				return initializeSession()
 			}
 		} catch (error: any) {
 			console.log(error)
@@ -60,15 +59,17 @@ function Splash({ navigation }: SplashScreenProps) {
 	}
 
 	const initializeSession = async () => {
-		const hasLocalUserData = await hasValidLocalUser()
+		try {
+			const hasLocalUserData = await hasValidLocalUser(UserRepositoryAdapter)
 
-		setTimeout(async () => {
 			if (hasLocalUserData) {
 				await handleAuthenticatedMethod(performQuickSingin)
 			} else {
 				return navigateToAuthRegisterScreen()
 			}
-		}, 2000)
+		} catch (err) {
+			navigateToAuthRegisterScreen()
+		}
 	}
 
 	const performQuickSingin = async () => {
@@ -88,12 +89,6 @@ function Splash({ navigation }: SplashScreenProps) {
 			routes: [{ name: 'Home' }]
 		})
 	}
-
-	useEffect(() => {
-		if (fontsAreLoaded) {
-			initializeSession()
-		}
-	}, [navigation, fontsAreLoaded])
 
 	return (
 		<ScreenContainer justifyContent={'center'}>

@@ -1,0 +1,5 @@
+interface StripeServiceAdapterInterface {
+
+}
+
+export { StripeServiceAdapterInterface }
