@@ -36,7 +36,7 @@ function StartupStack() {
 				component={SigninStack}
 				options={{ gestureEnabled: false }}
 			/>
-			<Stack.Screen name={'Home'} component={HomeBottomTabNavigator} />
+			<Stack.Screen name={'HomeTab'} component={HomeBottomTabNavigator} />
 		</Stack.Navigator>
 	)
 }

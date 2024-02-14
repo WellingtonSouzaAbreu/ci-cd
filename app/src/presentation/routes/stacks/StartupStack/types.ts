@@ -4,5 +4,5 @@ export type StartupStackParamList = {
 	RegisterStack: undefined
 	SigninStack: undefined
 
-	Home: undefined
+	HomeTab: undefined
 }

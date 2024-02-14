@@ -24,7 +24,7 @@ function SigninStack() {
 			>
 				<Stack.Screen name={'InsertEmailAccount'} component={InsertEmailAccount} />
 				<Stack.Screen name={'InsertPasswordAccount'} component={InsertPasswordAccount} />
-				<Stack.Screen name={'Home'} component={HomeBottomTabNavigator} />
+				<Stack.Screen name={'HomeTab'} component={HomeBottomTabNavigator} />
 			</Stack.Navigator>
 		</AuthProvider>
 	)
