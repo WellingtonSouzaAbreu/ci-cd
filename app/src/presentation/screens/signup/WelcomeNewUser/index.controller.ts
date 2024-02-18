@@ -5,7 +5,7 @@ import { RegisterContext } from '@contexts/RegisterContext'
 
 import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-function useViewModel() {
+function useViewController() {
 	const { userRegistrationData } = useContext(RegisterContext)
 	const navigation: WelcomeNewUserScreenProps['navigation'] = useNavigation()
 
@@ -31,4 +31,4 @@ function useViewModel() {
 	}
 }
 
-export { useViewModel }
+export { useViewController }

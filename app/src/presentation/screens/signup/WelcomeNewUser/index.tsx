@@ -14,7 +14,7 @@ import { PrimaryCheckbox } from '@presentation/components/checkbox/PrimaryCheckb
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
-import { useViewModel } from './viewModel'
+import { useViewController } from './index.controller'
 
 function WelcomeNewUser() {
 	const {
@@ -22,7 +22,7 @@ function WelcomeNewUser() {
 		setTermsOfServiceHasAccepted,
 		getUserName,
 		submitTermsAndConditions
-	} = useViewModel()
+	} = useViewController()
 	const theme = useTheme()
 
 	return (
