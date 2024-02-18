@@ -86,7 +86,7 @@ function Splash({ navigation }: SplashScreenProps) {
 	const navigateToHomeScreen = () => {
 		navigation.reset({
 			index: 0,
-			routes: [{ name: 'Home' }]
+			routes: [{ name: 'HomeTab' }]
 		})
 	}
 
