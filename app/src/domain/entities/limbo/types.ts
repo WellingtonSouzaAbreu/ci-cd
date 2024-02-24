@@ -1,1 +1,1 @@
-export type HandleMethodWithAuthentication = any
+export type UnknowFunction = any

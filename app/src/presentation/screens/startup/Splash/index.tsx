@@ -10,6 +10,8 @@ import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
 import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 
+import { AuthenticationServiceAdapter } from '@services/authentication/AuthenticationServiceAdapter'
+
 import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 
 import { Credits } from './styles'
@@ -17,7 +19,7 @@ import Logo from '@presentation/assets/icons/logo.svg'
 
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
-const { hasValidLocalUser, handleAuthenticatedMethod } = UserUseCaseAdapter()
+const { hasValidLocalUser, handleMethodWithDeviceAuthentication } = UserUseCaseAdapter()
 
 function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
@@ -63,7 +65,7 @@ function Splash({ navigation }: SplashScreenProps) {
 			const hasLocalUserData = await hasValidLocalUser(UserRepositoryAdapter)
 
 			if (hasLocalUserData) {
-				await handleAuthenticatedMethod(performQuickSingin)
+				await handleMethodWithDeviceAuthentication(performQuickSingin, AuthenticationServiceAdapter)
 			} else {
 				return navigateToAuthRegisterScreen()
 			}

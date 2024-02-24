@@ -1,5 +1,5 @@
+import { handleMethodWithDeviceAuthenticationUC } from '@domain/useCases/user/deviceAuthentication'
 import { hasValidLocalUserUC } from '@domain/useCases/user/hasValidLocalUserUC'
-import { handleMethodWithAuthenticationUC } from '@domain/useCases/user/localAuthUC'
 import { signinUC } from '@domain/useCases/user/signinUC'
 import { signupUC } from '@domain/useCases/user/signupUC'
 import { updateUserRepositoryUC } from '@domain/useCases/user/updateUserRepositoryUC'
@@ -19,7 +19,7 @@ function UserUseCaseAdapter(): UserUseCaseAdapterInterface {
 		updateUserRepository: updateUserRepositoryUC,
 
 		hasValidLocalUser: hasValidLocalUserUC,
-		handleAuthenticatedMethod: handleMethodWithAuthenticationUC
+		handleMethodWithDeviceAuthentication: handleMethodWithDeviceAuthenticationUC
 	}
 }
 

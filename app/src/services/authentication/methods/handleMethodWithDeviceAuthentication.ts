@@ -1,9 +1,9 @@
 import * as LocalAuthentication from 'expo-local-authentication'
 
-import { HandleMethodWithAuthentication } from '@domain/entities/limbo/types'
+import { UnknowFunction } from '@domain/entities/limbo/types'
 
-async function handleMethodWithAuthenticationUC(secureMethod: HandleMethodWithAuthentication) {
-	try { // TODO Migrar método e configs para authentication
+async function handleMethodWithDeviceAuthentication(secureMethod: UnknowFunction) {
+	try {
 		const config = {
 			cancelLabel: 'cancelLabel',
 			promptMessage: 'Confirme sua identidade',
@@ -15,10 +15,11 @@ async function handleMethodWithAuthenticationUC(secureMethod: HandleMethodWithAu
 			await secureMethod()
 			return true
 		}
+
 		throw new Error('Houve um erro ao realizar a autenticação com os dados locais')
 	} catch (err) {
 		throw new Error('Houve um erro ao realizar a autenticação com os dados locais')
 	}
 }
 
-export { handleMethodWithAuthenticationUC }
+export { handleMethodWithDeviceAuthentication }

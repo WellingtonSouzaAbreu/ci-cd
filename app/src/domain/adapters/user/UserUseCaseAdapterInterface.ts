@@ -1,4 +1,7 @@
+import { UnknowFunction } from '@domain/entities/limbo/types'
 import { UserData, UserRegisterData } from '@domain/entities/user/types'
+
+import { AuthenticationServiceAdapterInterface } from '@services/authentication/AuthenticationServiceAdapterInterface'
 
 import { UserRepositoryAdapterInterface } from '@data/user/UserRepositoryAdapterInterface'
 
@@ -12,7 +15,7 @@ interface UserUseCaseAdapterInterface {
 	performSignin: (email: string, password: string, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<UserData>
 	updateUserRepository: (user: UserData, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<void>
 
-	handleAuthenticatedMethod: (secureMethod: any) => Promise<any>
+	handleMethodWithDeviceAuthentication: (secureMethod: UnknowFunction, AuthenticationServiceAdapter: () => AuthenticationServiceAdapterInterface) => Promise<void>
 }
 
 export { UserUseCaseAdapterInterface }
