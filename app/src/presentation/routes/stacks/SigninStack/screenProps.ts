@@ -5,4 +5,4 @@ import { SigninStackParamList } from '@presentation/routes/stacks/SigninStack/ty
 export type InsertEmailAccountScreenProps = NativeStackScreenProps<SigninStackParamList, 'InsertEmailAccount'>
 export type InsertPasswordAccountScreenProps = NativeStackScreenProps<SigninStackParamList, 'InsertPasswordAccount'>
 
-export type HomeScreenProps = NativeStackScreenProps<SigninStackParamList, 'Home'>
+export type HomeScreenProps = NativeStackScreenProps<SigninStackParamList, 'HomeTab'>

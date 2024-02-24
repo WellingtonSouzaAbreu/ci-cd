@@ -27,10 +27,7 @@ function WelcomeNewUser() {
 	const theme = useTheme()
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={`Tudo certo, ${getUserName()}?`}
 				errorMessage={'Você deve aceitar os termos e condições primeiro!'}

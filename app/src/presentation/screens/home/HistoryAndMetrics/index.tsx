@@ -14,7 +14,7 @@ function HistoryAndMetrics() {
 	const theme = useTheme()
 
 	return (
-		<ScreenContainer topSafeAreaColor={theme.green5} padding={0}>
+		<ScreenContainer topSafeAreaColor={theme.green5}>
 			<Header>
 				<Title>{'Mensal'}</Title>
 				<HorizontalHeaderScroll

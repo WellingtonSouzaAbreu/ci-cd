@@ -26,10 +26,7 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Qual é o seu nome?'}
 				errorMessage={'Esse nome não é válido!'}

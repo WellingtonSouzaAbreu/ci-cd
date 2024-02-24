@@ -50,10 +50,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}

@@ -26,7 +26,7 @@ function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 	}
 
 	return (
-		<ScreenContainer>
+		<ScreenContainer withPadding>
 			<HeaderContainer>
 				<LogoIcon width={relativeScreenWidth(15)} height={relativeScreenWidth(15)} />
 				<AppName>{'My Finances'}</AppName>

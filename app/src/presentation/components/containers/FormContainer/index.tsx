@@ -16,7 +16,7 @@ interface FormContainerProps {
 	errorMessage?: string
 	children: ReactElement | ReactElement[]
 	validateField?: () => boolean
-	onSubmit: () => void
+	onSubmit?: () => void
 }
 
 function FormContainer({ ...props }: FormContainerProps) {
@@ -30,7 +30,7 @@ function FormContainer({ ...props }: FormContainerProps) {
 
 	const performSubmit = () => {
 		if (props.validateField()) {
-			return props.onSubmit()
+			return props.onSubmit && props.onSubmit()
 		}
 		return throwError()
 	}

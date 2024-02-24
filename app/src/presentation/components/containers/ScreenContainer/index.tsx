@@ -2,8 +2,6 @@ import React from 'react'
 import { StatusBar, ViewStyle } from 'react-native'
 import { useTheme } from 'styled-components'
 
-import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
-
 import { Container, SafeAreaViewContainer } from './styles'
 
 interface ScreenContainerProps {
@@ -12,7 +10,7 @@ interface ScreenContainerProps {
 	bottomSafeAreaColor?: string
 	justifyContent?: ViewStyle['justifyContent']
 	alignItems?: ViewStyle['alignItems']
-	padding?: number
+	withPadding?: boolean
 }
 
 function ScreenContainer({ ...props }: ScreenContainerProps) {
@@ -26,7 +24,7 @@ function ScreenContainer({ ...props }: ScreenContainerProps) {
 				<Container
 					justifyContent={props.justifyContent}
 					alignItems={props.alignItems}
-					padding={props.padding}
+					withPadding={props.withPadding}
 				>
 					{props.children}
 				</Container>
@@ -36,10 +34,10 @@ function ScreenContainer({ ...props }: ScreenContainerProps) {
 }
 
 ScreenContainer.defaultProps = {
-	safeAreaColor: '',
+	topSafeAreaColor: '',
 	justifyContent: 'space-between',
 	alignItems: 'center',
-	padding: relativeScreenDensity(15)
+	withPadding: false
 } as Partial<ScreenContainerProps>
 
 export { ScreenContainer }

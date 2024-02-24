@@ -31,7 +31,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 			setLoaderIsVisible(true)
 			await performSignin(userAuthData.email, password, setUserDataOnContext)
 			setLoaderIsVisible(false)
-			navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
+			navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
 		} catch (err: any) {
 			setLoaderIsVisible(false)
 			setTimeout(() => { // NOTE check more elegant way to show error message
@@ -41,10 +41,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}

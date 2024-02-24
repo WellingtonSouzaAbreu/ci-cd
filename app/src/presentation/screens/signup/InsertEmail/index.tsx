@@ -34,10 +34,7 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Insira seu email'}
 				errorMessage={'Esse email não é válido!'}

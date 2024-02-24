@@ -25,20 +25,16 @@ function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const theme = useTheme()
 
 	const submitEmail = async () => {
-		if (!await emailAlreadyRegistred(email)) {
+		if (await emailAlreadyRegistred(email)) {
 			showContextModal('Ops', 'Esse email não está cadastrado!')
 		} else {
 			setUserAuthDataOnContext({ email })
-			console.log('email to login')
 			navigation.navigate('InsertPasswordAccount')
 		}
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Insira seu email'}
 				errorMessage={'Esse email não é válido!'}
