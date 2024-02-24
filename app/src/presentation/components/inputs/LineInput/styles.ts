@@ -14,8 +14,7 @@ export const Container = styled.View`
 export const CustomTextInput = styled.TextInput`
 	width: 100%;
 	height: ${relativeScreenHeight(6)}px;
-	padding-vertical: ${relativeScreenDensity(8)}px;
-	padding-horizontal: ${relativeScreenDensity(16)}px;
+	padding: ${relativeScreenDensity(8)}px ${relativeScreenDensity(16)}px;
 	font-family: ${appFonts.Inter400Regular};
 	font-size: ${appFonts.size.medium1};
 	color: ${({ theme }) => theme.black1};
