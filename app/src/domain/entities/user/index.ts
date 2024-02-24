@@ -1,8 +1,8 @@
-import { UserRegistrationData } from '@domain/entities/user/types'
+import { UserRegisterData } from '@domain/entities/user/types'
 
-const createNewUser = (userRegistrationData: UserRegistrationData) => ({
+const createNewUser = (userRegistrationData: UserRegisterData) => ({
 	name: userRegistrationData.name,
-	email: userRegistrationData.email,
+	email: userRegistrationData.email.toLocaleLowerCase(),
 	createdAt: new Date(),
 	updatedAt: new Date()
 })

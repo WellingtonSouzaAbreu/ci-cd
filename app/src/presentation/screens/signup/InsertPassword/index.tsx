@@ -10,7 +10,7 @@ import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
-import { UserRepositoryAdapter } from '@data/user/userRepositoryAdapter'
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
@@ -24,7 +24,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { userRegistrationData } = useContext(RegisterContext)
 	const { setUserDataOnContext } = useContext(UserDataContext)
 
-	const [password, setPassword] = useState<string>('a')
+	const [password, setPassword] = useState<string>('')
 
 	const theme = useTheme()
 

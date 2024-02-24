@@ -18,17 +18,17 @@ const { emailIsValid } = UserUseCaseAdapter()
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
-	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
+	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
 
 	const [email, setEmail] = useState<string>('')
 
 	const theme = useTheme()
 
 	const submitEmail = async () => {
-		if (!await emailAlreadyRegistred(email)) {
+		if (await emailAlreadyRegistred(email)) {
 			showContextModal('Ops', 'Esse email já foi cadastrado!')
 		} else {
-			setUserRegistrationDataOnContext({ email })
+			setUserRegisterDataOnContext({ email })
 			navigation.navigate('InsertPassword')
 		}
 	}

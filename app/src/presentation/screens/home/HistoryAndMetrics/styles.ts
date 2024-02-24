@@ -11,7 +11,6 @@ export const Header = styled.View`
 	justify-content: space-around;
 `
 
-// TODO Props not working
 export const HorizontalHeaderScroll = styled.ScrollView`
 	width: 100%;
 `
@@ -37,5 +36,5 @@ export const ButtonPadding = styled.View`
 
 export const Body = styled.View`
 	flex: 1;
-	background-color: ${({ theme }) => theme.white1});
+	background-color: ${({ theme }) => theme.white1};
 `

@@ -1,9 +1,9 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { UserRegistrationData } from '@domain/entities/user/types'
+import { UserRegisterData } from '@domain/entities/user/types'
 
 type RegisterContextMethods = {
-	setUserRegistrationDataOnContext: (data: UserRegistrationData) => void
+	setUserRegisterDataOnContext: (data: UserRegisterData) => void
 }
 
 interface RegisterProviderProps {
@@ -12,26 +12,26 @@ interface RegisterProviderProps {
 
 const initialValue = {
 	userRegistrationData: {},
-	setUserRegistrationDataOnContext: () => null
+	setUserRegisterDataOnContext: () => null
 }
 
 type RegisterContextType = RegisterContextMethods & {
-	userRegistrationData?: UserRegistrationData
+	userRegistrationData?: UserRegisterData
 }
 
 const RegisterContext = createContext<RegisterContextType>(initialValue)
 
 function RegisterProvider({ children }: RegisterProviderProps) {
-	const [userRegistrationData, setUserRegistrationDataContext] = useState<UserRegistrationData>()
+	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
 
-	const setUserRegistrationDataOnContext = async (data: UserRegistrationData) => {
-		setUserRegistrationDataContext({ ...userRegistrationData, ...data })
+	const setUserRegisterDataOnContext = async (data: UserRegisterData) => {
+		setUserRegisterDataContext({ ...userRegistrationData, ...data })
 	}
 
 	const registerProviderData = useMemo(() => ({
 		userRegistrationData,
-		setUserRegistrationDataOnContext,
-	}), [userRegistrationData, setUserRegistrationDataOnContext])
+		setUserRegisterDataOnContext,
+	}), [userRegistrationData, setUserRegisterDataOnContext])
 
 	return (
 		<RegisterContext.Provider value={registerProviderData}>

@@ -14,14 +14,14 @@ import { LineInput } from '@presentation/components/inputs/LineInput'
 const { userNameIsValid } = UserUseCaseAdapter()
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
-	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
+	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
 
 	const [userName, setUserName] = useState<string>()
 
 	const theme = useTheme()
 
 	const submitUserName = async () => {
-		setUserRegistrationDataOnContext({ name: userName })
+		setUserRegisterDataOnContext({ name: userName })
 		navigation.navigate('InsertEmail')
 	}
 
@@ -36,6 +36,7 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 				<LineInput
 					value={userName}
 					placeholder={'Nome completo...'}
+					autoCapitalize={'words'}
 					onChangeText={setUserName}
 				/>
 			</FormContainer>

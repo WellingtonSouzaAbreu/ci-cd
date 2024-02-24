@@ -10,6 +10,8 @@ import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 
 import { AlertContext } from '@contexts/AlertContext'
 
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
+
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
@@ -29,15 +31,15 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			const userData = await performSignin(userAuthData.email, password)
-			console.log(userData)
-			// setUserDataOnContext(userData)
+			const userData = await performSignin(userAuthData.email, password, UserRepositoryAdapter)
+			setUserDataOnContext(userData)
 			setLoaderIsVisible(false)
 			navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
-		} catch (err: any) {
+		} catch (error: any) {
+			console.log(error)
 			setLoaderIsVisible(false)
-			setTimeout(() => { // NOTE check more elegant way to show error message
-				showContextModal('Ops!', err.message)
+			setTimeout(() => {
+				showContextModal('Ops!', error.message)
 			}, 300)
 		}
 	}

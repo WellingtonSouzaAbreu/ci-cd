@@ -1,4 +1,4 @@
-export type UserRegistrationData = {
+export type UserRegisterData = {
 	email?: string
 	password?: string
 	name?: string

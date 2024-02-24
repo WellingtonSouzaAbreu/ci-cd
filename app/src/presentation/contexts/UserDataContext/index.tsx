@@ -7,7 +7,7 @@ type UserDataContextMethods = {
 }
 
 type UserDataContextType = UserDataContextMethods & {
-	userData?: UserData
+	userDataContext?: UserData
 }
 
 interface UserDataProviderProps {
@@ -15,26 +15,26 @@ interface UserDataProviderProps {
 }
 
 const initialValue = {
-	userData: {},
+	userDataContext: {},
 	setUserDataOnContext: () => null
 }
 
 const UserDataContext = createContext<UserDataContextType>(initialValue)
 
 function UserDataProvider({ children }: UserDataProviderProps) {
-	const [userData, setUserDataContext] = useState<UserData>()
+	const [userDataContext, setUserDataContext] = useState<UserData>()
 
 	const setUserDataOnContext = async (data: UserData) => {
 		setUserDataContext({
-			...userData,
+			...userDataContext,
 			...data
 		})
 	}
 
 	const userProviderData = useMemo(() => ({
-		userData,
-		setUserDataOnContext,
-	}), [userData, setUserDataOnContext])
+		userDataContext,
+		setUserDataOnContext
+	}), [userDataContext])
 
 	return (
 		<UserDataContext.Provider value={userProviderData}>

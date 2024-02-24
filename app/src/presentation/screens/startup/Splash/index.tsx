@@ -10,7 +10,7 @@ import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
 import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 
-import { UserRepositoryAdapter } from '@data/user/userRepositoryAdapter'
+import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 
 import { Credits } from './styles'
 import Logo from '@presentation/assets/icons/logo.svg'
