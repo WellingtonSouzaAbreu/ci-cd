@@ -23,6 +23,7 @@ function WelcomeNewUser() {
 		getUserName,
 		submitTermsAndConditions
 	} = useViewController()
+
 	const theme = useTheme()
 
 	return (

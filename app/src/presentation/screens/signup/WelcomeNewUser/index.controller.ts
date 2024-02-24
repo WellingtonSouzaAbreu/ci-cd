@@ -20,7 +20,7 @@ function useViewController() {
 	}
 
 	const submitTermsAndConditions = () => {
-		navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
+		navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
 	}
 
 	return {

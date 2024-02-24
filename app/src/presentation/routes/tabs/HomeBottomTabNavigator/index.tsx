@@ -2,6 +2,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { useTheme } from 'styled-components'
 
+import { FinanceRegisterStack } from '@routes/stacks/FinanceRegisterStack'
+
 import GraphActiveIcon from '@presentation/assets/icons/graph-active.svg'
 import GraphInactiveIcon from '@presentation/assets/icons/graph-inactive.svg'
 import HomeActiveIcon from '@presentation/assets/icons/home-active.svg'
@@ -11,7 +13,6 @@ import PlusInactiveIcon from '@presentation/assets/icons/plus-inactive.svg'
 
 import { HistoryAndMetrics } from '@presentation/screens/home/HistoryAndMetrics'
 import { Home } from '@presentation/screens/home/Home'
-import { Register } from '@presentation/screens/home/Register'
 
 const Tab = createBottomTabNavigator()
 
@@ -38,15 +39,13 @@ function HomeBottomTabNavigator() {
 
 	return (
 		<Tab.Navigator
-			initialRouteName={'HistoryAndMetrics'}
+			initialRouteName={'Register'}
 			screenOptions={{
 				tabBarHideOnKeyboard: true,
 				headerShown: false,
 				tabBarShowLabel: false,
 				tabBarActiveBackgroundColor: theme.white1,
-				// tabBarInactiveBackgroundColor: theme.green1,
 				tabBarActiveTintColor: theme.green5,
-				// tabBarInactiveTintColor: theme.white1,
 			}}
 		>
 			<Tab.Screen
@@ -56,7 +55,7 @@ function HomeBottomTabNavigator() {
 			/>
 			<Tab.Screen
 				name={'Register'}
-				component={Register}
+				component={FinanceRegisterStack}
 				options={{ tabBarIcon: ({ focused }) => renderRegisterIcon(focused) }}
 			/>
 			<Tab.Screen

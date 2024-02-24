@@ -3,14 +3,14 @@ import { Text } from 'react-native'
 
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 
-function Register() {
+function SelectFinanceType() {
 	return (
 		<ScreenContainer>
 			<Text>
-				{'This is Register'}
+				{'This is SelectFinanceType'}
 			</Text>
 		</ScreenContainer>
 	)
 }
 
-export { Register }
+export { SelectFinanceType }
