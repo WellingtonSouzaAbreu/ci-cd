@@ -161,7 +161,7 @@
 		"max-len": [
 			"warn",
 			{
-				"code": 170,
+				"code": 250,
 				"ignorePattern": "^import\\s.*",
 				"ignoreComments": true,
 				"ignoreTrailingComments": true,

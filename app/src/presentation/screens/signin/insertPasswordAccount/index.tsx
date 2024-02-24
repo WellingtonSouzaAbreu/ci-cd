@@ -10,6 +10,8 @@ import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
 
 import { AlertContext } from '@contexts/AlertContext'
 
+import { AuthenticationServiceAdapter } from '@services/authentication/AuthenticationServiceAdapter'
+
 import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
@@ -31,7 +33,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			const userData = await performSignin(userAuthData.email, password, UserRepositoryAdapter)
+			const userData = await performSignin(userAuthData.email, password, AuthenticationServiceAdapter, UserRepositoryAdapter)
 			setUserDataOnContext(userData)
 			setLoaderIsVisible(false)
 			navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })

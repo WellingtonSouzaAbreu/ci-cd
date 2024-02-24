@@ -12,7 +12,7 @@ interface UserUseCaseAdapterInterface {
 	hasValidLocalUser: (UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<boolean>
 
 	performSignup: (userRegistrationData: UserRegisterData) => Promise<UserData>
-	performSignin: (email: string, password: string, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<UserData>
+	performSignin: (email: string, password: string, AuthenticationServiceAdapter: () => AuthenticationServiceAdapterInterface, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<UserData>
 	updateUserRepository: (user: UserData, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<void>
 
 	handleMethodWithDeviceAuthentication: (secureMethod: UnknowFunction, AuthenticationServiceAdapter: () => AuthenticationServiceAdapterInterface) => Promise<void>

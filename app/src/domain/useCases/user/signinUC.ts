@@ -1,8 +1,13 @@
-import { AuthenticationServiceAdapter } from '@services/authentication/AuthenticationServiceAdapter'
+import { AuthenticationServiceAdapterInterface } from '@services/authentication/AuthenticationServiceAdapterInterface'
 
 import { UserRepositoryAdapterInterface } from '@data/user/UserRepositoryAdapterInterface'
 
-async function signinUC(email: string, password: string, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) {
+async function signinUC(
+	email: string,
+	password: string,
+	AuthenticationServiceAdapter: () => AuthenticationServiceAdapterInterface,
+	UserRepositoryAdapter: () => UserRepositoryAdapterInterface
+) {
 	const { signinByEmailPassword } = AuthenticationServiceAdapter()
 
 	try {
