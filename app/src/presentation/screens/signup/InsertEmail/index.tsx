@@ -25,7 +25,7 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const theme = useTheme()
 
 	const submitEmail = async () => {
-		if (await emailAlreadyRegistred(email)) {
+		if (!await emailAlreadyRegistred(email)) {
 			showContextModal('Ops', 'Esse email já foi cadastrado!')
 		} else {
 			setUserRegistrationDataOnContext({ email })
@@ -48,6 +48,7 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 					value={email}
 					placeholder={'Email...'}
 					keyboardType={'email-address'}
+					autoCapitalize={'none'}
 					onChangeText={setEmail}
 				/>
 			</FormContainer>
