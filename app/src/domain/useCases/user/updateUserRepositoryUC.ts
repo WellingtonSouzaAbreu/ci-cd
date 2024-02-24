@@ -11,7 +11,7 @@ async function updateUserRepositoryUC(userData: UserData, UserRepositoryAdapter:
 	const { local, remote } = UserRepositoryAdapter()
 
 	await remote.updateRemoteUser(userData.userId, userData)
-	await local.updateLocalUser(userData)
+	await local.updateLocalUser(userData, true, UserRepositoryAdapter)
 }
 
 export { updateUserRepositoryUC }

@@ -2,17 +2,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { UserData } from '@domain/entities/user/types'
 
-import { getLocalUserData } from './getLocalUserData'
+import { UserRepositoryAdapterInterface } from '@data/user/UserRepositoryAdapterInterface'
 
 const isValidObject = (object: unknown) => typeof object === 'object' && object !== null
 
-async function updateLocalUser(userData: UserData, mergeStoragedData?: boolean) {
+async function updateLocalUser(userData: UserData, mergeStoragedData: boolean, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) {
 	try {
+		const { local } = UserRepositoryAdapter()
+
 		if (!isValidObject(userData)) throw new Error('O Objeto de usuário não é um objeto válido!')
 
 		let mergedData = {}
 		if (mergeStoragedData) {
-			mergedData = await getLocalUserData() // TODO Injeção de dependência?
+			mergedData = await local.getLocalUserData()
 			console.log(mergedData)
 		}
 
