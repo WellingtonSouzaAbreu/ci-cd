@@ -1,17 +1,18 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
-import { RegisterProvider } from '@contexts/RegisterContext'
+import { FinanceRegisterProvider } from '@contexts/FinanceRegisterContext'
 
 import { FinanceRegisterStackParamList } from '@presentation/routes/stacks/FinanceRegisterStack/types'
 
-import { SelectFinanceType } from '@presentation/screens/home/registerFinances/SelectFinanceType'
+import { SelectFinanceCategory } from '@presentation/screens/home/registerFinance/SelectFinanceCategory'
+import { SelectFinanceType } from '@presentation/screens/home/registerFinance/SelectFinanceType'
 
 const Stack = createStackNavigator<FinanceRegisterStackParamList>()
 
 function FinanceRegisterStack() {
 	return (
-		<RegisterProvider>
+		<FinanceRegisterProvider>
 			<Stack.Navigator
 				initialRouteName={'SelectFinanceType'}
 				screenOptions={{
@@ -21,8 +22,9 @@ function FinanceRegisterStack() {
 				}}
 			>
 				<Stack.Screen name={'SelectFinanceType'} component={SelectFinanceType} />
+				<Stack.Screen name={'SelectFinanceCategory'} component={SelectFinanceCategory} />
 			</Stack.Navigator>
-		</RegisterProvider>
+		</FinanceRegisterProvider>
 	)
 }
 

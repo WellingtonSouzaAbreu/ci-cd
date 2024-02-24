@@ -1,7 +1,10 @@
 import React from 'react'
+import { SvgProps } from 'react-native-svg'
 import { useTheme } from 'styled-components/native'
 
-import { ButtonLabel, Container } from './styles'
+import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
+
+import { ButtonIconContainer, ButtonLabel, Container } from './styles'
 
 interface PrimaryButtonProps {
 	buttonColor?: string
@@ -10,10 +13,11 @@ interface PrimaryButtonProps {
 	labelColor?: string
 	customHeight?: number
 	relativeWidth?: string
+	RightSvgIcon?: React.FC<SvgProps>
 	onPress: () => void
 }
 
-function PrimaryButton({ ...props }: PrimaryButtonProps) {
+function PrimaryButton({ RightSvgIcon, ...props }: PrimaryButtonProps) {
 	const theme = useTheme()
 
 	return (
@@ -31,6 +35,13 @@ function PrimaryButton({ ...props }: PrimaryButtonProps) {
 			>
 				{props.label}
 			</ButtonLabel>
+			{
+				RightSvgIcon && (
+					<ButtonIconContainer>
+						<RightSvgIcon width={relativeScreenDensity(15)} height={relativeScreenDensity(15)} />
+					</ButtonIconContainer>
+				)
+			}
 		</Container>
 	)
 }
@@ -41,7 +52,8 @@ PrimaryButton.defaultProps = {
 	label: 'button',
 	labelColor: '',
 	customHeight: 0,
-	relativeWidth: '100%'
+	relativeWidth: '100%',
+	RightSvgIcon: null
 }
 
 export { PrimaryButton }

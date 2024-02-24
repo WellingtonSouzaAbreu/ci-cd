@@ -18,6 +18,7 @@ interface ButtonLabelProps {
 export const Container = styled.TouchableOpacity<ContainerProps>`
 	width: ${({ relativeWidth }) => relativeWidth};
 	height: ${({ customHeight }) => customHeight || relativeScreenHeight(9)}px;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	border-radius: ${100}px;
@@ -29,4 +30,12 @@ export const ButtonLabel = styled.Text<ButtonLabelProps>`
 	font-family: ${appFonts.Inter400Regular};
 	color: ${({ labelColor, filled, theme }) => (filled ? labelColor || theme.white1 : labelColor || theme.green5)};
 	font-size: ${appFonts.size.small3};
+`
+
+export const ButtonIconContainer = styled.View`
+	position: absolute;
+	right: 7%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
 `

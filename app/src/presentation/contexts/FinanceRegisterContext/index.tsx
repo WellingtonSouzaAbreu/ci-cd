@@ -3,7 +3,7 @@ import React, { createContext, useMemo, useState } from 'react'
 import { Finance, FinanceRegisterData } from '@domain/entities/billing/types'
 
 type FinanceRegisterContextMethods = {
-	setFinanceRegisterDataOnContext: (data: Finance) => void
+	setFinanceDataOnContext: (data: Finance) => void
 }
 
 interface FinanceRegisterProviderProps {
@@ -12,7 +12,7 @@ interface FinanceRegisterProviderProps {
 
 const initialValue = {
 	financeRegisterData: {},
-	setFinanceRegisterDataOnContext: () => null
+	setFinanceDataOnContext: () => null
 }
 
 type FinanceRegisterContextType = FinanceRegisterContextMethods & {
@@ -24,14 +24,14 @@ const FinanceRegisterContext = createContext<FinanceRegisterContextType>(initial
 function FinanceRegisterProvider({ children }: FinanceRegisterProviderProps) {
 	const [financeRegisterData, setFinanceRegisterDataContext] = useState<FinanceRegisterData>()
 
-	const setFinanceRegisterDataOnContext = async (data: FinanceRegisterData) => {
+	const setFinanceDataOnContext = async (data: FinanceRegisterData) => {
 		setFinanceRegisterDataContext({ ...financeRegisterData, ...data })
 	}
 
 	const registerProviderData = useMemo(() => ({
 		financeRegisterData,
-		setFinanceRegisterDataOnContext,
-	}), [financeRegisterData, setFinanceRegisterDataOnContext])
+		setFinanceDataOnContext,
+	}), [financeRegisterData, setFinanceDataOnContext])
 
 	return (
 		<FinanceRegisterContext.Provider value={registerProviderData}>

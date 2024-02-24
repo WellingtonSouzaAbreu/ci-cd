@@ -49,17 +49,22 @@ function FormContainer({ ...props }: FormContainerProps) {
 			<Body behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
 				{props.children}
 			</Body>
-			<Footer>
-				<PrimaryButton
-					label={props.buttonLabel}
-					onPress={performSubmit}
-				/>
-			</Footer>
+			{
+				props.onSubmit && (
+					<Footer>
+						<PrimaryButton
+							label={props.buttonLabel}
+							onPress={performSubmit}
+						/>
+					</Footer>
+				)
+			}
 		</Container>
 	)
 }
 
 FormContainer.defaultProps = {
+	onSubmit: null,
 	title: 'title',
 	buttonLabel: 'Continuar',
 	errorMessage: 'Algo deu errado!',

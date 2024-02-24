@@ -29,7 +29,9 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await performSignin(userAuthData.email, password, setUserDataOnContext)
+			const userData = await performSignin(userAuthData.email, password)
+			console.log(userData)
+			// setUserDataOnContext(userData)
 			setLoaderIsVisible(false)
 			navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
 		} catch (err: any) {

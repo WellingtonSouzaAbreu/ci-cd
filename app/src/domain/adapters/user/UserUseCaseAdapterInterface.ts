@@ -1,4 +1,4 @@
-import { UserData, UserMethod, UserRegistrationData } from '@domain/entities/user/types'
+import { UserData, UserRegistrationData } from '@domain/entities/user/types'
 
 import { UserRepositoryAdapterInterface } from '@data/user/UserRepositoryAdapterInterface'
 
@@ -9,7 +9,7 @@ interface UserUseCaseAdapterInterface {
 	hasValidLocalUser: (UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<boolean>
 
 	performSignup: (userRegistrationData: UserRegistrationData) => Promise<UserData>
-	performSignin: (email: string, password: string, updateUserContext: UserMethod) => Promise<void>
+	performSignin: (email: string, password: string) => Promise<void>
 	updateUserRepository: (user: UserData, UserRepositoryAdapter: () => UserRepositoryAdapterInterface) => Promise<void>
 
 	handleAuthenticatedMethod: (secureMethod: any) => Promise<any>
