@@ -37,6 +37,7 @@ function SelectFinanceCategory() {
 		<>
 			<PrimaryButton // TODO Change selector color
 				filled={category === selectedCategory}
+				buttonColor={theme.green1}
 				label={category}
 				onPress={() => setSelectedCategory(category)}
 			/>
@@ -48,7 +49,10 @@ function SelectFinanceCategory() {
 
 	return (
 		<ScreenContainer topSafeAreaColor={theme.green3}>
-			<FormContainer title={`Em qual categoria essa ${financeType} se encaixa`}>
+			<FormContainer
+				title={`Em qual categoria essa ${financeType} se encaixa`}
+				onSubmit={() => console.log('Submit')}
+			>
 				<FinanceCategoryFlatList
 					data={financeCategories}
 					renderItem={renderFinanceCategories}
