@@ -1,18 +1,17 @@
 import React, { useContext } from 'react'
 import { useTheme } from 'styled-components'
 
+import AngleRightIcon from '@assets/icons/angle-right.svg'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+
 import { Finance } from '@domain/billing/entity/types'
 
 import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { SelectFinanceTypeScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
-
-import AngleRightIcon from '@assets/icons/angle-right.svg'
-
-import { PrimaryButton } from '@components/buttons/PrimaryButton'
-import { VerticalSpacing } from '@components/common/VerticalSpacing'
-import { FormContainer } from '@components/containers/FormContainer'
-import { ScreenContainer } from '@components/containers/ScreenContainer'
 
 function SelectFinanceType({ navigation }: SelectFinanceTypeScreenProps) {
 	const theme = useTheme()

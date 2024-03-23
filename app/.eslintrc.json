@@ -2,8 +2,8 @@
 	"env": {
 		"es2021": true,
 		"node": true,
-		"jest": true,
-		"jest/globals": true
+		"jest": true /* ,
+		"jest/globals": true */ // Crachando o import helpers
 	},
 	"extends": [
 		"plugin:react/recommended",
@@ -18,11 +18,12 @@
 		"sourceType": "module"
 	},
 	"plugins": [
+		// "jest",  // Crachando o import helpers
 		"@typescript-eslint",
 		"react",
 		"react-native",
 		"import-helpers",
-		"jest"
+		"react-hooks"
 	],
 	"ignorePatterns": [
 		"assets/**/**",
@@ -34,6 +35,8 @@
 		"*.sql"
 	],
 	"rules": {
+		"react-hooks/rules-of-hooks": "off", // Checks rules of Hooks
+		"react-hooks/exhaustive-deps": "off",
 		"import/no-default-export": "warn",
 		"import/prefer-default-export": "off",
 		"import/extensions": "off",
@@ -226,7 +229,6 @@
 		"default-case": "off",
 		"consistent-return": "off",
 		"react/require-default-props": "warn",
-		"react-hooks/exhaustive-deps": "off",
 		"react/jsx-indent-props": [
 			"warn",
 			"tab"

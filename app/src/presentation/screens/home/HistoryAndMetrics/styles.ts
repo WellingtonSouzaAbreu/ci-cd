@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 
 import { appFonts } from '@presentation/common/fonts'
+
 import { relativeScreenDensity, relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 export const Header = styled.View`

@@ -1,8 +1,8 @@
-import { getLocalUserData } from '@data/localRepository/user/getLocalUserData'
-import { updateLocalUser } from '@data/localRepository/user/updateLocalUser'
 import { getUserData } from '@data/user/remoteRespository/getUserData'
 import { updateRemoteUser } from '@data/user/remoteRespository/updateRemoteUser'
 
+import { getLocalUserData } from './localRepository/getLocalUserData'
+import { updateLocalUser } from './localRepository/updateLocalUser'
 import { UserRepositoryInterface } from './UserRepositoryInterface'
 
 function useUserRepository(): UserRepositoryInterface {

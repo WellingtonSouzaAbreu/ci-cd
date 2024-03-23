@@ -1,14 +1,13 @@
 import React from 'react'
 import { useTheme } from 'styled-components'
 
-import { relativeScreenDensity } from '@presentation/common/screenDimensions'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
 
 import {
 	Body, ButtonPadding, Header, HorizontalHeaderScroll, SelectPeriodButtonContainer, Title
 } from './styles'
-
-import { PrimaryButton } from '@components/buttons/PrimaryButton'
-import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 function HistoryAndMetrics() {
 	const theme = useTheme()

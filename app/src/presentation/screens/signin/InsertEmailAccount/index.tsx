@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { AuthContext } from '@contexts/AuthContext'
-import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { AlertContext } from '@contexts/AlertContext'
+import { AuthContext } from '@contexts/AuthContext'
+
+import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
 import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
-
-import { FormContainer } from '@components/containers/FormContainer'
-import { ScreenContainer } from '@components/containers/ScreenContainer'
-import { LineInput } from '@components/inputs/LineInput'
 
 const { emailIsValid } = useUserDomain()
 

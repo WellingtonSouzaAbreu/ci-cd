@@ -2,9 +2,8 @@ import { FontAwesome } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { TextInputProps } from 'react-native'
 
-import { relativeScreenDensity } from '@presentation/common/screenDimensions'
-
 import { Container, CustomTextInput, ToggleSecretTextIcon } from './styles'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 interface LineInputProps extends TextInputProps {
 	secretText?: boolean

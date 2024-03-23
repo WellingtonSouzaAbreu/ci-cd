@@ -2,17 +2,16 @@ import 'react-native-gesture-handler'
 import React from 'react'
 import { useTheme } from 'styled-components'
 
-import { relativeScreenDensity, relativeScreenHeight } from '@presentation/common/screenDimensions'
-
-import { CarouselContext, CarouselItemText, Content } from './styles'
 import CheckedList from '@assets/images/checkedList.svg'
 import EmbraceMoney from '@assets/images/embraceMoney.svg'
 import MoneyBag from '@assets/images/moneyBag.svg'
-
 import { CustomCarousel } from '@components/carousel/CustomCarousel'
 import { PrimaryCheckbox } from '@components/checkbox/PrimaryCheckbox'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
+
+import { CarouselContext, CarouselItemText, Content } from './styles'
+import { relativeScreenDensity, relativeScreenHeight } from '@presentation/common/screenDimensions'
 
 import { useViewController } from './index.controller'
 

@@ -1,12 +1,12 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
+import { SelectFinanceCategory } from '@screens/home/registerFinance/SelectFinanceCategory'
+import { SelectFinanceType } from '@screens/home/registerFinance/SelectFinanceType'
+
 import { FinanceRegisterProvider } from '@contexts/FinanceRegisterContext'
 
 import { FinanceRegisterStackParamList } from '@routes/stacks/FinanceRegisterStack/types'
-
-import { SelectFinanceCategory } from '@screens/home/registerFinance/SelectFinanceCategory'
-import { SelectFinanceType } from '@screens/home/registerFinance/SelectFinanceType'
 
 const Stack = createStackNavigator<FinanceRegisterStackParamList>()
 

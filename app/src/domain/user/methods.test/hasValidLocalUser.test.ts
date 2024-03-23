@@ -1,4 +1,5 @@
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
+
 import { hasValidLocalUserDM } from '../methods/hasValidLocalUserDM'
 
 const createMockUserRepository = jest.fn().mockImplementation((functions: UserRepositoryInterface['local'] | UserRepositoryInterface['remote']) => {
@@ -11,7 +12,7 @@ const createMockUserRepository = jest.fn().mockImplementation((functions: UserRe
 })
 
 const getLocalUserData = async () => ({ userId: 'mockUserId' })
-const getLocalUserDataAsEmptyObject = async () => { }
+const getLocalUserDataAsEmptyObject = async () => ({})
 const getLocalUserDataAsNull = async () => null
 
 describe('Testando módulo de caso de uso de usuários', () => {

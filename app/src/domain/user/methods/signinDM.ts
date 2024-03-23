@@ -11,7 +11,6 @@ async function signinDM(
 	const { signinByEmailPassword } = useAuthenticationService()
 
 	try {
-
 		const { remote } = useUserRepository()
 
 		const userCredential = await signinByEmailPassword(email, password)

@@ -1,7 +1,11 @@
 import React from 'react'
 
+import LogoIcon from '@assets/icons/logo.svg'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+
 import { SelectAuthRegisterScreenProps } from '@routes/stacks/StartupStack/screenProps'
-import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 import {
 	AppName,
@@ -10,11 +14,7 @@ import {
 	HeaderContainer,
 	PresentationText
 } from './styles'
-import LogoIcon from '@assets/icons/logo.svg'
-
-import { PrimaryButton } from '@components/buttons/PrimaryButton'
-import { VerticalSpacing } from '@components/common/VerticalSpacing'
-import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 	const navigateToRegisterStack = () => {

@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 
+import verticalBars from '@assets/animatios/verticalBars.json'
 import LottieView from 'lottie-react-native'
 
 import { AnimationContainer, Container } from './styles'
-import verticalBars from '@assets/animatios/verticalBars.json'
 // buildingColorPassingLight
 
 interface LoaderProps {

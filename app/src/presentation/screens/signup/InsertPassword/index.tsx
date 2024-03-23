@@ -1,20 +1,20 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { LoaderContext } from '@contexts/LoaderContext'
-import { UserDataContext } from '@contexts/UserDataContext'
-import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-import { useUserDomain } from '@domain/user/useUserDomain'
-
-
-import { AlertContext } from '@contexts/AlertContext'
-import { RegisterContext } from '@contexts/RegisterContext'
-
-import { useUserRepository } from '@data/user/useUserRepository'
-
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
+
+import { useUserDomain } from '@domain/user/useUserDomain'
+
+import { AlertContext } from '@contexts/AlertContext'
+import { LoaderContext } from '@contexts/LoaderContext'
+import { RegisterContext } from '@contexts/RegisterContext'
+import { UserDataContext } from '@contexts/UserDataContext'
+
+import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+
+import { useUserRepository } from '@data/user/useUserRepository'
 
 const { passwordIsValid, performSignup, updateUserRepository } = useUserDomain()
 
@@ -29,7 +29,6 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const theme = useTheme()
 
 	const submitPassword = async () => {
-
 		try {
 			setLoaderIsVisible(true)
 

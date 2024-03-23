@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { RegisterContext } from '@contexts/RegisterContext'
 
-import { FormContainer } from '@components/containers/FormContainer'
-import { ScreenContainer } from '@components/containers/ScreenContainer'
-import { LineInput } from '@components/inputs/LineInput'
+import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
 const { userNameIsValid } = useUserDomain()
 

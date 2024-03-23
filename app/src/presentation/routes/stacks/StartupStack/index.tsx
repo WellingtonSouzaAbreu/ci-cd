@@ -2,12 +2,11 @@ import 'react-native-gesture-handler'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
-import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'
-
-import { StartupStackParamList } from '@routes/stacks/StartupStack/types'
-
 import { SelectAuthRegister } from '@screens/startup/SelectAuthRegister'
 import { Splash } from '@screens/startup/Splash'
+
+import { StartupStackParamList } from '@routes/stacks/StartupStack/types'
+import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'
 
 import { RegisterStack } from '../RegisterStack'
 import { SigninStack } from '../SigninStack'

@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage' // ou qualquer outra biblioteca AsyncStorage que você esteja usando
+
 import { getLocalUserData } from './getLocalUserData'
 
 // Mock AsyncStorage
-jest.mock('@react-native-async-storage/async-storage', () => ({
-	getItem: jest.fn(),
-}))
+jest.mock('@react-native-async-storage/async-storage', () => ({ getItem: jest.fn(), }))
 
 const mockedAsyncStorage = AsyncStorage as jest.Mocked<typeof AsyncStorage>
 

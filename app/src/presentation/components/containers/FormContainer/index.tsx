@@ -2,13 +2,13 @@ import React, { ReactElement, useContext } from 'react'
 import { Platform, StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+
 import { AlertContext } from '@contexts/AlertContext'
 
 import {
 	Body, Container, Footer, Header, Pipe, Title, TitlePipeContainer
 } from './styles'
-
-import { PrimaryButton } from '@components/buttons/PrimaryButton'
 
 interface FormContainerProps {
 	title?: string

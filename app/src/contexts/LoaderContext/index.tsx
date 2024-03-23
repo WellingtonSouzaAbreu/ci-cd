@@ -1,9 +1,9 @@
 import React, { createContext, useMemo, useState, useCallback } from 'react'
 import { Modal } from 'react-native'
 
-import { Content } from './styles'
-
 import { Loader } from '@components/animated/Loader'
+
+import { Content } from './styles'
 
 type LoaderContextType = {
 	loaderIsVisible: boolean;

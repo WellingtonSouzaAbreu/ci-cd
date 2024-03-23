@@ -1,15 +1,15 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
-import { RegisterProvider } from '@contexts/RegisterContext'
-
-import { RegisterStackParamList } from '@routes/stacks/RegisterStack/types'
-import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'
-
 import { InsertEmail } from '@screens/signup/InsertEmail'
 import { InsertPassword } from '@screens/signup/InsertPassword'
 import { InsertUserName } from '@screens/signup/InsertUserName'
 import { WelcomeNewUser } from '@screens/signup/WelcomeNewUser'
+
+import { RegisterProvider } from '@contexts/RegisterContext'
+
+import { RegisterStackParamList } from '@routes/stacks/RegisterStack/types'
+import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'
 
 const Stack = createStackNavigator<RegisterStackParamList>()
 
