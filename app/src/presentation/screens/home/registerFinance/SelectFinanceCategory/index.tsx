@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ListRenderItem } from 'react-native'
 import { useTheme } from 'styled-components'
 
-
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
 import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -33,9 +32,9 @@ function SelectFinanceCategory() {
 		// Atualizar estado
 	}, [])
 
-	const renderFinanceCategories: ListRenderItem<string> = ({ item: category }) => ( // TODO Type correctly
+	const renderFinanceCategories: ListRenderItem<string> = ({ item: category }) => (
 		<>
-			<PrimaryButton // TODO Change selector color
+			<PrimaryButton // TODO Deixar Select mais bonito
 				filled={category === selectedCategory}
 				buttonColor={theme.green1}
 				label={category}
@@ -51,7 +50,7 @@ function SelectFinanceCategory() {
 		<ScreenContainer topSafeAreaColor={theme.green3}>
 			<FormContainer
 				title={`Em qual categoria essa ${financeType} se encaixa`}
-				onSubmit={() => console.log('Submit')}
+				onSubmit={() => console.log(selectedCategory)}
 			>
 				<FinanceCategoryFlatList
 					data={financeCategories}
