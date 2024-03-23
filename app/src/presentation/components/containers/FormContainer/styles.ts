@@ -28,13 +28,13 @@ export const TitlePipeContainer = styled.View`
 export const Pipe = styled.View`
 	width: ${relativeScreenDensity(8)}px;
 	height: 150%;
-	margin-right: ${relativeScreenDensity(5)}px;
+	margin-right: ${relativeScreenDensity(10)}px;
 	background-color: ${({ theme }) => theme.green1};
 `
 
 export const Title = styled.Text`
 	font-family: ${appFonts.Inter400Regular};
-	font-size: ${appFonts.size.medium3};
+	font-size: ${appFonts.size.medium2};
 	color: ${({ theme }) => theme.white1};
 `
 

@@ -56,10 +56,10 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 				onSubmit={submitPassword}
 			>
 				<LineInput
+					type={'password'}
 					value={password}
 					placeholder={'Senha...'}
 					maxLength={25}
-					secretText
 					secureTextEntry
 					onChangeText={setPassword}
 				/>

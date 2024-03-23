@@ -35,7 +35,7 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 			>
 				<LineInput
 					value={userName}
-					placeholder={'Nome completo...'}
+					placeholder={'Nome...'}
 					autoCapitalize={'words'}
 					onChangeText={setUserName}
 				/>
