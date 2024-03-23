@@ -1,7 +1,9 @@
 {
 	"env": {
 		"es2021": true,
-		"node": true
+		"node": true,
+		"jest": true,
+		"jest/globals": true
 	},
 	"extends": [
 		"plugin:react/recommended",
@@ -19,7 +21,8 @@
 		"@typescript-eslint",
 		"react",
 		"react-native",
-		"import-helpers"
+		"import-helpers",
+		"jest"
 	],
 	"ignorePatterns": [
 		"assets/**/**",

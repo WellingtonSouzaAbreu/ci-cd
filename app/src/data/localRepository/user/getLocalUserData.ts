@@ -8,7 +8,6 @@ async function getLocalUserData() {
 		const storagedData = storagedDataJSON ? JSON.parse(storagedDataJSON) : {}
 		return storagedData as UserData
 	} catch (error) {
-		console.log(error)
 		throw new Error(error)
 	}
 }
