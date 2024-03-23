@@ -1,13 +1,13 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
-import { AuthProvider } from 'src/contexts/AuthContext'
+import { AuthProvider } from '@contexts/AuthContext'
 
-import { SigninStackParamList } from '@presentation/routes/stacks/SigninStack/types'
+import { SigninStackParamList } from '@routes/stacks/SigninStack/types'
 import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'
 
-import { InsertEmailAccount } from '@presentation/screens/signin/InsertEmailAccount'
-import { InsertPasswordAccount } from '@presentation/screens/signin/insertPasswordAccount'
+import { InsertEmailAccount } from '@screens/signin/InsertEmailAccount'
+import { InsertPasswordAccount } from '@screens/signin/insertPasswordAccount'
 
 const Stack = createStackNavigator<SigninStackParamList>()
 

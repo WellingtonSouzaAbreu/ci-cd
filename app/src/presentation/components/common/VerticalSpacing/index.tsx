@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { relativeScreenHeight } from '@presentation/utils/screenDimensions'
+import { relativeScreenHeight } from '@utils/screenDimensions'
 
 import { Container } from './styles'
 

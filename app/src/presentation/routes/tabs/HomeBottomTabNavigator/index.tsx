@@ -2,19 +2,19 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React, { useContext } from 'react'
 import { useTheme } from 'styled-components'
 
-import { UserDataContext } from 'src/contexts/UserDataContext'
+import { UserDataContext } from '@contexts/UserDataContext'
 
 import { FinanceRegisterStack } from '@routes/stacks/FinanceRegisterStack'
 
-import GraphActiveIcon from '@presentation/assets/icons/graph-active.svg'
-import GraphInactiveIcon from '@presentation/assets/icons/graph-inactive.svg'
-import HomeActiveIcon from '@presentation/assets/icons/home-active.svg'
-import HomeInactiveIcon from '@presentation/assets/icons/home-inactive.svg'
-import PlusActiveIcon from '@presentation/assets/icons/plus-active.svg'
-import PlusInactiveIcon from '@presentation/assets/icons/plus-inactive.svg'
+import GraphActiveIcon from '@assets/icons/graph-active.svg'
+import GraphInactiveIcon from '@assets/icons/graph-inactive.svg'
+import HomeActiveIcon from '@assets/icons/home-active.svg'
+import HomeInactiveIcon from '@assets/icons/home-inactive.svg'
+import PlusActiveIcon from '@assets/icons/plus-active.svg'
+import PlusInactiveIcon from '@assets/icons/plus-inactive.svg'
 
-import { HistoryAndMetrics } from '@presentation/screens/home/HistoryAndMetrics'
-import { Home } from '@presentation/screens/home/Home'
+import { HistoryAndMetrics } from '@screens/home/HistoryAndMetrics'
+import { Home } from '@screens/home/Home'
 
 const Tab = createBottomTabNavigator()
 

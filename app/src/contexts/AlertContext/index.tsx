@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { CustomModal } from '@presentation/components/modals/CustomModal'
+import { CustomModal } from '@components/modals/CustomModal'
 
 interface AlertProviderProps {
 	children: React.ReactNode

@@ -3,7 +3,7 @@ import { Modal } from 'react-native'
 
 import { Content } from './styles'
 
-import { Loader } from '@presentation/components/animated/Loader'
+import { Loader } from '@components/animated/Loader'
 
 type LoaderContextType = {
 	loaderIsVisible: boolean;

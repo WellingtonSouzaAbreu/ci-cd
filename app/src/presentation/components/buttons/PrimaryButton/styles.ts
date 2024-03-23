@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
 import { appFonts } from '@presentation/common/fonts'
-import { relativeScreenHeight } from '@presentation/utils/screenDimensions'
+import { relativeScreenHeight } from '@utils/screenDimensions'
 
 interface ContainerProps {
 	buttonColor?: string

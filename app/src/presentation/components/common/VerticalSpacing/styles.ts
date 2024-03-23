@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
+import { relativeScreenDensity } from '@utils/screenDimensions'
 
 interface ContainerProps {
 	height: number

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { useContext, useState } from 'react'
 
-import { RegisterContext } from 'src/contexts/RegisterContext'
+import { RegisterContext } from '@contexts/RegisterContext'
 
 import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 

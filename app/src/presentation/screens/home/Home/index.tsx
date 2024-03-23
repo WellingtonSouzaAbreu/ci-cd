@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from 'react-native'
 
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
 
 function Home() {
 	return (

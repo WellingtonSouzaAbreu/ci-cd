@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from 'react'
 import Carousel from 'react-native-reanimated-carousel'
 import uuid from 'react-uuid'
 
-import { screenHeight, screenWidth } from '@presentation/utils/screenDimensions'
+import { screenHeight, screenWidth } from '@utils/screenDimensions'
 
 import { CarouselActiveIndicatorItem, CarouselInactiveIndicatorItem, CarouselIndicatorContainer, Container } from './styles'
 

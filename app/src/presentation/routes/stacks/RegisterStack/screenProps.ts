@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { RegisterStackParamList } from '@presentation/routes/stacks/RegisterStack/types'
+import { RegisterStackParamList } from '@routes/stacks/RegisterStack/types'
 
 export type InsertUserNameScreenProps = NativeStackScreenProps<RegisterStackParamList, 'InsertUserName'>
 export type InsertEmailScreenProps = NativeStackScreenProps<RegisterStackParamList, 'InsertEmail'>

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { relativeScreenHeight } from '@presentation/utils/screenDimensions'
+import { relativeScreenHeight } from '@utils/screenDimensions'
 
 export const Credits = styled.Text`
 	position: absolute;

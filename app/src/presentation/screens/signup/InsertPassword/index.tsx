@@ -1,20 +1,20 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { LoaderContext } from 'src/contexts/LoaderContext'
-import { UserDataContext } from 'src/contexts/UserDataContext'
-import { InsertPasswordScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
+import { LoaderContext } from '@contexts/LoaderContext'
+import { UserDataContext } from '@contexts/UserDataContext'
+import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from 'src/contexts/AlertContext'
-import { RegisterContext } from 'src/contexts/RegisterContext'
+import { AlertContext } from '@contexts/AlertContext'
+import { RegisterContext } from '@contexts/RegisterContext'
 
 import { useUserRepository } from '@data/user/useUserRepository'
 
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-import { LineInput } from '@presentation/components/inputs/LineInput'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
 const { passwordIsValid, performSignup, updateUserRepository } = useUserDomain()
 

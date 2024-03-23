@@ -2,17 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ListRenderItem } from 'react-native'
 import { useTheme } from 'styled-components'
 
-import { FlatListItem } from '@presentation/presentationTypes'
-import { UiFinanceUtils } from '@presentation/utils/finance/UiFinanceUtils'
+import { FlatListItem } from '@presentationTypes'
+import { UiFinanceUtils } from '@utils/finance/UiFinanceUtils'
 
-import { FinanceRegisterContext } from 'src/contexts/FinanceRegisterContext'
+import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { FinanceCategoryFlatList } from './styles'
 
-import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
-import { VerticalSpacing } from '@presentation/components/common/VerticalSpacing'
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
 
 const { translateFinanceType } = UiFinanceUtils()
 

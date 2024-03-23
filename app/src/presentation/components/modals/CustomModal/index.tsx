@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, StatusBar } from 'react-native'
 
-import { relativeScreenHeight } from '@presentation/utils/screenDimensions'
+import { relativeScreenHeight } from '@utils/screenDimensions'
 
 import {
 	Container,
@@ -12,7 +12,7 @@ import {
 	Description,
 } from './styles'
 
-import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
 
 interface CustomModalProps {
 	title?: string

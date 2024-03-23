@@ -1,22 +1,22 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { AuthContext } from 'src/contexts/AuthContext'
-import { LoaderContext } from 'src/contexts/LoaderContext'
-import { UserDataContext } from 'src/contexts/UserDataContext'
-import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
+import { AuthContext } from '@contexts/AuthContext'
+import { LoaderContext } from '@contexts/LoaderContext'
+import { UserDataContext } from '@contexts/UserDataContext'
+import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from 'src/contexts/AlertContext'
+import { AlertContext } from '@contexts/AlertContext'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
 import { useUserRepository } from '@data/user/useUserRepository'
 
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-import { LineInput } from '@presentation/components/inputs/LineInput'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
 const { passwordIsValid, performSignin } = useUserDomain()
 

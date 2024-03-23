@@ -3,16 +3,16 @@ import { useTheme } from 'styled-components'
 
 import { Finance } from '@domain/billing/entity/types'
 
-import { FinanceRegisterContext } from 'src/contexts/FinanceRegisterContext'
+import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { SelectFinanceTypeScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
-import AngleRightIcon from '@presentation/assets/icons/angle-right.svg'
+import AngleRightIcon from '@assets/icons/angle-right.svg'
 
-import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
-import { VerticalSpacing } from '@presentation/components/common/VerticalSpacing'
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
 
 function SelectFinanceType({ navigation }: SelectFinanceTypeScreenProps) {
 	const theme = useTheme()

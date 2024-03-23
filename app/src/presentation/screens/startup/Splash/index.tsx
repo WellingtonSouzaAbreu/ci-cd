@@ -4,18 +4,18 @@ import React, { useEffect } from 'react'
 import { ActivityIndicator, Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
-import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/screenProps'
-import { getAppFonts } from '@presentation/utils/fonts'
-import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
+import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
+import { getAppFonts } from '@utils/fonts'
+import { relativeScreenWidth } from '@utils/screenDimensions'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
 import { Credits } from './styles'
-import Logo from '@presentation/assets/icons/logo.svg'
+import Logo from '@assets/icons/logo.svg'
 
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useUserRepository } from '@data/user/useUserRepository'
 
 const { hasValidLocalUser, handleMethodWithDeviceAuthentication } = useUserDomain()
