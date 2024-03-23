@@ -1,9 +1,6 @@
 type FinanceType = 'income' | 'expense'
 
-export type Finance = {
+export type FinanceRepository = { // REFACTOR FinanceRepository
 	type: FinanceType
-}
-
-export type FinanceRegisterData = {
-	type?: FinanceType
+	financeCategory: string
 }

@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import React, { useContext } from 'react'
+import React from 'react'
 import { useTheme } from 'styled-components'
 
 import GraphActiveIcon from '@assets/icons/graph-active.svg'
@@ -11,18 +11,14 @@ import PlusInactiveIcon from '@assets/icons/plus-inactive.svg'
 import { HistoryAndMetrics } from '@screens/home/HistoryAndMetrics'
 import { Home } from '@screens/home/Home'
 
-import { UserDataContext } from '@contexts/UserDataContext'
-
 import { FinanceRegisterStack } from '@routes/stacks/FinanceRegisterStack'
 
 const Tab = createBottomTabNavigator()
 
 function HomeBottomTabNavigator() {
-	const { userDataContext } = useContext(UserDataContext)
 	const theme = useTheme()
 
 	const renderHomeIcon = (focused: boolean) => {
-		console.log(userDataContext)
 		return focused
 			? <HomeActiveIcon height={'60%'} width={'60%'} />
 			: <HomeInactiveIcon height={'40%'} width={'40%'} />

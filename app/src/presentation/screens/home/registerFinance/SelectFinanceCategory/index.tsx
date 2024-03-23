@@ -19,11 +19,16 @@ import { AddNewCategoryContainer, AddNewCategoryLabel, FinanceCategoryFlatList, 
 const { translateFinanceType } = useUiFinanceUtils()
 
 const defaultFinancesCategories = [
-	'Supermercado', 'Farmácia', 'Jogos', 'Restaurantes', 'Porcarias', 'Educação', 'Moto'
+	'Supermercado',
+	'Farmácia',
+	'Jogos',
+	'Restaurantes',
+	'Porcarias',
+	'Educação', 'Moto'
 ]
 
 function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps) {
-	const { financeRegisterData } = useContext(FinanceRegisterContext)
+	const { financeRegisterData, setFinanceDataOnContext } = useContext(FinanceRegisterContext)
 
 	const theme = useTheme()
 
@@ -36,6 +41,7 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 		// Obter as categorias do local storage
 		// Mesclar as categorias padrão  // à definir
 		// Atualizar estado
+		setFinanceCategories(['Supermercado', 'Farmácia', 'Jogos', 'Restaurantes', 'Porcarias', 'Educação', 'Moto'])
 	}, [])
 
 	useEffect(() => {
@@ -60,13 +66,18 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 		/>
 	)
 
+	const selectFinanceCategory = () => {
+		setFinanceDataOnContext({ financeCategory: selectedCategory })
+		navigation.navigate('SelectFinanceCategory')
+	}
+
 	const financeType = translateFinanceType(financeRegisterData.type)
 
 	return (
 		<ScreenContainer topSafeAreaColor={theme.green3}>
 			<FormContainer
 				title={`Em qual categoria essa ${financeType} se encaixa?`}
-				onSubmit={() => console.log(selectedCategory)}
+				onSubmit={selectedCategory ? selectFinanceCategory : null}
 			>
 				<LineInput
 					type={'search'}

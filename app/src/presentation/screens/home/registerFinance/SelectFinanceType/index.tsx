@@ -7,7 +7,7 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { Finance } from '@domain/billing/entity/types'
+import { FinanceRepository } from '@domain/billing/entity/types'
 
 import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
@@ -17,7 +17,7 @@ function SelectFinanceType({ navigation }: SelectFinanceTypeScreenProps) {
 	const theme = useTheme()
 	const { setFinanceDataOnContext } = useContext(FinanceRegisterContext)
 
-	const selectFinanceType = (financeType: Finance['type']) => {
+	const selectFinanceType = (financeType: FinanceRepository['type']) => {
 		setFinanceDataOnContext({ type: financeType })
 		navigation.navigate('SelectFinanceCategory')
 	}

@@ -15,8 +15,8 @@ async function getUserData(userId: string) {
 		}
 
 		return null
-	} catch (e) {
-		console.log(e)
+	} catch (error) {
+		console.log(error)
 		return null
 	}
 }
