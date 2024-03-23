@@ -1,6 +1,6 @@
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
 
-async function hasValidLocalUserUC(useUserRepository: () => UserRepositoryInterface) {
+async function hasValidLocalUserDM(useUserRepository: () => UserRepositoryInterface) {
 	const { local } = useUserRepository()
 	const storagedUserData = await local.getLocalUserData()
 
@@ -12,4 +12,4 @@ async function hasValidLocalUserUC(useUserRepository: () => UserRepositoryInterf
 	}
 }
 
-export { hasValidLocalUserUC }
+export { hasValidLocalUserDM }

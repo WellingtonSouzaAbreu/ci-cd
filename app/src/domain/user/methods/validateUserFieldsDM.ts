@@ -1,18 +1,18 @@
 import { validateUserName, validateEmail, validatePassword } from '../core/validateUserFields'
 
-function validateUserNameUC(name: string) {
+function validateUserNameDM(name: string) {
 	const nameIsValid = validateUserName(name)
 	return nameIsValid
 }
 
-function validateEmailUC(email: string) {
+function validateEmailDM(email: string) {
 	const emailIsValid = validateEmail(email)
 	return emailIsValid
 }
 
-function validatePasswordUC(password: string) {
+function validatePasswordDM(password: string) {
 	const passwordIsValid = validatePassword(password)
 	return passwordIsValid
 }
 
-export { validateUserNameUC, validateEmailUC, validatePasswordUC }
+export { validateUserNameDM, validateEmailDM, validatePasswordDM }

@@ -1,7 +1,7 @@
 import { getLocalUserData } from '@data/localRepository/user/getLocalUserData'
 import { updateLocalUser } from '@data/localRepository/user/updateLocalUser'
-import { getUserData } from '@data/remoteRespository/user/getUserData'
-import { updateRemoteUser } from '@data/remoteRespository/user/updateRemoteUser'
+import { getUserData } from '@data/user/remoteRespository/getUserData'
+import { updateRemoteUser } from '@data/user/remoteRespository/updateRemoteUser'
 
 import { UserRepositoryInterface } from './UserRepositoryInterface'
 

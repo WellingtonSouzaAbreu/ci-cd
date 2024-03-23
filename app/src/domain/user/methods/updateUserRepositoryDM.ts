@@ -2,7 +2,7 @@ import { UserData } from '@domain/user/entity/types'
 
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
 
-async function updateUserRepositoryUC(userData: UserData, useUserRepository: () => UserRepositoryInterface) {
+async function updateUserRepositoryDM(userData: UserData, useUserRepository: () => UserRepositoryInterface) {
 	if (!userData || (userData && !userData.userId)) {
 		console.log('Não foi possível identificar o usuário')
 		return
@@ -14,4 +14,4 @@ async function updateUserRepositoryUC(userData: UserData, useUserRepository: () 
 	await local.updateLocalUser(userData, true, useUserRepository)
 }
 
-export { updateUserRepositoryUC }
+export { updateUserRepositoryDM }

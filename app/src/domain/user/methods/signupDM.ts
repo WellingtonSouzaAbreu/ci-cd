@@ -3,7 +3,7 @@ import { UserRegisterData } from '@domain/user/entity/types'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
-async function signupUC(userRegistrationData: UserRegisterData) {
+async function signupDM(userRegistrationData: UserRegisterData) {
 	const { signupByEmailPassword } = useAuthenticationService()
 
 	try {
@@ -30,4 +30,4 @@ async function signupUC(userRegistrationData: UserRegisterData) {
 	}
 }
 
-export { signupUC }
+export { signupDM }

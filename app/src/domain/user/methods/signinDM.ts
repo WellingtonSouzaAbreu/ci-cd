@@ -2,7 +2,7 @@ import { AuthenticationServiceInterface } from '@services/authentication/Authent
 
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
 
-async function signinUC(
+async function signinDM(
 	email: string,
 	password: string,
 	useAuthenticationService: () => AuthenticationServiceInterface,
@@ -11,6 +11,7 @@ async function signinUC(
 	const { signinByEmailPassword } = useAuthenticationService()
 
 	try {
+
 		const { remote } = useUserRepository()
 
 		const userCredential = await signinByEmailPassword(email, password)
@@ -38,4 +39,4 @@ async function signinUC(
 	}
 }
 
-export { signinUC }
+export { signinDM }

@@ -4,8 +4,8 @@ import { useTheme } from 'styled-components'
 import { LoaderContext } from '@contexts/LoaderContext'
 import { UserDataContext } from '@contexts/UserDataContext'
 import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-
 import { useUserDomain } from '@domain/user/useUserDomain'
+
 
 import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
@@ -29,6 +29,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const theme = useTheme()
 
 	const submitPassword = async () => {
+
 		try {
 			setLoaderIsVisible(true)
 

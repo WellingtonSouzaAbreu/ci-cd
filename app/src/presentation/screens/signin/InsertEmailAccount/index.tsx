@@ -8,7 +8,7 @@ import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { AlertContext } from '@contexts/AlertContext'
 
-import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
+import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
 
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'

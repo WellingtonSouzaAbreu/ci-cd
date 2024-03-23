@@ -1,25 +1,25 @@
-import { handleMethodWithDeviceAuthenticationUC } from '@domain/user/methods/deviceAuthentication'
-import { hasValidLocalUserUC } from '@domain/user/methods/hasValidLocalUserUC'
-import { signinUC } from '@domain/user/methods/signinUC'
-import { signupUC } from '@domain/user/methods/signupUC'
-import { updateUserRepositoryUC } from '@domain/user/methods/updateUserRepositoryUC'
-import { validateUserNameUC, validateEmailUC, validatePasswordUC } from '@domain/user/methods/validateUserFieldsUC'
+import { handleMethodWithDeviceAuthenticationDM } from '@domain/user/methods/deviceAuthenticationDM'
+import { hasValidLocalUserDM } from '@domain/user/methods/hasValidLocalUserDM'
+import { signinDM } from '@domain/user/methods/signinDM'
+import { signupDM } from '@domain/user/methods/signupDM'
+import { updateUserRepositoryDM } from '@domain/user/methods/updateUserRepositoryDM'
+import { validateUserNameDM, validateEmailDM, validatePasswordDM } from '@domain/user/methods/validateUserFieldsDM'
 
 import { UserDomainInterface } from './UserDomainInterface'
 
 function useUserDomain(): UserDomainInterface {
 	return {
-		userNameIsValid: validateUserNameUC,
-		emailIsValid: validateEmailUC,
-		passwordIsValid: validatePasswordUC,
+		userNameIsValid: validateUserNameDM,
+		emailIsValid: validateEmailDM,
+		passwordIsValid: validatePasswordDM,
 
-		performSignup: signupUC,
-		performSignin: signinUC,
+		performSignup: signupDM,
+		performSignin: signinDM,
 
-		updateUserRepository: updateUserRepositoryUC,
+		updateUserRepository: updateUserRepositoryDM,
 
-		hasValidLocalUser: hasValidLocalUserUC,
-		handleMethodWithDeviceAuthentication: handleMethodWithDeviceAuthenticationUC
+		hasValidLocalUser: hasValidLocalUserDM,
+		handleMethodWithDeviceAuthentication: handleMethodWithDeviceAuthenticationDM
 	}
 }
 
