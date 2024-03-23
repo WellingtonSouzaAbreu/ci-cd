@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React, { useContext } from 'react'
 import { useTheme } from 'styled-components'
 
-import { UserDataContext } from '@contexts/UserDataContext'
+import { UserDataContext } from 'src/contexts/UserDataContext'
 
 import { FinanceRegisterStack } from '@routes/stacks/FinanceRegisterStack'
 

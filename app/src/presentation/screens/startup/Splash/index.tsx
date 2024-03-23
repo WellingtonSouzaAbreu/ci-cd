@@ -8,18 +8,17 @@ import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/scre
 import { getAppFonts } from '@presentation/utils/fonts'
 import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AuthenticationServiceAdapter } from '@services/authentication/AuthenticationServiceAdapter'
-
-import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
+import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
 import { Credits } from './styles'
 import Logo from '@presentation/assets/icons/logo.svg'
 
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
+import { useUserRepository } from '@data/user/useUserRepository'
 
-const { hasValidLocalUser, handleMethodWithDeviceAuthentication } = UserUseCaseAdapter()
+const { hasValidLocalUser, handleMethodWithDeviceAuthentication } = useUserDomain()
 
 function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
@@ -62,10 +61,10 @@ function Splash({ navigation }: SplashScreenProps) {
 
 	const initializeSession = async () => {
 		try {
-			const hasLocalUserData = await hasValidLocalUser(UserRepositoryAdapter)
+			const hasLocalUserData = await hasValidLocalUser(useUserRepository)
 
 			if (hasLocalUserData) {
-				await handleMethodWithDeviceAuthentication(performQuickSingin, AuthenticationServiceAdapter)
+				await handleMethodWithDeviceAuthentication(performQuickSingin, useAuthenticationService)
 			} else {
 				return navigateToAuthRegisterScreen()
 			}

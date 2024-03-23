@@ -1,7 +1,7 @@
-import { FirebaseInfraAdapter } from '@infrastructure/firebase/FirebaseInfraAdapter'
+import { useFirebaseConfig } from '@infrastructure/firebase/useFirebaseConfig'
 import { UserCredential, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 
-const { firebaseAuth } = FirebaseInfraAdapter()
+const { firebaseAuth } = useFirebaseConfig()
 
 async function signupByEmailPassword(email: string, password: string): Promise<UserCredential> {
 	return createUserWithEmailAndPassword(firebaseAuth, email, password)

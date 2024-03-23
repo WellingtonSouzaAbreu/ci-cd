@@ -5,11 +5,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import { LoaderProvider } from '@presentation/contexts/LoaderContext/index'
-import { UserDataProvider } from '@presentation/contexts/UserDataContext'
+import { LoaderProvider } from 'src/contexts/LoaderContext/index'
+import { UserDataProvider } from 'src/contexts/UserDataContext'
 import { StartupStack } from '@presentation/routes/stacks/StartupStack'
 
-import { AlertProvider } from '@contexts/AlertContext'
+import { AlertProvider } from 'src/contexts/AlertContext'
 
 import { defaultTheme } from '@presentation/common/theme'
 

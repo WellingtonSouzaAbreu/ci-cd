@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components'
 import { FlatListItem } from '@presentation/presentationTypes'
 import { UiFinanceUtils } from '@presentation/utils/finance/UiFinanceUtils'
 
-import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
+import { FinanceRegisterContext } from 'src/contexts/FinanceRegisterContext'
 
 import { FinanceCategoryFlatList } from './styles'
 

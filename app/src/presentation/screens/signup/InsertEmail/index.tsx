@@ -3,10 +3,10 @@ import { useTheme } from 'styled-components'
 
 import { InsertEmailScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
-import { RegisterContext } from '@contexts/RegisterContext'
+import { AlertContext } from 'src/contexts/AlertContext'
+import { RegisterContext } from 'src/contexts/RegisterContext'
 
 import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
 
@@ -14,7 +14,7 @@ import { FormContainer } from '@presentation/components/containers/FormContainer
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { emailIsValid } = UserUseCaseAdapter()
+const { emailIsValid } = useUserDomain()
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const { showContextModal } = useContext(AlertContext)

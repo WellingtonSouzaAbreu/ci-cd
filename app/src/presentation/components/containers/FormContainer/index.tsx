@@ -2,7 +2,7 @@ import React, { ReactElement, useContext } from 'react'
 import { Platform, StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { AlertContext } from 'src/contexts/AlertContext'
 
 import {
 	Body, Container, Footer, Header, Pipe, Title, TitlePipeContainer

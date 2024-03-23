@@ -1,7 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
-import { RegisterProvider } from '@contexts/RegisterContext'
+import { RegisterProvider } from 'src/contexts/RegisterContext'
 
 import { RegisterStackParamList } from '@presentation/routes/stacks/RegisterStack/types'
 import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'

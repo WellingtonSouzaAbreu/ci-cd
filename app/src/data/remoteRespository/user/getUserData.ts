@@ -1,10 +1,10 @@
-import { FirebaseInfraAdapter } from '@infrastructure/firebase/FirebaseInfraAdapter'
+import { useFirebaseConfig } from '@infrastructure/firebase/useFirebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
 
-import { UserData } from '@domain/entities/user/types'
+import { UserData } from '@domain/user/entity/types'
 
 async function getUserData(userId: string) {
-	const { firebaseFirestore } = FirebaseInfraAdapter()
+	const { firebaseFirestore } = useFirebaseConfig()
 
 	try {
 		const userRef = doc(firebaseFirestore, 'users', userId)

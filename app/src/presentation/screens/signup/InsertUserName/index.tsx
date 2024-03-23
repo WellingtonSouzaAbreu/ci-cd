@@ -3,15 +3,15 @@ import { useTheme } from 'styled-components'
 
 import { InsertUserNameScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { RegisterContext } from '@contexts/RegisterContext'
+import { RegisterContext } from 'src/contexts/RegisterContext'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { userNameIsValid } = UserUseCaseAdapter()
+const { userNameIsValid } = useUserDomain()
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 	const { setUserRegisterDataOnContext } = useContext(RegisterContext)

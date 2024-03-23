@@ -1,22 +1,22 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { LoaderContext } from '@presentation/contexts/LoaderContext'
-import { UserDataContext } from '@presentation/contexts/UserDataContext'
+import { LoaderContext } from 'src/contexts/LoaderContext'
+import { UserDataContext } from 'src/contexts/UserDataContext'
 import { InsertPasswordScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
-import { RegisterContext } from '@contexts/RegisterContext'
+import { AlertContext } from 'src/contexts/AlertContext'
+import { RegisterContext } from 'src/contexts/RegisterContext'
 
-import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
+import { useUserRepository } from '@data/user/useUserRepository'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { passwordIsValid, performSignup, updateUserRepository } = UserUseCaseAdapter()
+const { passwordIsValid, performSignup, updateUserRepository } = useUserDomain()
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
@@ -33,7 +33,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 			setLoaderIsVisible(true)
 
 			const createdUser = await performSignup({ ...userRegistrationData, password })
-			await updateUserRepository(createdUser, UserRepositoryAdapter)
+			await updateUserRepository(createdUser, useUserRepository)
 			setUserDataOnContext(createdUser)
 
 			navigation.navigate('WelcomeNewUser')

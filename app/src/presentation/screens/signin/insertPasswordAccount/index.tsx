@@ -1,24 +1,24 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { AuthContext } from '@presentation/contexts/AuthContext'
-import { LoaderContext } from '@presentation/contexts/LoaderContext'
-import { UserDataContext } from '@presentation/contexts/UserDataContext'
+import { AuthContext } from 'src/contexts/AuthContext'
+import { LoaderContext } from 'src/contexts/LoaderContext'
+import { UserDataContext } from 'src/contexts/UserDataContext'
 import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { AlertContext } from 'src/contexts/AlertContext'
 
-import { AuthenticationServiceAdapter } from '@services/authentication/AuthenticationServiceAdapter'
+import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
-import { UserRepositoryAdapter } from '@data/user/UserRepositoryAdapter'
+import { useUserRepository } from '@data/user/useUserRepository'
 
 import { FormContainer } from '@presentation/components/containers/FormContainer'
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { passwordIsValid, performSignin } = UserUseCaseAdapter()
+const { passwordIsValid, performSignin } = useUserDomain()
 
 function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
@@ -33,7 +33,7 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			const userData = await performSignin(userAuthData.email, password, AuthenticationServiceAdapter, UserRepositoryAdapter)
+			const userData = await performSignin(userAuthData.email, password, useAuthenticationService, useUserRepository)
 			setUserDataOnContext(userData)
 			setLoaderIsVisible(false)
 			navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })

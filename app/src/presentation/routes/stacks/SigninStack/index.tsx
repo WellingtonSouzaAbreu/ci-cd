@@ -1,7 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
-import { AuthProvider } from '@presentation/contexts/AuthContext'
+import { AuthProvider } from 'src/contexts/AuthContext'
 
 import { SigninStackParamList } from '@presentation/routes/stacks/SigninStack/types'
 import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'

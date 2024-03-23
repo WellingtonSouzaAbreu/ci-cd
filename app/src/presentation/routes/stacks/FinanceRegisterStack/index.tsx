@@ -1,7 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
-import { FinanceRegisterProvider } from '@contexts/FinanceRegisterContext'
+import { FinanceRegisterProvider } from 'src/contexts/FinanceRegisterContext'
 
 import { FinanceRegisterStackParamList } from '@presentation/routes/stacks/FinanceRegisterStack/types'
 

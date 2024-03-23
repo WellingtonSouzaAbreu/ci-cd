@@ -5,25 +5,25 @@
 		"baseUrl": "./",
 		"paths": {
 			"@contexts/*": [
-				"src/presentation/contexts/*"
+				"src/contexts/*"
 			],
 			"@routes/*": [
 				"src/presentation/routes/*"
 			],
 			"@services/*": [
-				"./src/services/*"
+				"src/services/*"
 			],
 			"@presentation/*": [
-				"./src/presentation/*"
+				"src/presentation/*"
 			],
 			"@domain/*": [
-				"./src/domain/*"
+				"src/domain/*"
 			],
 			"@infrastructure/*": [
-				"./src/infrastructure/*"
+				"src/infrastructure/*"
 			],
 			"@data/*": [
-				"./src/data/*"
+				"src/data/*"
 			],
 		}
 	}

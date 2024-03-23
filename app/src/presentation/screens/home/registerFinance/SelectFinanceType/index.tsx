@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { useTheme } from 'styled-components'
 
-import { Finance } from '@domain/entities/billing/types'
+import { Finance } from '@domain/billing/entity/types'
 
-import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
+import { FinanceRegisterContext } from 'src/contexts/FinanceRegisterContext'
 
 import { SelectFinanceTypeScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 

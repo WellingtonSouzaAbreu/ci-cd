@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { AuthContext } from '@presentation/contexts/AuthContext'
+import { AuthContext } from 'src/contexts/AuthContext'
 import { InsertEmailAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { AlertContext } from 'src/contexts/AlertContext'
 
 import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
 
@@ -14,7 +14,7 @@ import { FormContainer } from '@presentation/components/containers/FormContainer
 import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
 import { LineInput } from '@presentation/components/inputs/LineInput'
 
-const { emailIsValid } = UserUseCaseAdapter()
+const { emailIsValid } = useUserDomain()
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const { showContextModal } = useContext(AlertContext)

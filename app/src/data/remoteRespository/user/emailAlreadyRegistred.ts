@@ -1,8 +1,8 @@
-import { FirebaseInfraAdapter } from '@infrastructure/firebase/FirebaseInfraAdapter'
+import { useFirebaseConfig } from '@infrastructure/firebase/useFirebaseConfig'
 import { fetchSignInMethodsForEmail } from 'firebase/auth'
 
 async function emailAlreadyRegistred(email: string) {
-	const { firebaseAuth } = FirebaseInfraAdapter()
+	const { firebaseAuth } = useFirebaseConfig()
 
 	return fetchSignInMethodsForEmail(firebaseAuth, email)
 		.then((signinMethods) => !!(signinMethods && signinMethods.length))
