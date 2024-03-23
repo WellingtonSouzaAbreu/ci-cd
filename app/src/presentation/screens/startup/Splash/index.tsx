@@ -5,8 +5,7 @@ import { ActivityIndicator, Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
 import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
-import { getAppFonts } from '@utils/fonts'
-import { relativeScreenWidth } from '@utils/screenDimensions'
+import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
@@ -17,6 +16,7 @@ import Logo from '@assets/icons/logo.svg'
 
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useUserRepository } from '@data/user/useUserRepository'
+import { getAppFonts } from '@presentation/common/fonts'
 
 const { hasValidLocalUser, handleMethodWithDeviceAuthentication } = useUserDomain()
 

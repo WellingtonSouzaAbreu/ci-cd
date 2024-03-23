@@ -2,7 +2,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { TextInputProps } from 'react-native'
 
-import { relativeScreenDensity } from '@utils/screenDimensions'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 import { Container, CustomTextInput, ToggleSecretTextIcon } from './styles'
 

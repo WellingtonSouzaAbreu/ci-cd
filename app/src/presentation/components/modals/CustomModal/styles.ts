@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
 import { appFonts } from '@presentation/common/fonts'
-import { relativeScreenDensity } from '@utils/screenDimensions'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 export const Container = styled.View`
     height: 100%;

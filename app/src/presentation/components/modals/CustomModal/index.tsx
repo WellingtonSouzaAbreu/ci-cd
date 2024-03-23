@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, StatusBar } from 'react-native'
 
-import { relativeScreenHeight } from '@utils/screenDimensions'
+import { relativeScreenHeight } from '@presentation/common/screenDimensions'
 
 import {
 	Container,

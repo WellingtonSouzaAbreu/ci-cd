@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { SelectAuthRegisterScreenProps } from '@routes/stacks/StartupStack/screenProps'
-import { relativeScreenWidth } from '@utils/screenDimensions'
+import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 import {
 	AppName,

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { relativeScreenDensity } from '@utils/screenDimensions'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 interface ContainerProps {
     flex?: boolean

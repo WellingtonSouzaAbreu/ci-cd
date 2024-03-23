@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ListRenderItem } from 'react-native'
 import { useTheme } from 'styled-components'
 
-import { FlatListItem } from '@presentationTypes'
-import { UiFinanceUtils } from '@utils/finance/UiFinanceUtils'
+
+import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
 import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
@@ -14,7 +14,7 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-const { translateFinanceType } = UiFinanceUtils()
+const { translateFinanceType } = useUiFinanceUtils()
 
 const defaultFinancesCategories = [
 	'Supermercado', 'Farmácia', 'Jogos', 'Restaurantes'

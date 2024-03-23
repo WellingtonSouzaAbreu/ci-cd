@@ -2,7 +2,7 @@ import 'react-native-gesture-handler'
 import React from 'react'
 import { useTheme } from 'styled-components'
 
-import { relativeScreenDensity, relativeScreenHeight } from '@utils/screenDimensions'
+import { relativeScreenDensity, relativeScreenHeight } from '@presentation/common/screenDimensions'
 
 import { CarouselContext, CarouselItemText, Content } from './styles'
 import CheckedList from '@assets/images/checkedList.svg'

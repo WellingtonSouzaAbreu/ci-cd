@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTheme } from 'styled-components'
 
-import { relativeScreenDensity } from '@utils/screenDimensions'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 import {
 	Body, ButtonPadding, Header, HorizontalHeaderScroll, SelectPeriodButtonContainer, Title

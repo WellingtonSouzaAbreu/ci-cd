@@ -2,7 +2,7 @@ import React from 'react'
 import { SvgProps } from 'react-native-svg'
 import { useTheme } from 'styled-components/native'
 
-import { relativeScreenDensity } from '@utils/screenDimensions'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 import { ButtonIconContainer, ButtonLabel, Container } from './styles'
 
