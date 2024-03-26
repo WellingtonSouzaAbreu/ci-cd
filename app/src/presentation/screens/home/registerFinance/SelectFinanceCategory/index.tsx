@@ -8,6 +8,7 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
+import { FormModal } from '@components/modals/FormModal'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
 import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -36,25 +37,42 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 	const [financeCategories, setFinanceCategories] = useState(defaultFinancesCategories)
 	const [financeFilteredCategories, setFinanceFilteredCategories] = useState([])
 	const [selectedCategory, setSelectedCategory] = useState('')
+	const [newCategoryModalIsVisible, setNewCategoryModalIsVisible] = useState(false)
 
 	useEffect(() => {
 		// Obter as categorias do local storage
 		// Mesclar as categorias padrão  // à definir
 		// Atualizar estado
-		setFinanceCategories(['Supermercado', 'Farmácia', 'Jogos', 'Restaurantes', 'Porcarias', 'Educação', 'Moto'])
+		const ordenedCategories = ['Supermercado', 'Farmácia', 'Jogos', 'Restaurantes', 'Porcarias', 'Educação', 'Moto'].sort()
+		setFinanceCategories(ordenedCategories)
 	}, [])
 
 	useEffect(() => {
 		filterFinanceCategories()
-	}, [searchText])
+	}, [searchText, financeCategories])
+
+	const financeType = translateFinanceType(financeRegisterData.type)
 
 	const filterFinanceCategories = () => {
 		const filteredCategories = financeCategories.filter((category) => category.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()))
 		setFinanceFilteredCategories(filteredCategories)
 	}
 
-	const openAddNewCategoryModal = () => {
-		console.log('Add new category')
+	const selectFinanceCategory = () => {
+		setFinanceDataOnContext({ financeCategory: selectedCategory })
+		navigation.navigate('InsertFinanceValue')
+	}
+
+	const toggleNewCategoryModalVisibility = () => {
+		setNewCategoryModalIsVisible(!newCategoryModalIsVisible)
+	}
+
+	const saveNewFinanceCategory = (newCategory: string) => {
+		// Verificar se não já está cadastrada
+		// Ordenar array em ordem alfabética
+		const ordenedCategories = [...financeCategories, newCategory].sort()
+		setFinanceCategories(ordenedCategories)
+		console.log(newCategory)
 	}
 
 	const renderFinanceCategories: ListRenderItem<string> = ({ item: category }) => (
@@ -66,15 +84,15 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 		/>
 	)
 
-	const selectFinanceCategory = () => {
-		setFinanceDataOnContext({ financeCategory: selectedCategory })
-		navigation.navigate('SelectFinanceCategory')
-	}
-
-	const financeType = translateFinanceType(financeRegisterData.type)
-
 	return (
 		<ScreenContainer topSafeAreaColor={theme.green3}>
+			<FormModal
+				visibility={newCategoryModalIsVisible}
+				title={'Como irá se chamar a nova categoria?'}
+				buttonText={'Cadastrar'}
+				closeModal={toggleNewCategoryModalVisibility}
+				onPress={saveNewFinanceCategory}
+			/>
 			<FormContainer
 				title={`Em qual categoria essa ${financeType} se encaixa?`}
 				onSubmit={selectedCategory ? selectFinanceCategory : null}
@@ -90,13 +108,12 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 						data={financeFilteredCategories || financeCategories}
 						renderItem={renderFinanceCategories}
 						showsVerticalScrollIndicator={false}
-						contentContainerStyle={{}}
 						ListHeaderComponent={<VerticalSpacing />}
 						ItemSeparatorComponent={FlatListVerticalSpacing}
 						ListFooterComponent={<VerticalSpacing />}
 					/>
 				</FlatListContainer>
-				<AddNewCategoryContainer onPress={openAddNewCategoryModal}>
+				<AddNewCategoryContainer onPress={toggleNewCategoryModalVisibility}>
 					<AddNewCategoryLabel>{'+ adicionar categoria'}</AddNewCategoryLabel>
 				</AddNewCategoryContainer>
 			</FormContainer>

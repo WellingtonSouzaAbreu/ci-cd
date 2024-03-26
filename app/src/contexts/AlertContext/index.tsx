@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { CustomModal } from '@components/modals/CustomModal'
+import { AlertModal } from '@components/modals/AlertModal'
 
 interface AlertProviderProps {
 	children: React.ReactNode
@@ -38,7 +38,7 @@ function AlertProvider({ children }: AlertProviderProps) {
 
 	return (
 		<AlertContext.Provider value={AlertProviderData}>
-			<CustomModal
+			<AlertModal
 				visibility={modalIsVisible}
 				title={modalTitle}
 				description={modalDescription}

@@ -1,4 +1,4 @@
-import { useFirebaseConfig } from '@infrastructure/firebase/useFirebaseConfig'
+import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
 
 import { UserData } from '@domain/user/entity/types'

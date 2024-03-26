@@ -1,4 +1,4 @@
-import { useFirebaseConfig } from '@infrastructure/firebase/useFirebaseConfig'
+import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 import { UserCredential, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 
 const { firebaseAuth } = useFirebaseConfig()

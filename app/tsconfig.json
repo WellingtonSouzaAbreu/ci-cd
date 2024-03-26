@@ -34,8 +34,8 @@
 			"@domain/*": [
 				"src/domain/*"
 			],
-			"@infrastructure/*": [
-				"src/infrastructure/*"
+			"@config/*": [
+				"src/config/*"
 			],
 			"@data/*": [
 				"src/data/*"

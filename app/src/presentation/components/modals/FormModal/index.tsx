@@ -2,6 +2,8 @@ import React from 'react'
 import { Modal, StatusBar } from 'react-native'
 
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
+import { LineInput } from '@components/inputs/LineInput'
 
 import {
 	Container,
@@ -9,19 +11,30 @@ import {
 	Content,
 	TouchCloseArea,
 	Title,
-	Description,
+	InputContainer,
 } from './styles'
 import { relativeScreenHeight } from '@presentation/common/screenDimensions'
 
-interface CustomModalProps {
+interface FormModalProps {
 	title?: string
 	description?: string
 	buttonText?: string
 	visibility: boolean
 	closeModal: () => void
+	onPress: (value: string) => void
 }
 
-function CustomModal({ ...props }: CustomModalProps) {
+function FormModal({ ...props }: FormModalProps) {
+	const [inputText, setInputText] = React.useState('')
+
+	const onPressButton = () => {
+		props.onPress(inputText)
+		clearInput()
+		props.closeModal()
+	}
+
+	const clearInput = () => setInputText('')
+
 	return (
 		<Modal
 			transparent
@@ -35,11 +48,18 @@ function CustomModal({ ...props }: CustomModalProps) {
 				<Content>
 					<ContentInner>
 						<Title>{props.title}</Title>
-						<Description>{props.description}</Description>
+						<InputContainer>
+							<LineInput
+								value={inputText}
+								placeholder={'Nova categoria...'}
+								onChangeText={setInputText}
+							/>
+						</InputContainer>
+						<VerticalSpacing />
 						<PrimaryButton
 							label={props.buttonText}
 							customHeight={relativeScreenHeight(6)}
-							onPress={props.closeModal}
+							onPress={onPressButton}
 						/>
 					</ContentInner>
 				</Content>
@@ -49,10 +69,10 @@ function CustomModal({ ...props }: CustomModalProps) {
 	)
 }
 
-CustomModal.defaultProps = {
+FormModal.defaultProps = {
 	title: 'Ops!',
 	description: '',
 	buttonText: 'entendi'
 }
 
-export { CustomModal }
+export { FormModal }

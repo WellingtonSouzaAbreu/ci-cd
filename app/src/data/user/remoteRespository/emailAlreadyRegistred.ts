@@ -1,4 +1,4 @@
-import { useFirebaseConfig } from '@infrastructure/firebase/useFirebaseConfig'
+import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 import { fetchSignInMethodsForEmail } from 'firebase/auth'
 
 async function emailAlreadyRegistred(email: string) {
