@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import CheckedList from '@assets/images/checkedList.svg'
@@ -10,18 +10,29 @@ import { PrimaryCheckbox } from '@components/checkbox/PrimaryCheckbox'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
+import { RegisterContext } from '@contexts/RegisterContext'
+
+import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+
 import { CarouselContext, CarouselItemText, Content } from './styles'
 import { relativeScreenDensity, relativeScreenHeight } from '@presentation/common/screenDimensions'
 
-import { useViewController } from './index.controller'
+function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
+	const { userRegistrationData } = useContext(RegisterContext)
 
-function WelcomeNewUser() {
-	const {
-		termsOfServiceHasAccepted,
-		setTermsOfServiceHasAccepted,
-		getUserName,
-		submitTermsAndConditions
-	} = useViewController()
+	const [termsOfServiceHasAccepted, setTermsOfServiceHasAccepted] = useState<boolean>(false)
+
+	const getUserName = () => {
+		if (userRegistrationData && !userRegistrationData.name) return 'amigo'
+		if (userRegistrationData.name.includes(' ')) {
+			return userRegistrationData.name.split(' ')[0]
+		}
+		return userRegistrationData.name
+	}
+
+	const submitTermsAndConditions = () => {
+		navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
+	}
 
 	const theme = useTheme()
 

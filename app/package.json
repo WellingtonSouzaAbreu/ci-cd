@@ -65,7 +65,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.0.0",
     "react-native-dotenv": "^3.4.8",
-    "react-native-svg-transformer": "^1.0.0"
+    "react-native-svg-transformer": "^1.0.0",
+    "ts-node": "^10.9.2"
   },
   "private": true,
   "bundleDependencies": [

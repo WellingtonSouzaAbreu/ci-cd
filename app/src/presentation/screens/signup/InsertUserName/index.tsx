@@ -5,13 +5,14 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { useUserDomain } from '@domain/user/useUserDomain'
-
+import { AlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
 import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-const { userNameIsValid } = useUserDomain()
+import { UserAdapter } from '../../../../domain/user/UserAdapter'
+
+const { UserName } = UserAdapter()
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
@@ -20,17 +21,33 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 
 	const theme = useTheme()
 
+	const { showContextModal } = useContext(AlertContext)
+
 	const submitUserName = async () => {
-		setUserRegisterDataOnContext({ name: userName })
-		navigation.navigate('InsertEmail')
+		try {
+			new UserName(userName).validateUserName()
+
+			setUserRegisterDataOnContext({ name: userName })
+			navigation.navigate('InsertEmail')
+		} catch (error) {
+			throwError(error.message)
+		}
+	}
+
+	const validateNameField = () => {
+		return true
+		// return new UserName(userName).validateUserName()
+	}
+
+	const throwError = (errorMessage: string) => {
+		showContextModal('Ops!', errorMessage)
 	}
 
 	return (
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Qual é o seu nome?'}
-				errorMessage={'Esse nome não é válido!'}
-				validateField={() => userNameIsValid(userName)}
+				validateField={validateNameField}
 				onSubmit={submitUserName}
 			>
 				<LineInput
