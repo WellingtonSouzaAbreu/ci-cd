@@ -11,7 +11,7 @@ interface AuthProviderProps {
 }
 
 const initialValue = {
-	userAuth: {
+	userAuthData: {
 		email: '',
 		token: ''
 	},

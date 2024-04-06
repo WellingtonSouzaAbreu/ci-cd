@@ -25,10 +25,7 @@ function UserDataProvider({ children }: UserDataProviderProps) {
 	const [userDataContext, setUserDataContext] = useState<UserData>()
 
 	const setUserDataOnContext = async (data: UserData) => {
-		setUserDataContext({
-			...userDataContext,
-			...data
-		})
+		setUserDataContext({ ...userDataContext, ...data })
 	}
 
 	const userProviderData = useMemo(() => ({
