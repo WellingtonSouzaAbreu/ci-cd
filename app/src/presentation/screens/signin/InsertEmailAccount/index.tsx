@@ -7,7 +7,7 @@ import { LineInput } from '@components/inputs/LineInput'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
 import { AuthContext } from '@contexts/AuthContext'
 
 import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
@@ -17,7 +17,7 @@ import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlready
 const { emailIsValid } = useUserDomain()
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 	const { setUserAuthDataOnContext } = useContext(AuthContext)
 
 	const [email, setEmail] = useState<string>('')

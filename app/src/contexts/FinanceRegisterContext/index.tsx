@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo, useState } from 'react'
 
-import { FinanceEntityOptional } from '@domain/billing/entity/types'
+import { FinanceEntityOptional } from '@domain/finance/entity/types'
 
 import { FinanceRegisterContextType, FinanceRegisterProviderProps } from './types'
 

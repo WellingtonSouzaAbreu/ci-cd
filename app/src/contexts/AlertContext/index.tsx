@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useContext, useMemo, useState } from 'react'
 
 import { AlertModal } from '@components/modals/AlertModal'
 
@@ -24,7 +24,7 @@ function AlertProvider({ children }: AlertProviderProps) {
 	const [modalDescription, setModalDescription] = useState<string>('')
 
 	const showContextModal = async (title: string, description: string) => {
-		setModalTitle(title)
+		setModalTitle(title || 'Ops!')
 		setModalDescription(description)
 		setModalIsVisible((previousValue) => !previousValue)
 	}
@@ -49,4 +49,6 @@ function AlertProvider({ children }: AlertProviderProps) {
 	)
 }
 
-export { AlertProvider, AlertContext }
+const useAlertContext = () => useContext(AlertContext)
+
+export { AlertProvider, useAlertContext }

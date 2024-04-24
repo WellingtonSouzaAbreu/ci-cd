@@ -7,7 +7,7 @@ import { LineInput } from '@components/inputs/LineInput'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
 import { AuthContext } from '@contexts/AuthContext'
 import { LoaderContext } from '@contexts/LoaderContext'
 import { UserDataContext } from '@contexts/UserDataContext'
@@ -21,7 +21,7 @@ import { useUserRepository } from '@data/user/useUserRepository'
 const { passwordIsValid, performSignin } = useUserDomain()
 
 function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 	const { setLoaderIsVisible } = useContext(LoaderContext)
 	const { userAuthData } = useContext(AuthContext)
 	const { setUserDataOnContext } = useContext(UserDataContext)

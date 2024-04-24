@@ -7,7 +7,7 @@ import { LineInput } from '@components/inputs/LineInput'
 
 import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
 import { LoaderContext } from '@contexts/LoaderContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 import { UserDataContext } from '@contexts/UserDataContext'
@@ -19,7 +19,7 @@ import { useUserRepository } from '@data/user/useUserRepository'
 const { passwordIsValid, performSignup, updateUserRepository } = useUserDomain()
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 	const { setLoaderIsVisible } = useContext(LoaderContext)
 	const { userRegistrationData } = useContext(RegisterContext)
 	const { setUserDataOnContext } = useContext(UserDataContext)

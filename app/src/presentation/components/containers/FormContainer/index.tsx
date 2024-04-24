@@ -1,11 +1,11 @@
-import React, { ReactElement, useContext } from 'react'
+import React, { ReactElement } from 'react'
 import { Platform, StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
 import { VerticalSpacing } from '@components/common/VerticalSpacing'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
 
 import {
 	Body, Container, Footer, Header, Pipe, Title, TitlePipeContainer
@@ -23,7 +23,7 @@ interface FormContainerProps {
 }
 
 function FormContainer({ ...props }: FormContainerProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 
 	const theme = useTheme()
 
@@ -52,27 +52,28 @@ function FormContainer({ ...props }: FormContainerProps) {
 			<Body behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
 				{props.children}
 			</Body>
-			{
-				props.secondaryButtonMethod && (
-					<Footer>
+			<Footer>
+				{
+					props.secondaryButtonMethod && (
+						<>
+							<PrimaryButton
+								label={props.secondaryButtonLabel}
+								onPress={performSubmit}
+								filled={false}
+							/>
+							<VerticalSpacing />
+						</>
+					)
+				}
+				{
+					props.onSubmit && (
 						<PrimaryButton
-							label={props.secondaryButtonLabel}
+							label={props.buttonLabel}
 							onPress={performSubmit}
-							filled={false}
 						/>
-						<VerticalSpacing />
-						{
-							props.onSubmit && (
-								<PrimaryButton
-									label={props.buttonLabel}
-									onPress={performSubmit}
-								/>
-							)
-						}
-					</Footer>
-				)
-			}
-
+					)
+				}
+			</Footer>
 		</Container>
 	)
 }

@@ -1,4 +1,4 @@
-import { FinanceEntity } from '@domain/billing/entity/types'
+import { FinanceEntity } from '@domain/finance/entity/types'
 
 function translateFinanceType(financeType: FinanceEntity['type']) {
 	if (financeType === 'income') return 'receita'

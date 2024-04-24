@@ -5,7 +5,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
 import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps'
@@ -13,7 +13,7 @@ import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps
 import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
 
 	const [email, setEmail] = useState<string>('')

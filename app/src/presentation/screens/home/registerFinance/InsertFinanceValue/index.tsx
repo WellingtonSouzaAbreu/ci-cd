@@ -5,22 +5,33 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
+import { FinanceObjectsAdapter } from '@domain/finance/adapter/FinanceObjectsAdapter'
+
+import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { InsertFinanceValueScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 import { InputContainar } from './styles'
 
+const { MonetaryValue } = FinanceObjectsAdapter()
+
 function InsertFinanceValue({ navigation }: InsertFinanceValueScreenProps) {
+	const { showContextModal } = useAlertContext()
 	const { setFinanceDataOnContext } = useFinanceRegisterContext()
 	const theme = useTheme()
 
 	const [inputValue, setInputValue] = useState('')
 
 	const submitValue = () => {
-		console.log(inputValue)
-		setFinanceDataOnContext({ value: parseFloat(inputValue) })
-		navigation.navigate('InsertFinanceReminder')
+		try {
+			const monetaryValue = new MonetaryValue(inputValue)
+			setFinanceDataOnContext({ value: monetaryValue.value })
+			navigation.navigate('InsertFinanceReminder')
+		} catch (error) {
+			console.log(error)
+			showContextModal('', error.message)
+		}
 	}
 
 	return (
