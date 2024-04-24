@@ -7,9 +7,11 @@ import { LineInput } from '@components/inputs/LineInput'
 
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
+import { InsertFinanceValueScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
+
 import { InputContainar } from './styles'
 
-function InsertFinanceValue() {
+function InsertFinanceValue({ navigation }: InsertFinanceValueScreenProps) {
 	const { setFinanceDataOnContext } = useFinanceRegisterContext()
 	const theme = useTheme()
 
@@ -18,7 +20,7 @@ function InsertFinanceValue() {
 	const submitValue = () => {
 		console.log(inputValue)
 		setFinanceDataOnContext({ value: parseFloat(inputValue) })
-		// navigation.navigate('')
+		navigation.navigate('InsertFinanceReminder')
 	}
 
 	return (
@@ -34,7 +36,6 @@ function InsertFinanceValue() {
 						value={inputValue}
 						placeholder={'Valor...'}
 						keyboardType={'numeric'}
-						returnKeyType={'done'}
 						onChangeText={setInputValue}
 					/>
 				</InputContainar>

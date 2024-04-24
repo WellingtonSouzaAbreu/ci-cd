@@ -3,6 +3,7 @@ import { Platform, StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
 
 import { AlertContext } from '@contexts/AlertContext'
 
@@ -15,6 +16,8 @@ interface FormContainerProps {
 	buttonLabel?: string
 	errorMessage?: string
 	children: ReactElement | ReactElement[]
+	secondaryButtonLabel?: string
+	secondaryButtonMethod?: () => void
 	validateField?: () => boolean
 	onSubmit?: () => void
 }
@@ -50,15 +53,26 @@ function FormContainer({ ...props }: FormContainerProps) {
 				{props.children}
 			</Body>
 			{
-				props.onSubmit && (
+				props.secondaryButtonMethod && (
 					<Footer>
 						<PrimaryButton
-							label={props.buttonLabel}
+							label={props.secondaryButtonLabel}
 							onPress={performSubmit}
+							filled={false}
 						/>
+						<VerticalSpacing />
+						{
+							props.onSubmit && (
+								<PrimaryButton
+									label={props.buttonLabel}
+									onPress={performSubmit}
+								/>
+							)
+						}
 					</Footer>
 				)
 			}
+
 		</Container>
 	)
 }
@@ -68,6 +82,8 @@ FormContainer.defaultProps = {
 	title: 'title',
 	buttonLabel: 'Continuar',
 	errorMessage: 'Algo deu errado!',
+	secondaryButtonLabel: 'Outro botão',
+	secondaryButtonMethod: null,
 	validateField: () => true
 }
 

@@ -40,6 +40,7 @@ function LineInput({ ...props }: LineInputProps) {
 			}
 			<CustomTextInput
 				{...props}
+				returnKeyType={'done'}
 				secureTextEntry={secretTextIsVisible}
 			/>
 			{
