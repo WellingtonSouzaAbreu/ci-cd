@@ -10,10 +10,6 @@ import { RegisterContext } from '@contexts/RegisterContext'
 
 import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { UserAdapter } from '../../../../domain/user/UserAdapter'
-
-const { UserName } = UserAdapter()
-
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
 
@@ -25,8 +21,6 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 
 	const submitUserName = async () => {
 		try {
-			new UserName(userName).validateUserName()
-
 			setUserRegisterDataOnContext({ name: userName })
 			navigation.navigate('InsertEmail')
 		} catch (error) {

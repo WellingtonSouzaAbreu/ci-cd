@@ -1,10 +1,9 @@
-import { handleMethodWithDeviceAuthenticationDM } from '@domain/user/methods/deviceAuthenticationDM'
-import { hasValidLocalUserDM } from '@domain/user/methods/hasValidLocalUserDM'
-import { signinDM } from '@domain/user/methods/signinDM'
-import { signupDM } from '@domain/user/methods/signupDM'
-import { updateUserRepositoryDM } from '@domain/user/methods/updateUserRepositoryDM'
-import { validateUserNameDM, validateEmailDM, validatePasswordDM } from '@domain/user/methods/validateUserFieldsDM'
-
+import { handleMethodWithDeviceAuthenticationDM } from './methods/deviceAuthenticationDM'
+import { hasValidLocalUserDM } from './methods/hasValidLocalUserDM'
+import { signinDM } from './methods/signinDM'
+import { signupDM } from './methods/signupDM'
+import { updateUserRepositoryDM } from './methods/updateUserRepositoryDM'
+import { validateUserNameDM, validateEmailDM, validatePasswordDM } from './methods/validateUserFieldsDM'
 import { UserDomainInterface } from './UserDomainInterface'
 
 function useUserDomain(): UserDomainInterface {

@@ -12,10 +12,6 @@ import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps
 
 import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
 
-import { UserAdapter } from '../../../../domain/user/UserAdapter'
-
-const { Email } = UserAdapter()
-
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const { showContextModal } = useContext(AlertContext)
 	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
@@ -26,8 +22,6 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 
 	const submitEmail = async () => {
 		try {
-			new Email(email).validateEmail() // REFACTOR Isso não é assim
-
 			if (await emailAlreadyRegistred(email)) {
 				throwError('Esse email já foi cadastrado!')
 			} else {
