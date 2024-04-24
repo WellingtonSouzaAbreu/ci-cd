@@ -58,10 +58,10 @@ function FormContainer({ ...props }: FormContainerProps) {
 						<>
 							<PrimaryButton
 								label={props.secondaryButtonLabel}
-								onPress={performSubmit}
+								onPress={props.secondaryButtonMethod}
 								filled={false}
 							/>
-							<VerticalSpacing />
+							<VerticalSpacing height={10} />
 						</>
 					)
 				}

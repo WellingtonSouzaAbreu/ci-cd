@@ -6,26 +6,37 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
+import { FinanceObjectsAdapter } from '@domain/finance/adapter/FinanceObjectsAdapter'
+
+import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { InsertFinanceReminderScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 const { translateFinanceType } = useUiFinanceUtils()
 
+const { Description } = FinanceObjectsAdapter()
+
 function InsertFinanceReminder({ navigation }: InsertFinanceReminderScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()
+	const { showContextModal } = useAlertContext()
 	const theme = useTheme()
 
-	const [inputValue, setInputValue] = useState('')
+	const [reminderText, setReminderText] = useState('')
 
 	const submitValue = () => {
-		console.log(inputValue)
-		setFinanceDataOnContext({ value: parseFloat(inputValue) })
-		navigateToNextScreen()
+		try {
+			const description = new Description(reminderText, 1)
+
+			setFinanceDataOnContext({ reminder: description.value })
+			navigateToNextScreen()
+		} catch (error) {
+			console.log(error)
+			showContextModal('', error.message)
+		}
 	}
 
 	const navigateToNextScreen = () => {
-		console.log('navigateToNextScreen')
 		navigation.navigate('InsertFinanceReminder')
 	}
 
@@ -42,9 +53,9 @@ function InsertFinanceReminder({ navigation }: InsertFinanceReminderScreenProps)
 				secondaryButtonMethod={navigateToNextScreen}
 			>
 				<LineInput
-					value={inputValue}
+					value={reminderText}
 					placeholder={'Lembrete...'}
-					onChangeText={setInputValue}
+					onChangeText={setReminderText}
 				/>
 			</FormContainer>
 		</ScreenContainer>

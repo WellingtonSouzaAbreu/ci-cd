@@ -5,4 +5,5 @@ export type FinanceEntity = {
 	type: FinanceType
 	financeCategory: string
 	value: number
+	reminder: string
 }

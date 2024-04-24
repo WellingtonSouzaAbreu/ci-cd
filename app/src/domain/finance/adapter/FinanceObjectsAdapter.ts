@@ -1,3 +1,4 @@
+import { Description } from '../model/objectValues/Description'
 import { MonetaryValue } from '../model/objectValues/MonetaryValue'
 
 /* export class FinanceObjectsAdapter {
@@ -5,5 +6,8 @@ import { MonetaryValue } from '../model/objectValues/MonetaryValue'
 } */
 
 export function FinanceObjectsAdapter() { // REFACTOR Deve ser class
-	return { MonetaryValue }
+	return {
+		MonetaryValue: MonetaryValue,
+		Description: Description
+	}
 }
