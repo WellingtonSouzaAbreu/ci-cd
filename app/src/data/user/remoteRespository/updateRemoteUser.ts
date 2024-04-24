@@ -1,9 +1,9 @@
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 import { doc, setDoc } from 'firebase/firestore'
 
-import { UserData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
-async function updateRemoteUser(userId: string, userData: UserData) {
+async function updateRemoteUser(userId: string, userData: UserEntity) {
 	const { firebaseFirestore } = useFirebaseConfig()
 
 	const documentReference = doc(firebaseFirestore, 'users', userId)

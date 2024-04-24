@@ -1,8 +1,8 @@
-import { UserData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
 
-async function updateUserRepositoryDM(userData: UserData, useUserRepository: () => UserRepositoryInterface) {
+async function updateUserRepositoryDM(userData: UserEntity, useUserRepository: () => UserRepositoryInterface) {
 	if (!userData || (userData && !userData.userId)) {
 		console.log('Não foi possível identificar o usuário')
 		return

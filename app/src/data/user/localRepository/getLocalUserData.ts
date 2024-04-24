@@ -1,12 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { UserData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
 async function getLocalUserData() {
 	try {
 		const storagedDataJSON = await AsyncStorage.getItem('finance.user')
 		const storagedData = storagedDataJSON ? JSON.parse(storagedDataJSON) : {}
-		return storagedData as UserData
+		return storagedData as UserEntity
 	} catch (error) {
 		throw new Error(error)
 	}

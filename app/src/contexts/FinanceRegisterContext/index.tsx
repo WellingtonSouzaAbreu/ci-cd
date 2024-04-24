@@ -1,6 +1,8 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useContext, useMemo, useState } from 'react'
 
-import { FinanceRegisterContextType, FinanceRegisterData, FinanceRegisterProviderProps } from './types'
+import { FinanceEntityOptional } from '@domain/billing/entity/types'
+
+import { FinanceRegisterContextType, FinanceRegisterProviderProps } from './types'
 
 const initialValue = {
 	financeRegisterData: {},
@@ -10,9 +12,9 @@ const initialValue = {
 const FinanceRegisterContext = createContext<FinanceRegisterContextType>(initialValue)
 
 function FinanceRegisterProvider({ children }: FinanceRegisterProviderProps) {
-	const [financeRegisterData, setFinanceRegisterDataContext] = useState<FinanceRegisterData>()
+	const [financeRegisterData, setFinanceRegisterDataContext] = useState<FinanceEntityOptional>()
 
-	const setFinanceDataOnContext = async (data: FinanceRegisterData) => {
+	const setFinanceDataOnContext = async (data: FinanceEntityOptional) => {
 		console.log({ ...financeRegisterData, ...data })
 		setFinanceRegisterDataContext({ ...financeRegisterData, ...data })
 	}
@@ -29,4 +31,6 @@ function FinanceRegisterProvider({ children }: FinanceRegisterProviderProps) {
 	)
 }
 
-export { FinanceRegisterProvider, FinanceRegisterContext }
+const useFinanceRegisterContext = () => useContext(FinanceRegisterContext)
+
+export { FinanceRegisterProvider, useFinanceRegisterContext }

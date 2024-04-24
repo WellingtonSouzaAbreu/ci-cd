@@ -1,13 +1,13 @@
-import { UserData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
 interface UserRepositoryInterface {
 	local: {
-		getLocalUserData: () => Promise<UserData>,
-		updateLocalUser: (userData: UserData, mergeStoragedData: boolean, useUserRepository: () => UserRepositoryInterface) => Promise<void>
+		getLocalUserData: () => Promise<UserEntity>,
+		updateLocalUser: (userData: UserEntity, mergeStoragedData: boolean, useUserRepository: () => UserRepositoryInterface) => Promise<void>
 	},
 	remote: {
-		getUserData: (userId: string) => Promise<UserData | null>
-		updateRemoteUser: (userId: string, userData: UserData) => Promise<void>
+		getUserData: (userId: string) => Promise<UserEntity | null>
+		updateRemoteUser: (userId: string, userData: UserEntity) => Promise<void>
 	}
 }
 

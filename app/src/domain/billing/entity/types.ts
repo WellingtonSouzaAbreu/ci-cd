@@ -1,6 +1,8 @@
 type FinanceType = 'income' | 'expense'
 
-export type FinanceRepository = { // REFACTOR FinanceRepository
+export type FinanceEntityOptional = Partial<FinanceEntity>
+export type FinanceEntity = {
 	type: FinanceType
 	financeCategory: string
+	value: number
 }

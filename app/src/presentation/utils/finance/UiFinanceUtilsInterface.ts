@@ -1,7 +1,7 @@
-import { FinanceRepository } from '@domain/billing/entity/types'
+import { FinanceEntity } from '@domain/billing/entity/types'
 
 interface UiFinanceUtilsInterface {
-	translateFinanceType: (financeType: FinanceRepository['type']) => string
+	translateFinanceType: (financeType: FinanceEntity['type']) => string
 }
 
 export { UiFinanceUtilsInterface }

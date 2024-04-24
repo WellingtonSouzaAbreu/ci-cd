@@ -1,5 +1,5 @@
 import { UnknowFunction } from '@domain/applicationTypes/types'
-import { UserData, UserRegisterData } from '@domain/user/entity/types'
+import { UserEntity, UserRegisterData } from '@domain/user/entity/types'
 
 import { AuthenticationServiceInterface } from '@services/authentication/AuthenticationServiceInterface'
 
@@ -11,9 +11,9 @@ interface UserDomainInterface {
 	passwordIsValid: (name: string) => boolean
 	hasValidLocalUser: (useUserRepository: () => UserRepositoryInterface) => Promise<boolean>
 
-	performSignup: (userRegistrationData: UserRegisterData) => Promise<UserData>
+	performSignup: (userRegistrationData: UserRegisterData) => Promise<UserEntity>
 	performSignin: (email: string, password: string, useAuthenticationService: () => AuthenticationServiceInterface, useUserRepository: () => UserRepositoryInterface) => Promise<UserData>
-	updateUserRepository: (user: UserData, useUserRepository: () => UserRepositoryInterface) => Promise<void>
+	updateUserRepository: (user: UserEntity, useUserRepository: () => UserRepositoryInterface) => Promise<void>
 
 	handleMethodWithDeviceAuthentication: (secureMethod: UnknowFunction, useAuthenticationService: () => AuthenticationServiceInterface) => Promise<void>
 }

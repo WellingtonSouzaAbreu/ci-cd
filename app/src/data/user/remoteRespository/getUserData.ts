@@ -1,7 +1,7 @@
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
 
-import { UserData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
 async function getUserData(userId: string) {
 	const { firebaseFirestore } = useFirebaseConfig()
@@ -11,7 +11,7 @@ async function getUserData(userId: string) {
 		const userSnap = await getDoc(userRef)
 
 		if (userSnap.exists()) {
-			return { userId, ...userSnap.data() as UserData }
+			return { userId, ...userSnap.data() as UserEntity }
 		}
 
 		return null

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useTheme } from 'styled-components'
 
 import AngleRightIcon from '@assets/icons/angle-right.svg'
@@ -7,17 +7,17 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { FinanceRepository } from '@domain/billing/entity/types'
+import { FinanceEntity } from '@domain/billing/entity/types'
 
-import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
+import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { SelectFinanceTypeScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 function SelectFinanceType({ navigation }: SelectFinanceTypeScreenProps) {
 	const theme = useTheme()
-	const { setFinanceDataOnContext } = useContext(FinanceRegisterContext)
+	const { setFinanceDataOnContext } = useFinanceRegisterContext()
 
-	const selectFinanceType = (financeType: FinanceRepository['type']) => {
+	const selectFinanceType = (financeType: FinanceEntity['type']) => {
 		setFinanceDataOnContext({ type: financeType })
 		navigation.navigate('SelectFinanceCategory')
 	}

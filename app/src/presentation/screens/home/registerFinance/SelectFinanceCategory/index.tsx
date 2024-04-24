@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ListRenderItem } from 'react-native'
 import { useTheme } from 'styled-components'
 
@@ -11,7 +11,7 @@ import { LineInput } from '@components/inputs/LineInput'
 import { FormModal } from '@components/modals/FormModal'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
-import { FinanceRegisterContext } from '@contexts/FinanceRegisterContext'
+import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { SelectFinanceCategoryScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
@@ -29,7 +29,7 @@ const defaultFinancesCategories = [
 ]
 
 function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps) {
-	const { financeRegisterData, setFinanceDataOnContext } = useContext(FinanceRegisterContext)
+	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()
 
 	const theme = useTheme()
 
@@ -40,7 +40,7 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 	const [newCategoryModalIsVisible, setNewCategoryModalIsVisible] = useState(false)
 
 	useEffect(() => {
-		// Obter as categorias do local storage
+		// Obter as categorias do local storage // REFACTOR
 		// Mesclar as categorias padrão  // à definir
 		// Atualizar estado
 		const ordenedCategories = ['Supermercado', 'Farmácia', 'Jogos', 'Restaurantes', 'Porcarias', 'Educação', 'Moto'].sort()
@@ -72,7 +72,6 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 		// Ordenar array em ordem alfabética
 		const ordenedCategories = [...financeCategories, newCategory].sort()
 		setFinanceCategories(ordenedCategories)
-		console.log(newCategory)
 	}
 
 	const renderFinanceCategories: ListRenderItem<string> = ({ item: category }) => (

@@ -1,6 +1,6 @@
-import { FinanceRepository } from '@domain/billing/entity/types'
+import { FinanceEntity } from '@domain/billing/entity/types'
 
-function translateFinanceType(financeType: FinanceRepository['type']) {
+function translateFinanceType(financeType: FinanceEntity['type']) {
 	if (financeType === 'income') return 'receita'
 	if (financeType === 'expense') return 'despesa'
 	return 'conta'

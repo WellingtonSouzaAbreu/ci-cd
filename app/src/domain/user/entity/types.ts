@@ -10,10 +10,11 @@ export type UserAuthData = {
 	token?: string
 }
 
-export type UserData = {
+export type UsertEntityOptional = Partial<UserEntity>
+export type UserEntity = {
 	userId?: string
 	email?: string
 	name?: string
 }
 
-export type UserMethod = (user: UserData) => any
+export type UserMethod = (user: UserEntity) => any

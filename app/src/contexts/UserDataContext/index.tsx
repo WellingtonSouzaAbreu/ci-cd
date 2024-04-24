@@ -1,13 +1,13 @@
 import React, { createContext, useMemo, useState } from 'react'
 
-import { UserData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
 type UserDataContextMethods = {
-	setUserDataOnContext: (data: UserData) => void
+	setUserDataOnContext: (data: UserEntity) => void
 }
 
 type UserDataContextType = UserDataContextMethods & {
-	userDataContext?: UserData
+	userDataContext?: UserEntity
 }
 
 interface UserDataProviderProps {
@@ -22,9 +22,9 @@ const initialValue = {
 const UserDataContext = createContext<UserDataContextType>(initialValue)
 
 function UserDataProvider({ children }: UserDataProviderProps) {
-	const [userDataContext, setUserDataContext] = useState<UserData>()
+	const [userDataContext, setUserDataContext] = useState<UserEntity>()
 
-	const setUserDataOnContext = async (data: UserData) => {
+	const setUserDataOnContext = async (data: UserEntity) => {
 		setUserDataContext({ ...userDataContext, ...data })
 	}
 

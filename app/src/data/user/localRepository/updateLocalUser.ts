@@ -1,12 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { UserData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
 
 const isValidObject = (object: unknown) => typeof object === 'object' && object !== null
 
-async function updateLocalUser(userData: UserData, mergeStoragedData: boolean, useUserRepository: () => UserRepositoryInterface) {
+async function updateLocalUser(userData: UserEntity, mergeStoragedData: boolean, useUserRepository: () => UserRepositoryInterface) {
 	try {
 		const { local } = useUserRepository()
 
