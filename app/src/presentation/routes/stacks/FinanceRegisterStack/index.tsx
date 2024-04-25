@@ -4,6 +4,7 @@ import React from 'react'
 import { InsertFinanceReminder } from '@screens/home/registerFinance/InsertFinanceReminder'
 import { InsertFinanceValue } from '@screens/home/registerFinance/InsertFinanceValue'
 import { SelectFinanceCategory } from '@screens/home/registerFinance/SelectFinanceCategory'
+import { SelectFinanceDate } from '@screens/home/registerFinance/SelectFinanceDate'
 import { SelectFinanceType } from '@screens/home/registerFinance/SelectFinanceType'
 
 import { FinanceRegisterProvider } from '@contexts/FinanceRegisterContext'
@@ -35,6 +36,7 @@ function FinanceRegisterStack({ route, navigation }: RegisterTabScreenProps) {
 				<Stack.Screen name={'SelectFinanceCategory'} component={SelectFinanceCategory} />
 				<Stack.Screen name={'InsertFinanceValue'} component={InsertFinanceValue} />
 				<Stack.Screen name={'InsertFinanceReminder'} component={InsertFinanceReminder} />
+				<Stack.Screen name={'SelectFinanceDate'} component={SelectFinanceDate} />
 			</Stack.Navigator>
 		</FinanceRegisterProvider>
 	)

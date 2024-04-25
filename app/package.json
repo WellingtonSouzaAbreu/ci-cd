@@ -41,7 +41,8 @@
     "react-uuid": "^2.0.0",
     "styled-components": "^5.3.5",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "@react-native-community/datetimepicker": "7.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

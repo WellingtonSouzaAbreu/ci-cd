@@ -15,7 +15,7 @@ export class MonetaryValue {
 		this.value = numericValue
 	}
 
-	convertToFloat(value: string): number {
+	private convertToFloat(value: string): number {
 		return parseFloat(parseFloat(value).toFixed(2))
 	}
 

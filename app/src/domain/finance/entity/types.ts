@@ -6,4 +6,5 @@ export type FinanceEntity = {
 	financeCategory: string
 	value: number
 	reminder: string
+	date: Date
 }

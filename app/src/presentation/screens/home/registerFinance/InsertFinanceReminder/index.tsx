@@ -37,7 +37,7 @@ function InsertFinanceReminder({ navigation }: InsertFinanceReminderScreenProps)
 	}
 
 	const navigateToNextScreen = () => {
-		navigation.navigate('InsertFinanceReminder')
+		navigation.navigate('SelectFinanceDate')
 	}
 
 	const financeType = translateFinanceType(financeRegisterData.type)

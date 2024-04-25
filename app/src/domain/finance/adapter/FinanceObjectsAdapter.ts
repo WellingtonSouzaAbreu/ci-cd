@@ -1,3 +1,4 @@
+import { CustomDate } from '../model/objectValues/CustomDate'
 import { Description } from '../model/objectValues/Description'
 import { MonetaryValue } from '../model/objectValues/MonetaryValue'
 
@@ -7,7 +8,8 @@ import { MonetaryValue } from '../model/objectValues/MonetaryValue'
 
 export function FinanceObjectsAdapter() { // REFACTOR Deve ser class
 	return {
-		MonetaryValue: MonetaryValue,
-		Description: Description
+		MonetaryValue: MonetaryValue, // REFACTOR Migrar para share
+		Description: Description,
+		CustomDate: CustomDate
 	}
 }
