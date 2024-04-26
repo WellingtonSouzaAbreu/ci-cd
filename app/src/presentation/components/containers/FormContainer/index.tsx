@@ -52,28 +52,32 @@ function FormContainer({ ...props }: FormContainerProps) {
 			<Body behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
 				{props.children}
 			</Body>
-			<Footer>
-				{
-					props.secondaryButtonMethod && (
-						<>
-							<PrimaryButton
-								label={props.secondaryButtonLabel}
-								onPress={props.secondaryButtonMethod}
-								filled={false}
-							/>
-							<VerticalSpacing height={10} />
-						</>
-					)
-				}
-				{
-					props.onSubmit && (
-						<PrimaryButton
-							label={props.buttonLabel}
-							onPress={performSubmit}
-						/>
-					)
-				}
-			</Footer>
+			{
+				(props.secondaryButtonMethod || props.onSubmit) && (
+					<Footer>
+						{
+							props.secondaryButtonMethod && (
+								<>
+									<PrimaryButton
+										label={props.secondaryButtonLabel}
+										onPress={props.secondaryButtonMethod}
+										filled={false}
+									/>
+									<VerticalSpacing height={10} />
+								</>
+							)
+						}
+						{
+							props.onSubmit && (
+								<PrimaryButton
+									label={props.buttonLabel}
+									onPress={performSubmit}
+								/>
+							)
+						}
+					</Footer>
+				)
+			}
 		</Container>
 	)
 }

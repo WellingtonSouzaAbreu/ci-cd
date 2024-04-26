@@ -36,7 +36,6 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 	const [searchText, setSearchText] = useState('')
 	const [financeCategories, setFinanceCategories] = useState(defaultFinancesCategories)
 	const [financeFilteredCategories, setFinanceFilteredCategories] = useState([])
-	const [selectedCategory, setSelectedCategory] = useState('')
 	const [newCategoryModalIsVisible, setNewCategoryModalIsVisible] = useState(false)
 
 	useEffect(() => {
@@ -58,7 +57,7 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 		setFinanceFilteredCategories(filteredCategories)
 	}
 
-	const selectFinanceCategory = () => {
+	const selectFinanceCategory = (selectedCategory: string) => {
 		setFinanceDataOnContext({ financeCategory: selectedCategory })
 		navigation.navigate('InsertFinanceValue')
 	}
@@ -78,8 +77,8 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 		<SelectButton
 			value={category}
 			wrapText // TODO Implementar
-			selected={category === selectedCategory}
-			onSelect={() => setSelectedCategory(category)}
+			selected={false}
+			onSelect={() => selectFinanceCategory(category)}
 		/>
 	)
 
@@ -94,7 +93,7 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 			/>
 			<FormContainer
 				title={`Em qual categoria essa ${financeType} se encaixa?`}
-				onSubmit={selectedCategory ? selectFinanceCategory : null}
+			// onSubmit={selectedCategory ? selectFinanceCategory : null}
 			>
 				<LineInput
 					type={'search'}
