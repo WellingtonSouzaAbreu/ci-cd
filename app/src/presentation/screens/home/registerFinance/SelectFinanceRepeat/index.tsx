@@ -34,7 +34,7 @@ function SelectFinanceRepeat({ navigation }: SelectFinanceRepeatScreenProps) {
 			const installment = new Installments(numberOfInstallments)
 
 			setFinanceDataOnContext({ numberOfInstallments: installment.value })
-			navigation.navigate('SelectFinanceRepeat')
+			navigation.navigate('FinanceSummary')
 		} catch (error) {
 			console.log(error)
 			showContextModal('', error.message)

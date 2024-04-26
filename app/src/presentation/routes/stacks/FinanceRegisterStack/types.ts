@@ -5,4 +5,5 @@ export type FinanceRegisterStackParamList = {
 	InsertFinanceReminder: undefined
 	SelectFinanceDate: undefined
 	SelectFinanceRepeat: undefined
+	FinanceSummary: undefined
 }

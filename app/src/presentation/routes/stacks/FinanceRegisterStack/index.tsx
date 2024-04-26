@@ -1,6 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
+import { FinanceSummary } from '@screens/home/registerFinance/FinanceSummary'
 import { InsertFinanceReminder } from '@screens/home/registerFinance/InsertFinanceReminder'
 import { InsertFinanceValue } from '@screens/home/registerFinance/InsertFinanceValue'
 import { SelectFinanceCategory } from '@screens/home/registerFinance/SelectFinanceCategory'
@@ -39,6 +40,7 @@ function FinanceRegisterStack({ route, navigation }: RegisterTabScreenProps) {
 				<Stack.Screen name={'InsertFinanceReminder'} component={InsertFinanceReminder} />
 				<Stack.Screen name={'SelectFinanceDate'} component={SelectFinanceDate} />
 				<Stack.Screen name={'SelectFinanceRepeat'} component={SelectFinanceRepeat} />
+				<Stack.Screen name={'FinanceSummary'} component={FinanceSummary} />
 			</Stack.Navigator>
 		</FinanceRegisterProvider>
 	)

@@ -56,6 +56,7 @@
 				]
 			}
 		],
+		"react/no-array-index-key": "off",
 		"class-methods-use-this": "off",
 		"lines-between-class-members": "off",
 		"react-hooks/rules-of-hooks": "off", // Checks rules of Hooks
@@ -167,7 +168,7 @@
 				},
 				"ImportDeclaration": {
 					"multiline": true,
-					"minProperties": 5
+					"minProperties": 7
 				},
 				"ExportDeclaration": {
 					"multiline": true,
