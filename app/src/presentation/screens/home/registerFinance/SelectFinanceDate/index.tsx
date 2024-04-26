@@ -27,7 +27,7 @@ function SelectFinanceDate({ navigation }: SelectFinanceDateScreenProps) {
 			const date = new CustomDate(selectedDate)
 
 			setFinanceDataOnContext({ date: date.value })
-			navigation.navigate('SelectFinanceDate')
+			navigation.navigate('SelectFinanceRepeat')
 		} catch (error) {
 			console.log(error)
 			showContextModal('', error.message)

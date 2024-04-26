@@ -7,4 +7,5 @@ export type FinanceEntity = {
 	value: number
 	reminder: string
 	date: Date
+	numberOfInstallments: number
 }

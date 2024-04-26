@@ -5,6 +5,7 @@ import { InsertFinanceReminder } from '@screens/home/registerFinance/InsertFinan
 import { InsertFinanceValue } from '@screens/home/registerFinance/InsertFinanceValue'
 import { SelectFinanceCategory } from '@screens/home/registerFinance/SelectFinanceCategory'
 import { SelectFinanceDate } from '@screens/home/registerFinance/SelectFinanceDate'
+import { SelectFinanceRepeat } from '@screens/home/registerFinance/SelectFinanceRepeat'
 import { SelectFinanceType } from '@screens/home/registerFinance/SelectFinanceType'
 
 import { FinanceRegisterProvider } from '@contexts/FinanceRegisterContext'
@@ -37,6 +38,7 @@ function FinanceRegisterStack({ route, navigation }: RegisterTabScreenProps) {
 				<Stack.Screen name={'InsertFinanceValue'} component={InsertFinanceValue} />
 				<Stack.Screen name={'InsertFinanceReminder'} component={InsertFinanceReminder} />
 				<Stack.Screen name={'SelectFinanceDate'} component={SelectFinanceDate} />
+				<Stack.Screen name={'SelectFinanceRepeat'} component={SelectFinanceRepeat} />
 			</Stack.Navigator>
 		</FinanceRegisterProvider>
 	)

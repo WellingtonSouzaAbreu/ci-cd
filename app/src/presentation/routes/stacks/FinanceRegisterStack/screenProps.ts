@@ -7,3 +7,4 @@ export type SelectFinanceCategoryScreenProps = NativeStackScreenProps<FinanceReg
 export type InsertFinanceValueScreenProps = NativeStackScreenProps<FinanceRegisterStackParamList, 'InsertFinanceValue'>
 export type InsertFinanceReminderScreenProps = NativeStackScreenProps<FinanceRegisterStackParamList, 'InsertFinanceReminder'>
 export type SelectFinanceDateScreenProps = NativeStackScreenProps<FinanceRegisterStackParamList, 'SelectFinanceDate'>
+export type SelectFinanceRepeatScreenProps = NativeStackScreenProps<FinanceRegisterStackParamList, 'SelectFinanceRepeat'>

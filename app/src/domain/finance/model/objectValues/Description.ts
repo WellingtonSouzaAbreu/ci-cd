@@ -1,7 +1,7 @@
 export class Description {
 	readonly value: string
-	readonly min: number
-	readonly max: number
+	private readonly min: number
+	private readonly max: number
 
 	constructor(
 		value: string,
