@@ -3,6 +3,7 @@ node_modules/
 dist/
 android/
 ios/
+Finance-dev-build.app
 npm-debug.*
 *.jks
 *.p8
