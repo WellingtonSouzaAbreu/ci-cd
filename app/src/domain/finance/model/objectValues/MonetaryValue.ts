@@ -1,14 +1,14 @@
 export class MonetaryValue {
 	readonly value: number
 
-	constructor(value: string) {
-		const numericValue = this.convertToFloat(value)
+	constructor(value: string | number) {
+		const numericValue = typeof value === 'string' ? this.convertToFloat(value) : value
 
 		if (Number.isNaN(numericValue)) throw new Error('O valor deve ser um número válido!')
 		if (!Number.isFinite(numericValue)) throw new Error('O valor deve ser um número finito!')
 		if (numericValue <= 0) throw new Error('O valor não pode ser negativo e nem nulo!')
 
-		if ((value.match(/[.,]/g) || []).length > 1) {
+		if (((typeof value === 'string' && value.match(/[.,]/g)) || []).length > 1) {
 			throw new Error('O valor deve conter no máximo um ponto ou vírgula!')
 		}
 

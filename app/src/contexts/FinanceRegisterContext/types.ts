@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { FinanceEntityOptional } from '@domain/finance/entity/types'
+import { FinanceEntityOptional } from '@domain/finance/model/entity/types'
 
 export interface FinanceRegisterProviderProps {
 	children: ReactNode

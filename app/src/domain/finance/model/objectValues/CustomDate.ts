@@ -31,4 +31,20 @@ export class CustomDate {
 	private isValidDateString(dateString: string) {
 		return /^\d{4}-\d{2}-\d{2}$/.test(dateString)
 	}
+
+	formatDateToDayMonth(increaseMonth = 0): string {
+		const monthAbbreviations: string[] = [
+			'jan', 'fev', 'mar', 'abr',
+			'mai', 'jun', 'jul', 'ago',
+			'set', 'out', 'nov', 'dez'
+		]
+
+		const day: number = this.value.getDate()
+		const monthIndex: number = this.value.getMonth() + increaseMonth
+		const formattedDay: string = (day < 10) ? `0${day}` : `${day}`
+
+		const formattedMonthIndex = monthIndex % 12
+		const formattedDate = `${formattedDay}/${monthAbbreviations[formattedMonthIndex]}`
+		return formattedDate
+	}
 }

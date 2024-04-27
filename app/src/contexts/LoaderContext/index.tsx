@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState, useCallback } from 'react'
+import React, { createContext, useMemo, useState, useCallback, useContext } from 'react'
 import { Modal } from 'react-native'
 
 import { Loader } from '@components/animated/Loader'
@@ -56,4 +56,6 @@ function LoaderProvider({ children }: LoaderProviderProps) {
 	)
 }
 
-export { LoaderProvider, LoaderContext }
+const useLoaderContext = () => useContext(LoaderContext)
+
+export { LoaderProvider, useLoaderContext, LoaderContext }

@@ -6,24 +6,35 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
+import { GenerateFinanceForecast } from '@domain/finance/useCases/GenerateFinanceForecast'
+
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
+import { useLoaderContext } from '@contexts/LoaderContext'
 
 import { FinanceSummaryScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 import { FinanceCategory, FinanceCategoryCard, ReminderText, SummaryHeader } from './styles'
 
 const { translateFinanceType } = useUiFinanceUtils()
+// const { GenerateFinanceForecast } = FinanceUseCasesAdapter()
 
 function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
+	const { setLoaderIsVisible } = useLoaderContext()
 	const { financeRegisterData } = useFinanceRegisterContext()
 	const { showContextModal } = useAlertContext()
 	const theme = useTheme()
 
 	const submitValue = () => {
 		try {
+			setLoaderIsVisible(true)
+
+			setTimeout(() => {
+				setLoaderIsVisible(false)
+			}, 2000)
+
 			// setFinanceDataOnContext({  })
-			navigation.navigate('FinanceSummary')
+			// navigation.popToTop()
 		} catch (error) {
 			console.log(error)
 			showContextModal('', error.message)
@@ -32,44 +43,21 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 
 	const financeType = translateFinanceType(financeRegisterData.type)
 
-	const financeRegisters = [
-		{
-			date: '30/jan',
-			amount: 'R$ 100,00'
-		},
-		{
-			date: '30/fev',
-			amount: 'R$ 2000,00'
-		},
-		{
-			date: '02/mar',
-			amount: 'R$ 50,00'
-		},
-		{
-			date: '02/mar',
-			amount: 'R$ 50,00'
-		},
-		{
-			date: '02/mar',
-			amount: 'R$ 50,00'
-		},
-		{
-			date: '02/mar',
-			amount: 'R$ 50,00'
-		},
-		{
-			date: '02/mar',
-			amount: 'R$ 50,00'
-		},
-		{
-			date: '02/mar',
-			amount: 'R$ 50,00'
-		},
-		{
-			date: '02/mar',
-			amount: 'R$ 50,00'
+	const generateFinanceRegisters = () => {
+		try {
+			const financeForecast = new GenerateFinanceForecast()
+			return financeForecast.exec({
+				date: financeRegisterData.date,
+				value: financeRegisterData.value,
+				numberOfInstallments: financeRegisterData.numberOfInstallments
+			})
+		} catch (error) {
+			console.log(error)
+			showContextModal('', error.message)
 		}
-	]
+	}
+
+	const financeRegisters = generateFinanceRegisters()
 
 	return (
 		<ScreenContainer

@@ -7,7 +7,7 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { FinanceEntity } from '@domain/finance/entity/types'
+import { FinanceEntity } from '@domain/finance/model/entity/types'
 
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
