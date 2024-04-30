@@ -67,8 +67,8 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 	}
 
 	const saveNewFinanceCategory = (newCategory: string) => {
-		// Verificar se não já está cadastrada
-		// Ordenar array em ordem alfabética
+		if (!newCategory) return
+
 		const ordenedCategories = [...financeCategories, newCategory].sort()
 		setFinanceCategories(ordenedCategories)
 	}
@@ -76,7 +76,7 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 	const renderFinanceCategories: ListRenderItem<string> = ({ item: category }) => (
 		<SelectButton
 			value={category}
-			wrapText // TODO Implementar
+			wrapText
 			selected={false}
 			onSelect={() => selectFinanceCategory(category)}
 		/>
@@ -93,7 +93,6 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 			/>
 			<FormContainer
 				title={`Em qual categoria essa ${financeType} se encaixa?`}
-			// onSubmit={selectedCategory ? selectFinanceCategory : null}
 			>
 				<LineInput
 					type={'search'}
