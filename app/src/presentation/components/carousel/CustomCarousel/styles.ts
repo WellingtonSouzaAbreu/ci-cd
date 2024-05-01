@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 interface CarouselIndicatorContainerProps {
 	width?: number
@@ -24,13 +24,13 @@ export const CarouselActiveIndicatorItem = styled.View`
     width: ${relativeScreenDensity(25)}px;
     border-radius: ${relativeScreenDensity(7)}px;
 	background-color: ${({ theme }) => theme.green5};
-    margin-horizontal: 2px;
+	margin: 0px 2px;
 `
 
-export const CarouselInactiveIndicatorItem = styled.View` /* TODO BUG não importa theme com autocomplete*/
+export const CarouselInactiveIndicatorItem = styled.View`
 	height: ${relativeScreenDensity(5)}px;
 	width: ${relativeScreenDensity(15)}px;
 	border-radius: 10px;
 	background-color: ${({ theme }) => theme.gray2};
-	margin-horizontal: 2px;
+	margin: 0px 2px;
 `

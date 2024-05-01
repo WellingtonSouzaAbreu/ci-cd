@@ -1,23 +1,27 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { AuthContext } from '@presentation/contexts/AuthContext'
-import { LoaderContext } from '@presentation/contexts/LoaderContext'
-import { UserDataContext } from '@presentation/contexts/UserDataContext'
-import { InsertPasswordAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
+import { AuthContext } from '@contexts/AuthContext'
+import { LoaderContext } from '@contexts/LoaderContext'
+import { UserDataContext } from '@contexts/UserDataContext'
 
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-import { LineInput } from '@presentation/components/inputs/LineInput'
+import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
-const { passwordIsValid, performSignin } = UserUseCaseAdapter()
+import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
+
+import { useUserRepository } from '@data/user/useUserRepository'
+
+const { passwordIsValid, performSignin } = useUserDomain()
 
 function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 	const { setLoaderIsVisible } = useContext(LoaderContext)
 	const { userAuthData } = useContext(AuthContext)
 	const { setUserDataOnContext } = useContext(UserDataContext)
@@ -29,22 +33,21 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await performSignin(userAuthData.email, password, setUserDataOnContext)
+			const userData = await performSignin(userAuthData.email, password, useAuthenticationService, useUserRepository)
+			setUserDataOnContext(userData)
 			setLoaderIsVisible(false)
-			navigation.reset({ index: 0, routes: [{ name: 'Home' }] })
-		} catch (err: any) {
+			navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
+		} catch (error: any) {
+			console.log(error)
 			setLoaderIsVisible(false)
-			setTimeout(() => { // NOTE check more elegant way to show error message
-				showContextModal('Ops!', err.message)
+			setTimeout(() => {
+				showContextModal('Ops!', error.message)
 			}, 300)
 		}
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}
@@ -53,10 +56,10 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 				onSubmit={submitPassword}
 			>
 				<LineInput
+					type={'password'}
 					value={password}
 					placeholder={'Senha...'}
 					maxLength={25}
-					secretText
 					secureTextEntry
 					onChangeText={setPassword}
 				/>

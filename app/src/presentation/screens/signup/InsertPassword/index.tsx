@@ -1,30 +1,30 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { LoaderContext } from '@presentation/contexts/LoaderContext'
-import { UserDataContext } from '@presentation/contexts/UserDataContext'
-import { InsertPasswordScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
+import { LoaderContext } from '@contexts/LoaderContext'
 import { RegisterContext } from '@contexts/RegisterContext'
+import { UserDataContext } from '@contexts/UserDataContext'
 
-import { UserRepositoryAdapter } from '@data/user/userRepositoryAdapter'
+import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-import { LineInput } from '@presentation/components/inputs/LineInput'
+import { useUserRepository } from '@data/user/useUserRepository'
 
-const { passwordIsValid, performSignup, updateUserRepository } = UserUseCaseAdapter()
+const { passwordIsValid, performSignup, updateUserRepository } = useUserDomain()
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 	const { setLoaderIsVisible } = useContext(LoaderContext)
 	const { userRegistrationData } = useContext(RegisterContext)
 	const { setUserDataOnContext } = useContext(UserDataContext)
 
-	const [password, setPassword] = useState<string>('a')
+	const [password, setPassword] = useState<string>('')
 
 	const theme = useTheme()
 
@@ -33,7 +33,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 			setLoaderIsVisible(true)
 
 			const createdUser = await performSignup({ ...userRegistrationData, password })
-			await updateUserRepository(createdUser, UserRepositoryAdapter)
+			await updateUserRepository(createdUser, useUserRepository)
 			setUserDataOnContext(createdUser)
 
 			navigation.navigate('WelcomeNewUser')
@@ -50,10 +50,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Defina uma senha de acesso'}
 				errorMessage={'Essa senha é muito curta!'}
@@ -62,10 +59,10 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 				onSubmit={submitPassword}
 			>
 				<LineInput
+					type={'password'}
 					value={password}
 					placeholder={'Senha...'}
 					maxLength={25}
-					secretText
 					secureTextEntry
 					onChangeText={setPassword}
 				/>

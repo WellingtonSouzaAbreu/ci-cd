@@ -1,23 +1,23 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { AuthContext } from '@presentation/contexts/AuthContext'
-import { InsertEmailAccountScreenProps } from '@presentation/routes/stacks/SigninStack/screenProps'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
+import { AuthContext } from '@contexts/AuthContext'
 
-import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
+import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-import { LineInput } from '@presentation/components/inputs/LineInput'
+import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
 
-const { emailIsValid } = UserUseCaseAdapter()
+const { emailIsValid } = useUserDomain()
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 	const { setUserAuthDataOnContext } = useContext(AuthContext)
 
 	const [email, setEmail] = useState<string>('')
@@ -29,16 +29,12 @@ function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 			showContextModal('Ops', 'Esse email não está cadastrado!')
 		} else {
 			setUserAuthDataOnContext({ email })
-			console.log('email to login')
 			navigation.navigate('InsertPasswordAccount')
 		}
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Insira seu email'}
 				errorMessage={'Esse email não é válido!'}
@@ -48,6 +44,7 @@ function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 				<LineInput
 					value={email}
 					placeholder={'Email...'}
+					autoCapitalize={'none'}
 					keyboardType={'email-address'}
 					onChangeText={setEmail}
 				/>

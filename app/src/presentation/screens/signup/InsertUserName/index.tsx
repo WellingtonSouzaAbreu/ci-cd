@@ -1,44 +1,53 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { InsertUserNameScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
-
+import { useAlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-import { LineInput } from '@presentation/components/inputs/LineInput'
-
-const { userNameIsValid } = UserUseCaseAdapter()
+import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
-	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
+	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
 
 	const [userName, setUserName] = useState<string>()
 
 	const theme = useTheme()
 
+	const { showContextModal } = useAlertContext()
+
 	const submitUserName = async () => {
-		setUserRegistrationDataOnContext({ name: userName })
-		navigation.navigate('InsertEmail')
+		try {
+			setUserRegisterDataOnContext({ name: userName })
+			navigation.navigate('InsertEmail')
+		} catch (error) {
+			throwError(error.message)
+		}
+	}
+
+	const validateNameField = () => {
+		return true
+		// return new UserName(userName).validateUserName()
+	}
+
+	const throwError = (errorMessage: string) => {
+		showContextModal('Ops!', errorMessage)
 	}
 
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Qual é o seu nome?'}
-				errorMessage={'Esse nome não é válido!'}
-				validateField={() => userNameIsValid(userName)}
+				validateField={validateNameField}
 				onSubmit={submitUserName}
 			>
 				<LineInput
 					value={userName}
-					placeholder={'Nome completo...'}
+					placeholder={'Nome...'}
+					autoCapitalize={'words'}
 					onChangeText={setUserName}
 				/>
 			</FormContainer>

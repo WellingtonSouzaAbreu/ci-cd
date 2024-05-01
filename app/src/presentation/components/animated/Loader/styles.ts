@@ -1,13 +1,13 @@
 import styled from 'styled-components/native'
 
-import { relativeScreenDensity } from '@presentation/utils/screenDimensions'
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 interface ContainerProps {
-	flex?: boolean
+    flex?: boolean
 }
 
 interface AnimationContainerProps {
-	animationScale?: number
+    animationScale?: number
 }
 
 export const Container = styled.View<ContainerProps>`

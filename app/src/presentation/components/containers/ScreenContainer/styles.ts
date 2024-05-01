@@ -1,6 +1,8 @@
 import { ViewStyle } from 'react-native'
 import styled from 'styled-components/native'
 
+import { relativeScreenDensity } from '@presentation/common/screenDimensions'
+
 interface SafeAreaViewProps {
 	safeAreaColor?: string
 	withoutFlex?: boolean
@@ -14,7 +16,7 @@ export const SafeAreaViewContainer = styled.SafeAreaView<SafeAreaViewProps>`
 interface ContainerProps {
 	justifyContent: ViewStyle['justifyContent']
 	alignItems: ViewStyle['alignItems']
-	padding: number
+	withPadding: boolean
 }
 
 export const Container = styled.View<ContainerProps>`
@@ -22,5 +24,5 @@ export const Container = styled.View<ContainerProps>`
 	background-color: ${({ theme }) => theme.white1};
     justify-content: ${({ justifyContent }) => justifyContent};
     align-items: ${({ alignItems }) => alignItems};
-    padding: ${({ padding }) => padding || 0}px;
+    padding: ${({ withPadding }) => (withPadding ? relativeScreenDensity(15) : 0)}px;
 `

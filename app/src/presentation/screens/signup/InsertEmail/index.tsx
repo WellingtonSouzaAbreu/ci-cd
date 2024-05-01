@@ -1,47 +1,53 @@
 import React, { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { InsertEmailScreenProps } from '@presentation/routes/stacks/RegisterStack/screenProps'
+import { FormContainer } from '@components/containers/FormContainer'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { LineInput } from '@components/inputs/LineInput'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
-
-import { AlertContext } from '@contexts/AlertContext'
+import { useAlertContext } from '@contexts/AlertContext'
 import { RegisterContext } from '@contexts/RegisterContext'
 
-import { emailAlreadyRegistred } from '@data/remoteRespository/user/emailAlreadyRegistred'
+import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { FormContainer } from '@presentation/components/containers/FormContainer'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-import { LineInput } from '@presentation/components/inputs/LineInput'
-
-const { emailIsValid } = UserUseCaseAdapter()
+import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
-	const { showContextModal } = useContext(AlertContext)
-	const { setUserRegistrationDataOnContext } = useContext(RegisterContext)
+	const { showContextModal } = useAlertContext()
+	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
 
 	const [email, setEmail] = useState<string>('')
 
 	const theme = useTheme()
 
 	const submitEmail = async () => {
-		if (!await emailAlreadyRegistred(email)) {
-			showContextModal('Ops', 'Esse email já foi cadastrado!')
-		} else {
-			setUserRegistrationDataOnContext({ email })
-			navigation.navigate('InsertPassword')
+		try {
+			if (await emailAlreadyRegistred(email)) {
+				throwError('Esse email já foi cadastrado!')
+			} else {
+				setUserRegisterDataOnContext({ email })
+				navigation.navigate('InsertPassword')
+			}
+		} catch (error) {
+			throwError(error.message)
 		}
 	}
 
+	const throwError = (errorMessage: string) => {
+		showContextModal('Ops!', errorMessage)
+	}
+
+	const validateUserEmail = () => {
+		return true
+		// return new Email(email).validateEmail()
+	}
+
 	return (
-		<ScreenContainer
-			topSafeAreaColor={theme.green4}
-			padding={0}
-		>
+		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Insira seu email'}
-				errorMessage={'Esse email não é válido!'}
-				validateField={() => emailIsValid(email)}
+				errorMessage={'Esse email não é válido!'} // Remover propriedade
+				validateField={validateUserEmail}
 				onSubmit={submitEmail}
 			>
 				<LineInput

@@ -1,7 +1,11 @@
 import React from 'react'
 
-import { SelectAuthRegisterScreenProps } from '@presentation/routes/stacks/StartupStack/screenProps'
-import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
+import LogoIcon from '@assets/icons/logo.svg'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+
+import { SelectAuthRegisterScreenProps } from '@routes/stacks/StartupStack/screenProps'
 
 import {
 	AppName,
@@ -10,11 +14,7 @@ import {
 	HeaderContainer,
 	PresentationText
 } from './styles'
-import LogoIcon from '@presentation/assets/icons/logo.svg'
-
-import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
-import { VerticalSpacing } from '@presentation/components/common/VerticalSpacing'
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
+import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 	const navigateToRegisterStack = () => {
@@ -26,7 +26,7 @@ function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 	}
 
 	return (
-		<ScreenContainer>
+		<ScreenContainer withPadding>
 			<HeaderContainer>
 				<LogoIcon width={relativeScreenWidth(15)} height={relativeScreenWidth(15)} />
 				<AppName>{'My Finances'}</AppName>

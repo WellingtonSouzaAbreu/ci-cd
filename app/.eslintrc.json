@@ -1,7 +1,9 @@
 {
 	"env": {
 		"es2021": true,
-		"node": true
+		"node": true,
+		"jest": true /* ,
+		"jest/globals": true */ // Crachando o import helpers
 	},
 	"extends": [
 		"plugin:react/recommended",
@@ -16,10 +18,13 @@
 		"sourceType": "module"
 	},
 	"plugins": [
+		// "jest",  // Crachando o import helpers
 		"@typescript-eslint",
 		"react",
 		"react-native",
-		"import-helpers"
+		"import-helpers",
+		"react-hooks",
+		"no-restricted-imports"
 	],
 	"ignorePatterns": [
 		"assets/**/**",
@@ -31,6 +36,31 @@
 		"*.sql"
 	],
 	"rules": {
+		"no-restricted-imports": [
+			"error",
+			{
+				"patterns": [
+					{
+						"group": [
+							"@domain/user/methods/*"
+						],
+						"message": "Não importe métodos de domínio diretamente!"
+					},
+					{
+						"group": [
+							"@domain/user/core/*",
+							"Não importe métodos de domínio diretamente"
+						],
+						"message": "import2 is deprecated, except the modules in import2/good."
+					}
+				]
+			}
+		],
+		"react/no-array-index-key": "off",
+		"class-methods-use-this": "off",
+		"lines-between-class-members": "off",
+		"react-hooks/rules-of-hooks": "off", // Checks rules of Hooks
+		"react-hooks/exhaustive-deps": "off",
 		"import/no-default-export": "warn",
 		"import/prefer-default-export": "off",
 		"import/extensions": "off",
@@ -138,7 +168,7 @@
 				},
 				"ImportDeclaration": {
 					"multiline": true,
-					"minProperties": 5
+					"minProperties": 7
 				},
 				"ExportDeclaration": {
 					"multiline": true,
@@ -156,12 +186,12 @@
 		"no-use-before-define": "off",
 		"max-lines-per-function": [
 			"warn",
-			100
+			200
 		],
 		"max-len": [
 			"warn",
 			{
-				"code": 170,
+				"code": 250,
 				"ignorePattern": "^import\\s.*",
 				"ignoreComments": true,
 				"ignoreTrailingComments": true,
@@ -223,7 +253,6 @@
 		"default-case": "off",
 		"consistent-return": "off",
 		"react/require-default-props": "warn",
-		"react-hooks/exhaustive-deps": "off",
 		"react/jsx-indent-props": [
 			"warn",
 			"tab"

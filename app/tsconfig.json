@@ -5,25 +5,40 @@
 		"baseUrl": "./",
 		"paths": {
 			"@contexts/*": [
-				"src/presentation/contexts/*"
+				"src/contexts/*"
+			],
+			"@services/*": [
+				"src/services/*"
 			],
 			"@routes/*": [
 				"src/presentation/routes/*"
 			],
-			"@services/*": [
-				"./src/services/*"
+			"@assets/*": [
+				"src/presentation/assets/*"
+			],
+			"@components/*": [
+				"src/presentation/components/*"
+			],
+			"@screens/*": [
+				"src/presentation/screens/*"
+			],
+			"@presentationTypes/*": [
+				"src/presentation/presentationTypes/*"
+			],
+			"@utils/*": [
+				"src/presentation/utils/*"
 			],
 			"@presentation/*": [
-				"./src/presentation/*"
+				"src/presentation/*"
 			],
 			"@domain/*": [
-				"./src/domain/*"
+				"src/domain/*"
 			],
-			"@infrastructure/*": [
-				"./src/infrastructure/*"
+			"@config/*": [
+				"src/config/*"
 			],
 			"@data/*": [
-				"./src/data/*"
+				"src/data/*"
 			],
 		}
 	}

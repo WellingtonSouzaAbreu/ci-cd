@@ -1,7 +1,8 @@
 import styled from 'styled-components/native'
 
 import { appFonts } from '@presentation/common/fonts'
-import { relativeScreenDensity, relativeScreenWidth } from '@presentation/utils/screenDimensions'
+
+import { relativeScreenDensity, relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 export const Header = styled.View`
 	height: 25%;
@@ -11,7 +12,6 @@ export const Header = styled.View`
 	justify-content: space-around;
 `
 
-// TODO Props not working
 export const HorizontalHeaderScroll = styled.ScrollView`
 	width: 100%;
 `
@@ -37,5 +37,5 @@ export const ButtonPadding = styled.View`
 
 export const Body = styled.View`
 	flex: 1;
-	background-color: ${({ theme }) => theme.white1});
+	background-color: ${({ theme }) => theme.white1};
 `

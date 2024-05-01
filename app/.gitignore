@@ -1,6 +1,11 @@
 node_modules/
 .expo/
 dist/
+android/
+ios/
+google-services.json
+GoogleService-info.plist
+Finance-dev-build.app
 npm-debug.*
 *.jks
 *.p8

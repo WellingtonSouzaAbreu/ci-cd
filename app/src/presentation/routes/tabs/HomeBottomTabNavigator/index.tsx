@@ -2,16 +2,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { useTheme } from 'styled-components'
 
-import GraphActiveIcon from '@presentation/assets/icons/graph-active.svg'
-import GraphInactiveIcon from '@presentation/assets/icons/graph-inactive.svg'
-import HomeActiveIcon from '@presentation/assets/icons/home-active.svg'
-import HomeInactiveIcon from '@presentation/assets/icons/home-inactive.svg'
-import PlusActiveIcon from '@presentation/assets/icons/plus-active.svg'
-import PlusInactiveIcon from '@presentation/assets/icons/plus-inactive.svg'
+import GraphActiveIcon from '@assets/icons/graph-active.svg'
+import GraphInactiveIcon from '@assets/icons/graph-inactive.svg'
+import HomeActiveIcon from '@assets/icons/home-active.svg'
+import HomeInactiveIcon from '@assets/icons/home-inactive.svg'
+import PlusActiveIcon from '@assets/icons/plus-active.svg'
+import PlusInactiveIcon from '@assets/icons/plus-inactive.svg'
+import { HistoryAndMetrics } from '@screens/home/HistoryAndMetrics'
+import { Home } from '@screens/home/Home'
 
-import { HistoryAndMetrics } from '@presentation/screens/home/HistoryAndMetrics'
-import { Home } from '@presentation/screens/home/Home'
-import { Register } from '@presentation/screens/home/Register'
+import { FinanceRegisterStack } from '@routes/stacks/FinanceRegisterStack'
 
 const Tab = createBottomTabNavigator()
 
@@ -38,15 +38,13 @@ function HomeBottomTabNavigator() {
 
 	return (
 		<Tab.Navigator
-			initialRouteName={'HistoryAndMetrics'}
+			initialRouteName={'Register'}
 			screenOptions={{
 				tabBarHideOnKeyboard: true,
 				headerShown: false,
 				tabBarShowLabel: false,
 				tabBarActiveBackgroundColor: theme.white1,
-				// tabBarInactiveBackgroundColor: theme.green1,
 				tabBarActiveTintColor: theme.green5,
-				// tabBarInactiveTintColor: theme.white1,
 			}}
 		>
 			<Tab.Screen
@@ -56,7 +54,7 @@ function HomeBottomTabNavigator() {
 			/>
 			<Tab.Screen
 				name={'Register'}
-				component={Register}
+				component={FinanceRegisterStack}
 				options={{ tabBarIcon: ({ focused }) => renderRegisterIcon(focused) }}
 			/>
 			<Tab.Screen

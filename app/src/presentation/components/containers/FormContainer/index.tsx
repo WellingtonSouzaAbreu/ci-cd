@@ -1,26 +1,29 @@
-import React, { ReactElement, useContext } from 'react'
+import React, { ReactElement } from 'react'
 import { Platform, StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 
-import { AlertContext } from '@contexts/AlertContext'
+import { PrimaryButton } from '@components/buttons/PrimaryButton'
+import { VerticalSpacing } from '@components/common/VerticalSpacing'
+
+import { useAlertContext } from '@contexts/AlertContext'
 
 import {
 	Body, Container, Footer, Header, Pipe, Title, TitlePipeContainer
 } from './styles'
-
-import { PrimaryButton } from '@presentation/components/buttons/PrimaryButton'
 
 interface FormContainerProps {
 	title?: string
 	buttonLabel?: string
 	errorMessage?: string
 	children: ReactElement | ReactElement[]
+	secondaryButtonLabel?: string
+	secondaryButtonMethod?: () => void
 	validateField?: () => boolean
-	onSubmit: () => void
+	onSubmit?: () => void
 }
 
 function FormContainer({ ...props }: FormContainerProps) {
-	const { showContextModal } = useContext(AlertContext)
+	const { showContextModal } = useAlertContext()
 
 	const theme = useTheme()
 
@@ -30,7 +33,7 @@ function FormContainer({ ...props }: FormContainerProps) {
 
 	const performSubmit = () => {
 		if (props.validateField()) {
-			return props.onSubmit()
+			return props.onSubmit && props.onSubmit()
 		}
 		return throwError()
 	}
@@ -49,20 +52,43 @@ function FormContainer({ ...props }: FormContainerProps) {
 			<Body behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
 				{props.children}
 			</Body>
-			<Footer>
-				<PrimaryButton
-					label={props.buttonLabel}
-					onPress={performSubmit}
-				/>
-			</Footer>
+			{
+				(props.secondaryButtonMethod || props.onSubmit) && (
+					<Footer>
+						{
+							props.secondaryButtonMethod && (
+								<>
+									<PrimaryButton
+										label={props.secondaryButtonLabel}
+										onPress={props.secondaryButtonMethod}
+										filled={false}
+									/>
+									<VerticalSpacing height={10} />
+								</>
+							)
+						}
+						{
+							props.onSubmit && (
+								<PrimaryButton
+									label={props.buttonLabel}
+									onPress={performSubmit}
+								/>
+							)
+						}
+					</Footer>
+				)
+			}
 		</Container>
 	)
 }
 
 FormContainer.defaultProps = {
+	onSubmit: null,
 	title: 'title',
 	buttonLabel: 'Continuar',
 	errorMessage: 'Algo deu errado!',
+	secondaryButtonLabel: 'Outro botão',
+	secondaryButtonMethod: null,
 	validateField: () => true
 }
 

@@ -1,5 +1,0 @@
-interface StripeServiceAdapterInterface {
-
-}
-
-export { StripeServiceAdapterInterface }

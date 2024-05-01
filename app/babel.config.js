@@ -11,12 +11,17 @@ module.exports = function (api) {
 				{
 					root: ['./src'],
 					alias: {
-						'@contexts': './src/presentation/contexts',
+						'@contexts': './src/contexts',
 						'@routes': './src/presentation/routes',
-						'@services': './src/services',
+						'@assets': './src/presentation/assets',
+						'@components': './src/presentation/components',
+						'@presentationTypes': './src/presentation/presentationTypes',
+						'@screens': './src/presentation/screens',
+						'@utils': './src/presentation/utils',
 						'@presentation': './src/presentation',
+						'@services': './src/services',
 						'@domain': './src/domain',
-						'@infrastructure': './src/infrastructure',
+						'@config': './src/config',
 						'@data': './src/data',
 					}
 				}

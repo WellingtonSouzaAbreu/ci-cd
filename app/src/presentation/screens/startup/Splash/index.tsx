@@ -4,20 +4,22 @@ import React, { useEffect } from 'react'
 import { ActivityIndicator, Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
-import { SplashScreenProps } from '@presentation/routes/stacks/StartupStack/screenProps'
-import { getAppFonts } from '@presentation/utils/fonts'
-import { relativeScreenWidth } from '@presentation/utils/screenDimensions'
+import Logo from '@assets/icons/logo.svg'
+import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { getAppFonts } from '@presentation/common/fonts'
 
-import { UserUseCaseAdapter } from '@domain/adapters/user/UserUseCaseAdapter'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { UserRepositoryAdapter } from '@data/user/userRepositoryAdapter'
+import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
+
+import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
+
+import { useUserRepository } from '@data/user/useUserRepository'
 
 import { Credits } from './styles'
-import Logo from '@presentation/assets/icons/logo.svg'
+import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
-import { ScreenContainer } from '@presentation/components/containers/ScreenContainer'
-
-const { hasValidLocalUser, handleAuthenticatedMethod } = UserUseCaseAdapter()
+const { hasValidLocalUser, handleMethodWithDeviceAuthentication } = useUserDomain()
 
 function Splash({ navigation }: SplashScreenProps) {
 	const [fontsAreLoaded] = useFonts({ ...getAppFonts() })
@@ -60,10 +62,10 @@ function Splash({ navigation }: SplashScreenProps) {
 
 	const initializeSession = async () => {
 		try {
-			const hasLocalUserData = await hasValidLocalUser(UserRepositoryAdapter)
+			const hasLocalUserData = await hasValidLocalUser(useUserRepository)
 
 			if (hasLocalUserData) {
-				await handleAuthenticatedMethod(performQuickSingin)
+				await handleMethodWithDeviceAuthentication(performQuickSingin, useAuthenticationService)
 			} else {
 				return navigateToAuthRegisterScreen()
 			}

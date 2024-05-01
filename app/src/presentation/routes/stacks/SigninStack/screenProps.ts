@@ -1,8 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { SigninStackParamList } from '@presentation/routes/stacks/SigninStack/types'
+import { SigninStackParamList } from '@routes/stacks/SigninStack/types'
 
 export type InsertEmailAccountScreenProps = NativeStackScreenProps<SigninStackParamList, 'InsertEmailAccount'>
 export type InsertPasswordAccountScreenProps = NativeStackScreenProps<SigninStackParamList, 'InsertPasswordAccount'>
 
-export type HomeScreenProps = NativeStackScreenProps<SigninStackParamList, 'Home'>
+export type HomeScreenProps = NativeStackScreenProps<SigninStackParamList, 'HomeTab'>

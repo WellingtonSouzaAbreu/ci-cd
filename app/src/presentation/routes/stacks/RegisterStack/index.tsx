@@ -1,15 +1,15 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
+import { InsertEmail } from '@screens/signup/InsertEmail'
+import { InsertPassword } from '@screens/signup/InsertPassword'
+import { InsertUserName } from '@screens/signup/InsertUserName'
+import { WelcomeNewUser } from '@screens/signup/WelcomeNewUser'
+
 import { RegisterProvider } from '@contexts/RegisterContext'
 
-import { RegisterStackParamList } from '@presentation/routes/stacks/RegisterStack/types'
-
-import { Home } from '@presentation/screens/home/Home'
-import { InsertEmail } from '@presentation/screens/signup/InsertEmail'
-import { InsertPassword } from '@presentation/screens/signup/InsertPassword'
-import { InsertUserName } from '@presentation/screens/signup/InsertUserName'
-import { WelcomeNewUser } from '@presentation/screens/signup/WelcomeNewUser'
+import { RegisterStackParamList } from '@routes/stacks/RegisterStack/types'
+import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'
 
 const Stack = createStackNavigator<RegisterStackParamList>()
 
@@ -28,7 +28,7 @@ function RegisterStack() {
 				<Stack.Screen name={'InsertEmail'} component={InsertEmail} />
 				<Stack.Screen name={'InsertPassword'} component={InsertPassword} />
 				<Stack.Screen name={'WelcomeNewUser'} component={WelcomeNewUser} />
-				<Stack.Screen name={'Home'} component={Home} />
+				<Stack.Screen name={'HomeTab'} component={HomeBottomTabNavigator} />
 			</Stack.Navigator>
 		</RegisterProvider>
 	)
