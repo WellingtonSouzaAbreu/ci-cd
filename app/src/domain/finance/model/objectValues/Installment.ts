@@ -10,7 +10,7 @@ export class Installments {
 	) {
 		const numericValue = this.convertStringToNumber(value)
 
-		if (typeof numericValue !== 'number') throw new Error('Formato de valor inválido!')
+		if (typeof numericValue !== 'number' || Number.isNaN(numericValue)) throw new Error('Formato de valor inválido!')
 		if (numericValue < min) throw new Error(`Deve haver no mínimo ${min} parcela!`)
 		if (numericValue > max) throw new Error(`Deve haver no máximo ${max} parcelas!`)
 

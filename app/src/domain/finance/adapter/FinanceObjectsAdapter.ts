@@ -1,7 +1,7 @@
-import { CustomDate } from '../model/objectValues/CustomDate'
-import { Description } from '../model/objectValues/Description'
+import { CustomDate } from '../../shared/CustomDate'
+import { Description } from '../../shared/Description'
 import { Installments } from '../model/objectValues/Installment'
-import { MonetaryValue } from '../model/objectValues/MonetaryValue'
+import { MonetaryValue } from '../../shared/MonetaryValue'
 
 /* export class FinanceObjectsAdapter {
 	MonetaryValue: MonetaryValue
