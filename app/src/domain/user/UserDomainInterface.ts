@@ -15,7 +15,7 @@ interface UserDomainInterface {
 	performSignin: (email: string, password: string, useAuthenticationService: () => AuthenticationServiceInterface, useUserRepository: () => UserRepositoryInterface) => Promise<UserEntity>
 	updateUserRepository: (user: UserEntity, useUserRepository: () => UserRepositoryInterface) => Promise<void>
 
-	handleMethodWithDeviceAuthentication: (secureMethod: UnknowFunction, useAuthenticationService: () => AuthenticationServiceInterface) => Promise<void>
+	handleMethodWithDeviceAuthentication: (secureMethod: UnknowFunction, useAuthenticationService: () => AuthenticationServiceInterface) => Promise<boolean>
 }
 
 export { UserDomainInterface }

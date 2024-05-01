@@ -13,15 +13,12 @@ import { useLoaderContext } from '@contexts/LoaderContext'
 
 import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { useUserRepository } from '@data/user/useUserRepository'
-
-const { passwordIsValid, performSignup, updateUserRepository } = useUserDomain()
+const { passwordIsValid } = useUserDomain()
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useAlertContext()
 	const { setLoaderIsVisible } = useLoaderContext()
-	const { userRegistrationData } = useAuthContext()
-	const { setUserDataOnContext } = useAuthContext()
+	const { setUserRegisterDataOnContext } = useAuthContext()
 
 	const [password, setPassword] = useState<string>('')
 
@@ -30,18 +27,10 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
-
-			const createdUser = await performSignup({ ...userRegistrationData, password })
-			await updateUserRepository(createdUser, useUserRepository)
-			setUserDataOnContext(createdUser)
-
+			setUserRegisterDataOnContext({ password })
 			navigation.navigate('WelcomeNewUser')
 		} catch (err: any) {
 			console.log(err.code)
-			switch (err.code) {
-				case 'auth/email-already-in-use': return showContextModal('Ops!', 'O email já está sendo utilizado')
-			}
-
 			return showContextModal('Ops!', err.code)
 		} finally {
 			setLoaderIsVisible(false)

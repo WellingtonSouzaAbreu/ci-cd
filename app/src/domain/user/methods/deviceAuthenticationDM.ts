@@ -4,7 +4,7 @@ import { AuthenticationServiceInterface } from '@services/authentication/Authent
 
 async function handleMethodWithDeviceAuthenticationDM(secureMethod: UnknowFunction, useAuthenticationService: () => AuthenticationServiceInterface) {
 	const { handleMethodWithDeviceAuthentication } = useAuthenticationService()
-	await handleMethodWithDeviceAuthentication(secureMethod)
+	return handleMethodWithDeviceAuthentication(secureMethod)
 }
 
 export { handleMethodWithDeviceAuthenticationDM }

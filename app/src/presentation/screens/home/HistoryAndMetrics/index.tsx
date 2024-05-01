@@ -3,13 +3,16 @@ import { useTheme } from 'styled-components'
 
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
+import { firebaseAuthentication } from '@config/firebase/config'
 
-import {
-	Body, ButtonPadding, Header, HorizontalHeaderScroll, SelectPeriodButtonContainer, Title
-} from './styles'
+import { useAuthContext } from '@contexts/AuthContext'
+
+import { Body, ButtonPadding, Header, HorizontalHeaderScroll, SelectPeriodButtonContainer, Title } from './styles'
 import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 function HistoryAndMetrics() {
+	const { authenticatedUser } = useAuthContext()
+
 	const theme = useTheme()
 
 	return (
@@ -29,7 +32,7 @@ function HistoryAndMetrics() {
 							buttonColor={theme.white1}
 							relativeWidth={'50%'}
 							customHeight={relativeScreenDensity(25)}
-							onPress={() => console.log('presses')}
+							onPress={() => firebaseAuthentication.signOut()}
 						/>
 					</SelectPeriodButtonContainer>
 					<SelectPeriodButtonContainer>
@@ -45,7 +48,7 @@ function HistoryAndMetrics() {
 				</HorizontalHeaderScroll>
 				<ButtonPadding>
 					<PrimaryButton
-						label={'Consultar'}
+						label={authenticatedUser.name || 'Consultar'}
 						labelColor={theme.green5}
 						buttonColor={theme.white1}
 						customHeight={relativeScreenDensity(40)}

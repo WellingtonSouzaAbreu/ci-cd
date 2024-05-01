@@ -10,16 +10,23 @@ import { PrimaryCheckbox } from '@components/checkbox/PrimaryCheckbox'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { useAuthContext } from '@contexts/AuthContext'
+import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+import { useAlertContext } from '@contexts/AlertContext'
+import { useAuthContext } from '@contexts/AuthContext'
+import { useLoaderContext } from '@contexts/LoaderContext'
+
+import { useUserRepository } from '@data/user/useUserRepository'
 
 import { CarouselContext, CarouselItemText, Content } from './styles'
 import { relativeScreenDensity, relativeScreenHeight } from '@presentation/common/screenDimensions'
 
-function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
-	const { userRegistrationData } = useAuthContext()
+const { performSignup, updateUserRepository } = useUserDomain()
 
+function WelcomeNewUser() {
+	const { showContextModal } = useAlertContext()
+	const { setLoaderIsVisible } = useLoaderContext()
+	const { userRegistrationData, setUserDataOnContext } = useAuthContext()
 	const [termsOfServiceHasAccepted, setTermsOfServiceHasAccepted] = useState<boolean>(false)
 
 	const getUserName = () => {
@@ -30,8 +37,22 @@ function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
 		return userRegistrationData.name
 	}
 
-	const submitTermsAndConditions = () => {
-		navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
+	const submitTermsAndConditions = async () => {
+		try {
+			setLoaderIsVisible(true)
+
+			const createdUser = await performSignup(userRegistrationData)
+			await updateUserRepository(createdUser, useUserRepository)
+			setUserDataOnContext(createdUser)
+			setLoaderIsVisible(false)
+		} catch (error) {
+			console.log(error.code)
+			switch (error.code) {
+				case 'auth/email-already-in-use': return showContextModal('Ops!', 'O email já está sendo utilizado')
+			}
+
+			return showContextModal('Ops!', error.code)
+		}
 	}
 
 	const theme = useTheme()

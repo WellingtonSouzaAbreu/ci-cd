@@ -11,15 +11,13 @@ import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 import { useLoaderContext } from '@contexts/LoaderContext'
 
-import { InsertPasswordAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
-
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
 import { useUserRepository } from '@data/user/useUserRepository'
 
 const { passwordIsValid, performSignin } = useUserDomain()
 
-function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps) {
+function InsertPasswordAccount() {
 	const { showContextModal } = useAlertContext()
 	const { setLoaderIsVisible } = useLoaderContext()
 	const { userAuthData } = useAuthContext()
@@ -32,10 +30,11 @@ function InsertPasswordAccount({ navigation }: InsertPasswordAccountScreenProps)
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
+
 			const userData = await performSignin(userAuthData.email, password, useAuthenticationService, useUserRepository)
 			setUserDataOnContext(userData)
+
 			setLoaderIsVisible(false)
-			// navigation.reset({ index: 0, routes: [{ name: 'HomeTab' }] })
 		} catch (error: any) {
 			console.log(error)
 			setLoaderIsVisible(false)

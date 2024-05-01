@@ -13,8 +13,6 @@ import { StartupStack } from '@routes/stacks/StartupStack'
 
 import { defaultTheme } from '@presentation/common/theme'
 
-// REFACTOR Remove expo-system-ui - usada somente para builds em desenvolvimento
-
 export default function App() {
 	return (
 		<NavigationContainer>
