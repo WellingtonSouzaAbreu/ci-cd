@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { ListRenderItem } from 'react-native'
+import { Alert, ListRenderItem } from 'react-native'
 import { useTheme } from 'styled-components'
 
 import { SelectButton } from '@components/buttons/SelectButton'
+import { EmptyFlatList } from '@components/common/EmptyFlatList'
 import { FlatListVerticalSpacing } from '@components/common/FlatListVertialSpacing'
 import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { FormContainer } from '@components/containers/FormContainer'
@@ -11,22 +12,19 @@ import { LineInput } from '@components/inputs/LineInput'
 import { FormModal } from '@components/modals/FormModal'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
+import { FinanceUseCasesAdapter } from '@domain/finance/adapter/FinanceUseCaseAdapter'
+
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { SelectFinanceCategoryScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
+
+import { FinanceLocalRepository } from '@data/finance/FinanceLocalRepository'
 
 import { AddNewCategoryContainer, AddNewCategoryLabel, FinanceCategoryFlatList, FlatListContainer } from './styles'
 
 const { translateFinanceType } = useUiFinanceUtils()
 
-const defaultFinancesCategories = [
-	'Supermercado',
-	'Farmácia',
-	'Jogos',
-	'Restaurantes',
-	'Porcarias',
-	'Educação', 'Moto'
-]
+const { createNewLocalCategory, removeLocalCategory, getLocalCategories } = FinanceUseCasesAdapter
 
 function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()
@@ -34,21 +32,23 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 	const theme = useTheme()
 
 	const [searchText, setSearchText] = useState('')
-	const [financeCategories, setFinanceCategories] = useState(defaultFinancesCategories)
+	const [financeCategories, setFinanceCategories] = useState([])
 	const [financeFilteredCategories, setFinanceFilteredCategories] = useState([])
 	const [newCategoryModalIsVisible, setNewCategoryModalIsVisible] = useState(false)
 
 	useEffect(() => {
-		// Obter as categorias do local storage // REFACTOR
-		// Mesclar as categorias padrão  // à definir
-		// Atualizar estado
-		const ordenedCategories = ['Supermercado', 'Farmácia', 'Jogos', 'Restaurantes', 'Porcarias', 'Educação', 'Moto'].sort()
-		setFinanceCategories(ordenedCategories)
+		loadFinanceCategories()
 	}, [])
 
 	useEffect(() => {
 		filterFinanceCategories()
 	}, [searchText, financeCategories])
+
+	const loadFinanceCategories = async () => {
+		const storedCategories = await getLocalCategories(FinanceLocalRepository)
+		const ordenedCategories = storedCategories.sort()
+		setFinanceCategories(ordenedCategories)
+	}
 
 	const financeType = translateFinanceType(financeRegisterData.type)
 
@@ -66,11 +66,27 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 		setNewCategoryModalIsVisible(!newCategoryModalIsVisible)
 	}
 
-	const saveNewFinanceCategory = (newCategory: string) => {
-		if (!newCategory) return
+	const saveNewFinanceCategory = async (newCategory: string) => {
+		if (!newCategory || financeCategories.includes(newCategory)) return
+		await createNewLocalCategory(FinanceLocalRepository, newCategory)
 
 		const ordenedCategories = [...financeCategories, newCategory].sort()
 		setFinanceCategories(ordenedCategories)
+	}
+
+	const showDeleteConfirmation = (category: string) => {
+		console.log(category)
+		Alert.alert('Deseja remover esta categoria?', 'As finanças cadastradas com esta categoria não serão afetadas', [
+			{
+				onPress: () => deleteFinanceCategory(category), text: 'Apagar', isPreferred: true, style: 'destructive'
+			},
+			{ text: 'Cancelar', style: 'cancel' }
+		])
+	}
+
+	const deleteFinanceCategory = async (category: string) => {
+		const newCategories = await removeLocalCategory(FinanceLocalRepository, category)
+		setFinanceCategories(newCategories)
 	}
 
 	const renderFinanceCategories: ListRenderItem<string> = ({ item: category }) => (
@@ -79,6 +95,7 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 			wrapText
 			selected={false}
 			onSelect={() => selectFinanceCategory(category)}
+			onLongPress={() => showDeleteConfirmation(category)}
 		/>
 	)
 
@@ -108,6 +125,7 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 						ListHeaderComponent={<VerticalSpacing />}
 						ItemSeparatorComponent={FlatListVerticalSpacing}
 						ListFooterComponent={<VerticalSpacing />}
+						ListEmptyComponent={(<EmptyFlatList text={'Adicione alguma categoria para continuar!'} />)}
 					/>
 				</FlatListContainer>
 				<AddNewCategoryContainer onPress={toggleNewCategoryModalVisibility}>

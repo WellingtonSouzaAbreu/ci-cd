@@ -50,6 +50,7 @@ function FormModal({ ...props }: FormModalProps) {
 						<Title>{props.title}</Title>
 						<InputContainer>
 							<LineInput
+								autoFocus
 								value={inputText}
 								placeholder={'Nova categoria...'}
 								onChangeText={setInputText}

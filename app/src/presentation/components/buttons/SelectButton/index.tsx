@@ -8,6 +8,7 @@ interface SelectButtonProps {
 	wrapText?: boolean
 	relativeWidth?: string
 	onSelect: () => void
+	onLongPress?: () => void
 }
 
 function SelectButton({ ...props }: SelectButtonProps) {
@@ -17,6 +18,7 @@ function SelectButton({ ...props }: SelectButtonProps) {
 			selected={props.selected}
 			relativeWidth={props.relativeWidth}
 			onPress={props.onSelect}
+			onLongPress={props.onLongPress}
 		>
 			<ButtonLabel selected={props.selected}>
 				{props.value}
@@ -29,7 +31,8 @@ SelectButton.defaultProps = {
 	selected: true,
 	value: 'button',
 	wrapText: false,
-	relativeWidth: '100%'
+	relativeWidth: '100%',
+	onLongPress: () => console.log('onLongPress')
 }
 
 export { SelectButton }

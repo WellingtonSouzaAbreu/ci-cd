@@ -2,11 +2,13 @@ import { UseCase } from '@domain/shared/interfaces/UseCase'
 
 import { FinanceLocalRepositoryInterface } from '@data/finance/FinanceLocalRepository'
 
+import { FinanceCategories } from '../model/domainServices/FinanceCategories'
+
 type Input = string
 
-type Output = Promise<string>
+type Output = Promise<string[]>
 
-export class CreateNewLocalCategory implements UseCase<Input, Output> {
+export class RemoveLocalCategory implements UseCase<Input, Output> {
 	private localRepository: FinanceLocalRepositoryInterface
 
 	constructor(FinanceLocalRepository: new () => FinanceLocalRepositoryInterface) {
@@ -14,7 +16,7 @@ export class CreateNewLocalCategory implements UseCase<Input, Output> {
 	}
 
 	async exec(category: Input): Output {
-		await this.localRepository.updateLocalCategories([category])
-		return category
+		const newLocalCategories = await this.localRepository.removeCategory(category)
+		return new FinanceCategories(newLocalCategories).categories
 	}
 }

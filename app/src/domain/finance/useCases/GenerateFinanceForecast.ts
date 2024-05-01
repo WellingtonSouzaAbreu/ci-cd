@@ -3,7 +3,7 @@ import { UseCase } from '@domain/shared/interfaces/UseCase'
 import { CustomDate } from '../model/objectValues/CustomDate'
 import { MonetaryValue } from '../model/objectValues/MonetaryValue'
 
-interface Input {
+export interface Input {
 	date: Date
 	value: number | string
 	numberOfInstallments: number

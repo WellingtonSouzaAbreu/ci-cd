@@ -6,7 +6,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
-import { GenerateFinanceForecast } from '@domain/finance/useCases/GenerateFinanceForecast'
+import { FinanceUseCasesAdapter } from '@domain/finance/adapter/FinanceUseCaseAdapter'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -17,7 +17,7 @@ import { FinanceSummaryScreenProps } from '@routes/stacks/FinanceRegisterStack/s
 import { FinanceCategory, FinanceCategoryCard, ReminderText, SummaryHeader } from './styles'
 
 const { translateFinanceType } = useUiFinanceUtils()
-// const { GenerateFinanceForecast } = FinanceUseCasesAdapter()
+const { generateFinanceForecast } = FinanceUseCasesAdapter
 
 function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 	const { setLoaderIsVisible } = useLoaderContext()
@@ -25,14 +25,11 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 	const { showContextModal } = useAlertContext()
 	const theme = useTheme()
 
-	const submitValue = () => {
+	const saveFinance = () => {
 		try {
 			setLoaderIsVisible(true)
 
-			setTimeout(() => {
-				setLoaderIsVisible(false)
-			}, 2000)
-
+			setLoaderIsVisible(false)
 			// setFinanceDataOnContext({  })
 			// navigation.popToTop()
 		} catch (error) {
@@ -45,8 +42,7 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 
 	const generateFinanceRegisters = () => {
 		try {
-			const financeForecast = new GenerateFinanceForecast()
-			return financeForecast.exec({
+			return generateFinanceForecast({
 				date: financeRegisterData.date,
 				value: financeRegisterData.value,
 				numberOfInstallments: financeRegisterData.numberOfInstallments
@@ -65,7 +61,7 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 		>
 			<FormContainer
 				title={`Resumo da ${financeType}`}
-				onSubmit={submitValue}
+				onSubmit={saveFinance}
 				buttonLabel={'Finalizar'}
 			>
 				<SummaryHeader>
