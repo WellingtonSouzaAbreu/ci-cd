@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import CheckedList from '@assets/images/checkedList.svg'
@@ -10,7 +10,7 @@ import { PrimaryCheckbox } from '@components/checkbox/PrimaryCheckbox'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { RegisterContext } from '@contexts/RegisterContext'
+import { useAuthContext } from '@contexts/AuthContext'
 
 import { WelcomeNewUserScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
@@ -18,7 +18,7 @@ import { CarouselContext, CarouselItemText, Content } from './styles'
 import { relativeScreenDensity, relativeScreenHeight } from '@presentation/common/screenDimensions'
 
 function WelcomeNewUser({ navigation }: WelcomeNewUserScreenProps) {
-	const { userRegistrationData } = useContext(RegisterContext)
+	const { userRegistrationData } = useAuthContext()
 
 	const [termsOfServiceHasAccepted, setTermsOfServiceHasAccepted] = useState<boolean>(false)
 

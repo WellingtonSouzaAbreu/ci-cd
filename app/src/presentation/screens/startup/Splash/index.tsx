@@ -61,14 +61,15 @@ function Splash({ navigation }: SplashScreenProps) {
 	}
 
 	const initializeSession = async () => {
+		navigateToAuthRegisterScreen()
 		try {
-			const hasLocalUserData = await hasValidLocalUser(useUserRepository)
+			/* const hasLocalUserData = await hasValidLocalUser(useUserRepository)
 
 			if (hasLocalUserData) {
 				await handleMethodWithDeviceAuthentication(performQuickSingin, useAuthenticationService)
 			} else {
 				return navigateToAuthRegisterScreen()
-			}
+			} */
 		} catch (err) {
 			navigateToAuthRegisterScreen()
 		}

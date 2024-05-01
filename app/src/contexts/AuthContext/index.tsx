@@ -1,43 +1,69 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useContext, useMemo, useState } from 'react'
 
-import { UserAuthData } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/entity/types'
 
-type AuthContextMethods = {
+export type UserAuthData = {
+	email?: string
+	password?: string
+	token?: string
+}
+
+export type UserRegisterData = {
+	email?: string
+	password?: string
+	name?: string
+}
+
+type AuthContextType = {
+	userAuthData?: UserAuthData
 	setUserAuthDataOnContext: (data: UserAuthData) => void
+	userRegistrationData?: UserRegisterData
+	setUserRegisterDataOnContext: (data: UserRegisterData) => void
+	authenticatedUser?: UserEntity
+	setUserDataOnContext: (data: UserEntity) => void
+}
+
+const initialValue = {
+	userAuthData: {},
+	setUserAuthDataOnContext: () => null,
+	userRegistrationData: {},
+	setUserRegisterDataOnContext: () => null,
+	authenticatedUser: {},
+	setUserDataOnContext: () => null
 }
 
 interface AuthProviderProps {
 	children: React.ReactNode
 }
 
-const initialValue = {
-	userAuthData: {
-		email: '',
-		token: ''
-	},
-	setUserAuthDataOnContext: () => null
-}
-
-type AuthContextType = AuthContextMethods & {
-	userAuthData?: UserAuthData
-}
-
 const AuthContext = createContext<AuthContextType>(initialValue)
 
 function AuthProvider({ children }: AuthProviderProps) {
-	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>()
+	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
+	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
+	const [authenticatedUser, setAuthenticatedUser] = useState<UserEntity>()
+
+	const setUserRegisterDataOnContext = async (data: UserRegisterData) => {
+		setUserRegisterDataContext({ ...userRegistrationData, ...data })
+	}
 
 	const setUserAuthDataOnContext = async (data: UserAuthData) => {
-		setUserAuthDataContext({
-			...userAuthData,
-			...data
-		})
+		setUserAuthDataContext({ ...userAuthData, ...data })
+	}
+
+	const setUserDataOnContext = async (data: UserEntity) => {
+		setAuthenticatedUser({ ...authenticatedUser, ...data })
 	}
 
 	const authProviderData = useMemo(() => ({
+		userRegistrationData,
+		setUserRegisterDataOnContext,
 		userAuthData,
 		setUserAuthDataOnContext,
-	}), [userAuthData])
+		authenticatedUser,
+		setUserDataOnContext
+
+	}), [userRegistrationData, userAuthData, authenticatedUser])
 
 	return (
 		<AuthContext.Provider value={authProviderData}>
@@ -46,4 +72,6 @@ function AuthProvider({ children }: AuthProviderProps) {
 	)
 }
 
-export { AuthProvider, AuthContext }
+const useAuthContext = () => useContext(AuthContext)
+
+export { AuthProvider, useAuthContext }

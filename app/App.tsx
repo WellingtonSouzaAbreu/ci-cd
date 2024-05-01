@@ -6,8 +6,8 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import { AlertProvider } from '@contexts/AlertContext'
+import { AuthProvider } from '@contexts/AuthContext'
 import { LoaderProvider } from '@contexts/LoaderContext/index'
-import { UserDataProvider } from '@contexts/UserDataContext'
 
 import { StartupStack } from '@routes/stacks/StartupStack'
 
@@ -21,9 +21,9 @@ export default function App() {
 			<ThemeProvider theme={defaultTheme}>
 				<AlertProvider>
 					<LoaderProvider>
-						<UserDataProvider>
+						<AuthProvider>
 							<StartupStack />
-						</UserDataProvider>
+						</AuthProvider>
 					</LoaderProvider>
 				</AlertProvider>
 			</ThemeProvider>

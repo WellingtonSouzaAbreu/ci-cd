@@ -1,10 +1,10 @@
-export type UserRegisterData = {
+export type UserRegisterData = { // REFACTOR UNUSED
 	email?: string
 	password?: string
 	name?: string
 }
 
-export type UserAuthData = {
+export type UserAuthData = { // REFACTOR UNUSED
 	email?: string
 	password?: string
 	token?: string

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import { FormContainer } from '@components/containers/FormContainer'
@@ -8,9 +8,8 @@ import { LineInput } from '@components/inputs/LineInput'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAlertContext } from '@contexts/AlertContext'
-import { LoaderContext } from '@contexts/LoaderContext'
-import { RegisterContext } from '@contexts/RegisterContext'
-import { UserDataContext } from '@contexts/UserDataContext'
+import { useAuthContext } from '@contexts/AuthContext'
+import { useLoaderContext } from '@contexts/LoaderContext'
 
 import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
@@ -20,9 +19,9 @@ const { passwordIsValid, performSignup, updateUserRepository } = useUserDomain()
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useAlertContext()
-	const { setLoaderIsVisible } = useContext(LoaderContext)
-	const { userRegistrationData } = useContext(RegisterContext)
-	const { setUserDataOnContext } = useContext(UserDataContext)
+	const { setLoaderIsVisible } = useLoaderContext()
+	const { userRegistrationData } = useAuthContext()
+	const { setUserDataOnContext } = useAuthContext()
 
 	const [password, setPassword] = useState<string>('')
 
