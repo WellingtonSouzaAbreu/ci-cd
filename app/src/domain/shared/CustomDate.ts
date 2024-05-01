@@ -6,9 +6,8 @@ export class CustomDate {
 		if (!(value instanceof Date) && !(this.isValidDateString(value))) throw new Error('A data está em um formato inválido!')
 
 		const convertedDate = this.convertToDateObject(value)
-		if (!(convertedDate instanceof Date)) throw new Error('Não foi possível converter a data para um formato válido!')
 
-		this.value = convertedDate
+		this.value = convertedDate as Date
 	}
 
 	private convertToDateObject(value: Date | string) {
@@ -16,13 +15,10 @@ export class CustomDate {
 
 		if (value instanceof Date) {
 			dateValue = value
-		} else if (typeof value === 'string') {
+		}
+
+		if (typeof value === 'string') {
 			dateValue = new Date(value)
-			if (Number.isNaN(dateValue.getTime())) {
-				throw new Error('Data inválida!')
-			}
-		} else {
-			throw new Error('Tipo de data inválido!')
 		}
 
 		return dateValue
@@ -39,8 +35,8 @@ export class CustomDate {
 			'set', 'out', 'nov', 'dez'
 		]
 
-		const day: number = this.value.getDate()
-		const monthIndex: number = this.value.getMonth() + increaseMonth
+		const day: number = this.value.getUTCDate()
+		const monthIndex: number = this.value.getUTCMonth() + increaseMonth
 		const formattedDay: string = (day < 10) ? `0${day}` : `${day}`
 
 		const formattedMonthIndex = monthIndex % 12

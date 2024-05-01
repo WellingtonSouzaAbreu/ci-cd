@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 export class UserName {
 	readonly value: string
 
@@ -8,17 +6,14 @@ export class UserName {
 			throw new Error('Esse nome não é válido!')
 		}
 
-		this.value = value
+		this.value = value.trim()
 	}
 
 	validateUserName(name?: string) {
 		const validateValue = name || this.value
-
 		if (!validateValue) return false
-
 		const cleanUserName = validateValue.trim()
 		if (!cleanUserName) return false
-
 		return true
 	}
 }

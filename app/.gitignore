@@ -5,6 +5,7 @@ android/
 ios/
 google-services.json
 GoogleService-info.plist
+coverage/**/*
 Finance-dev-build.app
 npm-debug.*
 *.jks

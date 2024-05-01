@@ -4,6 +4,9 @@
 		"strict": false,
 		"baseUrl": "./",
 		"paths": {
+			"@/*": [
+				"./src/*"
+			],
 			"@contexts/*": [
 				"src/contexts/*"
 			],
