@@ -4,11 +4,11 @@ export class UserName {
 	readonly value: string
 
 	constructor(value: string) {
-		this.value = value
-
 		if (!this.validateUserName(value)) {
 			throw new Error('Esse nome não é válido!')
 		}
+
+		this.value = value
 	}
 
 	validateUserName(name?: string) {

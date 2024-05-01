@@ -5,7 +5,7 @@
 import { UserEntity } from './types'
 
 import { Email } from '../objectValues/Email'
-import { UserName } from '../objectValues/UserName'
+import { UserName } from '../../../finance/model/objectValues/UserName'
 
 export class User {
 	private password: string

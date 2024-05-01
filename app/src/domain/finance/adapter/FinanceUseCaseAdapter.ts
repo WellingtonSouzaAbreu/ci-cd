@@ -1,7 +1,11 @@
-import { FinanceLocalRepositoryInterface } from '@data/finance/FinanceLocalRepository'
+import { FinanceEntityOptional } from '../model/entity/types'
 
+import { FinanceLocalRepositoryInterface } from '@data/finance/FinanceLocalRepository'
+import { FinanceRemoteRepositoryInterface } from '@data/finance/FinanceRemoteRepository'
+
+import { CreateFinance } from '../useCases/CreateFinance'
 import { CreateNewLocalCategory } from '../useCases/CreateNewLocalCategory'
-import { GenerateFinanceForecast, Input } from '../useCases/GenerateFinanceForecast'
+import { GenerateFinanceForecast } from '../useCases/GenerateFinanceForecast'
 import { GetLocalCategories } from '../useCases/GetLocalCategories'
 import { RemoveLocalCategory } from '../useCases/RemoveLocalCategory'
 
@@ -18,7 +22,19 @@ export class FinanceUseCasesAdapter {
 		return new RemoveLocalCategory(FinanceLocalRepository).exec(category)
 	}
 
-	static generateFinanceForecast(financeData: Input) {
+	static generateFinanceForecast(financeData: {
+		date: Date
+		value: number | string
+		numberOfInstallments: number
+	}) {
 		return new GenerateFinanceForecast().exec(financeData)
+	}
+
+	static createFinance(
+		FinanceRemoteRepository: new () => FinanceRemoteRepositoryInterface,
+		currentUser: { id: string }, // REFACTOR Definir tipo de usuário
+		financeData: FinanceEntityOptional
+	) {
+		return new CreateFinance(FinanceRemoteRepository, currentUser).exec(financeData)
 	}
 }

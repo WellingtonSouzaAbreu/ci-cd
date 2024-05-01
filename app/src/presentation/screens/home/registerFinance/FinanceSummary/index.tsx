@@ -14,10 +14,12 @@ import { useLoaderContext } from '@contexts/LoaderContext'
 
 import { FinanceSummaryScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
+import { FinanceRemoteRepository } from '@data/finance/FinanceRemoteRepository'
+
 import { FinanceCategory, FinanceCategoryCard, ReminderText, SummaryHeader } from './styles'
 
 const { translateFinanceType } = useUiFinanceUtils()
-const { generateFinanceForecast } = FinanceUseCasesAdapter
+const { generateFinanceForecast, createFinance } = FinanceUseCasesAdapter
 
 function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 	const { setLoaderIsVisible } = useLoaderContext()
@@ -25,14 +27,19 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 	const { showContextModal } = useAlertContext()
 	const theme = useTheme()
 
-	const saveFinance = () => {
+	const saveFinance = async () => {
 		try {
 			setLoaderIsVisible(true)
-
+			await createFinance(
+				FinanceRemoteRepository,
+				{ id: 'idDeTeste' }, // REFACTOR, passar usuário autenticado
+				financeRegisterData
+			)
 			setLoaderIsVisible(false)
 			// setFinanceDataOnContext({  })
-			// navigation.popToTop()
+			navigation.popToTop()
 		} catch (error) {
+			setLoaderIsVisible(false)
 			console.log(error)
 			showContextModal('', error.message)
 		}
