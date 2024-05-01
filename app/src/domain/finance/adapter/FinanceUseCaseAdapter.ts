@@ -1,3 +1,5 @@
+import { UserEntity } from '@domain/user/entity/types'
+
 import { FinanceEntityOptional } from '../model/entity/types'
 
 import { FinanceLocalRepositoryInterface } from '@data/finance/FinanceLocalRepository'
@@ -32,7 +34,7 @@ export class FinanceUseCasesAdapter {
 
 	static createFinance(
 		FinanceRemoteRepository: new () => FinanceRemoteRepositoryInterface,
-		currentUser: { id: string }, // REFACTOR Definir tipo de usuário
+		currentUser: UserEntity,
 		financeData: FinanceEntityOptional
 	) {
 		return new CreateFinance(FinanceRemoteRepository, currentUser).exec(financeData)

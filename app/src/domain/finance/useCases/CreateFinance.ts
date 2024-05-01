@@ -1,4 +1,5 @@
 import { UseCase } from '@domain/shared/interfaces/UseCase'
+import { UserEntity } from '@domain/user/entity/types'
 
 import { FinanceEntityOptional } from '../model/entity/types'
 
@@ -12,7 +13,7 @@ type Output = Promise<void>
 
 export class CreateFinance implements UseCase<Input, Output> {
 	private remoteRepository: FinanceRemoteRepositoryInterface
-	private currentUser: { id: string }
+	private currentUser: UserEntity
 
 	constructor(FinanceLocalRepository: new () => FinanceRemoteRepository, currentUser: any) {
 		this.remoteRepository = new FinanceLocalRepository()

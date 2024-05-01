@@ -54,7 +54,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
 	const performQuickSingin = async () => {
 		const createdUser = firebaseAuth.currentUser.uid
-		const user = { userId: createdUser, name: 'Estou logado poha!' } // REFACTOR  Implementar chamada de usuário
+		const user = { id: createdUser, name: 'Estou logado poha!' } // REFACTOR  Implementar chamada de usuário
 		await updateUserRepository(user, useUserRepository)
 		setUserDataOnContext(user)
 	}

@@ -12,7 +12,7 @@ export type UserAuthData = { // REFACTOR UNUSED
 
 export type UsertEntityOptional = Partial<UserEntity>
 export type UserEntity = {
-	userId?: string
+	id?: string // ENTITY vai sobrescrever
 	email?: string
 	name?: string
 }

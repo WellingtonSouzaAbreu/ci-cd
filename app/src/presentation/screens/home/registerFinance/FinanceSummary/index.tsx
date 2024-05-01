@@ -9,6 +9,7 @@ import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 import { FinanceUseCasesAdapter } from '@domain/finance/adapter/FinanceUseCaseAdapter'
 
 import { useAlertContext } from '@contexts/AlertContext'
+import { useAuthContext } from '@contexts/AuthContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 import { useLoaderContext } from '@contexts/LoaderContext'
 
@@ -22,9 +23,11 @@ const { translateFinanceType } = useUiFinanceUtils()
 const { generateFinanceForecast, createFinance } = FinanceUseCasesAdapter
 
 function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
+	const { authenticatedUser } = useAuthContext()
 	const { setLoaderIsVisible } = useLoaderContext()
 	const { financeRegisterData } = useFinanceRegisterContext()
 	const { showContextModal } = useAlertContext()
+
 	const theme = useTheme()
 
 	const saveFinance = async () => {
@@ -32,7 +35,7 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 			setLoaderIsVisible(true)
 			await createFinance(
 				FinanceRemoteRepository,
-				{ id: 'idDeTeste' }, // REFACTOR, passar usuário autenticado
+				authenticatedUser, // REFACTOR, passar usuário autenticado
 				financeRegisterData
 			)
 			setLoaderIsVisible(false)
