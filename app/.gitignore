@@ -3,6 +3,8 @@ node_modules/
 dist/
 android/
 ios/
+google-services.json
+GoogleService-Info.plist
 Finance-dev-build.app
 npm-debug.*
 *.jks

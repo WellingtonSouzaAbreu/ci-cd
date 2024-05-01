@@ -46,7 +46,8 @@ function Splash({ navigation }: SplashScreenProps) {
 					},
 				])
 			} else {
-				return initializeSession()
+				return navigateToAuthRegisterScreen()
+				// return initializeSession()
 			}
 		} catch (error: any) {
 			console.log(error)
