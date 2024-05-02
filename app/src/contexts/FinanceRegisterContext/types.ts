@@ -1,15 +1,12 @@
 import { ReactNode } from 'react'
 
-import { FinanceEntityOptional } from '@domain/finance/model/entity/types'
+import { FinanceEntity, FinanceEntityOptional } from '@domain/finance/model/entity/types'
 
 export interface FinanceRegisterProviderProps {
 	children: ReactNode
 }
 
-type FinanceRegisterContextMethods = {
+export type FinanceRegisterContextType = {
+	financeRegisterData?: FinanceEntity
 	setFinanceDataOnContext: (data: FinanceEntityOptional) => void
-}
-
-export type FinanceRegisterContextType = FinanceRegisterContextMethods & {
-	financeRegisterData?: FinanceEntityOptional // REFACTOR Separar types
 }

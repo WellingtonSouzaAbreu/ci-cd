@@ -5,7 +5,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { FinanceObjectsAdapter } from '@domain/finance/adapter/FinanceObjectsAdapter'
+import { SharedObjectsAdapter } from '@domain/shared/adapter/SharedObjectsAdapter'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -14,7 +14,7 @@ import { InsertFinanceValueScreenProps } from '@routes/stacks/FinanceRegisterSta
 
 import { InputContainar } from './styles'
 
-const { MonetaryValue } = FinanceObjectsAdapter()
+const { MonetaryValue } = SharedObjectsAdapter
 
 function InsertFinanceValue({ navigation }: InsertFinanceValueScreenProps) {
 	const { showContextModal } = useAlertContext()

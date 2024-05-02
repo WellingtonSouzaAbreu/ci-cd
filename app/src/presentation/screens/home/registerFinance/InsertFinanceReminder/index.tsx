@@ -6,7 +6,7 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
-import { FinanceObjectsAdapter } from '@domain/finance/adapter/FinanceObjectsAdapter'
+import { SharedObjectsAdapter } from '@domain/shared/adapter/SharedObjectsAdapter'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -15,7 +15,7 @@ import { InsertFinanceReminderScreenProps } from '@routes/stacks/FinanceRegister
 
 const { translateFinanceType } = useUiFinanceUtils()
 
-const { Description } = FinanceObjectsAdapter()
+const { Description } = SharedObjectsAdapter
 
 function InsertFinanceReminder({ navigation }: InsertFinanceReminderScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()

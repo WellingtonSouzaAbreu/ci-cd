@@ -1,12 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { localStorageKeys } from '@data/keys/localStorageKeys'
+import { FinanceLocalRepositoryInterface } from '@domain/finance/provider'
 
-export interface FinanceLocalRepositoryInterface { // REFACTOR Deve ficar em provider no domínio
-	updateLocalCategories(category: string[], overwrite?: boolean): Promise<void>
-	getLocalCategories(): Promise<string[]>
-	removeCategory(category: string): Promise<string[]>
-}
+import { localStorageKeys } from '@data/keys/localStorageKeys'
 
 export class FinanceLocalRepository implements FinanceLocalRepositoryInterface {
 	private convertToJson(object: object | []) {

@@ -39,7 +39,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
 	useEffect(() => {
 		console.log('Sessão inciada!')
-		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => { // REFACTOR Não deve ficar aqui
+		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
 			console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
 			if (user) {
 				await performQuickSingin()

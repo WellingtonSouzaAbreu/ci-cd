@@ -35,7 +35,7 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 			setLoaderIsVisible(true)
 			await createFinance(
 				FinanceRemoteRepository,
-				authenticatedUser, // REFACTOR, passar usuário autenticado
+				authenticatedUser,
 				financeRegisterData
 			)
 			setLoaderIsVisible(false)

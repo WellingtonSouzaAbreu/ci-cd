@@ -15,8 +15,6 @@ async function getUserData(userId: string) {
 		if (userSnap.exists()) {
 			return { id: userSnap.id, ...userSnap.data() } as UserEntity
 		}
-
-		return null
 	} catch (error) {
 		console.log(error)
 		return null

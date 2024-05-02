@@ -10,7 +10,7 @@ async function handleMethodWithDeviceAuthentication(secureMethod: UnknowFunction
 			requireConfirmation: false
 		}
 
-		const hasAuth = await LocalAuthentication.authenticateAsync(config) // TODO Uncomment
+		const hasAuth = await LocalAuthentication.authenticateAsync(config)
 		if (hasAuth.success) {
 			await secureMethod()
 			return true
