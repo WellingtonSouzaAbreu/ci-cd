@@ -3,9 +3,10 @@ import { UserEntity } from '@domain/user/entity/types'
 
 import { FinanceEntityOptional } from '../model/entity/types'
 
-import { FinanceRemoteRepository, FinanceRemoteRepositoryInterface } from '@data/finance/FinanceRemoteRepository'
+import { FinanceRemoteRepository } from '@data/finance/FinanceRemoteRepository'
 
 import { Finance } from '../model/entity/Finance'
+import { FinanceRemoteRepositoryInterface } from '../provider'
 
 type Input = FinanceEntityOptional
 

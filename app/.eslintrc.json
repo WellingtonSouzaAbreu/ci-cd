@@ -15,7 +15,8 @@
 	"overrides": [],
 	"parserOptions": {
 		"ecmaVersion": "latest",
-		"sourceType": "module"
+		"sourceType": "module",
+		"warnOnUnsupportedTypeScriptVersion": false
 	},
 	"plugins": [
 		// "jest",  // Crachando o import helpers
