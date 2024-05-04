@@ -18,11 +18,11 @@ import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 function SelectAuthRegister({ navigation }: SelectAuthRegisterScreenProps) {
 	const navigateToRegisterStack = () => {
-		navigation.navigate('RegisterStack')
+		navigation.push('RegisterStack')
 	}
 
 	const navigateToSiginStack = () => {
-		navigation.navigate('SigninStack')
+		navigation.push('SigninStack')
 	}
 
 	return (

@@ -18,7 +18,6 @@ function Home() {
 
 	const loadUserPreferences = async () => {
 		const preferences = await local.getUserPreferences() // REFACTOR Deve chamar caso de uso
-		console.log(preferences)
 		setUserPreferences(preferences)
 	}
 

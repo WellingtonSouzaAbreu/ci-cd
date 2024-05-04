@@ -9,6 +9,7 @@ import { HomeBottomTabNavigator } from '@routes/tabs/HomeBottomTabNavigator'
 
 const Stack = createStackNavigator<SigninStackParamList>()
 
+// REFACTOR Adicionar botões de back com header customizado para voltar no ios????
 function SigninStack() {
 	return (
 		<Stack.Navigator

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
+import { UserEntity } from '@domain/user/entity/types'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
@@ -15,7 +16,7 @@ const initialValue = {
 	setUserAuthDataOnContext: () => null,
 	userRegistrationData: {},
 	setUserRegisterDataOnContext: () => null,
-	authenticatedUser: {},
+	authenticatedUser: {} as UserEntity,
 	setUserDataOnContext: () => null,
 }
 
