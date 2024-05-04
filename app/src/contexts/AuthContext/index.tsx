@@ -59,15 +59,15 @@ function AuthProvider({ children }: AuthProviderProps) {
 		setUserDataOnContext(user)
 	}
 
-	const setUserRegisterDataOnContext = async (data: UserRegisterData) => {
+	const setUserRegisterDataOnContext = (data: UserRegisterData) => {
 		setUserRegisterDataContext({ ...userRegistrationData, ...data })
 	}
 
-	const setUserAuthDataOnContext = async (data: UserAuthData) => {
+	const setUserAuthDataOnContext = (data: UserAuthData) => {
 		setUserAuthDataContext({ ...userAuthData, ...data })
 	}
 
-	const setUserDataOnContext = async (data: AuthenticatedUserDate) => {
+	const setUserDataOnContext = (data: AuthenticatedUserDate) => {
 		setAuthenticatedUser({ ...authenticatedUser, ...data })
 	}
 
