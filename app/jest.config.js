@@ -6,7 +6,8 @@ module.exports = {
 	collectCoverage: true, // Deixar true para visualizar % de cobertura de testes
 	moduleNameMapper: {
 		'^@/test/(.*)$': '<rootDir>/test/$1',
-		'^@/(.*)$': '<rootDir>/src/$1'
+		'^@/(.*)$': '<rootDir>/src/$1',
+		'^@domain/(.*)$': '<rootDir>/src/domain/$1'
 	},
 	coveragePathIgnorePatterns: ['./test/data']
 }

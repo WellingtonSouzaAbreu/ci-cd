@@ -5,8 +5,6 @@ import { useTheme } from 'styled-components'
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
 import { VerticalSpacing } from '@components/common/VerticalSpacing'
 
-import { useAlertContext } from '@contexts/AlertContext'
-
 import {
 	Body, Container, Footer, Header, Pipe, Title, TitlePipeContainer
 } from './styles'
@@ -23,19 +21,10 @@ interface FormContainerProps {
 }
 
 function FormContainer({ ...props }: FormContainerProps) {
-	const { showContextModal } = useAlertContext()
-
 	const theme = useTheme()
 
-	const throwError = () => {
-		showContextModal('Ops!', props.errorMessage)
-	}
-
 	const performSubmit = () => {
-		if (props.validateField()) {
-			return props.onSubmit && props.onSubmit()
-		}
-		return throwError()
+		return props.onSubmit && props.onSubmit()
 	}
 
 	return (

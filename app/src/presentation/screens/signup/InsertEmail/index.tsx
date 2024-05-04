@@ -5,6 +5,8 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
+import { UserObjectsAdapter } from '@domain/user/adapter/UserObjectsAdapter'
+
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 
@@ -22,24 +24,16 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 
 	const submitEmail = async () => {
 		try {
-			if (await emailAlreadyRegistred(email)) {
-				throwError('Esse email já foi cadastrado!')
+			if (await emailAlreadyRegistred(email)) { // REFACTOR UseCase
+				showContextModal('', 'Esse email já foi cadastrado!')
 			} else {
-				setUserRegisterDataOnContext({ email })
+				const validEmail = new UserObjectsAdapter.Email(email).value
+				setUserRegisterDataOnContext({ email: validEmail })
 				navigation.navigate('InsertPassword')
 			}
 		} catch (error) {
-			throwError(error.message)
+			showContextModal('Ops!', error.message)
 		}
-	}
-
-	const throwError = (errorMessage: string) => {
-		showContextModal('Ops!', errorMessage)
-	}
-
-	const validateUserEmail = () => {
-		return true
-		// return new Email(email).validateEmail()
 	}
 
 	return (
@@ -47,7 +41,6 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 			<FormContainer
 				title={'Insira seu email'}
 				errorMessage={'Esse email não é válido!'} // Remover propriedade
-				validateField={validateUserEmail}
 				onSubmit={submitEmail}
 			>
 				<LineInput

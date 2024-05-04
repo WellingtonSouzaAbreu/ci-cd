@@ -5,10 +5,14 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
+import { UserObjectsAdapter } from '@domain/user/adapter/UserObjectsAdapter'
+
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 
 import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
+
+const { UserName } = UserObjectsAdapter
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 	const { setUserRegisterDataOnContext } = useAuthContext()
@@ -21,27 +25,19 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 
 	const submitUserName = async () => {
 		try {
-			setUserRegisterDataOnContext({ name: userName })
+			const name = new UserName(userName).value
+			setUserRegisterDataOnContext({ name })
 			navigation.navigate('InsertEmail')
 		} catch (error) {
-			throwError(error.message)
+			console.log(error)
+			showContextModal('', error.message)
 		}
-	}
-
-	const validateNameField = () => {
-		return true
-		// return new UserName(userName).validateUserName()
-	}
-
-	const throwError = (errorMessage: string) => {
-		showContextModal('Ops!', errorMessage)
 	}
 
 	return (
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Qual é o seu nome?'}
-				validateField={validateNameField}
 				onSubmit={submitUserName}
 			>
 				<LineInput

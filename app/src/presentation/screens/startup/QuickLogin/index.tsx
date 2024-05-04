@@ -58,7 +58,7 @@ function QuickLogin({ navigation }: QuickLoginScreenProps) {
 
 	const performQuickSingin = async () => {
 		const createdUser = firebaseAuth.currentUser.uid // REFACTOR Internalizar
-		const user = { id: createdUser, name: 'Estou logado poha!' } // REFACTOR  Implementar chamada de usuário
+		const user = { id: createdUser, name: 'Wellington Souza' } // REFACTOR  Implementar chamada de usuário
 		await updateUserRepository(user, useUserRepository)
 		setUserDataOnContext(user)
 		navigateToHome()

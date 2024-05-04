@@ -177,6 +177,7 @@
 				}
 			}
 		],
+		"no-useless-escape": "off",
 		"arrow-body-style": "off",
 		"object-property-newline": [
 			"warn",

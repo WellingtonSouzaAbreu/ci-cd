@@ -2,14 +2,14 @@ import React, { createContext, useContext, useMemo, useState } from 'react'
 
 import { AlertModal } from '@components/modals/AlertModal'
 
-import { AlertData, AlertProviderProps } from './types'
+import { AlertContextType, AlertProviderProps } from './types'
 
 const initialValue = {
 	modalIsVisible: false,
 	showContextModal: () => null
 }
 
-const AlertContext = createContext<AlertData>(initialValue)
+const AlertContext = createContext<AlertContextType>(initialValue)
 
 function AlertProvider({ children }: AlertProviderProps) {
 	const [modalIsVisible, setModalIsVisible] = useState<boolean>(false)
@@ -18,7 +18,7 @@ function AlertProvider({ children }: AlertProviderProps) {
 
 	const showContextModal = async (title: string, description: string) => {
 		setModalTitle(title || 'Ops!')
-		setModalDescription(description)
+		setModalDescription(description.split(',').join('\n')) // REFACTOR
 		setModalIsVisible((previousValue) => !previousValue)
 	}
 

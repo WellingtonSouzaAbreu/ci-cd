@@ -1,4 +1,4 @@
-import { Installments } from '../../model/objectValues/Installment'
+import { Installments } from '../../model/valueObjects/Installment'
 
 describe('File Installment.ts', () => {
 	test('Deve criar um Installments com o valor correto', () => {

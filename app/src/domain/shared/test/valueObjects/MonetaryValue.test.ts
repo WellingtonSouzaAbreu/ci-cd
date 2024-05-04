@@ -1,4 +1,4 @@
-import { MonetaryValue } from '../../MonetaryValue'
+import { MonetaryValue } from '../../objectValues/MonetaryValue'
 
 describe('File MonetaryValue.ts', () => {
 	test('Deve retornar o valor numérico 100', () => {

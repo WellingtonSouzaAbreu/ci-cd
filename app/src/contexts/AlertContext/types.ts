@@ -4,7 +4,7 @@ export interface AlertProviderProps {
 	children: React.ReactNode
 }
 
-export type AlertData = {
+export type AlertContextType = {
 	modalIsVisible: boolean
 	showContextModal: (title: string, description: string) => void
 }

@@ -1,6 +1,6 @@
-import { CustomDate } from '../../shared/CustomDate'
-import { Description } from '../../shared/Description'
-import { MonetaryValue } from '../../shared/MonetaryValue'
+import { CustomDate } from '../objectValues/CustomDate'
+import { Description } from '../objectValues/Description'
+import { MonetaryValue } from '../objectValues/MonetaryValue'
 
 export class SharedObjectsAdapter {
 	static MonetaryValue = MonetaryValue

@@ -1,4 +1,4 @@
-import { CustomDate } from '../../CustomDate'
+import { CustomDate } from '../../objectValues/CustomDate'
 
 describe('File CustomDate.ts', () => {
 	test('Deve criar uma CustomDate a partir de um objeto Date', () => {
