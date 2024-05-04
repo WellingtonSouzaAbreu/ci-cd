@@ -18,7 +18,7 @@ import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 const { translateFinanceType } = useUiFinanceUtils()
 
-const { Installments } = FinanceObjectsAdapter()
+const { Installments } = FinanceObjectsAdapter
 
 function SelectFinanceRepeat({ navigation }: SelectFinanceRepeatScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()

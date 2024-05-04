@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import { FormContainer } from '@components/containers/FormContainer'
@@ -6,12 +6,12 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
 import { useAlertContext } from '@contexts/AlertContext'
-import { RegisterContext } from '@contexts/RegisterContext'
+import { useAuthContext } from '@contexts/AuthContext'
 
 import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
-	const { setUserRegisterDataOnContext } = useContext(RegisterContext)
+	const { setUserRegisterDataOnContext } = useAuthContext()
 
 	const [userName, setUserName] = useState<string>()
 

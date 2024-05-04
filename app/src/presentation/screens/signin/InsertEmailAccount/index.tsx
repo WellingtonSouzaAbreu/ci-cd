@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import { FormContainer } from '@components/containers/FormContainer'
@@ -8,7 +8,7 @@ import { LineInput } from '@components/inputs/LineInput'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAlertContext } from '@contexts/AlertContext'
-import { AuthContext } from '@contexts/AuthContext'
+import { useAuthContext } from '@contexts/AuthContext'
 
 import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
@@ -18,9 +18,9 @@ const { emailIsValid } = useUserDomain()
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const { showContextModal } = useAlertContext()
-	const { setUserAuthDataOnContext } = useContext(AuthContext)
+	const { setUserAuthDataOnContext } = useAuthContext()
 
-	const [email, setEmail] = useState<string>('')
+	const [email, setEmail] = useState<string>('w@gmail.com')
 
 	const theme = useTheme()
 

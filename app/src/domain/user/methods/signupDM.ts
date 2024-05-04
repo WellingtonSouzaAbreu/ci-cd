@@ -1,9 +1,10 @@
 import { createNewUser } from '@domain/user/entity'
-import { UserRegisterData } from '@domain/user/entity/types'
+
+import { UserEntity } from '../entity/types'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
-async function signupDM(userRegistrationData: UserRegisterData) {
+async function signupDM(userRegistrationData: UserEntity) {
 	const { signupByEmailPassword } = useAuthenticationService()
 
 	try {

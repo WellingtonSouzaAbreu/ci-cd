@@ -2,14 +2,7 @@ import React, { createContext, useContext, useMemo, useState } from 'react'
 
 import { AlertModal } from '@components/modals/AlertModal'
 
-interface AlertProviderProps {
-	children: React.ReactNode
-}
-
-type AlertData = {
-	modalIsVisible: boolean
-	showContextModal: (title: string, description: string) => void
-}
+import { AlertData, AlertProviderProps } from './types'
 
 const initialValue = {
 	modalIsVisible: false,

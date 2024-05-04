@@ -5,7 +5,7 @@ async function hasValidLocalUserDM(useUserRepository: () => UserRepositoryInterf
 	const storagedUserData = await local.getLocalUserData()
 
 	try {
-		return !!(storagedUserData && storagedUserData.userId)
+		return !!(storagedUserData && storagedUserData.id)
 	} catch (error) {
 		console.log(error)
 		throw new Error(error)

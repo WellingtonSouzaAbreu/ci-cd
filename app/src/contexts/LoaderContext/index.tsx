@@ -58,4 +58,4 @@ function LoaderProvider({ children }: LoaderProviderProps) {
 
 const useLoaderContext = () => useContext(LoaderContext)
 
-export { LoaderProvider, useLoaderContext, LoaderContext }
+export { LoaderProvider, useLoaderContext }

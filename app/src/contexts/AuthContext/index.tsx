@@ -1,43 +1,86 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-import { UserAuthData } from '@domain/user/entity/types'
+import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
-type AuthContextMethods = {
-	setUserAuthDataOnContext: (data: UserAuthData) => void
+import { useUserDomain } from '@domain/user/useUserDomain'
+
+import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
+import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
+
+import { useUserRepository } from '@data/user/useUserRepository'
+
+const initialValue = {
+	userAuthData: {},
+	setUserAuthDataOnContext: () => null,
+	userRegistrationData: {},
+	setUserRegisterDataOnContext: () => null,
+	authenticatedUser: {},
+	setUserDataOnContext: () => null,
+	userIsAuthenticated: false
 }
 
 interface AuthProviderProps {
 	children: React.ReactNode
 }
 
-const initialValue = {
-	userAuthData: {
-		email: '',
-		token: ''
-	},
-	setUserAuthDataOnContext: () => null
-}
-
-type AuthContextType = AuthContextMethods & {
-	userAuthData?: UserAuthData
-}
-
 const AuthContext = createContext<AuthContextType>(initialValue)
 
-function AuthProvider({ children }: AuthProviderProps) {
-	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>()
+const { firebaseAuth } = useFirebaseConfig()
 
-	const setUserAuthDataOnContext = async (data: UserAuthData) => {
-		setUserAuthDataContext({
-			...userAuthData,
-			...data
+const { updateUserRepository } = useUserDomain()
+
+function AuthProvider({ children }: AuthProviderProps) {
+	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
+	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
+	const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUserDate>()
+	const [userIsAuthenticated, setUserIsAuthenticated] = useState(false)
+
+	const { navigateToAuthScreen, navigateToHome } = useAuthNavigation()
+
+	useEffect(() => {
+		console.log('Sessão inciada!')
+		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
+			console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
+			if (user) {
+				await performQuickSingin()
+				setUserIsAuthenticated(true)
+				return navigateToHome()
+			}
+			return navigateToAuthScreen()
 		})
+
+		return unsubscribe
+	}, [])
+
+	const performQuickSingin = async () => {
+		const createdUser = firebaseAuth.currentUser.uid
+		const user = { id: createdUser, name: 'Estou logado poha!' } // REFACTOR  Implementar chamada de usuário
+		await updateUserRepository(user, useUserRepository)
+		setUserDataOnContext(user)
+	}
+
+	const setUserRegisterDataOnContext = (data: UserRegisterData) => {
+		setUserRegisterDataContext({ ...userRegistrationData, ...data })
+	}
+
+	const setUserAuthDataOnContext = (data: UserAuthData) => {
+		setUserAuthDataContext({ ...userAuthData, ...data })
+	}
+
+	const setUserDataOnContext = (data: AuthenticatedUserDate) => {
+		setAuthenticatedUser({ ...authenticatedUser, ...data })
 	}
 
 	const authProviderData = useMemo(() => ({
+		userRegistrationData,
+		setUserRegisterDataOnContext,
 		userAuthData,
 		setUserAuthDataOnContext,
-	}), [userAuthData])
+		authenticatedUser,
+		setUserDataOnContext,
+		userIsAuthenticated
+
+	}), [userRegistrationData, userAuthData, authenticatedUser, userIsAuthenticated])
 
 	return (
 		<AuthContext.Provider value={authProviderData}>
@@ -46,4 +89,6 @@ function AuthProvider({ children }: AuthProviderProps) {
 	)
 }
 
-export { AuthProvider, AuthContext }
+const useAuthContext = () => useContext(AuthContext)
+
+export { AuthProvider, useAuthContext }

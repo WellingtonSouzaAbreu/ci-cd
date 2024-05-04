@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { FinanceObjectsAdapter } from '@domain/finance/adapter/FinanceObjectsAdapter'
+import { SharedObjectsAdapter } from '@domain/shared/adapter/SharedObjectsAdapter'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -13,7 +13,7 @@ import { SelectFinanceDateScreenProps } from '@routes/stacks/FinanceRegisterStac
 
 import { CalendarPicker } from './styles'
 
-const { CustomDate } = FinanceObjectsAdapter()
+const { CustomDate } = SharedObjectsAdapter
 
 function SelectFinanceDate({ navigation }: SelectFinanceDateScreenProps) {
 	const { setFinanceDataOnContext } = useFinanceRegisterContext()

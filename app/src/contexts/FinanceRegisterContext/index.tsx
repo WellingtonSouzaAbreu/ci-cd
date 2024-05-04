@@ -1,18 +1,18 @@
 import React, { createContext, useContext, useMemo, useState } from 'react'
 
-import { FinanceEntityOptional } from '@domain/finance/model/entity/types'
+import { FinanceEntity, FinanceEntityOptional } from '@domain/finance/model/entity/types'
 
 import { FinanceRegisterContextType, FinanceRegisterProviderProps } from './types'
 
 const initialValue = {
-	financeRegisterData: {},
+	financeRegisterData: {} as FinanceEntityOptional,
 	setFinanceDataOnContext: () => null
 }
 
-const FinanceRegisterContext = createContext<FinanceRegisterContextType>(initialValue)
+const FinanceRegisterContext = createContext<FinanceRegisterContextType>(initialValue as FinanceRegisterContextType)
 
 function FinanceRegisterProvider({ children }: FinanceRegisterProviderProps) {
-	const [financeRegisterData, setFinanceRegisterDataContext] = useState<FinanceEntityOptional>()
+	const [financeRegisterData, setFinanceRegisterDataContext] = useState<FinanceEntity>()
 
 	const setFinanceDataOnContext = async (data: FinanceEntityOptional) => {
 		console.log({ ...financeRegisterData, ...data })
