@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { SharedObjectsAdapter } from '@domain/shared/adapter/SharedObjectsAdapter'
+import { SharedModel } from '@domain/shared/adapter/SharedModel'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -12,8 +12,6 @@ import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 import { SelectFinanceDateScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 import { CalendarPicker } from './styles'
-
-const { CustomDate } = SharedObjectsAdapter
 
 function SelectFinanceDate({ navigation }: SelectFinanceDateScreenProps) {
 	const { setFinanceDataOnContext } = useFinanceRegisterContext()
@@ -24,7 +22,7 @@ function SelectFinanceDate({ navigation }: SelectFinanceDateScreenProps) {
 
 	const submitValue = () => {
 		try {
-			const date = new CustomDate(selectedDate)
+			const date = new SharedModel.CustomDate(selectedDate)
 
 			setFinanceDataOnContext({ date: date.value })
 			navigation.navigate('SelectFinanceRepeat')

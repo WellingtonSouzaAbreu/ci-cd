@@ -5,14 +5,12 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { UserObjectsAdapter } from '@domain/user/adapter/UserObjectsAdapter'
+import { UserModel } from '@domain/user/adapter/UserModel'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 
 import { InsertUserNameScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-
-const { UserName } = UserObjectsAdapter
 
 function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 	const { setUserRegisterDataOnContext } = useAuthContext()
@@ -25,7 +23,7 @@ function InsertUserName({ navigation }: InsertUserNameScreenProps) {
 
 	const submitUserName = async () => {
 		try {
-			const name = new UserName(userName).value
+			const name = new UserModel.UserName(userName).value
 			setUserRegisterDataOnContext({ name })
 			navigation.navigate('InsertEmail')
 		} catch (error) {

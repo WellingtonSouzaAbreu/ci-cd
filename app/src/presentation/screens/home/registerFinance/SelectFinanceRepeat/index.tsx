@@ -6,7 +6,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
-import { FinanceObjectsAdapter } from '@domain/finance/adapter/FinanceObjectsAdapter'
+import { FinanceModel } from '@domain/finance/adapter/FinanceModel'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -17,8 +17,6 @@ import { CustomCarousel, Installment, SelectorContainer } from './styles'
 import { relativeScreenWidth } from '@presentation/common/screenDimensions'
 
 const { translateFinanceType } = useUiFinanceUtils()
-
-const { Installments } = FinanceObjectsAdapter
 
 function SelectFinanceRepeat({ navigation }: SelectFinanceRepeatScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()
@@ -31,7 +29,7 @@ function SelectFinanceRepeat({ navigation }: SelectFinanceRepeatScreenProps) {
 
 	const submitValue = () => {
 		try {
-			const installment = new Installments(numberOfInstallments)
+			const installment = new FinanceModel.Installments(numberOfInstallments)
 
 			setFinanceDataOnContext({ numberOfInstallments: installment.value })
 			navigation.navigate('FinanceSummary')

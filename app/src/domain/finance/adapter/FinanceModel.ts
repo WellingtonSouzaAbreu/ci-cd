@@ -1,5 +1,5 @@
 import { Installments } from '../model/valueObjects/Installment'
 
-export class FinanceObjectsAdapter {
+export class FinanceModel {
 	static Installments = Installments
 }

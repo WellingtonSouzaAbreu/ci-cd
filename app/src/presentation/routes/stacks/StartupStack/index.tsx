@@ -27,16 +27,8 @@ function StartupStack() {
 			<Stack.Screen name={'Splash'} component={Splash} />
 			<Stack.Screen name={'SelectAuthRegister'} component={SelectAuthRegister} />
 			<Stack.Screen name={'QuickLogin'} component={QuickLogin} />
-			<Stack.Screen
-				name={'RegisterStack'}
-				component={RegisterStack}
-				options={{ gestureEnabled: false }}
-			/>
-			<Stack.Screen
-				name={'SigninStack'}
-				component={SigninStack}
-				options={{ gestureEnabled: false }}
-			/>
+			<Stack.Screen name={'RegisterStack'} component={RegisterStack} />
+			<Stack.Screen name={'SigninStack'} component={SigninStack} />
 			<Stack.Screen name={'HomeTab'} component={HomeBottomTabNavigator} />
 		</Stack.Navigator>
 	)

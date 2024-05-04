@@ -2,9 +2,7 @@ import { UserEntity } from '@domain/user/entity/types'
 
 import { FinanceEntityOptional } from '../model/entity/types'
 
-import { FinanceLocalRepositoryInterface } from '@data/finance/FinanceLocalRepository'
-import { FinanceRemoteRepositoryInterface } from '@data/finance/FinanceRemoteRepository'
-
+import { FinanceLocalRepositoryInterface, FinanceRemoteRepositoryInterface } from '../provider'
 import { CreateFinance } from '../useCases/CreateFinance'
 import { CreateNewLocalCategory } from '../useCases/CreateNewLocalCategory'
 import { GenerateFinanceForecast } from '../useCases/GenerateFinanceForecast'

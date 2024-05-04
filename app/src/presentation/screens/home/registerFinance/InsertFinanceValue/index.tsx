@@ -5,7 +5,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { SharedObjectsAdapter } from '@domain/shared/adapter/SharedObjectsAdapter'
+import { SharedModel } from '@domain/shared/adapter/SharedModel'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -13,8 +13,6 @@ import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 import { InsertFinanceValueScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 import { InputContainar } from './styles'
-
-const { MonetaryValue } = SharedObjectsAdapter
 
 function InsertFinanceValue({ navigation }: InsertFinanceValueScreenProps) {
 	const { showContextModal } = useAlertContext()
@@ -25,7 +23,7 @@ function InsertFinanceValue({ navigation }: InsertFinanceValueScreenProps) {
 
 	const submitValue = () => {
 		try {
-			const monetaryValue = new MonetaryValue(inputValue)
+			const monetaryValue = new SharedModel.MonetaryValue(inputValue)
 			setFinanceDataOnContext({ value: monetaryValue.value })
 			navigation.navigate('InsertFinanceReminder')
 		} catch (error) {

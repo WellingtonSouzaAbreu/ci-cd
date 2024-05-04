@@ -6,7 +6,7 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
-import { SharedObjectsAdapter } from '@domain/shared/adapter/SharedObjectsAdapter'
+import { SharedModel } from '@domain/shared/adapter/SharedModel'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
@@ -14,8 +14,6 @@ import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 import { InsertFinanceReminderScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 const { translateFinanceType } = useUiFinanceUtils()
-
-const { Description } = SharedObjectsAdapter
 
 function InsertFinanceReminder({ navigation }: InsertFinanceReminderScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()
@@ -26,7 +24,7 @@ function InsertFinanceReminder({ navigation }: InsertFinanceReminderScreenProps)
 
 	const submitValue = () => {
 		try {
-			const description = new Description(reminderText, 1)
+			const description = new SharedModel.Description(reminderText, 1)
 
 			setFinanceDataOnContext({ reminder: description.value })
 			navigateToNextScreen()

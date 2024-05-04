@@ -5,7 +5,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { UserObjectsAdapter } from '@domain/user/adapter/UserObjectsAdapter'
+import { UserModel } from '@domain/user/adapter/UserModel'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
@@ -27,7 +27,7 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 			if (await emailAlreadyRegistred(email)) { // REFACTOR UseCase
 				showContextModal('', 'Esse email já foi cadastrado!')
 			} else {
-				const validEmail = new UserObjectsAdapter.Email(email).value
+				const validEmail = new UserModel.Email(email).value
 				setUserRegisterDataOnContext({ email: validEmail })
 				navigation.navigate('InsertPassword')
 			}
