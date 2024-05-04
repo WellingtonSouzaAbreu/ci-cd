@@ -1,7 +1,7 @@
 import { UseCase } from '@domain/shared/interfaces/UseCase'
 
-import { CustomDate } from '../../shared/objectValues/CustomDate'
-import { MonetaryValue } from '../../shared/objectValues/MonetaryValue'
+import { CustomDate } from '../../shared/valueObjects/CustomDate'
+import { MonetaryValue } from '../../shared/valueObjects/MonetaryValue'
 
 export interface Input {
 	date: Date

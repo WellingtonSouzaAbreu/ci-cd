@@ -1,4 +1,4 @@
-import { Entity } from '@domain/shared/objectValues/Entity'
+import { Entity } from '@domain/shared/valueObjects/Entity'
 
 import { FinanceEntity, FinanceEntityOptional } from './types'
 

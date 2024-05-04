@@ -1,4 +1,4 @@
-import { EntityProps } from '@domain/shared/objectValues/Entity'
+import { EntityProps } from '@domain/shared/valueObjects/Entity'
 
 type FinanceType = 'income' | 'expense'
 

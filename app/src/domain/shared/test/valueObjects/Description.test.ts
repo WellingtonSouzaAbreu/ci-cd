@@ -1,4 +1,4 @@
-import { Description } from '../../objectValues/Description'
+import { Description } from '../../valueObjects/Description'
 
 describe('File Description.ts', () => {
 	test('Deve criar uma Description com o valor correto', () => {
