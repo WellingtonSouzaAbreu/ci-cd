@@ -19,7 +19,14 @@ function useAuthNavigation() {
 		})
 	}
 
-	return { navigateToHome, navigateToAuthScreen }
+	const navigateToQuickLogin = () => {
+		router.reset({
+			index: 0,
+			routes: [{ name: 'QuickLogin' }]
+		})
+	}
+
+	return { navigateToHome, navigateToAuthScreen, navigateToQuickLogin }
 }
 
 export { useAuthNavigation }

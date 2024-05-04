@@ -2,6 +2,7 @@ import 'react-native-gesture-handler'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 
+import { QuickLogin } from '@screens/startup/QuickLogin'
 import { SelectAuthRegister } from '@screens/startup/SelectAuthRegister'
 import { Splash } from '@screens/startup/Splash'
 
@@ -25,6 +26,7 @@ function StartupStack() {
 		>
 			<Stack.Screen name={'Splash'} component={Splash} />
 			<Stack.Screen name={'SelectAuthRegister'} component={SelectAuthRegister} />
+			<Stack.Screen name={'QuickLogin'} component={QuickLogin} />
 			<Stack.Screen
 				name={'RegisterStack'}
 				component={RegisterStack}

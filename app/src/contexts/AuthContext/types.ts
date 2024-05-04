@@ -21,5 +21,4 @@ export type AuthContextType = {
 	setUserRegisterDataOnContext: (data: UserRegisterData) => void
 	authenticatedUser?: AuthenticatedUserDate
 	setUserDataOnContext: (data: AuthenticatedUserDate) => void
-	userIsAuthenticated: boolean
 }

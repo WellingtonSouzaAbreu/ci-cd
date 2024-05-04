@@ -7,6 +7,7 @@ import { useUserDomain } from '@domain/user/useUserDomain'
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
 import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
+import { getUserPreferences } from '@data/user/localRepository/getUserPreferences'
 import { useUserRepository } from '@data/user/useUserRepository'
 
 const initialValue = {
@@ -16,7 +17,6 @@ const initialValue = {
 	setUserRegisterDataOnContext: () => null,
 	authenticatedUser: {},
 	setUserDataOnContext: () => null,
-	userIsAuthenticated: false
 }
 
 interface AuthProviderProps {
@@ -33,18 +33,20 @@ function AuthProvider({ children }: AuthProviderProps) {
 	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
 	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
 	const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUserDate>()
-	const [userIsAuthenticated, setUserIsAuthenticated] = useState(false)
 
-	const { navigateToAuthScreen, navigateToHome } = useAuthNavigation()
+	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
 	useEffect(() => {
 		console.log('Sessão inciada!')
 		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
 			console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
 			if (user) {
-				await performQuickSingin()
-				setUserIsAuthenticated(true)
-				return navigateToHome()
+				const { requestDevicePasswordOnAuth } = await getUserPreferences() // REFACTOR Chamaar domain
+				console.log(requestDevicePasswordOnAuth)
+
+				return requestDevicePasswordOnAuth
+					? navigateToQuickLogin()
+					: performQuickSingin()
 			}
 			return navigateToAuthScreen()
 		})
@@ -57,6 +59,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 		const user = { id: createdUser, name: 'Estou logado poha!' } // REFACTOR  Implementar chamada de usuário
 		await updateUserRepository(user, useUserRepository)
 		setUserDataOnContext(user)
+		navigateToHome()
 	}
 
 	const setUserRegisterDataOnContext = (data: UserRegisterData) => {
@@ -77,10 +80,9 @@ function AuthProvider({ children }: AuthProviderProps) {
 		userAuthData,
 		setUserAuthDataOnContext,
 		authenticatedUser,
-		setUserDataOnContext,
-		userIsAuthenticated
+		setUserDataOnContext
 
-	}), [userRegistrationData, userAuthData, authenticatedUser, userIsAuthenticated])
+	}), [userRegistrationData, userAuthData, authenticatedUser])
 
 	return (
 		<AuthContext.Provider value={authProviderData}>

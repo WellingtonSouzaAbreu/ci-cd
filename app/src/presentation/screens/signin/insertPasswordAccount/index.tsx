@@ -11,17 +11,21 @@ import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 import { useLoaderContext } from '@contexts/LoaderContext'
 
+import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
+
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
 import { useUserRepository } from '@data/user/useUserRepository'
 
-const { passwordIsValid, performSignin } = useUserDomain()
+const { passwordIsValid, updateUserRepository, performSignin } = useUserDomain()
 
 function InsertPasswordAccount() {
 	const { showContextModal } = useAlertContext()
 	const { setLoaderIsVisible } = useLoaderContext()
 	const { userAuthData } = useAuthContext()
 	const { setUserDataOnContext } = useAuthContext()
+
+	const { navigateToHome } = useAuthNavigation()
 
 	const [password, setPassword] = useState<string>('123456')
 
@@ -33,8 +37,11 @@ function InsertPasswordAccount() {
 
 			const userData = await performSignin(userAuthData.email, password, useAuthenticationService, useUserRepository)
 			setUserDataOnContext(userData)
+			await updateUserRepository(userData, useUserRepository)
+			setUserDataOnContext(userData)
 
 			setLoaderIsVisible(false)
+			navigateToHome()
 		} catch (error: any) {
 			console.log(error)
 			setLoaderIsVisible(false)
