@@ -136,6 +136,12 @@ describe('Teste de Validator.ts', () => {
 		expect(error).toBe(errorMessage)
 	})
 
+	test('Deve retornar erro quando a lista for inválida', () => {
+		const errorMessage = 'Lista inválida'
+		const error = Validator.isIncluded(null, 'até logo', errorMessage)
+		expect(error).toBe(errorMessage)
+	})
+
 	test('Deve retornar mensagem de erro quando passado valor null para regex', () => {
 		const errorMessage = 'Valor inválido'
 		const error = Validator.regex(null as any, /ue/, errorMessage)

@@ -6,14 +6,11 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
 import { UserModel } from '@domain/user/adapter/UserModel'
-import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 
 import { InsertPasswordScreenProps } from '@routes/stacks/RegisterStack/screenProps'
-
-const { passwordIsValid } = useUserDomain()
 
 function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 	const { showContextModal } = useAlertContext()
@@ -37,9 +34,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Defina uma senha de acesso'}
-				errorMessage={'Essa senha é muito curta!'}
 				buttonLabel={'Criar conta'}
-				validateField={() => passwordIsValid(password)}
 				onSubmit={submitPassword}
 			>
 				<LineInput

@@ -18,7 +18,7 @@ function AlertProvider({ children }: AlertProviderProps) {
 
 	const showContextModal = async (title: string, description: string) => {
 		setModalTitle(title || 'Ops!')
-		setModalDescription(description.split(',').join('\n')) // REFACTOR
+		setModalDescription(description.split(',').join('\n')) // TODO Melhorar apresentação de lista de mensagens de erro
 		setModalIsVisible((previousValue) => !previousValue)
 	}
 

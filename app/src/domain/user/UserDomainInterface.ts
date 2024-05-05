@@ -8,9 +8,6 @@ import { AuthenticationServiceInterface } from '@services/authentication/Authent
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
 
 interface UserDomainInterface {
-	userNameIsValid: (name: string) => boolean
-	emailIsValid: (name: string) => boolean
-	passwordIsValid: (name: string) => boolean
 	hasValidLocalUser: (useUserRepository: () => UserRepositoryInterface) => Promise<boolean>
 
 	performSignup: (userRegistrationData: UserRegisterData) => Promise<UserEntity>

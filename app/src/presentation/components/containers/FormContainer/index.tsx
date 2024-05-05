@@ -12,11 +12,9 @@ import {
 interface FormContainerProps {
 	title?: string
 	buttonLabel?: string
-	errorMessage?: string
 	children: ReactElement | ReactElement[]
 	secondaryButtonLabel?: string
 	secondaryButtonMethod?: () => void
-	validateField?: () => boolean
 	onSubmit?: () => void
 }
 
@@ -75,10 +73,8 @@ FormContainer.defaultProps = {
 	onSubmit: null,
 	title: 'title',
 	buttonLabel: 'Continuar',
-	errorMessage: 'Algo deu errado!',
 	secondaryButtonLabel: 'Outro botão',
-	secondaryButtonMethod: null,
-	validateField: () => true
+	secondaryButtonMethod: null
 }
 
 export { FormContainer }

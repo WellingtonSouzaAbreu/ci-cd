@@ -6,7 +6,6 @@ import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
 import { UserModel } from '@domain/user/adapter/UserModel'
-import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
@@ -14,8 +13,6 @@ import { useAuthContext } from '@contexts/AuthContext'
 import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
 import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
-
-const { emailIsValid } = useUserDomain()
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const { showContextModal } = useAlertContext()
@@ -43,7 +40,6 @@ function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Insira seu email'}
-				validateField={() => emailIsValid(email)}
 				onSubmit={submitEmail}
 			>
 				<LineInput

@@ -40,7 +40,6 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Insira seu email'}
-				errorMessage={'Esse email não é válido!'} // Remover propriedade
 				onSubmit={submitEmail}
 			>
 				<LineInput

@@ -18,7 +18,7 @@ import { useAuthenticationService } from '@services/authentication/useAuthentica
 
 import { useUserRepository } from '@data/user/useUserRepository'
 
-const { passwordIsValid, updateUserRepository, performSignin } = useUserDomain()
+const { updateUserRepository, performSignin } = useUserDomain()
 
 function InsertPasswordAccount() {
 	const { showContextModal } = useAlertContext()
@@ -58,9 +58,7 @@ function InsertPasswordAccount() {
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Defina uma senha de acesso'}
-				errorMessage={'Essa senha é muito curta!'}
 				buttonLabel={'Acessar conta'}
-				validateField={() => passwordIsValid(password)}
 				onSubmit={submitPassword}
 			>
 				<LineInput

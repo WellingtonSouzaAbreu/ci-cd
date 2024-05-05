@@ -39,6 +39,8 @@ function WelcomeNewUser() {
 
 	const submitTermsAndConditions = async () => {
 		try {
+			if (!termsOfServiceHasAccepted) throw new Error('Você deve aceitar os termos e condições primeiro!')
+
 			setLoaderIsVisible(true)
 
 			const createdUser = await performSignup(userRegistrationData)
@@ -61,8 +63,6 @@ function WelcomeNewUser() {
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={`Tudo certo, ${getUserName()}?`}
-				errorMessage={'Você deve aceitar os termos e condições primeiro!'}
-				validateField={() => termsOfServiceHasAccepted}
 				onSubmit={submitTermsAndConditions}
 			>
 				<Content>
