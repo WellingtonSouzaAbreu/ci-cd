@@ -1,22 +1,24 @@
+import { Id } from './Id'
+
 export interface EntityProps {
 	id?: string
 }
 
 export abstract class Entity<Type, Props extends EntityProps> { // REFACTOR Sem testes
-	readonly id: string // VALUE Object
+	readonly id: Id
 	readonly props: Props
 
 	constructor(props: Props) {
-		this.id = props.id // VALUE Object
+		this.id = new Id(props.id)
 		this.props = { ...props }
 	}
 
 	isEqual(anotherEntity: Entity<Type, Props>): boolean {
-		return this.id === anotherEntity?.id
+		return this.id.value === anotherEntity?.id.value
 	}
 
 	isDifferent(anotherEntity: Entity<Type, Props>): boolean {
-		return this.id !== anotherEntity?.id
+		return this.id.value !== anotherEntity?.id.value
 	}
 
 	clone(newProps: Props, ...args: any): Type {

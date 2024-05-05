@@ -23,8 +23,7 @@ export class CreateFinance implements UseCase<Input, Output> {
 	}
 
 	async exec(financeData: Input): Output {
-		const data = new Finance({ ...financeData, ownerId: this.currentUser.id }).props
-
+		const { data } = new Finance({ ...financeData, ownerId: this.currentUser.id })
 		const savedFinance = await this.remoteRepository.createFinance(data)
 		console.log(savedFinance)
 	}

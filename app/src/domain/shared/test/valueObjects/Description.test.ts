@@ -1,6 +1,6 @@
 import { Description } from '../../valueObjects/Description'
 
-describe('File Description.ts', () => {
+describe('Value Object Description.ts', () => {
 	test('Deve criar uma Description com o valor correto', () => {
 		const descriptionValue = 'Descrição'
 		const description = new Description(descriptionValue)

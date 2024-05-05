@@ -1,6 +1,6 @@
 import { CustomDate } from '../../valueObjects/CustomDate'
 
-describe('File CustomDate.ts', () => {
+describe('Value Object CustomDate.ts', () => {
 	test('Deve criar uma CustomDate a partir de um objeto Date', () => {
 		const dateObject = new Date(2024, 4, 1) // 2024-05-01
 		const customDate = new CustomDate(dateObject)

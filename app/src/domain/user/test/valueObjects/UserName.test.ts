@@ -1,7 +1,7 @@
 import { userErrors } from '@domain/constants/user/userErrors'
 import { UserName } from '@domain/user/model/valueObjects/UserName'
 
-describe('File de UserName.ts', () => {
+describe('Value Object de UserName.ts', () => {
 	test('Deve lançar um erro ao tentar criar nome vazio', () => {
 		expect(() => new UserName('')).toThrow(userErrors.EMPTY_NAME)
 	})

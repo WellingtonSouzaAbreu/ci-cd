@@ -1,7 +1,7 @@
 import { financeErrors } from '@domain/constants/finance/financeErrors'
 import { FinanceType } from '@domain/finance/model/valueObjects/FinanceType'
 
-describe('File Installment.ts', () => {
+describe('Value Object Installment.ts', () => {
 	test('Deve criar um objeto FinanceType com um tipo válido', () => {
 		const validType1 = 'expense'
 		const validType2 = 'expense'

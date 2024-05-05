@@ -1,6 +1,6 @@
 import { Installments } from '../../../model/valueObjects/Installment'
 
-describe('File Installment.ts', () => {
+describe('Value Object Installment.ts', () => {
 	test('Deve criar um Installments com o valor correto', () => {
 		const installmentsValue = 6
 		const installments = new Installments(installmentsValue)

@@ -13,7 +13,9 @@ import { FormModal } from '@components/modals/FormModal'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
 import { FinanceUseCasesAdapter } from '@domain/finance/adapter/FinanceUseCaseAdapter'
+import { SharedModel } from '@domain/shared/adapter/SharedModel'
 
+import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { SelectFinanceCategoryScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
@@ -28,6 +30,7 @@ const { createNewLocalCategory, removeLocalCategory, getLocalCategories } = Fina
 
 function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()
+	const { showContextModal } = useAlertContext()
 
 	const theme = useTheme()
 
@@ -58,8 +61,15 @@ function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps)
 	}
 
 	const selectFinanceCategory = (selectedCategory: string) => {
-		setFinanceDataOnContext({ financeCategory: selectedCategory })
-		navigation.navigate('InsertFinanceValue')
+		try {
+			const validCategory = new SharedModel.SimpleText(selectedCategory).value
+
+			setFinanceDataOnContext({ financeCategory: validCategory })
+			navigation.navigate('InsertFinanceValue')
+		} catch (error) {
+			console.log(error)
+			showContextModal('', error.message)
+		}
 	}
 
 	const toggleNewCategoryModalVisibility = () => {

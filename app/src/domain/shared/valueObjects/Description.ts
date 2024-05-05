@@ -8,7 +8,7 @@ export class Description {
 		min = 0,
 		max = 20
 	) {
-		this.value = String(value)
+		this.value = String(value).trim()
 		this.min = min
 		this.max = max
 

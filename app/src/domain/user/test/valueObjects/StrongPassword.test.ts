@@ -1,7 +1,7 @@
 import { userErrors } from '@domain/constants/user/userErrors'
 import { StrongPassword } from '@domain/user/model/valueObjects/StrongPassword'
 
-describe('File StrongPassword.ts', () => {
+describe('Value Object StrongPassword.ts', () => {
 	test('Deve criar um objeto StrongPassword com uma senha válida', () => {
 		const validPassword = 'Password@123'
 		const strongPassword = new StrongPassword(validPassword)

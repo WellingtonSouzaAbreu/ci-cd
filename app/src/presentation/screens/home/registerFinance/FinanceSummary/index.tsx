@@ -39,7 +39,7 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 				financeRegisterData
 			)
 			setLoaderIsVisible(false)
-			// setFinanceDataOnContext({  })
+			// setFinanceDataOnContext({  }) // TODO atualizar contexto. Criar outro ou atribuir ao contexto do usuário?
 			navigation.popToTop()
 		} catch (error) {
 			setLoaderIsVisible(false)

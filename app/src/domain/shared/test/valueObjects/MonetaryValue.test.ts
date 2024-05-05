@@ -1,6 +1,6 @@
 import { MonetaryValue } from '../../valueObjects/MonetaryValue'
 
-describe('File MonetaryValue.ts', () => {
+describe('Value Object MonetaryValue.ts', () => {
 	test('Deve retornar o valor numérico 100', () => {
 		const value1 = new MonetaryValue(100).value
 		const value2 = new MonetaryValue('100').value

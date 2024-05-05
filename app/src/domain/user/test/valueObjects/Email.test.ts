@@ -1,7 +1,7 @@
 import { userErrors } from '@domain/constants/user/userErrors'
 import { Email } from '@domain/user/model/valueObjects/Email'
 
-describe('File Email.ts', () => {
+describe('Value Object Email.ts', () => {
 	test('Deve criar um objeto Email com valor válido', () => {
 		const validEmail = 'test@example.com'
 		const email = new Email(validEmail)
