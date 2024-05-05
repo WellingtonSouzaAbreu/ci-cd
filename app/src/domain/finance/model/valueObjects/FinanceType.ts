@@ -1,25 +1,22 @@
-export class Installments {
-	readonly value: number
-	readonly min: number
-	readonly max: number
+import { financeErrors } from '@domain/constants/finance/financeErrors'
+import { Validator } from '@domain/shared/utils/Validator'
 
-	constructor(
-		value: number | string,
-		min = 1,
-		max = 12
-	) {
-		const numericValue = this.convertStringToNumber(value)
+import { FinanceEntity } from '../entity/types'
 
-		if (typeof numericValue !== 'number' || Number.isNaN(numericValue)) throw new Error('Formato de valor inválido!')
-		if (numericValue < min) throw new Error(`Deve haver no mínimo ${min} parcela!`)
-		if (numericValue > max) throw new Error(`Deve haver no máximo ${max} parcelas!`)
+export class FinanceType {
+	readonly value: FinanceEntity['type']
+	private readonly financeTypes: FinanceEntity['type'][] = ['expense', 'income']
 
-		this.value = numericValue
-		this.min = min
-		this.max = max
-	}
+	constructor(type: FinanceEntity['type']) {
+		const financeType = type || ''
 
-	private convertStringToNumber(value: string | number) {
-		return typeof value === 'string' ? Number(value) : value
+		const errors = Validator.stackErros(
+			Validator.notEmpty(financeType, financeErrors.EMPTY_TYPE),
+			Validator.isIncluded(this.financeTypes, financeType, financeErrors.INVALID_TYPE)
+		)
+
+		if (errors) throw new Error(errors.join(', '))
+
+		this.value = financeType as FinanceEntity['type']
 	}
 }

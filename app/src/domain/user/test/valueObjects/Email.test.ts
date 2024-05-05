@@ -1,4 +1,4 @@
-import { errorMessages } from '@domain/constants/errorMessages'
+import { userErrors } from '@domain/constants/user/userErrors'
 import { Email } from '@domain/user/model/valueObjects/Email'
 
 describe('File Email.ts', () => {
@@ -10,14 +10,14 @@ describe('File Email.ts', () => {
 
 	test('Deve lançar um erro ao fornecer um email inválido', () => {
 		const invalidEmail = 'invalidEemail'
-		expect(() => new Email(invalidEmail)).toThrow(errorMessages.INVALID_EMAIL)
+		expect(() => new Email(invalidEmail)).toThrow(userErrors.INVALID_EMAIL)
 	})
 
 	test('Deve lançar um erro ao fornecer um email null ou undefined', () => {
 		const invalidEmailNull = null
 		const invalidEmailUndefined = undefined
-		expect(() => new Email(invalidEmailNull)).toThrow(errorMessages.INVALID_EMAIL)
-		expect(() => new Email(invalidEmailUndefined)).toThrow(errorMessages.INVALID_EMAIL)
+		expect(() => new Email(invalidEmailNull)).toThrow(userErrors.INVALID_EMAIL)
+		expect(() => new Email(invalidEmailUndefined)).toThrow(userErrors.INVALID_EMAIL)
 	})
 
 	test('Deve retornar o nome de usuário corretamente', () => {

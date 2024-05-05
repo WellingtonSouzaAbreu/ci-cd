@@ -1,4 +1,4 @@
-import { errorMessages } from '@domain/constants/errorMessages'
+import { userErrors } from '@domain/constants/user/userErrors'
 import { Validator } from '@domain/shared/utils/Validator'
 
 export class Email {
@@ -11,7 +11,7 @@ export class Email {
 			Validator.regex(
 				this.value,
 				/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/,
-				errorMessages.INVALID_EMAIL
+				userErrors.INVALID_EMAIL
 			)
 		)
 

@@ -7,19 +7,29 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
+import { FinanceModel } from '@domain/finance/adapter/FinanceModel'
 import { FinanceEntity } from '@domain/finance/model/entity/types'
 
+import { useAlertContext } from '@contexts/AlertContext'
 import { useFinanceRegisterContext } from '@contexts/FinanceRegisterContext'
 
 import { SelectFinanceTypeScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
 function SelectFinanceType({ navigation }: SelectFinanceTypeScreenProps) {
-	const theme = useTheme()
+	const { showContextModal } = useAlertContext()
 	const { setFinanceDataOnContext } = useFinanceRegisterContext()
 
+	const theme = useTheme()
+
 	const selectFinanceType = (financeType: FinanceEntity['type']) => {
-		setFinanceDataOnContext({ type: financeType })
-		navigation.navigate('SelectFinanceCategory')
+		try {
+			const type = new FinanceModel.FinanceType(financeType).value
+			setFinanceDataOnContext({ type })
+			navigation.navigate('SelectFinanceCategory')
+		} catch (error) {
+			console.log(error)
+			showContextModal('', error.message)
+		}
 	}
 
 	return (

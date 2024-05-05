@@ -121,6 +121,21 @@ describe('Teste de Validator.ts', () => {
 		expect(error).toBe(errorMessage)
 	})
 
+	test('Deve retornar null quando o valor existir na lista', () => {
+		const error1 = Validator.isIncluded(['oi', 'tchau'], 'oi', '')
+		const error2 = Validator.isIncluded([1, 2, 3], 2, '')
+		const error3 = Validator.isIncluded([false, true], false, '')
+		expect(error1).toBeNull()
+		expect(error2).toBeNull()
+		expect(error3).toBeNull()
+	})
+
+	test('Deve retornar erro quando o valor não existir na lista', () => {
+		const errorMessage = 'Item não está no array'
+		const error = Validator.isIncluded(['oi', 'tchau'], 'até logo', errorMessage)
+		expect(error).toBe(errorMessage)
+	})
+
 	test('Deve retornar mensagem de erro quando passado valor null para regex', () => {
 		const errorMessage = 'Valor inválido'
 		const error = Validator.regex(null as any, /ue/, errorMessage)

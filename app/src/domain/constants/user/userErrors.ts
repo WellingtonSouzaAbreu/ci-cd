@@ -1,4 +1,4 @@
-const errorMessages = {
+const userErrors = {
 	SINGLE_NAME: 'O nome deve ter um sobrenome',
 	EMPTY_NAME: 'O nome não pode ser nulo',
 	SMALL_NAME: 'Este nome é muito pequeno',
@@ -13,13 +13,6 @@ const errorMessages = {
 	UPPERCASE_CHARACTER_PASSWORD: 'A senha deve ter pelo menos uma letra maiúscula',
 	LOWERCASE_CHARACTER_PASSWORD: 'A senha deve ter pelo menos uma letra minúscula',
 	SYMBOL_CHARACTER_PASSWORD: 'A senha deve ter pelo menos um símbolo',
-
-	// unused
-	INVALID_ID: 'INVALID_ID',
-	NULL_NAME: 'NULL_NAME',
-
-	NULL_VALUE: 'NULL_VALUE',
-
 }
 
-export { errorMessages }
+export { userErrors }
