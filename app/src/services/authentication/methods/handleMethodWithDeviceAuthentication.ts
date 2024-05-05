@@ -1,6 +1,6 @@
 import * as LocalAuthentication from 'expo-local-authentication'
 
-import { UnknowFunction } from '@domain/applicationTypes/types'
+import { UnknowFunction } from '@domain/shared/applicationTypes/types'
 
 async function handleMethodWithDeviceAuthentication(secureMethod: UnknowFunction) {
 	try {

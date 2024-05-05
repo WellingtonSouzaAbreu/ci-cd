@@ -1,6 +1,6 @@
 import { UserCredential } from 'firebase/auth'
 
-import { UnknowFunction } from '@domain/applicationTypes/types'
+import { UnknowFunction } from '@domain/shared/applicationTypes/types'
 
 interface AuthenticationServiceInterface {
 	handleMethodWithDeviceAuthentication: (secureMethod: UnknowFunction) => Promise<boolean>

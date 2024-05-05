@@ -1,4 +1,4 @@
-import { UnknowFunction } from '@domain/applicationTypes/types'
+import { UnknowFunction } from '@domain/shared/applicationTypes/types'
 import { UserEntity } from '@domain/user/entity/types'
 
 import { UserRegisterData } from '@contexts/AuthContext/types'

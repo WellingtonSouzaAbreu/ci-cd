@@ -7,7 +7,7 @@ import { firebaseAuthentication } from '@config/firebase/config'
 
 import { useAuthContext } from '@contexts/AuthContext'
 
-import { updateUserPreferences } from '@data/user/localRepository/updateUserPreferences'
+import { updateUserPreferences } from '@data/user/localRepository/updateUserPreferences' // REFACTOR Não deve estar aqui
 
 import { Body, ButtonPadding, Header, HorizontalHeaderScroll, SelectPeriodButtonContainer, Title } from './styles'
 import { relativeScreenDensity } from '@presentation/common/screenDimensions'

@@ -68,8 +68,8 @@ function QuickLogin({ navigation }: QuickLoginScreenProps) {
 		navigation.navigate('SelectAuthRegister')
 	}
 
-	// REFACTOR Texto com pipe
-	// REFACTOR PErsonializar texto comforme o horário do dia
+	// REFACTOR Texto com pipe, componentizar
+	// TODO PErsonializar texto comforme o horário do dia
 	return (
 		<ScreenContainer topSafeAreaColor={theme.green1}>
 			<Content>

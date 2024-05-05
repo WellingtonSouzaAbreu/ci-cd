@@ -2,7 +2,7 @@ export interface EntityProps {
 	id?: string
 }
 
-export abstract class Entity<Type, Props extends EntityProps> {
+export abstract class Entity<Type, Props extends EntityProps> { // REFACTOR Sem testes
 	readonly id: string // VALUE Object
 	readonly props: Props
 

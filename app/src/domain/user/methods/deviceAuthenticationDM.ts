@@ -1,4 +1,4 @@
-import { UnknowFunction } from '@domain/applicationTypes/types'
+import { UnknowFunction } from '@domain/shared/applicationTypes/types'
 
 import { AuthenticationServiceInterface } from '@services/authentication/AuthenticationServiceInterface'
 
