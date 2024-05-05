@@ -71,9 +71,9 @@ function FormModal({ ...props }: FormModalProps) {
 }
 
 FormModal.defaultProps = {
-	title: 'title',
+	title: 'Title',
 	description: '',
-	buttonText: 'entendi'
+	buttonText: 'Entendi'
 }
 
 export { FormModal }

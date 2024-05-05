@@ -1,3 +1,4 @@
+import { Class } from '@domain/shared/interfaces/Class'
 import { UseCase } from '@domain/shared/interfaces/UseCase'
 import { UserEntity } from '@domain/user/entity/types'
 
@@ -16,7 +17,7 @@ export class CreateFinance implements UseCase<Input, Output> {
 	private remoteRepository: FinanceRemoteRepositoryInterface
 	private currentUser: UserEntity
 
-	constructor(FinanceLocalRepository: new () => FinanceRemoteRepository, currentUser: any) {
+	constructor(FinanceLocalRepository: Class<FinanceRemoteRepository>, currentUser: any) {
 		this.remoteRepository = new FinanceLocalRepository()
 		this.currentUser = currentUser
 	}

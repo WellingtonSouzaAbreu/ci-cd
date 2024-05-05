@@ -1,3 +1,4 @@
+import { Class } from '@domain/shared/interfaces/Class'
 import { UserEntity } from '@domain/user/entity/types'
 
 import { FinanceEntityOptional } from '../model/entity/types'
@@ -10,15 +11,15 @@ import { GetLocalCategories } from '../useCases/GetLocalCategories'
 import { RemoveLocalCategory } from '../useCases/RemoveLocalCategory'
 
 export class FinanceUseCasesAdapter {
-	static async createNewLocalCategory(FinanceLocalRepository: new () => FinanceLocalRepositoryInterface, category: string) {
+	static async createNewLocalCategory(FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>, category: string) {
 		return new CreateNewLocalCategory(FinanceLocalRepository).exec(category)
 	}
 
-	static async getLocalCategories(FinanceLocalRepository: new () => FinanceLocalRepositoryInterface) {
+	static async getLocalCategories(FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>) {
 		return new GetLocalCategories(FinanceLocalRepository).exec()
 	}
 
-	static async removeLocalCategory(FinanceLocalRepository: new () => FinanceLocalRepositoryInterface, category: string) {
+	static async removeLocalCategory(FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>, category: string) {
 		return new RemoveLocalCategory(FinanceLocalRepository).exec(category)
 	}
 
@@ -31,7 +32,7 @@ export class FinanceUseCasesAdapter {
 	}
 
 	static createFinance(
-		FinanceRemoteRepository: new () => FinanceRemoteRepositoryInterface,
+		FinanceRemoteRepository: Class<FinanceRemoteRepositoryInterface>,
 		currentUser: UserEntity,
 		financeData: FinanceEntityOptional
 	) {

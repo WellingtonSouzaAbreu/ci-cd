@@ -52,7 +52,7 @@ function AlertModal({ ...props }: AlertModalProps) {
 AlertModal.defaultProps = {
 	title: 'Ops!',
 	description: '',
-	buttonText: 'entendi'
+	buttonText: 'Entendi'
 }
 
 export { AlertModal }
