@@ -29,7 +29,7 @@ function InsertPassword({ navigation }: InsertPasswordScreenProps) {
 			setUserRegisterDataOnContext({ password: validPassword })
 			navigation.navigate('WelcomeNewUser')
 		} catch (error: any) {
-			showContextModal('Ops!', error.message)
+			showContextModal('', error.message)
 		}
 	}
 

@@ -5,7 +5,7 @@ const userErrors = {
 	LARGE_NAME: 'Este nome é muito grande',
 	NAME_INVALID_CHARACTERS: 'O nome não pode possuir caracteres especiais',
 
-	INVALID_EMAIL: 'Este email não é um email válido',
+	INVALID_EMAIL: 'Email inválido',
 
 	EMPTY_PASSWORD: 'A senha não pode ser nula',
 	SMALL_PASSWORD: 'A senha deve ter no mínimo 6 caracteres',

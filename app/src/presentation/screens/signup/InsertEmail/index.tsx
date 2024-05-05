@@ -24,15 +24,15 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 
 	const submitEmail = async () => {
 		try {
-			if (await emailAlreadyRegistred(email)) { // REFACTOR UseCase
+			const validEmail = new UserModel.Email(email).value
+			if (await emailAlreadyRegistred(validEmail)) { // REFACTOR UseCase
 				showContextModal('', 'Esse email já foi cadastrado!')
 			} else {
-				const validEmail = new UserModel.Email(email).value
 				setUserRegisterDataOnContext({ email: validEmail })
 				navigation.navigate('InsertPassword')
 			}
 		} catch (error) {
-			showContextModal('Ops!', error.message)
+			showContextModal('', error.message)
 		}
 	}
 

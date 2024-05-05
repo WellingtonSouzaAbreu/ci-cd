@@ -48,10 +48,10 @@ function WelcomeNewUser() {
 		} catch (error) {
 			console.log(error.code)
 			switch (error.code) {
-				case 'auth/email-already-in-use': return showContextModal('Ops!', 'O email já está sendo utilizado')
+				case 'auth/email-already-in-use': return showContextModal('', 'O email já está sendo utilizado')
 			}
 
-			return showContextModal('Ops!', error.code)
+			return showContextModal('', error.code)
 		}
 	}
 

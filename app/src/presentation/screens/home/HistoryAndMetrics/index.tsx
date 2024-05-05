@@ -7,6 +7,8 @@ import { firebaseAuthentication } from '@config/firebase/config'
 
 import { useAuthContext } from '@contexts/AuthContext'
 
+import { updateUserPreferences } from '@data/user/localRepository/updateUserPreferences'
+
 import { Body, ButtonPadding, Header, HorizontalHeaderScroll, SelectPeriodButtonContainer, Title } from './styles'
 import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
@@ -14,6 +16,11 @@ function HistoryAndMetrics() {
 	const { authenticatedUser } = useAuthContext()
 
 	const theme = useTheme()
+
+	const logout = () => { // Chamar
+		updateUserPreferences({ requestDevicePasswordOnAuth: false })
+		firebaseAuthentication.signOut()
+	}
 
 	return (
 		<ScreenContainer topSafeAreaColor={theme.green5}>
@@ -32,7 +39,7 @@ function HistoryAndMetrics() {
 							buttonColor={theme.white1}
 							relativeWidth={'50%'}
 							customHeight={relativeScreenDensity(25)}
-							onPress={() => firebaseAuthentication.signOut()}
+							onPress={logout}
 						/>
 					</SelectPeriodButtonContainer>
 					<SelectPeriodButtonContainer>

@@ -5,6 +5,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
+import { UserModel } from '@domain/user/adapter/UserModel'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAlertContext } from '@contexts/AlertContext'
@@ -25,11 +26,16 @@ function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const theme = useTheme()
 
 	const submitEmail = async () => {
-		if (!await emailAlreadyRegistred(email)) {
-			showContextModal('Ops', 'Esse email não está cadastrado!')
-		} else {
-			setUserAuthDataOnContext({ email })
-			navigation.navigate('InsertPasswordAccount')
+		try {
+			const validEmail = new UserModel.Email(email).value
+			if (!await emailAlreadyRegistred(validEmail)) { // REFACTOR UseCase
+				showContextModal('', 'Esse email já foi cadastrado!')
+			} else {
+				setUserAuthDataOnContext({ email: validEmail })
+				navigation.navigate('InsertPasswordAccount')
+			}
+		} catch (error) {
+			showContextModal('', error.message)
 		}
 	}
 
@@ -37,7 +43,6 @@ function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 		<ScreenContainer topSafeAreaColor={theme.green4}>
 			<FormContainer
 				title={'Insira seu email'}
-				errorMessage={'Esse email não é válido!'}
 				validateField={() => emailIsValid(email)}
 				onSubmit={submitEmail}
 			>

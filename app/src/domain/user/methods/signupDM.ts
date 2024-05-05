@@ -1,10 +1,10 @@
 import { createNewUser } from '@domain/user/entity'
 
-import { UserEntity } from '../entity/types'
+import { UserRegisterData } from '@contexts/AuthContext/types'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
-async function signupDM(userRegistrationData: UserEntity) {
+async function signupDM(userRegistrationData: UserRegisterData) {
 	const { signupByEmailPassword } = useAuthenticationService()
 
 	try {
@@ -15,7 +15,7 @@ async function signupDM(userRegistrationData: UserEntity) {
 		const newUser = await signupByEmailPassword(userData.email, password)
 		if (!newUser) throw new Error('Houve um problema com o novo usuário criado!')
 
-		return { ...userData, userId: newUser.user.uid }
+		return { ...userData, id: newUser.user.uid }
 	} catch (error) {
 		console.log(error)
 		if (error.cause === 'expected') throw new Error(error.message)

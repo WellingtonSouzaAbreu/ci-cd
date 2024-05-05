@@ -5,6 +5,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
+import { UserModel } from '@domain/user/adapter/UserModel'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAlertContext } from '@contexts/AlertContext'
@@ -34,9 +35,11 @@ function InsertPasswordAccount() {
 	const submitPassword = async () => {
 		try {
 			setLoaderIsVisible(true)
+			// REFACTOR Quando o performSignin for migrado para um useCase no domínio,
+			// a validação será realizada inernamente
+			const validPassword = new UserModel.WeakPassword(password).value
 
-			const userData = await performSignin(userAuthData.email, password, useAuthenticationService, useUserRepository)
-			setUserDataOnContext(userData)
+			const userData = await performSignin(userAuthData.email, validPassword, useAuthenticationService, useUserRepository)
 			await updateUserRepository(userData, useUserRepository)
 			setUserDataOnContext(userData)
 
@@ -46,8 +49,8 @@ function InsertPasswordAccount() {
 			console.log(error)
 			setLoaderIsVisible(false)
 			setTimeout(() => {
-				showContextModal('Ops!', error.message)
-			}, 300)
+				showContextModal('', error.message)
+			}, 300) // delay to show the modal por causa do loading que também é um modal
 		}
 	}
 
