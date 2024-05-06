@@ -23,8 +23,8 @@ export class Finance extends Entity<Finance, FinanceEntityOptional> {
 	readonly createdAt: CustomDate
 	readonly updatedAt: CustomDate
 
-	constructor(props: FinanceEntityOptional) {
-		super(props)
+	constructor(props: FinanceEntityOptional, register?: boolean) {
+		super({ ...props, id: register ? 'aplicationId' : props.id })
 
 		this.ownerId = new Id(props.ownerId)
 		this.type = new FinanceType(props.type)
@@ -34,7 +34,7 @@ export class Finance extends Entity<Finance, FinanceEntityOptional> {
 		this.date = new CustomDate(props.date)
 		this.numberOfInstallments = new Installments(props.numberOfInstallments)
 		this.createdAt = new CustomDate(props.createdAt)
-		this.updatedAt = new CustomDate(props.createdAt)
+		this.updatedAt = new CustomDate(props.createdAt || new Date())
 	}
 
 	get data(): FinanceEntityOptional {

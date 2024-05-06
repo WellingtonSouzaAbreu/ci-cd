@@ -2,7 +2,7 @@ import { Class } from '@domain/shared/interfaces/Class'
 import { UseCase } from '@domain/shared/interfaces/UseCase'
 import { UserEntity } from '@domain/user/entity/types'
 
-import { FinanceEntityOptional } from '../model/entity/types'
+import { FinanceEntity, FinanceEntityOptional } from '../model/entity/types'
 
 import { FinanceRemoteRepository } from '@data/finance/FinanceRemoteRepository'
 
@@ -11,20 +11,27 @@ import { FinanceRemoteRepositoryInterface } from '../provider'
 
 type Input = FinanceEntityOptional
 
-type Output = Promise<void>
+type Output = Promise<FinanceEntity>
 
 export class CreateFinance implements UseCase<Input, Output> {
 	private remoteRepository: FinanceRemoteRepositoryInterface
 	private currentUser: UserEntity
 
-	constructor(FinanceLocalRepository: Class<FinanceRemoteRepository>, currentUser: any) {
+	constructor(FinanceLocalRepository: Class<FinanceRemoteRepository>, currentUser: UserEntity) {
 		this.remoteRepository = new FinanceLocalRepository()
-		this.currentUser = currentUser
+		this.currentUser = currentUser // REFACTOR Entidade de usuário
 	}
 
 	async exec(financeData: Input): Output {
-		const { data } = new Finance({ ...financeData, ownerId: this.currentUser.id })
+		const financeRegisterData = {
+			...financeData,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+			ownerId: this.currentUser.id,
+		}
+
+		const { data } = new Finance(financeRegisterData, true)
 		const savedFinance = await this.remoteRepository.createFinance(data)
-		console.log(savedFinance)
+		return savedFinance
 	}
 }

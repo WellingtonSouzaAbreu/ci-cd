@@ -10,7 +10,7 @@ import { GenerateFinanceForecast } from '../useCases/GenerateFinanceForecast'
 import { GetLocalCategories } from '../useCases/GetLocalCategories'
 import { RemoveLocalCategory } from '../useCases/RemoveLocalCategory'
 
-export class FinanceUseCasesAdapter {
+export class FinanceUseCasesAdapter { // REFACTOR Melhorar nomenclatura , removr o adapter
 	static async createNewLocalCategory(FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>, category: string) {
 		return new CreateNewLocalCategory(FinanceLocalRepository).exec(category)
 	}
