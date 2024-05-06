@@ -6,7 +6,7 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
-import { FinanceUseCasesAdapter } from '@domain/finance/adapter/FinanceUseCaseAdapter'
+import { FinanceUseCases } from '@domain/finance/adapter/FinanceUseCases'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
@@ -20,7 +20,7 @@ import { FinanceRemoteRepository } from '@data/finance/FinanceRemoteRepository'
 import { FinanceCategory, FinanceCategoryCard, ReminderText, SummaryHeader } from './styles'
 
 const { translateFinanceType } = useUiFinanceUtils()
-const { generateFinanceForecast, createFinance } = FinanceUseCasesAdapter
+const { generateFinanceForecast, createFinance } = FinanceUseCases
 
 function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 	const { authenticatedUser } = useAuthContext()

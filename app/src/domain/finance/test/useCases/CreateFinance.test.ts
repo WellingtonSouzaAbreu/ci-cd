@@ -4,7 +4,7 @@ import { financeErrors } from '@domain/constants/finance/financeErrors'
 import { FinanceEntity, FinanceEntityOptional } from '@domain/finance/model/entity/types'
 import { FinanceRemoteRepositoryInterface } from '@domain/finance/provider'
 import { CreateFinance } from '@domain/finance/useCases/CreateFinance'
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 
 const financeData: FinanceEntity = {
 	ownerId: 'OwnerIdValido123',

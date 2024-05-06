@@ -43,8 +43,6 @@ describe('Entity', () => {
 	test('O método isDifferent deve retornar verdadeiro para entidades com IDs diferentes', () => {
 		const entity1 = new TestEntity({ id: '123', name: 'Entity 1' })
 		const entity2 = new TestEntity({ id: '456', name: 'Entity 2' })
-		console.log(entity1)
-		console.log(entity2)
 
 		expect(entity1.isDifferent(entity2)).toBe(true)
 	})

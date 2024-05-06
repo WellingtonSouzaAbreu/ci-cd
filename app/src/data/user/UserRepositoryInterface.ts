@@ -1,4 +1,4 @@
-import { UserEntity, UserPreferences } from '@domain/user/entity/types'
+import { UserEntity, UserPreferences } from '@domain/user/model/entity/types'
 
 interface UserRepositoryInterface {
 	local: {

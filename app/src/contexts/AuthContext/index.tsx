@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'

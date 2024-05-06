@@ -1,5 +1,5 @@
 import { UnknowFunction } from '@domain/shared/applicationTypes/types'
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 
 import { UserRegisterData } from '@contexts/AuthContext/types'
 

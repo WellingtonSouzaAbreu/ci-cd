@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
+import { sharedErrors } from '@domain/constants/common/errorMessages'
 import { Finance } from '@domain/finance/model/entity/Finance'
 import { FinanceEntity } from '@domain/finance/model/entity/types'
 
@@ -15,7 +16,7 @@ const financeData: FinanceEntity = {
 	createdAt: new Date(),
 	updatedAt: new Date()
 }
-describe('Value Object Finance.ts', () => {
+describe('Entity Finance.ts', () => {
 	test('Deve criar uma finança corretamente', () => {
 		const finance = new Finance(financeData)
 		expect(JSON.stringify(finance.data)).toBe(JSON.stringify(financeData))
@@ -36,13 +37,12 @@ describe('Value Object Finance.ts', () => {
 		expect(finance.id.value).toBe('idValido123')
 	})
 
-	test('Deve criar um objeto corretamente uma finança sem data de atualização e criação', () => {
-		const finance = new Finance(financeData)
-		expect(finance.createdAt.value).toBeInstanceOf(Date)
-		expect(finance.updatedAt.value).toBeInstanceOf(Date)
+	test('Deve lançar erro ao criar uma finança sem data de atualização e criação', () => {
+		const data = { ...financeData, createdAt: null, updatedAt: null } as any
+		expect(() => new Finance(data)).toThrow(sharedErrors.UNDEFINED_DATA)
 	})
 
-	test('Deve criar corretamente uma finança sem data de atualização e criação', () => {
+	test('Deve criar um objeto corretamente uma finança sem data', () => {
 		const finance = new Finance(financeData)
 		expect(finance.createdAt.value).toBeInstanceOf(Date)
 		expect(finance.updatedAt.value).toBeInstanceOf(Date)

@@ -1,9 +1,11 @@
+import { EntityProps } from '@domain/shared/valueObjects/Entity'
+
 export type UsertEntityOptional = Partial<UserEntity>
-export type UserEntity = { // REFACTOR VIRAR interface
-	id: string // ENTITY vai sobrescrever
+export interface UserEntity extends EntityProps {
 	email?: string
 	name: string
-	password?: string
+	createdAt?: Date
+	updatedAt?: Date
 }
 
 export type UserPreferences = {

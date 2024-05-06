@@ -12,7 +12,7 @@ import { LineInput } from '@components/inputs/LineInput'
 import { FormModal } from '@components/modals/FormModal'
 import { useUiFinanceUtils } from '@utils/finance/useUiFinanceUtils'
 
-import { FinanceUseCasesAdapter } from '@domain/finance/adapter/FinanceUseCaseAdapter'
+import { FinanceUseCases } from '@domain/finance/adapter/FinanceUseCases'
 import { SharedModel } from '@domain/shared/adapter/SharedModel'
 
 import { useAlertContext } from '@contexts/AlertContext'
@@ -26,7 +26,7 @@ import { AddNewCategoryContainer, AddNewCategoryLabel, FinanceCategoryFlatList, 
 
 const { translateFinanceType } = useUiFinanceUtils()
 
-const { createNewLocalCategory, removeLocalCategory, getLocalCategories } = FinanceUseCasesAdapter
+const { createNewLocalCategory, removeLocalCategory, getLocalCategories } = FinanceUseCases
 
 function SelectFinanceCategory({ navigation }: SelectFinanceCategoryScreenProps) {
 	const { financeRegisterData, setFinanceDataOnContext } = useFinanceRegisterContext()

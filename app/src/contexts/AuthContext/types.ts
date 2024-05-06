@@ -1,4 +1,4 @@
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 
 export type UserAuthData = {
 	email?: string

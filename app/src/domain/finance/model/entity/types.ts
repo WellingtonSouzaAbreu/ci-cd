@@ -9,9 +9,9 @@ export interface FinanceEntity extends EntityProps {
 	type: FinanceType
 	financeCategory: string
 	value: number
-	reminder: string
+	reminder?: string
 	date: Date
 	numberOfInstallments: number
 	createdAt: Date
-	updatedAt: Date
+	updatedAt?: Date
 }

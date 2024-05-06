@@ -1,6 +1,6 @@
 import { Class } from '@domain/shared/interfaces/Class'
 import { UseCase } from '@domain/shared/interfaces/UseCase'
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 
 import { FinanceEntity, FinanceEntityOptional } from '../model/entity/types'
 
@@ -28,7 +28,7 @@ export class CreateFinance implements UseCase<Input, Output> {
 			createdAt: new Date(),
 			updatedAt: new Date(),
 			ownerId: this.currentUser.id,
-		}
+		} as FinanceEntity
 
 		const { data } = new Finance(financeRegisterData, true)
 		const savedFinance = await this.remoteRepository.createFinance(data)

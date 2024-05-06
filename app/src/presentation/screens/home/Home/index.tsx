@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from 'react-native'
 
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
-import { UserPreferences } from '@domain/user/entity/types'
+import { UserPreferences } from '@domain/user/model/entity/types'
 
 import { useUserRepository } from '@data/user/useUserRepository'
 

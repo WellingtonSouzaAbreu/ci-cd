@@ -1,5 +1,5 @@
 import { Class } from '@domain/shared/interfaces/Class'
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 
 import { FinanceEntityOptional } from '../model/entity/types'
 
@@ -10,7 +10,7 @@ import { GenerateFinanceForecast } from '../useCases/GenerateFinanceForecast'
 import { GetLocalCategories } from '../useCases/GetLocalCategories'
 import { RemoveLocalCategory } from '../useCases/RemoveLocalCategory'
 
-export class FinanceUseCasesAdapter { // REFACTOR Melhorar nomenclatura , removr o adapter
+export class FinanceUseCases {
 	static async createNewLocalCategory(FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>, category: string) {
 		return new CreateNewLocalCategory(FinanceLocalRepository).exec(category)
 	}

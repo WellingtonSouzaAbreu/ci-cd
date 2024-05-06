@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { UserPreferences } from '@domain/user/entity/types'
+import { UserPreferences } from '@domain/user/model/entity/types'
 
 import { localStorageKeys } from '@data/keys/localStorageKeys'
 

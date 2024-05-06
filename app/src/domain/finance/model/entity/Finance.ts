@@ -5,14 +5,12 @@ import { Id } from '@domain/shared/valueObjects/Id'
 import { MonetaryValue } from '@domain/shared/valueObjects/MonetaryValue'
 import { SimpleText } from '@domain/shared/valueObjects/SimpleText'
 
-import { FinanceEntityOptional } from './types'
+import { FinanceEntity, FinanceEntityOptional } from './types'
 
 import { FinanceType } from '../valueObjects/FinanceType'
 import { Installments } from '../valueObjects/Installment'
 
 export class Finance extends Entity<Finance, FinanceEntityOptional> {
-	private readonly stored: boolean
-
 	readonly ownerId: Id
 	readonly type: FinanceType
 	readonly financeCategory: SimpleText
@@ -23,7 +21,7 @@ export class Finance extends Entity<Finance, FinanceEntityOptional> {
 	readonly createdAt: CustomDate
 	readonly updatedAt: CustomDate
 
-	constructor(props: FinanceEntityOptional, register?: boolean) {
+	constructor(props: FinanceEntity, register?: boolean) {
 		super({ ...props, id: register ? 'aplicationId' : props.id })
 
 		this.ownerId = new Id(props.ownerId)
@@ -34,7 +32,7 @@ export class Finance extends Entity<Finance, FinanceEntityOptional> {
 		this.date = new CustomDate(props.date)
 		this.numberOfInstallments = new Installments(props.numberOfInstallments)
 		this.createdAt = new CustomDate(props.createdAt)
-		this.updatedAt = new CustomDate(props.createdAt || new Date())
+		this.updatedAt = new CustomDate(props.createdAt)
 	}
 
 	get data(): FinanceEntityOptional {

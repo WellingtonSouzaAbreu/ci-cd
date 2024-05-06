@@ -8,7 +8,7 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAuthContext } from '@contexts/AuthContext'

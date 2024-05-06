@@ -1,7 +1,7 @@
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
 
-import { UserEntity } from '@domain/user/entity/types'
+import { UserEntity } from '@domain/user/model/entity/types'
 
 import { remoteStorageKeys } from '@data/keys/remoteStorageKeys'
 
