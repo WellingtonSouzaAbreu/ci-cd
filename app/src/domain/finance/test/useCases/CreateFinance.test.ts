@@ -19,9 +19,11 @@ const financeData: FinanceEntity = {
 }
 
 const userData: UserEntity = {
-	id: 'idDeteste',
-	name: 'nome de usuário',
-	email: 'test@zmail.com',
+	id: 'idValido123',
+	name: 'John Doe',
+	email: 'john.doe@example.com',
+	createdAt: new Date(),
+	updatedAt: new Date()
 }
 
 class RepositoryMock implements FinanceRemoteRepositoryInterface {
