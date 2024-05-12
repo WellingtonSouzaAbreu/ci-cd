@@ -20,7 +20,7 @@ function ScreenContainer({ ...props }: ScreenContainerProps) {
 		<>
 			<SafeAreaViewContainer safeAreaColor={props.topSafeAreaColor} withoutFlex />
 			<SafeAreaViewContainer safeAreaColor={props.bottomSafeAreaColor}>
-				<StatusBar backgroundColor={props.topSafeAreaColor || theme.white1} />
+				<StatusBar translucent backgroundColor={props.topSafeAreaColor || theme.white1} />
 				<Container
 					justifyContent={props.justifyContent}
 					alignItems={props.alignItems}

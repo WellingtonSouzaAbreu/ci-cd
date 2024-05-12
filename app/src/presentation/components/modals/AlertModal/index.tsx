@@ -29,7 +29,11 @@ function AlertModal({ ...props }: AlertModalProps) {
 			animationType={'fade'}
 			onRequestClose={props.closeModal}
 		>
-			<StatusBar backgroundColor={'red'} barStyle={'dark-content'} />
+			<StatusBar
+				translucent
+				backgroundColor={'rgba(0,0,0,0.3)'}
+				barStyle={'dark-content'}
+			/>
 			<Container>
 				<TouchCloseArea onPress={props.closeModal} />
 				<Content>

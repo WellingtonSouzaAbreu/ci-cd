@@ -5,14 +5,14 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { UserModel } from '@domain/user/adapter/UserModel'
+import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 
 import { InsertEmailScreenProps } from '@routes/stacks/RegisterStack/screenProps'
 
-import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
+import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 
 function InsertEmail({ navigation }: InsertEmailScreenProps) {
 	const { showContextModal } = useAlertContext()
@@ -24,12 +24,15 @@ function InsertEmail({ navigation }: InsertEmailScreenProps) {
 
 	const submitEmail = async () => {
 		try {
-			const validEmail = new UserModel.Email(email).value
-			if (await emailAlreadyRegistred(validEmail)) { // REFACTOR UseCase
-				showContextModal('', 'Esse email já foi cadastrado!')
-			} else {
+			try {
+				const [usedEmail, validEmail] = await UserUseCases.checkEmailAlreadyRegistered(UserRemoteRepository, email)
+				console.log('usedEmail', usedEmail)
+				if (usedEmail) throw new Error('Este email já foi cadastrado')
+
 				setUserRegisterDataOnContext({ email: validEmail })
 				navigation.navigate('InsertPassword')
+			} catch (error) {
+				showContextModal('', error.message)
 			}
 		} catch (error) {
 			showContextModal('', error.message)

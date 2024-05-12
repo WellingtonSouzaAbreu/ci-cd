@@ -5,14 +5,14 @@ import { FormContainer } from '@components/containers/FormContainer'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { LineInput } from '@components/inputs/LineInput'
 
-import { UserModel } from '@domain/user/adapter/UserModel'
+import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 
 import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 
 import { InsertEmailAccountScreenProps } from '@routes/stacks/SigninStack/screenProps'
 
-import { emailAlreadyRegistred } from '@data/user/remoteRespository/emailAlreadyRegistred'
+import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 
 function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 	const { showContextModal } = useAlertContext()
@@ -24,13 +24,11 @@ function InsertEmailAccount({ navigation }: InsertEmailAccountScreenProps) {
 
 	const submitEmail = async () => {
 		try {
-			const validEmail = new UserModel.Email(email).value
-			if (!await emailAlreadyRegistred(validEmail)) { // REFACTOR UseCase
-				showContextModal('', 'Esse email já foi cadastrado!')
-			} else {
-				setUserAuthDataOnContext({ email: validEmail })
-				navigation.navigate('InsertPasswordAccount')
-			}
+			const [usedEmail, validEmail] = await UserUseCases.checkEmailAlreadyRegistered(UserRemoteRepository, email)
+			if (!usedEmail) throw new Error('Este email não está cadastrado')
+
+			setUserAuthDataOnContext({ email: validEmail })
+			navigation.navigate('InsertPasswordAccount')
 		} catch (error) {
 			showContextModal('', error.message)
 		}

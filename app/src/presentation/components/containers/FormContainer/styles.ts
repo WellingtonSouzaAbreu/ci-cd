@@ -12,9 +12,8 @@ export const Container = styled.View`
 `
 
 export const Header = styled.View`
-	flex: 2;
+	flex: 2.5;
 	width: 100%;
-	height: 120px;
 	justify-content: center;
 	padding: 0px ${relativeScreenDensity(25)}px;
 	background-color: ${({ theme }) => theme.green4};

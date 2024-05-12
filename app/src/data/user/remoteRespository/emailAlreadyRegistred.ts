@@ -5,7 +5,9 @@ async function emailAlreadyRegistred(email: string) {
 	const { firebaseAuth } = useFirebaseConfig()
 
 	return fetchSignInMethodsForEmail(firebaseAuth, email)
-		.then((signinMethods) => !!(signinMethods && signinMethods.length))
+		.then((signinMethods) => {
+			return !!(signinMethods && signinMethods.length)
+		})
 		.catch((error) => {
 			console.log(error)
 			return false
