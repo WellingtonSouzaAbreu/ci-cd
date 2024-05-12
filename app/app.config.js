@@ -4,6 +4,7 @@ export default {
 		name: 'Finance',
 		slug: 'Finance',
 		version: '1.0.0',
+		scheme: 'com.finance.app',
 		orientation: 'portrait',
 		icon: './assets/icon.png',
 		userInterfaceStyle: 'light',
@@ -17,16 +18,16 @@ export default {
 		],
 		ios: {
 			supportsTablet: true,
-			bundleIdentifier: 'finance.app'
+			bundleIdentifier: 'com.finance.app'
 		},
 		android: {
 			adaptiveIcon: {
-				foregroundImage: './assets/adaptive-icon.png',
+				foregroundImage: './assets/icon.png',
 				backgroundColor: '#ffffff'
 			},
-			package: 'com.wellingtonsouzaabreu.finance'
+			package: 'com.finance.app'
 		},
-		web: { favicon: './assets/favicon.png' },
+		web: { favicon: './assets/icon.png' },
 		plugins: [
 			[
 				'expo-updates',
