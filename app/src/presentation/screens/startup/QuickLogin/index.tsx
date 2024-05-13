@@ -8,16 +8,20 @@ import { VerticalSpacing } from '@components/common/VerticalSpacing'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
+import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
+import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
+import { useLoaderContext } from '@contexts/LoaderContext'
 
 import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 import { QuickLoginScreenProps } from '@routes/stacks/StartupStack/screenProps'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
+import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 import { useUserRepository } from '@data/user/useUserRepository'
 
 import {
@@ -40,6 +44,8 @@ function QuickLogin({ navigation }: QuickLoginScreenProps) {
 
 	const { navigateToHome } = useAuthNavigation()
 	const { setUserDataOnContext } = useAuthContext()
+	const { showContextModal } = useAlertContext()
+	const { setLoaderIsVisible } = useLoaderContext()
 
 	const [storedUser, setStoredUser] = useState<UserEntity>({ name: 'Usuário' } as UserEntity)
 
@@ -57,11 +63,21 @@ function QuickLogin({ navigation }: QuickLoginScreenProps) {
 	}
 
 	const performQuickSingin = async () => {
-		const createdUser = firebaseAuth.currentUser.uid // REFACTOR Internalizar
-		const user = { id: createdUser, name: 'Wellington Souza' } // REFACTOR  Implementar chamada de usuário
-		await updateUserRepository(user, useUserRepository)
-		setUserDataOnContext(user)
-		navigateToHome()
+		try {
+			setLoaderIsVisible(true)
+			const userId = firebaseAuth.currentUser.uid // REFACTOR Internalizar
+			const user = await UserUseCases.getRemoteUserData(UserRemoteRepository, userId)
+			await updateUserRepository(user, useUserRepository)
+			setUserDataOnContext(user)
+			navigateToHome()
+			setLoaderIsVisible(false)
+		} catch (error) {
+			setLoaderIsVisible(false)
+			console.log(error)
+			setTimeout(() => {
+				showContextModal('', error.message)
+			}, 300)
+		}
 	}
 
 	const loginWithAnotherAccount = () => {

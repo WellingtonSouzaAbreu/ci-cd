@@ -1,24 +1,23 @@
 import { Class } from '@domain/shared/interfaces/Class'
 import { UseCase } from '@domain/shared/interfaces/UseCase'
+import { Id } from '@domain/shared/valueObjects/Id'
 
-import { Email } from '../model/valueObjects/Email'
+import { UserEntity } from '../model/entity/types'
+
 import { UserRemoteRepositoryInterface } from '../provider/UserRemoteRepositoryInterface'
 
 export type Input = string
-type Output = Promise<[boolean, string]>
+type Output = Promise<UserEntity | null>
 
-export class CheckEmailAlreadyRegistered implements UseCase<Input, Output> { // TODO Sem testes
+export class GetRemoteUserData implements UseCase<Input, Output> { // TODO Sem testes
 	private remoteRepository: UserRemoteRepositoryInterface
 
 	constructor(UserRemoteRepository: Class<UserRemoteRepositoryInterface>) {
 		this.remoteRepository = new UserRemoteRepository()
 	}
 
-	async exec(email: string): Output {
-		const validEmail = new Email(email).value
-
-		const signinMethods = await this.remoteRepository.getSignInMethodsForEmail(validEmail)
-
-		return [!!(signinMethods && signinMethods.length), validEmail]
+	async exec(userId: string): Output {
+		const validId = new Id(userId).value
+		return this.remoteRepository.getUserById(validId)
 	}
 }

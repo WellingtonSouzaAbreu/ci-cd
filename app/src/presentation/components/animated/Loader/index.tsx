@@ -28,7 +28,7 @@ function Loader({ ...props }: LoaderProps) {
 					loop
 					speed={1.5}
 				/> */}
-				<ActivityIndicator size={'large'} color={theme.green2} />
+				<ActivityIndicator size={'large'} color={theme.white1} />
 			</AnimationContainer>
 		</Container>
 	)

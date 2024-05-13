@@ -1,6 +1,9 @@
 import { AuthenticationServiceInterface } from '@services/authentication/AuthenticationServiceInterface'
 
+import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
+
+import { UserUseCases } from '../adapter/UserUseCases'
 
 async function signinDM(
 	email: string,
@@ -11,14 +14,12 @@ async function signinDM(
 	const { signinByEmailPassword } = useAuthenticationService()
 
 	try {
-		const { remote } = useUserRepository()
-
 		const userCredential = await signinByEmailPassword(email, password)
 
 		const userId = userCredential.user.uid
 		if (!userId) throw new Error('Identificador do usuário inválido!', { cause: 'expected' })
 
-		const remoteUserData = await remote.getUserData(userId)
+		const remoteUserData = await UserUseCases.getRemoteUserData(UserRemoteRepository, userId)
 		if (!remoteUserData) throw new Error('Não foi possível localizar os dados do usuário!', { cause: 'expected' })
 
 		return remoteUserData

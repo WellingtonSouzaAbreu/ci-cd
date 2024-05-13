@@ -1,6 +1,9 @@
 import { UserEntity } from '@domain/user/model/entity/types'
 
+import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
+
+import { UserUseCases } from '../adapter/UserUseCases'
 
 async function updateUserRepositoryDM(userData: UserEntity, useUserRepository: () => UserRepositoryInterface) {
 	if (!userData || (userData && !userData.id)) {
@@ -8,9 +11,9 @@ async function updateUserRepositoryDM(userData: UserEntity, useUserRepository: (
 		return
 	}
 
-	const { local, remote } = useUserRepository()
+	const { local } = useUserRepository()
 
-	await remote.updateRemoteUser(userData.id, userData)
+	await UserUseCases.updateRemoteUserData(UserRemoteRepository, userData.id, userData)
 	await local.updateLocalUser(userData, true, useUserRepository)
 }
 

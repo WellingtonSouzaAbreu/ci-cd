@@ -20,7 +20,7 @@ function ScreenContainer({ ...props }: ScreenContainerProps) {
 		<>
 			<SafeAreaViewContainer safeAreaColor={props.topSafeAreaColor} withoutFlex />
 			<SafeAreaViewContainer safeAreaColor={props.bottomSafeAreaColor}>
-				<StatusBar translucent backgroundColor={props.topSafeAreaColor || theme.white1} />
+				<StatusBar backgroundColor={props.topSafeAreaColor} />
 				<Container
 					justifyContent={props.justifyContent}
 					alignItems={props.alignItems}
@@ -34,7 +34,7 @@ function ScreenContainer({ ...props }: ScreenContainerProps) {
 }
 
 ScreenContainer.defaultProps = {
-	topSafeAreaColor: '',
+	topSafeAreaColor: 'white',
 	justifyContent: 'space-between',
 	alignItems: 'center',
 	withPadding: false

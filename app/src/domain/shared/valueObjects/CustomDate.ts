@@ -3,7 +3,9 @@ import { sharedErrors } from '@domain/constants/common/errorMessages'
 export class CustomDate {
 	readonly value: Date
 
-	constructor(value: Date | string) {
+	constructor(value: Date | string, canByNull?: boolean) {
+		if (canByNull) return
+
 		if (!value) throw new Error(sharedErrors.UNDEFINED_DATA)
 		if (!(value instanceof Date) && !(this.isValidDateString(value))) throw new Error('A data está em um formato inválido!')
 

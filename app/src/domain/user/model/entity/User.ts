@@ -16,17 +16,11 @@ export class User extends Entity<User, UsertEntityOptional> {
 
 		this.name = new UserName(props.name)
 		this.email = new Email(props.email)
-		this.createdAt = new CustomDate(props.createdAt)
-		this.updatedAt = new CustomDate(props.createdAt)
+		this.createdAt = new CustomDate(props.createdAt, true)
+		this.updatedAt = new CustomDate(props.createdAt, true)
 	}
 
-	get data(): UsertEntityOptional {
-		return {
-			...this.props,
-			name: this.name.value,
-			email: this.email.value,
-			createdAt: this.createdAt.value,
-			updatedAt: this.updatedAt.value
-		}
+	get data(): UsertEntityOptional { // REFACTOR Elaborar maneira recursiva de retornar somente objetos validados que existirem
+		return { ...this.props }
 	}
 }
