@@ -6,7 +6,7 @@ import { FinanceLocalRepositoryInterface } from '../provider'
 
 type Output = Promise<string[]>
 
-export class GetLocalCategories implements UseCase<void, Output> {
+export class GetLocalCategories implements UseCase<void, Output> { // TODO Sem testes
 	private localRepository: FinanceLocalRepositoryInterface
 
 	constructor(FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>) {

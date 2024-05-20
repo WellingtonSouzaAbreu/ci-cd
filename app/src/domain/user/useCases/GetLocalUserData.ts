@@ -16,11 +16,6 @@ export class GetLocalUserData implements UseCase<Input, Output> { // TODO Sem te
 	}
 
 	async exec(): Output {
-		try {
-			return this.localRepository.getLocalUserData()
-		} catch (error) { // TODO Adicionar try catch em todos os casos de uso
-			console.log(error.message)
-			throw error
-		}
+		return this.localRepository.getLocalUserData()
 	}
 }

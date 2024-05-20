@@ -14,7 +14,7 @@ interface Output {
 	amount: string
 }
 
-export class GenerateFinanceForecast implements UseCase<Input, Output[]> {
+export class GenerateFinanceForecast implements UseCase<Input, Output[]> { // TODO Sem testes
 	exec(props: Input): Output[] {
 		return [...Array(props.numberOfInstallments).keys()].map((_, index) => {
 			return {

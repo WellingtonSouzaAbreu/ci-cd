@@ -7,7 +7,7 @@ type Input = string
 
 type Output = Promise<string>
 
-export class CreateNewLocalCategory implements UseCase<Input, Output> {
+export class CreateNewLocalCategory implements UseCase<Input, Output> { // TODO Sem testes
 	private localRepository: FinanceLocalRepositoryInterface
 
 	constructor(FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>) {

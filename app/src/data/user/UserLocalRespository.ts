@@ -4,6 +4,7 @@ import { UserEntity, UserPreferences } from '@domain/user/model/entity/types'
 import { UserLocalRepositoryInterface } from '@domain/user/provider/UserLocalRepositoryInterface'
 
 import { localStorageKeys } from '@data/keys/localStorageKeys'
+import { JSONMethods } from '@data/shared/JSONMethods'
 
 const isValidObject = (object: unknown) => typeof object === 'object' && object !== null
 
@@ -11,7 +12,7 @@ export class UserLocalRepository implements UserLocalRepositoryInterface {
 	async getLocalUserData() {
 		try {
 			const storagedDataJSON = await AsyncStorage.getItem(localStorageKeys.USER_REPOSITORY_KEY)
-			const storagedData = storagedDataJSON ? JSON.parse(storagedDataJSON) : {}
+			const storagedData = storagedDataJSON ? JSONMethods.convertFromJson(storagedDataJSON) : null
 			return storagedData as UserEntity
 		} catch (error) {
 			console.log(error)
@@ -22,7 +23,7 @@ export class UserLocalRepository implements UserLocalRepositoryInterface {
 	async getUserPreferences() {
 		try {
 			const storagedDataJSON = await AsyncStorage.getItem(localStorageKeys.USER_PREFERENCES_REPOSITORY_KEY)
-			const storagedData = storagedDataJSON ? JSON.parse(storagedDataJSON) : {}
+			const storagedData = storagedDataJSON ? JSONMethods.convertFromJson(storagedDataJSON) : {}
 			return storagedData as UserPreferences
 		} catch (error) {
 			console.log(error)
@@ -39,7 +40,7 @@ export class UserLocalRepository implements UserLocalRepositoryInterface {
 				mergedData = await new UserLocalRepository().getLocalUserData()
 			}
 
-			const userDataJSON = JSON.stringify({ ...mergedData, ...userData })
+			const userDataJSON = JSONMethods.convertToJson({ ...mergedData, ...userData })
 
 			await AsyncStorage.setItem(localStorageKeys.USER_REPOSITORY_KEY, userDataJSON)
 		} catch (error) {
@@ -55,7 +56,7 @@ export class UserLocalRepository implements UserLocalRepositoryInterface {
 			const storedPreferences = await new UserLocalRepository().getUserPreferences()
 			console.log(storedPreferences)
 
-			const userPreferencesJSON = JSON.stringify({
+			const userPreferencesJSON = JSONMethods.convertToJson({
 				...storedPreferences,
 				...userPreferences
 			})

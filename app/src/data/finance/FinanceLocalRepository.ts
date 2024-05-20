@@ -3,27 +3,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { FinanceLocalRepositoryInterface } from '@domain/finance/provider'
 
 import { localStorageKeys } from '@data/keys/localStorageKeys'
+import { JSONMethods } from '@data/shared/JSONMethods'
 
 export class FinanceLocalRepository implements FinanceLocalRepositoryInterface {
-	private convertToJson(object: object | []) {
-		return JSON.stringify(object)
-	}
-
-	private convertFromJson(json: string) {
-		return JSON.parse(json)
-	}
-
 	async updateLocalCategories(category: string[], overwrite?: boolean): Promise<void> {
 		try {
 			if (overwrite) {
-				const JsonData = this.convertToJson([...category])
+				const JsonData = JSONMethods.convertToJson([...category])
 				await AsyncStorage.setItem(localStorageKeys.CATEGORIES_REPOSITORY_KEY, JsonData)
 				return
 			}
 
 			const storagedData = await this.getLocalCategories()
 			const allCategories = [...storagedData, ...category]
-			const allCategoriesJson = this.convertToJson(allCategories)
+			const allCategoriesJson = JSONMethods.convertToJson(allCategories)
 
 			await AsyncStorage.setItem(localStorageKeys.CATEGORIES_REPOSITORY_KEY, allCategoriesJson)
 		} catch (error) {
@@ -35,7 +28,7 @@ export class FinanceLocalRepository implements FinanceLocalRepositoryInterface {
 	async getLocalCategories(): Promise<string[]> {
 		const storagedDataJSON = await AsyncStorage.getItem(localStorageKeys.CATEGORIES_REPOSITORY_KEY)
 		return storagedDataJSON
-			? this.convertFromJson(storagedDataJSON)
+			? JSONMethods.convertFromJson(storagedDataJSON)
 			: []
 	}
 

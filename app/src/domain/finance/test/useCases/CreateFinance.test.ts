@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { financeErrors } from '@domain/constants/finance/financeErrors'
 import { FinanceEntity, FinanceEntityOptional } from '@domain/finance/model/entity/types'
-import { FinanceRemoteRepositoryInterface } from '@domain/finance/provider'
+import { FinanceLocalRepositoryInterface, FinanceRemoteRepositoryInterface } from '@domain/finance/provider'
 import { CreateFinance } from '@domain/finance/useCases/CreateFinance'
 import { UserEntity } from '@domain/user/model/entity/types'
 
@@ -26,15 +26,27 @@ const userData: UserEntity = {
 	updatedAt: new Date()
 }
 
-class RepositoryMock implements FinanceRemoteRepositoryInterface {
+class RemoteRepositoryMock implements FinanceRemoteRepositoryInterface {
 	async createFinance(data: FinanceEntityOptional): Promise<FinanceEntity> {
 		return { ...data, id: 'idDoBackend' } as FinanceEntity
 	}
 }
 
+class LocalRepositoryMock implements FinanceLocalRepositoryInterface {
+	updateLocalCategories(category: string[], overwrite?: boolean): Promise<void> {
+		throw new Error('Method not implemented.')
+	}
+	getLocalCategories(): Promise<string[]> {
+		throw new Error('Method not implemented.')
+	}
+	removeCategory(category: string): Promise<string[]> {
+		throw new Error('Method not implemented.')
+	}
+}
+
 describe('UseCase CreateFinance.ts', () => {
 	test('Deve criar uma nova finança corretamente com novo id de finança', async () => {
-		const useCase = new CreateFinance(RepositoryMock, userData)
+		const useCase = new CreateFinance(LocalRepositoryMock, RemoteRepositoryMock, userData)
 		const result = await useCase.exec(financeData)
 		expect(result).toHaveProperty('id', 'idDoBackend')
 		expect(result).toHaveProperty('type', financeData.type)
@@ -46,7 +58,7 @@ describe('UseCase CreateFinance.ts', () => {
 	})
 
 	test('Deve criar uma nova finança corretamente sem informar data de criação, atualização e proprietário', async () => {
-		const useCase = new CreateFinance(RepositoryMock, userData)
+		const useCase = new CreateFinance(LocalRepositoryMock, RemoteRepositoryMock, userData)
 		const {
 			updatedAt,
 			createdAt,
@@ -60,14 +72,14 @@ describe('UseCase CreateFinance.ts', () => {
 		expect(result.ownerId).toBe(userData.id)
 	})
 	test('Deve criar uma nova finança corretamente o proprietário do id sendo o usuário', async () => {
-		const useCase = new CreateFinance(RepositoryMock, userData)
+		const useCase = new CreateFinance(LocalRepositoryMock, RemoteRepositoryMock, userData)
 		const result = await useCase.exec(financeData)
 		expect(result).toHaveProperty('ownerId', userData.id)
 	})
 
 	test('Deve lançar erro se forem passadas propriedades erradas de finança', async () => {
 		try {
-			const useCase = new CreateFinance(RepositoryMock, userData)
+			const useCase = new CreateFinance(LocalRepositoryMock, RemoteRepositoryMock, userData)
 			const invalidData = { ...financeData, type: 'invalido' } as any
 			await useCase.exec(invalidData)
 		} catch (error) {
@@ -75,13 +87,13 @@ describe('UseCase CreateFinance.ts', () => {
 		}
 	})
 
-	// test('Deve lançar erro se forem passadas propriedades erradas de usuário', async () => {
-	// 	try {
-	// 		const invalidUser = { ...userData } // Gerar erro
-	// 		const useCase = new CreateFinance(RepositoryMock, invalidUser)
-	// 		await useCase.exec(financeData)
-	// 	} catch (error) {
-	// 		expect(error.message).toBe(financeErrors.INVALID_TYPE)
-	// 	}
-	// })
+	test('Deve lançar erro se forem passadas propriedades erradas de usuário', async () => {
+		try {
+			const invalidUser = { ...userData, id: 'invalido' }
+			const useCase = new CreateFinance(LocalRepositoryMock, RemoteRepositoryMock, invalidUser)
+			await useCase.exec(financeData)
+		} catch (error) {
+			expect(error).toBeInstanceOf(Error)
+		}
+	})
 })

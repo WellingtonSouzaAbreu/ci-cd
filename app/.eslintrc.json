@@ -190,6 +190,10 @@
 			"warn",
 			300
 		],
+		"max-classes-per-file": [
+			"warn",
+			4
+		],
 		"max-len": [
 			"warn",
 			{
