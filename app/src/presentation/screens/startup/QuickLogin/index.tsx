@@ -21,6 +21,7 @@ import { QuickLoginScreenProps } from '@routes/stacks/StartupStack/screenProps'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
+import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 import { useUserRepository } from '@data/user/useUserRepository'
 
@@ -37,7 +38,7 @@ import {
 const { firebaseAuth } = useFirebaseConfig()
 
 const { local } = useUserRepository()
-const { updateUserRepository, handleMethodWithDeviceAuthentication } = useUserDomain()
+const { handleMethodWithDeviceAuthentication } = useUserDomain()
 
 function QuickLogin({ navigation }: QuickLoginScreenProps) {
 	const theme = useTheme()
@@ -65,9 +66,8 @@ function QuickLogin({ navigation }: QuickLoginScreenProps) {
 	const performQuickSingin = async () => {
 		try {
 			setLoaderIsVisible(true)
-			const userId = firebaseAuth.currentUser.uid // REFACTOR Internalizar
-			const user = await UserUseCases.getRemoteUserData(UserRemoteRepository, userId)
-			await updateUserRepository(user, useUserRepository)
+			const userId = firebaseAuth.currentUser.uid
+			const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
 			setUserDataOnContext(user)
 			navigateToHome()
 			setLoaderIsVisible(false)
@@ -95,7 +95,7 @@ function QuickLogin({ navigation }: QuickLoginScreenProps) {
 				<FooterSection>
 					<TitlePipeContainer>
 						<Pipe />
-						<Title>{`Olá, ${storedUser.name.split(' ')[0]}!`}</Title>
+						<Title>{`Olá, ${(storedUser.name || '').split(' ')[0]}!`}</Title>
 					</TitlePipeContainer>
 					<VerticalSpacing />
 					<TouchableOpacity onPress={loginWithAnotherAccount}>

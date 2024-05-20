@@ -2,14 +2,18 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
+import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
 import { useUserDomain } from '@domain/user/useUserDomain'
+
+import { useAlertContext } from '@contexts/AlertContext'
 
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
 import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
 import { getUserPreferences } from '@data/user/localRepository/getUserPreferences'
-import { useUserRepository } from '@data/user/useUserRepository'
+import { UserLocalRepository } from '@data/user/UserLocalRespository'
+import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 
 const initialValue = {
 	userAuthData: {},
@@ -28,9 +32,9 @@ const AuthContext = createContext<AuthContextType>(initialValue)
 
 const { firebaseAuth } = useFirebaseConfig()
 
-const { updateUserRepository } = useUserDomain()
-
 function AuthProvider({ children }: AuthProviderProps) {
+	const { showContextModal } = useAlertContext()
+
 	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
 	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
 	const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUserDate>()
@@ -55,12 +59,17 @@ function AuthProvider({ children }: AuthProviderProps) {
 		return unsubscribe
 	}, [])
 
-	const performQuickSingin = async () => {
-		const createdUser = firebaseAuth.currentUser.uid
-		const user = { id: createdUser, name: 'Wellington Souza', } // REFACTOR  Implementar chamada de usuário
-		await updateUserRepository(user, useUserRepository)
-		setUserDataOnContext(user)
-		navigateToHome()
+	const performQuickSingin = async () => { // Quick signin virar um caso de uso
+		try {
+			const userId = firebaseAuth.currentUser.uid
+			const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
+			setUserDataOnContext(user)
+			navigateToHome()
+		} catch (error) {
+			console.log(error)
+			showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
+			navigateToAuthScreen()
+		}
 	}
 
 	const setUserRegisterDataOnContext = (data: UserRegisterData) => {

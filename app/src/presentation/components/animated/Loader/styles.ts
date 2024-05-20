@@ -3,11 +3,11 @@ import styled from 'styled-components/native'
 import { relativeScreenDensity } from '@presentation/common/screenDimensions'
 
 interface ContainerProps {
-    flex?: boolean
+	flex?: boolean
 }
 
 interface AnimationContainerProps {
-    animationScale?: number
+	animationScale?: number
 }
 
 export const Container = styled.View<ContainerProps>`
@@ -19,4 +19,6 @@ export const Container = styled.View<ContainerProps>`
 export const AnimationContainer = styled.View<AnimationContainerProps>`
     width: ${({ animationScale }) => relativeScreenDensity(animationScale)}px;
     height: ${({ animationScale }) => relativeScreenDensity(animationScale)}px;
+	align-items: center;
+    justify-content: center;
 `

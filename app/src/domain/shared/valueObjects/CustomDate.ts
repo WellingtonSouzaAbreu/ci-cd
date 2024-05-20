@@ -1,24 +1,26 @@
 import { sharedErrors } from '@domain/constants/common/errorMessages'
 
+interface DateFirestore { nanoseconds: number, seconds: number }
+
 export class CustomDate {
 	readonly value: Date
 
-	constructor(value: Date | string, canByNull?: boolean) {
+	constructor(value: Date | string | DateFirestore, canByNull?: boolean) {
 		if (canByNull) return
 
 		if (!value) throw new Error(sharedErrors.UNDEFINED_DATA)
 		if (
 			!(value instanceof Date)
 			&& !(this.isValidDateString(value as any))
-			// && (typeof value === 'object' && Object.keys(value).includes('seconds'))
+			&& !(typeof value === 'object' && Object.keys(value).includes('seconds'))
 		) throw new Error('A data está em um formato inválido!')
 
-		const convertedDate = this.convertToDateObject(value)
+		const convertedDate = this.convertToDateObject(value as string)
 
 		this.value = convertedDate as Date
 	}
 
-	private convertToDateObject(value: Date | string) {
+	private convertToDateObject(value: Date | string | DateFirestore) {
 		let dateValue = value
 
 		if (value instanceof Date) {
@@ -27,6 +29,10 @@ export class CustomDate {
 
 		if (typeof value === 'string') {
 			dateValue = new Date(value)
+		}
+
+		if (typeof value === 'object' && Object.keys(value).includes('seconds')) {
+			dateValue = new Date((value as DateFirestore).seconds * 1000)
 		}
 
 		return dateValue

@@ -7,6 +7,15 @@ describe('Value Object CustomDate.ts', () => {
 		expect(customDate.value).toBe(dateObject)
 	})
 
+	test('Deve criar uma data corretamente a partir do formato seconds e nanoseconds (firebase timestamp)', () => {
+		const dateObject = { nanoseconds: 692000000, seconds: 1714594258 } // 2024-05-19
+		const customDate = new CustomDate(dateObject)
+		console.log(customDate.value)
+		expect(customDate.value.getDay()).toBe(3)
+		expect(customDate.value.getMonth()).toBe(4)
+		expect(customDate.value.getFullYear()).toBe(2024)
+	})
+
 	test('Deve criar uma CustomDate a partir de uma data válida passada como string', () => {
 		const dateString = '2024-05-01'
 		const customDate = new CustomDate(dateString)
