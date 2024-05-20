@@ -8,7 +8,7 @@ import { UserLocalRepositoryInterface } from '../provider/UserLocalRepositoryInt
 export type Input = undefined
 type Output = Promise<UserEntity | null>
 
-export class GetLocalUserData implements UseCase<Input, Output> { // TODO Sem testes
+export class GetLocalUserData implements UseCase<Input, Output> {
 	private localRepository: UserLocalRepositoryInterface
 
 	constructor(UserLocalRepository: Class<UserLocalRepositoryInterface>) {
