@@ -4,7 +4,7 @@ import { Validator } from '@domain/shared/utils/Validator'
 export class StrongPassword {
 	readonly value: string = ''
 	constructor(password = '') {
-		this.value = password.trim() // TODO Não permitir que o nome esteja na senha
+		this.value = password.trim()
 
 		const errors = Validator.stackErros(
 			Validator.notEmpty(this.value, userErrors.EMPTY_PASSWORD),

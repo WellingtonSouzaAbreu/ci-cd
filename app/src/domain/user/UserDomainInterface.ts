@@ -5,14 +5,12 @@ import { UserRegisterData } from '@contexts/AuthContext/types'
 
 import { AuthenticationServiceInterface } from '@services/authentication/AuthenticationServiceInterface'
 
-import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
-
 interface UserDomainInterface {
-	hasValidLocalUser: (useUserRepository: () => UserRepositoryInterface) => Promise<boolean>
+	hasValidLocalUser: () => Promise<boolean>
 
 	performSignup: (userRegistrationData: UserRegisterData) => Promise<UserEntity>
-	performSignin: (email: string, password: string, useAuthenticationService: () => AuthenticationServiceInterface, useUserRepository: () => UserRepositoryInterface) => Promise<UserEntity>
-	updateUserRepository: (user: UserEntity, useUserRepository: () => UserRepositoryInterface) => Promise<void>
+	performSignin: (email: string, password: string, useAuthenticationService: () => AuthenticationServiceInterface) => Promise<UserEntity>
+	updateUserRepository: (userData: UserEntity) => Promise<void>
 
 	handleMethodWithDeviceAuthentication: (useAuthenticationService: () => AuthenticationServiceInterface, secureMethod: UnknowFunction) => Promise<boolean>
 }

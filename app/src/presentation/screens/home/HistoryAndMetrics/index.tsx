@@ -5,9 +5,11 @@ import { PrimaryButton } from '@components/buttons/PrimaryButton'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { firebaseAuthentication } from '@config/firebase/config'
 
+import { UserUseCases } from '@domain/user/adapter/UserUseCases'
+
 import { useAuthContext } from '@contexts/AuthContext'
 
-import { updateUserPreferences } from '@data/user/localRepository/updateUserPreferences' // REFACTOR Não deve estar aqui
+import { UserLocalRepository } from '@data/user/UserLocalRespository'
 
 import { Body, ButtonPadding, Header, HorizontalHeaderScroll, SelectPeriodButtonContainer, Title } from './styles'
 import { relativeScreenDensity } from '@presentation/common/screenDimensions'
@@ -17,8 +19,8 @@ function HistoryAndMetrics() {
 
 	const theme = useTheme()
 
-	const logout = () => { // Chamar
-		updateUserPreferences({ requestDevicePasswordOnAuth: false })
+	const logout = async () => { // Chamar
+		await UserUseCases.updateUserPreferences(UserLocalRepository, { requestDevicePasswordOnAuth: false })
 		firebaseAuthentication.signOut()
 	}
 

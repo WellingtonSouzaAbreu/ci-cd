@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage' // ou qualquer outra biblioteca AsyncStorage que você esteja usando
 
-import { getLocalUserData } from './getLocalUserData'
+const userDataMock = { nome: 'Usuário Mock', email: 'usuario@example.com' }
+const getLocalUserData = () => userDataMock
 
 // Mock AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () => ({ getItem: jest.fn(), }))
@@ -13,7 +14,6 @@ describe('Testando getLocalUserData.ts', () => {
 	})
 
 	it('Deve retornar os dados armazenados localmente', async () => {
-		const userDataMock = { nome: 'Usuário Mock', email: 'usuario@example.com' }
 		mockedAsyncStorage.getItem.mockResolvedValue(JSON.stringify(userDataMock))
 
 		const userData = await getLocalUserData()

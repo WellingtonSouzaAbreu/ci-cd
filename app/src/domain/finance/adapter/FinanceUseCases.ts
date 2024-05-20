@@ -32,10 +32,11 @@ export class FinanceUseCases {
 	}
 
 	static createFinance(
+		FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>,
 		FinanceRemoteRepository: Class<FinanceRemoteRepositoryInterface>,
 		currentUser: UserEntity,
 		financeData: FinanceEntityOptional
 	) {
-		return new CreateFinance(FinanceRemoteRepository, currentUser).exec(financeData)
+		return new CreateFinance(FinanceLocalRepository, FinanceRemoteRepository, currentUser).exec(financeData)
 	}
 }

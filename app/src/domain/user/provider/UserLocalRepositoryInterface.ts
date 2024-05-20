@@ -1,5 +1,8 @@
-import { UserEntity } from '../model/entity/types'
+import { UserEntity, UserPreferences } from '../model/entity/types'
 
 export interface UserLocalRepositoryInterface {
-	updateLocalUser(userData: UserEntity): Promise<boolean>
+	getLocalUserData(): Promise<UserEntity>,
+	getUserPreferences(): Promise<UserPreferences>
+	updateLocalUser(userData: UserEntity, mergeStoragedData?: boolean): Promise<void>
+	updateUserPreferences(userPreferences: UserPreferences): Promise<void>
 }

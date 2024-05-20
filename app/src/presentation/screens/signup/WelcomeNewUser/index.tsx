@@ -16,8 +16,6 @@ import { useAlertContext } from '@contexts/AlertContext'
 import { useAuthContext } from '@contexts/AuthContext'
 import { useLoaderContext } from '@contexts/LoaderContext'
 
-import { useUserRepository } from '@data/user/useUserRepository'
-
 import { CarouselContext, CarouselItemText, Content } from './styles'
 import { relativeScreenDensity, relativeScreenHeight } from '@presentation/common/screenDimensions'
 
@@ -44,7 +42,7 @@ function WelcomeNewUser() {
 			setLoaderIsVisible(true)
 
 			const createdUser = await performSignup(userRegistrationData)
-			await updateUserRepository(createdUser, useUserRepository)
+			await updateUserRepository(createdUser) // Realizar update dentro do signup
 			setUserDataOnContext(createdUser)
 			setLoaderIsVisible(false)
 		} catch (error) {

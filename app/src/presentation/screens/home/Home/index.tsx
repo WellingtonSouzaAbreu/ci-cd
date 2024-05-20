@@ -3,11 +3,10 @@ import { Text, TouchableOpacity } from 'react-native'
 
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 
+import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserPreferences } from '@domain/user/model/entity/types'
 
-import { useUserRepository } from '@data/user/useUserRepository'
-
-const { local } = useUserRepository()
+import { UserLocalRepository } from '@data/user/UserLocalRespository'
 
 function Home() {
 	const [userPreferences, setUserPreferences] = useState<UserPreferences>({})
@@ -17,12 +16,12 @@ function Home() {
 	}, [])
 
 	const loadUserPreferences = async () => {
-		const preferences = await local.getUserPreferences() // REFACTOR Deve chamar caso de uso
+		const preferences = await UserUseCases.getUserPreferences(UserLocalRepository)
 		setUserPreferences(preferences)
 	}
 
 	const toggleDeviceAuth = async () => {
-		await local.updateUserPreferences({ requestDevicePasswordOnAuth: !userPreferences.requestDevicePasswordOnAuth }) // REFACTOR Deve chamar caso de uso
+		await UserUseCases.updateUserPreferences(UserLocalRepository, { requestDevicePasswordOnAuth: !userPreferences.requestDevicePasswordOnAuth })
 		loadUserPreferences()
 	}
 

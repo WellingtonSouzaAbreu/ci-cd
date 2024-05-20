@@ -15,12 +15,12 @@ import { useLoaderContext } from '@contexts/LoaderContext'
 
 import { FinanceSummaryScreenProps } from '@routes/stacks/FinanceRegisterStack/screenProps'
 
+import { FinanceLocalRepository } from '@data/finance/FinanceLocalRepository'
 import { FinanceRemoteRepository } from '@data/finance/FinanceRemoteRepository'
 
 import { FinanceCategory, FinanceCategoryCard, ReminderText, SummaryHeader } from './styles'
 
 const { translateFinanceType } = useUiFinanceUtils()
-const { generateFinanceForecast, createFinance } = FinanceUseCases
 
 function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 	const { authenticatedUser } = useAuthContext()
@@ -33,7 +33,8 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 	const saveFinance = async () => {
 		try {
 			setLoaderIsVisible(true)
-			await createFinance(
+			await FinanceUseCases.createFinance(
+				FinanceLocalRepository,
 				FinanceRemoteRepository,
 				authenticatedUser,
 				financeRegisterData
@@ -52,7 +53,7 @@ function FinanceSummary({ navigation }: FinanceSummaryScreenProps) {
 
 	const generateFinanceRegisters = () => {
 		try {
-			return generateFinanceForecast({
+			return FinanceUseCases.generateFinanceForecast({
 				date: financeRegisterData.date,
 				value: financeRegisterData.value,
 				numberOfInstallments: financeRegisterData.numberOfInstallments

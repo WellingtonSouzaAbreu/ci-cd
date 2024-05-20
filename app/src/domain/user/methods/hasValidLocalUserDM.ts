@@ -1,10 +1,9 @@
-import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
+import { UserLocalRepository } from '@data/user/UserLocalRespository'
 
-async function hasValidLocalUserDM(useUserRepository: () => UserRepositoryInterface) {
-	const { local } = useUserRepository()
-	const storagedUserData = await local.getLocalUserData()
-
+async function hasValidLocalUserDM() {
 	try {
+		const localRepository = new UserLocalRepository()
+		const storagedUserData = await localRepository.getLocalUserData()
 		return !!(storagedUserData && storagedUserData.id)
 	} catch (error) {
 		console.log(error)

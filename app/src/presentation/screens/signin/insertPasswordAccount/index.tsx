@@ -16,8 +16,6 @@ import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
 import { useAuthenticationService } from '@services/authentication/useAuthenticationService'
 
-import { useUserRepository } from '@data/user/useUserRepository'
-
 const { updateUserRepository, performSignin } = useUserDomain()
 
 function InsertPasswordAccount() {
@@ -39,8 +37,8 @@ function InsertPasswordAccount() {
 			// a validação será realizada inernamente
 			const validPassword = new UserModel.WeakPassword(password).value
 
-			const userData = await performSignin(userAuthData.email, validPassword, useAuthenticationService, useUserRepository)
-			await updateUserRepository(userData, useUserRepository)
+			const userData = await performSignin(userAuthData.email, validPassword, useAuthenticationService)
+			await updateUserRepository(userData) // Realizar update dentro do signin
 			setUserDataOnContext(userData)
 
 			setLoaderIsVisible(false)

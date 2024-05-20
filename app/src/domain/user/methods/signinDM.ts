@@ -1,7 +1,6 @@
 import { AuthenticationServiceInterface } from '@services/authentication/AuthenticationServiceInterface'
 
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
-import { UserRepositoryInterface } from '@data/user/UserRepositoryInterface'
 
 import { UserUseCases } from '../adapter/UserUseCases'
 
@@ -9,7 +8,6 @@ async function signinDM(
 	email: string,
 	password: string,
 	useAuthenticationService: () => AuthenticationServiceInterface,
-	useUserRepository: () => UserRepositoryInterface
 ) {
 	const { signinByEmailPassword } = useAuthenticationService()
 

@@ -11,7 +11,6 @@ import { useAlertContext } from '@contexts/AlertContext'
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
 import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
-import { getUserPreferences } from '@data/user/localRepository/getUserPreferences'
 import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 
@@ -32,6 +31,8 @@ const AuthContext = createContext<AuthContextType>(initialValue)
 
 const { firebaseAuth } = useFirebaseConfig()
 
+const { hasValidLocalUser } = useUserDomain()
+
 function AuthProvider({ children }: AuthProviderProps) {
 	const { showContextModal } = useAlertContext()
 
@@ -45,9 +46,9 @@ function AuthProvider({ children }: AuthProviderProps) {
 		console.log('Sessão inciada!')
 		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
 			console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
-			if (user) {
-				const { requestDevicePasswordOnAuth } = await getUserPreferences() // REFACTOR Chamaar domain
-				console.log(requestDevicePasswordOnAuth)
+			if (user && await hasValidLocalUser()) {
+				const { requestDevicePasswordOnAuth } = await UserUseCases.getUserPreferences(UserLocalRepository)
+				console.log('requestDevicePasswordOnAuth =>', requestDevicePasswordOnAuth)
 
 				return requestDevicePasswordOnAuth
 					? navigateToQuickLogin()

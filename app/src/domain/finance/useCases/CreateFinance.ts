@@ -5,21 +5,25 @@ import { User } from '@domain/user/model/entity/User'
 
 import { FinanceEntity, FinanceEntityOptional } from '../model/entity/types'
 
-import { FinanceRemoteRepository } from '@data/finance/FinanceRemoteRepository'
-
 import { Finance } from '../model/entity/Finance'
-import { FinanceRemoteRepositoryInterface } from '../provider'
+import { FinanceLocalRepositoryInterface, FinanceRemoteRepositoryInterface } from '../provider'
 
 type Input = FinanceEntityOptional
 
 type Output = Promise<FinanceEntity>
 
 export class CreateFinance implements UseCase<Input, Output> {
+	private localRepository: FinanceLocalRepositoryInterface
 	private remoteRepository: FinanceRemoteRepositoryInterface
 	private currentUser: User
 
-	constructor(FinanceLocalRepository: Class<FinanceRemoteRepository>, currentUser: UserEntity) {
-		this.remoteRepository = new FinanceLocalRepository()
+	constructor(
+		FinanceLocalRepository: Class<FinanceLocalRepositoryInterface>,
+		FinanceRemoteRepository: Class<FinanceRemoteRepositoryInterface>,
+		currentUser: UserEntity
+	) {
+		this.localRepository = new FinanceLocalRepository()
+		this.remoteRepository = new FinanceRemoteRepository()
 		this.currentUser = new User(currentUser)
 	}
 
@@ -33,6 +37,7 @@ export class CreateFinance implements UseCase<Input, Output> {
 
 		const { data } = new Finance(financeRegisterData, true)
 		const savedFinance = await this.remoteRepository.createFinance(data)
+		// await this.localRepository.(data) // TODO Salvar no repositorio local com merge
 		return savedFinance
 	}
 }

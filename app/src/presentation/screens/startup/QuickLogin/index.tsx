@@ -23,7 +23,6 @@ import { useAuthenticationService } from '@services/authentication/useAuthentica
 
 import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
-import { useUserRepository } from '@data/user/useUserRepository'
 
 import {
 	Content,
@@ -37,7 +36,6 @@ import {
 
 const { firebaseAuth } = useFirebaseConfig()
 
-const { local } = useUserRepository()
 const { handleMethodWithDeviceAuthentication } = useUserDomain()
 
 function QuickLogin({ navigation }: QuickLoginScreenProps) {
@@ -55,8 +53,12 @@ function QuickLogin({ navigation }: QuickLoginScreenProps) {
 	}, [])
 
 	const loadUserData = async () => {
-		const user = await local.getLocalUserData()
-		setStoredUser(user)
+		try {
+			const user = await UserUseCases.getLocalUserData(UserLocalRepository)
+			setStoredUser(user)
+		} catch (error) {
+			showContextModal('', error.message)
+		}
 	}
 
 	const callAuthenticatedMethod = async () => {
