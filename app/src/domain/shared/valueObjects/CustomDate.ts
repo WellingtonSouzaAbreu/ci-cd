@@ -7,7 +7,11 @@ export class CustomDate {
 		if (canByNull) return
 
 		if (!value) throw new Error(sharedErrors.UNDEFINED_DATA)
-		if (!(value instanceof Date) && !(this.isValidDateString(value))) throw new Error('A data está em um formato inválido!')
+		if (
+			!(value instanceof Date)
+			&& !(this.isValidDateString(value as any))
+			// && (typeof value === 'object' && Object.keys(value).includes('seconds'))
+		) throw new Error('A data está em um formato inválido!')
 
 		const convertedDate = this.convertToDateObject(value)
 

@@ -16,7 +16,6 @@ export class SimpleText {
 		this.min = min
 		this.max = max
 
-		// REFACTOR Adicionar validator
 		const errors = Validator.stackErros(
 			Validator.notEmpty(this.value, sharedErrors.EMPTY_TEXT),
 			Validator.sizeSmallerThan(this.value, this.min, sharedErrors.SHOR_TEXT),

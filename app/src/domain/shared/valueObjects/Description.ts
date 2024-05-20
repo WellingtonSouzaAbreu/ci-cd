@@ -1,3 +1,5 @@
+import { Validator } from '../utils/Validator'
+
 export class Description {
 	readonly value: string
 	private readonly min: number
@@ -12,8 +14,11 @@ export class Description {
 		this.min = min
 		this.max = max
 
-		// REFACTOR Adicionar validator
-		if (this.value.length < min) throw new Error(`A descrição deve ter no mínimo ${min} caracteres!`)
-		if (this.value.length > max) throw new Error(`A descrição deve ter no máximo ${max} caracteres!`)
+		const errors = Validator.stackErros(
+			Validator.sizeSmallerThan(this.value, min, `A descrição deve ter no mínimo ${min} caracteres!`),
+			Validator.sizeBigThan(this.value, max, `A descrição deve ter no máximo ${max} caracteres!`)
+		)
+
+		if (errors) throw new Error(errors.join(', '))
 	}
 }

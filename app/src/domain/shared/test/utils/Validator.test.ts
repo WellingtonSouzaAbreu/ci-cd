@@ -72,6 +72,19 @@ describe('Teste de Validator.ts', () => {
 		const error = Validator.sizeBigThan('Bom dia', 10, errorMessage)
 		expect(error).toBeNull()
 	})
+
+	test('Deve retornar erro com número menor que 10', () => {
+		const errorMessage = 'Valor numérico muito pequeno'
+		const error = Validator.numberSmallerThan(5, 10, errorMessage)
+		expect(error).toBe(errorMessage)
+	})
+
+	test('Deve retornar erro com número com valor null', () => {
+		const errorMessage = 'Valor numérico muito pequeno'
+		const error = Validator.numberSmallerThan(null, 10, errorMessage)
+		expect(error).toBe(errorMessage)
+	})
+
 	test('Deve retornar null com texto igual a 10', () => {
 		const error1 = Validator.sizeBigThan('Wellington', 10, '')
 		const error2 = Validator.sizeSmallerThan('Wellington', 10, '')
@@ -82,7 +95,18 @@ describe('Teste de Validator.ts', () => {
 	test('Deve retornar mensagem de erro com texto maior que 10', () => {
 		const errorMessage = 'Texto muito grande'
 		const error = Validator.sizeBigThan('Bom dia Bom dia', 10, errorMessage)
+		expect(error).toBe(errorMessage)
+	})
 
+	test('Deve retornar mensagem de erro com número maior que 10', () => {
+		const errorMessage = 'Valor numérico muito grande'
+		const error = Validator.numberBigThan(11, 10, errorMessage)
+		expect(error).toBe(errorMessage)
+	})
+
+	test('Deve retornar mensagem de erro com número igual a null', () => {
+		const errorMessage = 'Valor numérico muito grande'
+		const error = Validator.numberBigThan(null, 10, errorMessage)
 		expect(error).toBe(errorMessage)
 	})
 
@@ -147,5 +171,35 @@ describe('Teste de Validator.ts', () => {
 		const error = Validator.regex(null as any, /ue/, errorMessage)
 
 		expect(error).toBe(errorMessage)
+	})
+
+	test('Deve retornar true quando for passado os valores e tipagens corretas', () => {
+		const values = ['string', 43, {}, [], new Date()]
+		const errorMessage = 'Tipo inválido'
+
+		const stringRes = Validator.isTypeOf(values[0], 'string', errorMessage)
+		const numberRes = Validator.isTypeOf(values[1], 'number', errorMessage)
+		const objectRes = Validator.isTypeOf(values[2], 'object', errorMessage)
+		const arrayRes = Validator.isTypeOf(values[3], 'object', errorMessage)
+
+		expect(stringRes).toBe(true)
+		expect(numberRes).toBe(true)
+		expect(objectRes).toBe(true)
+		expect(arrayRes).toBe(true)
+	})
+
+	test('Deve retornar mensagem de rro quando for passado os valores e tipagens incorretas', () => {
+		const values = ['string', 43, {}, [], new Date()]
+		const errorMessage = 'Tipo inválido'
+
+		const stringRes = Validator.isTypeOf(values[0], 'number', errorMessage)
+		const numberRes = Validator.isTypeOf(values[1], 'object', errorMessage)
+		const objectRes = Validator.isTypeOf(values[2], 'string', errorMessage)
+		const arrayRes = Validator.isTypeOf(values[3], 'string', errorMessage)
+
+		expect(stringRes).toBe(errorMessage)
+		expect(numberRes).toBe(errorMessage)
+		expect(objectRes).toBe(errorMessage)
+		expect(arrayRes).toBe(errorMessage)
 	})
 })

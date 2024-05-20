@@ -1,3 +1,5 @@
+import { Validator } from '@domain/shared/utils/Validator'
+
 export class Installments {
 	readonly value: number
 	readonly min: number
@@ -11,8 +13,12 @@ export class Installments {
 		const numericValue = this.convertStringToNumber(value)
 
 		if (typeof numericValue !== 'number' || Number.isNaN(numericValue)) throw new Error('Formato de valor inválido!')
-		if (numericValue < min) throw new Error(`Deve haver no mínimo ${min} parcela!`)
-		if (numericValue > max) throw new Error(`Deve haver no máximo ${max} parcelas!`) // REFACTOR Utilizar Validator
+		const errors = Validator.stackErros(
+			Validator.numberSmallerThan(numericValue, min, `Deve haver no mínimo ${min} parcela!`),
+			Validator.numberBigThan(numericValue, max, `Deve haver no máximo ${max} parcelas!`),
+		)
+
+		if (errors) throw new Error(errors.join(', '))
 
 		this.value = numericValue
 		this.min = min
