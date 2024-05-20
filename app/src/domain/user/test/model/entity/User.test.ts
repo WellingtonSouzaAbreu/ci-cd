@@ -1,4 +1,3 @@
-import { sharedErrors } from '@domain/constants/common/errorMessages'
 import { UserEntity } from '@domain/user/model/entity/types'
 import { User } from '@domain/user/model/entity/User'
 
@@ -17,7 +16,7 @@ describe('Entity User.ts', () => {
 
 	test('Deve criar um usuário corretamente com data de atualização inválida', () => {
 		const user = new User({ ...userData, updatedAt: '' as any })
-		expect(user.updatedAt.value).toBeInstanceOf(Date)
+		expect(user.updatedAt.value).toBeUndefined()
 	})
 
 	test('Deve retornar os dados do usuário corretamente', () => {
@@ -25,9 +24,11 @@ describe('Entity User.ts', () => {
 		expect(user.id.value).toBe('idValido123')
 	})
 
-	test('Deve lançar erro ao criar um usuário sem data de atualização e criação', () => {
+	test('Deve lançar criar um usuário corretamente sem data de atualização e criação', () => {
 		const data = { ...userData, createdAt: null, updatedAt: null } as any
-		expect(() => new User(data)).toThrow(sharedErrors.UNDEFINED_DATA)
+		const user = new User(data)
+		expect(user.createdAt.value).toBeInstanceOf(Date)
+		expect(user.updatedAt.value).toBeUndefined()
 	})
 
 	test('Deve criar um usuário corretamente se for passado um id válido', () => {

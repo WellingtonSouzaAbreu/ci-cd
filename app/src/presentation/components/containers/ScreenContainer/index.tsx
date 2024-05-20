@@ -1,6 +1,5 @@
 import React from 'react'
 import { StatusBar, ViewStyle } from 'react-native'
-import { useTheme } from 'styled-components'
 
 import { Container, SafeAreaViewContainer } from './styles'
 
@@ -14,8 +13,6 @@ interface ScreenContainerProps {
 }
 
 function ScreenContainer({ ...props }: ScreenContainerProps) {
-	const theme = useTheme()
-
 	return (
 		<>
 			<SafeAreaViewContainer safeAreaColor={props.topSafeAreaColor} withoutFlex />

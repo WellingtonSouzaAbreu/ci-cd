@@ -16,7 +16,7 @@ export class User extends Entity<User, UsertEntityOptional> {
 
 		this.name = new UserName(props.name)
 		this.email = new Email(props.email)
-		this.createdAt = new CustomDate(props.createdAt, true)
+		this.createdAt = new CustomDate(props.createdAt || new Date())
 		this.updatedAt = new CustomDate(props.createdAt, true)
 	}
 
