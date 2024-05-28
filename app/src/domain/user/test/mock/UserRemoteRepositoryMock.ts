@@ -6,6 +6,6 @@ export const userRemoteRepositoryMockMethods: UserRemoteRepositoryInterface = {
 	updateRemoteUser: jest.fn()
 }
 
-export function mockUserRemoteRepoMethod(AAA: jest.MockedClass<any>, method: object) {
-	AAA.mockImplementation(() => ({ ...userRemoteRepositoryMockMethods, ...method }))
+export function mockUserRemoteRepoMethod(MockedClass: jest.MockedClass<any>, method: object) {
+	MockedClass.mockImplementation(() => ({ ...userRemoteRepositoryMockMethods, ...method }))
 }

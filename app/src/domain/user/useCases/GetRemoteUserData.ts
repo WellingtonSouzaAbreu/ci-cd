@@ -9,7 +9,7 @@ import { UserRemoteRepositoryInterface } from '../provider/UserRemoteRepositoryI
 export type Input = string
 type Output = Promise<UserEntity | null>
 
-export class GetRemoteUserData implements UseCase<Input, Output> { // TODO Sem testes
+export class GetRemoteUserData implements UseCase<Input, Output> {
 	private remoteRepository: UserRemoteRepositoryInterface
 
 	constructor(UserRemoteRepository: Class<UserRemoteRepositoryInterface>) {

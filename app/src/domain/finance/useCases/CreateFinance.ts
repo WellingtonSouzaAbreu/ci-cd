@@ -37,7 +37,7 @@ export class CreateFinance implements UseCase<Input, Output> {
 
 		const { data } = new Finance(financeRegisterData, true)
 		const savedFinance = await this.remoteRepository.createFinance(data)
-		// await this.localRepository.(data) // TODO Salvar no repositorio local com merge
+		// await this.localRepository.(data) // TODO Salvar no repositorio local com merge?
 		return savedFinance
 	}
 }

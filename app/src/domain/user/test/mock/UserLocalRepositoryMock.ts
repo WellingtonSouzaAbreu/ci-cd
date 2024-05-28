@@ -7,6 +7,6 @@ export const userLocalRepositoryMockMethods: UserLocalRepositoryInterface = {
 	updateUserPreferences: jest.fn()
 }
 
-export function mockUserLocalRepoMethod(AAA: jest.MockedClass<any>, method: object) {
-	AAA.mockImplementation(() => ({ ...userLocalRepositoryMockMethods, ...method }))
+export function mockUserLocalRepoMethod(MockedClass: jest.MockedClass<any>, method: object) {
+	MockedClass.mockImplementation(() => ({ ...userLocalRepositoryMockMethods, ...method }))
 }
