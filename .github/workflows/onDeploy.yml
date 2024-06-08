@@ -30,8 +30,8 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
 
-      - name: Install npm dependencies
-        run: npm install
+      # - name: Install npm dependencies
+      #   run: npm install
 
       # - name: Run lint
       #   run: npm run format
@@ -46,8 +46,14 @@ jobs:
       #     expo-version: latest
       #     token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: show config.json
-        run: echo "hei boy"
+      - name: Extract expo.version
+        id: extract_version
+        run: |
+          VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Show app version
+        run: echo "$VERSION"
       
       # - name: Create preview
       #   run: |
