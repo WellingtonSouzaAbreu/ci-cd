@@ -76,7 +76,6 @@ jobs:
         env:
           EXPO_TEST_GITHUB_PULL: 206
         with:
-          working-directory: ./temp
           command: eas update --branch test --message "This is a test"
           comment-id: 'projectId:{projectId} single-qr'
 
