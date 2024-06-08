@@ -39,10 +39,11 @@ jobs:
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
+          expo-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Create preview
-        run: eas update --auto --branch development --message "${{ github.event.pull_request.head_ref }} <= ${{ github.event.pull_request.base_ref }}"
+        run: eas update --auto --branch development --message ${{ github.event.pull_request.head_ref }} <= ${{ github.event.pull_request.base_ref }}
 
       # - name: Create preview
       #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
