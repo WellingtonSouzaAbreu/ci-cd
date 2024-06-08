@@ -42,21 +42,6 @@ jobs:
       # - name: Create preview
       #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
 
-      - name: 👷 Configure project
-        run: |
-          eas init --id 90191256-79b6-4c42-9ae7-057ec3857e63 --force --non-interactive
-          echo $(jq '.expo.runtimeVersion.policy = "sdkVersion"' app.json) > app.json
-          echo $(jq '.expo.scheme = ["expogithubaction", "ega"]' app.json) > app.json
-      - name: 🚀 Create preview (without comment)
-        if: ${{ env.hasAuth == 'true' }}
-        uses: ./preview
-        id: no-comment
-        env:
-          EXPO_TEST_GITHUB_PULL: 206
-        with:
-          command: eas update --branch test --message "This is a test"
-          comment: false
-
       - name: 🧪 Comment has content
         if: ${{ env.hasAuth == 'true' }}
         uses: actions/github-script@v7
