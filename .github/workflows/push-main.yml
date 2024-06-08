@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Setup repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -38,12 +40,15 @@ jobs:
       # - name: Create preview
       #   run: eas update --auto
 
-      - name: Generate QR Code
-        uses: slackapi/slack-github-action@v1.17.0
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        with:
-          channel-id: deployments
-          slack-message: "Novas funcionalidades disponíveis!/n- Preview: ${{ steps.preview.outputs.qr }}"
+      - name: Check commit patterns
+        uses: wagoid/commitlint-github-action@v6
+
+      # - name: Generate QR Code
+      #   uses: slackapi/slack-github-action@v1.17.0
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      #   with:
+      #     channel-id: deployments
+      #     slack-message: "Novas funcionalidades disponíveis!/n- Preview: ${{ steps.preview.outputs.qr }}"
 
       # jWVQVl-xK9Y6WXiiFmnSoG7FV9oGYWgvC6IRrqK9
