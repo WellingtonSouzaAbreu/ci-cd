@@ -11,7 +11,7 @@ import { LoaderProvider } from '@contexts/LoaderContext/index'
 
 import { StartupStack } from '@routes/stacks/StartupStack'
 
-import { defaultTheme } from '@presentation/common/theme'
+import { defaultTheme } from "@presentation/common/theme"
 
 export default function App() {
 	return (
