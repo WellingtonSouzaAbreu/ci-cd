@@ -1,9 +1,7 @@
-name: push-main
+name: on-push-branch
 
 on:
   push:
-    branches:
-      - '**'
     branches-ignore:
       - 'test/*'
 
