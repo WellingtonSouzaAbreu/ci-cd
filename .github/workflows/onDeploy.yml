@@ -49,7 +49,7 @@ jobs:
       - name: Extract expo.version
         id: extract_version
         run: |
-          VERSION=$(node -e "console.log(require('./app/app.config.js').expo.version)")
+          VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Show app version
