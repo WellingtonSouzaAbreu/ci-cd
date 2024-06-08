@@ -48,7 +48,7 @@ jobs:
         with:
           # const comment = `${{ steps.no-comment.outputs.comment }}`
           script: |
-            const comment = Alô galera do cownboy
+            const comment = 'Alô galera do cownboy'
             if (!comment) {
               console.log({ comment });
               throw new Error('Message output is empty');
