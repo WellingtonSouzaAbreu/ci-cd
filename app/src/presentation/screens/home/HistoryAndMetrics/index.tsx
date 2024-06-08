@@ -1,9 +1,11 @@
 import React from 'react'
+import { Alert } from 'react-native'
 import { useTheme } from 'styled-components'
 
 import { PrimaryButton } from '@components/buttons/PrimaryButton'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
 import { firebaseAuthentication } from '@config/firebase/config'
+import { env } from '@env'
 
 import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 
@@ -22,6 +24,10 @@ function HistoryAndMetrics() {
 	const logout = async () => { // Chamar
 		await UserUseCases.updateUserPreferences(UserLocalRepository, { requestDevicePasswordOnAuth: false })
 		firebaseAuthentication.signOut()
+	}
+
+	const showAlert = () => {
+		Alert.alert('env', env)
 	}
 
 	return (
@@ -61,7 +67,7 @@ function HistoryAndMetrics() {
 						labelColor={theme.green5}
 						buttonColor={theme.white1}
 						customHeight={relativeScreenDensity(40)}
-						onPress={() => console.log('consultar')}
+						onPress={showAlert}
 					/>
 				</ButtonPadding>
 			</Header>
