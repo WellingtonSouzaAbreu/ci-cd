@@ -40,8 +40,8 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Create preview
-        run: eas update --auto
+      # - name: Create preview
+      #   run: eas update --auto
 
       # - name: Generate QR Code
       #   uses: slackapi/slack-github-action@v1.17.0
