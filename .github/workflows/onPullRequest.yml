@@ -1,11 +1,6 @@
 name: Check & Generate preview
 
-on:
-  pull_request:
-    branches:
-      - dev
-      - main
-      - test/something
+on: [pull_request]
 
 jobs:
   preview:
@@ -67,9 +62,6 @@ jobs:
       # TENTAR
       # cache: yarn
       #     cache-dependency-path: app/yarn.lock
-
-# Action para gerar preview de todas os PR
-# - on: [pull_request]
 
 # Action para dev
   # on:
