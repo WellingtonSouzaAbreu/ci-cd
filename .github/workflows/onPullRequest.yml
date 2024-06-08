@@ -37,15 +37,14 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Create preview
-        run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
-
-
-
-
       # - name: Create preview
-      #   run: eas update --auto
+      #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
 
+      - name: Comment in preview
+        uses: expo/expo-github-action/preview-comment@v8
+        with:
+          channel: pr-${{ github.event.number }}
+      
       # - name: Generate QR Code
       #   uses: slackapi/slack-github-action@v1.17.0
       #   env:
