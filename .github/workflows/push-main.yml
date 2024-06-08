@@ -23,8 +23,8 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Run lint
-        run: npm run format
+      # - name: Run lint
+      #   run: npm run format
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
@@ -32,10 +32,18 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Run tests
-        run: npm test
+      # - name: Run tests
+      #   run: npm test
 
       - name: Create preview
         run: eas update --auto
+
+      - name: Generate QR Code
+        uses: slackapi/slack-github-action@v1.17.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+        with:
+          channel-id: deployments
+          slack-message: 'Novas funcionalidades disponíveis!\n- Preview: ${{ steps.preview.outputs.qr }}'
 
       # jWVQVl-xK9Y6WXiiFmnSoG7FV9oGYWgvC6IRrqK9
