@@ -3,10 +3,11 @@ name: Check & Generate preview
 on:
   pull_request:
 
-
 jobs:
   preview:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     defaults:
       run:
         working-directory: app
@@ -36,9 +37,15 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Create preview
-        run: eas update --auto
+      - name: 🚀 Create preview
+        uses: expo/expo-github-action/preview@v8
+        with:
+          # `github.event.pull_request.head.ref` is only available on `pull_request` triggers.
+          command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
 
+
+
+          
       # - name: Create preview
       #   run: eas update --auto
 
