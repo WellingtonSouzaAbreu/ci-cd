@@ -7,11 +7,11 @@ on:
 
 jobs:
   preview:
-    runs-on: ubuntu-latest
+    runs-on:
+		ubuntu-latest
 
 	defaults:
-      run:
-        working-directory: app
+      run: working-directory: app
 
     steps:
       - name: Checando código
