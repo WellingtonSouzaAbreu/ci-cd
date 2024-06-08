@@ -1,8 +1,6 @@
-module.exports = {}
-
 import { RuleConfigSeverity } from '@commitlint/types';
 
-export default {
+module.exports = {
     extends: ['@commitlint/config-conventional'],
     parserPreset: 'conventional-changelog-conventionalcommits',
     rules: {
