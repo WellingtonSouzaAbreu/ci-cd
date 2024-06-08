@@ -40,11 +40,7 @@ jobs:
       #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
 
       - name: 💬 Comment preview
-        uses: expo/expo-github-action/preview@v8
-        with:
-          project: ./app
-          command: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
-          comment-id: auto-preview
+        run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
       
       # - name: Generate QR Code
       #   uses: slackapi/slack-github-action@v1.17.0
