@@ -6,7 +6,7 @@ on:
       - 'test/*'
 
 jobs:
-  preview:
+  check:
     runs-on: ubuntu-latest
     defaults:
       run:
