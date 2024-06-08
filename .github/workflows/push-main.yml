@@ -3,7 +3,9 @@ name: push-main
 on:
   push:
     branches:
-      - main
+      - '**'
+    branches-ignore:
+      - 'test/*'
 
 jobs:
   preview:
