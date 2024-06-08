@@ -2,9 +2,6 @@ name: Check & Generate preview
 
 on: [pull_request]
 
-env:
-  hasAuth: ${{ !!secrets.EXPO_TOKEN }}
-
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -23,12 +20,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: npm
+          cache-dependency-path: app/package-lock.json
 
       - name: Install npm dependencies
         run: npm install
 
-      # - name: Run lint
-      #   run: npm run format
+      - name: Run lint
+        run: npm run format
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
@@ -36,68 +35,10 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
 
-      # - name: Create preview
-      #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
-
-      - name: 🧪 Comment has content
-        if: ${{ env.hasAuth == 'true' }}
-        uses: actions/github-script@v7
-        with:
-          # const comment = `${{ steps.no-comment.outputs.comment }}`
-          script: |
-            const comment = 'Alô galera do cownboy'
-            if (!comment) {
-              console.log({ comment });
-              throw new Error('Message output is empty');
-            }
-      - name: 🚀 Create preview (single QR)
-        if: ${{ env.hasAuth == 'true' }}
-        id: single-qr
-        uses: ./preview
-        env:
-          EXPO_TEST_GITHUB_PULL: 206
-        with:
-          command: eas update --branch test --message "This is a test"
-          comment-id: 'projectId:{projectId} single-qr'
-
-      - name: 🧪 Single QR has content
-        if: ${{ env.hasAuth == 'true' }}
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const comment = `${{ steps.single-qr.outputs.comment }}`
-            if (!comment) {
-              console.log({ comment });
-              throw new Error('Message output is empty');
-            }
-      
-      # - name: Generate QR Code
-      #   uses: slackapi/slack-github-action@v1.17.0
-      #   env:
-      #     SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
-      #   with:
-      #     channel-id: deployments
-      #     slack-message: "Novas funcionalidades disponíveis!/n- Preview: ${{ steps.preview.outputs.qr }}"
-
-      # jWVQVl-xK9Y6WXiiFmnSoG7FV9oGYWgvC6IRrqK9
-
-
-
-
-      # TENTAR
-      # cache: yarn
-      #     cache-dependency-path: app/yarn.lock
-
-# Action para dev
-  # on:
-  #   pull_request:
-  #     branches:
-  #       - dev
-
-# Por push
-# Prod
+      - name: Create preview
+        run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
 
 
