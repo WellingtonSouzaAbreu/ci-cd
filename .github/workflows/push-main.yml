@@ -46,5 +46,4 @@ jobs:
           channel-id: deployments
           slack-message: "Novas funcionalidades disponíveis!/n- Preview: ${{ steps.preview.outputs.qr }}"
 
-      # <YOUR_GithubPersonalAccessToken_HERE>
       # jWVQVl-xK9Y6WXiiFmnSoG7FV9oGYWgvC6IRrqK9
