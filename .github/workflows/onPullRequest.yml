@@ -3,7 +3,7 @@ name: Check & Generate preview
 on:
   pull_request: 
     branches-ignore:
-      - 'main'
+      - main
 
 jobs:
   preview:
@@ -48,8 +48,4 @@ jobs:
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${HEAD_REF} <= ${BASE_REF}"
           eas update --auto --branch preview --message "$MESSAGE"
-
-      # - name: Create preview
-      #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
-
 
