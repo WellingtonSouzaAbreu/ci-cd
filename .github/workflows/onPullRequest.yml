@@ -40,24 +40,12 @@ jobs:
       # - name: Create preview
       #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
 
-      - name: Comment preview
-        uses: expo/expo-github-action/preview-comment@7.2.0
+      - name: 💬 Comment preview
+        uses: expo/expo-github-action/preview@v8
         with:
-          message: |
-            <h2>App</h2>
-            <h3>Channel: pr-${{ github.event.number }}</h3>
-            <h4>Preview with Android</h4>
-            <a href="exp://u.expo.dev/update/${{ steps.update.outputs.androidUrl }}">
-              <img src="https://qr.expo.dev/eas-update?updateId=${{ steps.update.outputs.androidUrl }}&appScheme=com.finance.app" height="200px" width="200px">
-            </a>
-            <h4>Preview with iOS</h4>
-            <a href="exp://u.expo.dev/update/${{ steps.update.outputs.iosUrl }}">
-              <img src="https://qr.expo.dev/eas-update?updateId=${{ steps.update.outputs.iosUrl }}&appScheme=com.finance.app" height="200px" width="200px">
-            </a>
-            <h4>Preview with Debug App </h4>
-            <a href="exp+<YOUR_SCHEME>://expo-development-client/?url=https%3A%2F%2Fu.expo.dev%2F7b714e0a-2c36-4915-baf8-fc5ba974b842%3Fchannel-name%3Dpr-${{ github.event.number }}">
-              <img src="https://qr.expo.dev/development-client?appScheme=com.finance.app%2Bcom.finance.app&url=https://expo.dev/accounts/wellington-souza-abreu/projects/Finance/updates" height="200px" width="200px">
-            </a>
+          comment: true
+          command: eas update --auto --non-interactive
+          comment-id: auto-preview
       
       # - name: Generate QR Code
       #   uses: slackapi/slack-github-action@v1.17.0
