@@ -46,8 +46,14 @@ jobs:
       #     expo-version: latest
       #     token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: show config.json
-        run: echo "hei boy"
+      - name: Extract expo.version
+        id: extract_version
+        run: |
+          VERSION=$(node -e "console.log(require('./app/app.config.js').expo.version)")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Show app version
+        run: echo "$VERSION"
       
       # - name: Create preview
       #   run: |
