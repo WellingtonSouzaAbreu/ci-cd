@@ -2,8 +2,6 @@ name: on-push-branch
 
 on:
   push:
-    branches:
-      - '**'
     branches-ignore:
       - 'test/*'
 
