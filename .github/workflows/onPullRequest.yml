@@ -40,11 +40,10 @@ jobs:
       # - name: Create preview
       #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
 
-      - name: Comment in preview
-        uses: expo/expo-github-action/preview-comment@v8
+      - name: Comment preview
+        uses: expo/expo-github-action/preview-comment@7.2.0
         with:
-          project: ./app
-          channel: pr-${{ github.event.number }}
+          message: '<h3>Channel: pr-${{ github.event.number }}</h3><a href="exp+<YOUR_SCHEME>://expo-development-client/?url=https://expo.dev/accounts/wellington-souza-abreu/projects/Finance/updates%3Fchannel-name%3Dpr-${{ github.event.number }}"><img src="https://qr.expo.dev/development-client?appScheme=exp%2Bcom.corresocial.corresocial&url=<YOUR_EXPO_UPDATES_URL>%3Fchannel-name%3Dpr-${{ github.event.number }}" height="200px" width="200px"></a>'
       
       # - name: Generate QR Code
       #   uses: slackapi/slack-github-action@v1.17.0
