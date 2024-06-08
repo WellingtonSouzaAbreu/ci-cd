@@ -1,9 +1,8 @@
-name: on-push-branch
+name: Check & Generate preview
 
 on:
-  push:
-    branches-ignore:
-      - 'test/*'
+  pull_request:
+
 
 jobs:
   preview:
@@ -40,6 +39,9 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Create preview
+        run: eas update --auto
+
       # - name: Create preview
       #   run: eas update --auto
 
@@ -52,4 +54,3 @@ jobs:
       #     slack-message: "Novas funcionalidades disponíveis!/n- Preview: ${{ steps.preview.outputs.qr }}"
 
       # jWVQVl-xK9Y6WXiiFmnSoG7FV9oGYWgvC6IRrqK9
-      #
