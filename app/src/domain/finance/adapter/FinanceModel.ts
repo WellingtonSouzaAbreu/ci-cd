@@ -5,3 +5,5 @@ export class FinanceModel {
 	static Installments = Installments
 	static FinanceType = FinanceType
 }
+
+// Console.log( aaaa)
