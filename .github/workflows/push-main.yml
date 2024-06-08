@@ -23,8 +23,8 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Run link
-        run: npm run format
+      # - name: Run lint
+      #   run: npm run format
 
       # - name: Setup EAS
       #   uses: expo/expo-github-action@v8

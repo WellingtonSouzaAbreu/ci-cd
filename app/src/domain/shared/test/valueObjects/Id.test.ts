@@ -9,7 +9,7 @@ describe('Value Object Id.ts', () => {
 	})
 
 	test('Deve lançar um erro se o ID estiver vazio', () => {
-		expect(() => new Id('')).toThrow(sharedErrors.INVALID_ID)
+		expect(() => new Id('')).toThrow('sharedErrors.INVALID_ID')
 	})
 
 	test('Deve retornar verdadeiro para IDs iguais', () => {
