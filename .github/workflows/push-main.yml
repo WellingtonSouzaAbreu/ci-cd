@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -24,9 +25,9 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: npm install
+        run: npm ci
+        working-directory: app
 
       - name: 🚀 Create preview
-        uses: expo/expo-github-action/preview@v8
-        with:
-          command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+        run: eas update --auto --branch ${{ github.ref_name }}
+        working-directory: app
