@@ -1,0 +1,31 @@
+{
+	"cli": {
+		"version": ">= 3.14.0"
+	},
+	"build": {
+		"development-simulator": {
+			"developmentClient": true,
+			"distribution": "internal",
+			"android": {
+				"buildType": "apk"
+			},
+			"ios": {
+				"simulator": true
+			}
+		},
+		"development": {
+			"developmentClient": false,
+			"distribution": "internal",
+			"channel": "development",
+			"android": {
+				"buildType": "apk"
+			}
+		},
+		"production": {
+			"channel": "production"
+		}
+	},
+	"submit": {
+		"production": {}
+	}
+}

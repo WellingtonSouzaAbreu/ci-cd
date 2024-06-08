@@ -1,6 +1,13 @@
 node_modules/
 .expo/
 dist/
+android/
+ios/
+builds/**/*
+google-services.json
+GoogleService-info.plist
+coverage/**/*
+Finance-dev-build.app
 npm-debug.*
 *.jks
 *.p8
@@ -9,6 +16,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+.env
 
 # macOS
 .DS_Store

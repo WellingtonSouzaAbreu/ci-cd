@@ -1,0 +1,20 @@
+Single Responsability Principle
+ - Cada função, componente, módulo, classe deve ter apenas uma responsabilidade
+
+Open Closed Principle
+ - Sistemas abertos para extenção e fechados para alterações na camada de abstração  - 
+ - funções adaptáveis com a escalabilidade
+
+Liskov Substituition Principle
+ - As clases filhas devem substituir as classes pai sem gerar erros
+ - Esse princípio força a gerar as abstrações certas dos dados em comum
+
+Interface Segregation Principle
+ - Segregação de interface, sendo possível substituir várias partes do código isoladas
+
+Dependency Inversion Principle
+ - Módulos não devem depender diretamente de outros módulos(Utilizar interfaces de conexão)
+
+
+
+

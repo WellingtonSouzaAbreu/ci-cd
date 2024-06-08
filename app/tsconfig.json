@@ -1,6 +1,48 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": false
-  }
+	"extends": "expo/tsconfig.base",
+	"compilerOptions": {
+		"strict": false,
+		"baseUrl": "./",
+		"paths": {
+			"@contexts/*": [
+				"src/contexts/*"
+			],
+			"@services/*": [
+				"src/services/*"
+			],
+			"@routes/*": [
+				"src/presentation/routes/*"
+			],
+			"@assets/*": [
+				"src/presentation/assets/*"
+			],
+			"@components/*": [
+				"src/presentation/components/*"
+			],
+			"@screens/*": [
+				"src/presentation/screens/*"
+			],
+			"@presentationTypes/*": [
+				"src/presentation/presentationTypes/*"
+			],
+			"@utils/*": [
+				"src/presentation/utils/*"
+			],
+			"@presentation/*": [
+				"src/presentation/*"
+			],
+			"@domain/*": [
+				"src/domain/*"
+			],
+			"@config/*": [
+				"src/config/*"
+			],
+			"@data/*": [
+				"src/data/*"
+			],
+			"@*": [
+				"./src/*"
+			],
+		}
+	}
 }
