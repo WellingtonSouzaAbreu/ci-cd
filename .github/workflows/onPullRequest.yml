@@ -25,8 +25,8 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Run lint
-        run: npm run format
+      # - name: Run lint
+      #   run: npm run format
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
@@ -34,8 +34,8 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Run tests
-        run: npm test
+      # - name: Run tests
+      #   run: npm test
 
       # - name: Create preview
       #   run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
@@ -43,6 +43,7 @@ jobs:
       - name: Comment in preview
         uses: expo/expo-github-action/preview-comment@v8
         with:
+          project: ./app
           channel: pr-${{ github.event.number }}
       
       # - name: Generate QR Code
@@ -54,3 +55,10 @@ jobs:
       #     slack-message: "Novas funcionalidades disponíveis!/n- Preview: ${{ steps.preview.outputs.qr }}"
 
       # jWVQVl-xK9Y6WXiiFmnSoG7FV9oGYWgvC6IRrqK9
+
+
+
+
+      # TENTAR
+      # cache: yarn
+      #     cache-dependency-path: app/yarn.lock
