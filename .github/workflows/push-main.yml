@@ -36,14 +36,8 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      # - name: Verify Expo installation
-      #   run: npx expo whoami
-
       - name: Run tests
         run: npm test
 
       - name: Create preview
-        run: eas update --auto --branch development
-
-    #   - name: Install dependencies
-    #     run: npm ci
+        run: eas update --auto
