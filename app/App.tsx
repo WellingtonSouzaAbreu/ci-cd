@@ -14,7 +14,7 @@ import { StartupStack } from '@routes/stacks/StartupStack'
 import { defaultTheme } from '@presentation/common/theme'
 
 export default function App() {
-	// Paptito
+	//
 	return (
 		<NavigationContainer>
 			<ThemeProvider theme={defaultTheme}>
