@@ -44,6 +44,6 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
         with:
           channel-id: deployments
-          slack-message: "Novas funcionalidades disponíveis! /n- Preview: ${{ steps.preview.outputs.qr }}"
+          slack-message: "Novas funcionalidades disponíveis!/n- Preview: ${{ steps.preview.outputs.qr }}"
 
       # jWVQVl-xK9Y6WXiiFmnSoG7FV9oGYWgvC6IRrqK9
