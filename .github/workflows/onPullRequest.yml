@@ -38,7 +38,7 @@ jobs:
         run: npm test
 
       - name: Create preview
-        run: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+        run: eas update --auto --branch development --message ${{ github.event.pull_request.head.ref }} 
 
 
 
