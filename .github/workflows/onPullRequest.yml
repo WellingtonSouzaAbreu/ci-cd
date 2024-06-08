@@ -37,15 +37,12 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: 🚀 Create preview
-        uses: expo/expo-github-action/preview@v8
-        with:
-          # `github.event.pull_request.head.ref` is only available on `pull_request` triggers.
-          command: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
+      - name: Create preview
+        run: eas update --auto --branch ${{ github.event.pull_request.head.ref }}
 
 
 
-          
+
       # - name: Create preview
       #   run: eas update --auto
 
