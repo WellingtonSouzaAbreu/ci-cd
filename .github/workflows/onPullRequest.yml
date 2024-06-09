@@ -39,7 +39,7 @@ jobs:
           eas-version: latest
           expo-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-
+#
       - name: Create preview
         run: |
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
