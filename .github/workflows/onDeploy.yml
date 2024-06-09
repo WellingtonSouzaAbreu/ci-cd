@@ -27,8 +27,8 @@ jobs:
         with:
           node-version: 20.x
           # TODO REMOVER cache
-          cache: npm
-          cache-dependency-path: app/package-lock.json
+          # cache: npm
+          # cache-dependency-path: app/package-lock.json
 
       # - name: Install npm dependencies
       #   run: npm install
@@ -39,26 +39,24 @@ jobs:
       # - name: Run tests
       #   run: npm test
 
-      # - name: Setup EAS
-      #   uses: expo/expo-github-action@v8
-      #   with:
-      #     eas-version: latest
-      #     expo-version: latest
-      #     token: ${{ secrets.EXPO_TOKEN }}
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Extract expo.version
+      - name: Extract app version
         id: extract_version
         run: |
-          VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
+          VERSION=$(node -e "vconsole.log(require('./app.config.js').expo.version)")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "App Version => $VERSION"
 
-      - name: Show app version
-        run: echo "$VERSION"
-      
-      # - name: Create preview
-      #   run: |
-      #     HEAD_REF="${{ github.event.pull_request.head.ref }}"
-      #     BASE_REF="${{ github.event.pull_request.base.ref }}"
-      #     MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-      #     eas update --auto --branch preview --message "$MESSAGE"
+      - name: Create preview
+        run: |
+          HEAD_REF="${{ github.event.pull_request.head.ref }}"
+          BASE_REF="${{ github.event.pull_request.base.ref }}"
+          MESSAGE="${HEAD_REF} <- ${BASE_REF}"
+          eas update --auto --branch "$VERSION" --message "$MESSAGE"
 
