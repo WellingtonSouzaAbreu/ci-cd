@@ -35,7 +35,7 @@ const { firebaseAuth } = useFirebaseConfig()
 const { hasValidLocalUser } = useUserDomain()
 
 function AuthProvider({ children }: AuthProviderProps) {
-	const { showContextModal } = useAlertContext()
+	// const { showContextModal } = useAlertContext()
 
 	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
 	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
@@ -70,7 +70,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 			navigateToHome()
 		} catch (error) {
 			console.log(error)
-			showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
+			// showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
 			navigateToAuthScreen()
 		}
 	}
