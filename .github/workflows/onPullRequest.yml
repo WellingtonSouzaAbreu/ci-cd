@@ -45,5 +45,5 @@ jobs:
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${BASE_REF} <- ${HEAD_REF}"
-          eas update --auto --branch preview --message "$MESSAGE"
+          eas update --branch preview --message "$MESSAGE"
 
