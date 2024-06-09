@@ -6,7 +6,7 @@ on:
       - main  
 
 jobs:
-  production:
+  update-production:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
