@@ -28,7 +28,6 @@ function AlertProvider({ children }: AlertProviderProps) {
 		modalIsVisible,
 		showContextModal
 	}), [modalIsVisible])
-
 	return (
 		<AlertContext.Provider value={AlertProviderData}>
 			<AlertModal

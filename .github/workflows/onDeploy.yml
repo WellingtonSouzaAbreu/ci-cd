@@ -6,7 +6,7 @@ on:
       - main  
 
 jobs:
-  production:
+  update-production:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -57,7 +57,16 @@ jobs:
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-          eas update --auto --branch "v$VERSION" --message "$MESSAGE" --no-wait
+          eas update --auto --branch "v$VERSION" --message "$MESSAGE"
       
+      # - name: Install dependencies
+      #   run: npm ci
+
       # - name: Build on EAS
       #   run: eas build --platform android --profile production --non-interactive --no-wait
+
+
+
+      #  - Como usar eas-secrets no CI
+      # https://docs.expo.dev/build-reference/variables/
+      # https://docs.expo.dev/build/building-on-ci/
