@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const config = require('./app.config.js')
+// const config = require('./app.config.js')
 
 module.exports = {
-	...config.default.expo,
+	version: '1.0.1',
 	generateBuild: {
 		android: true,
 		ios: false
