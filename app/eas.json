@@ -11,8 +11,7 @@
 			},
 			"ios": {
 				"simulator": true
-			},
-			"image": "default"
+			}
 		},
 		"development": {
 			"developmentClient": false,
@@ -20,12 +19,14 @@
 			"channel": "development",
 			"android": {
 				"buildType": "apk"
-			},
-			"image": "default"
+			}
 		},
 		"production": {
+			"node": "20.12.1",
 			"channel": "1.0.0",
-			"image": "default"
+			"android": {
+				"resourceClass": "medium"
+			}
 		}
 	},
 	"submit": {
