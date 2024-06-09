@@ -59,8 +59,8 @@ jobs:
       - name: Extract build config
         id: extract-build-config
         run: |
-            BUILD_IOS=$(node -e "console.log(require('./app.config.ci.js').version)")
-            BUILD_IOS=$(node -e "console.log(require('./app.config.ci.js').version)")
+            BUILD_ANDROID=$(node -e "console.log(require('./app.config.ci.js').generateBuild.ios)")
+            BUILD_IOS=$(node -e "console.log(require('./app.config.ci.js').generateBuild.android)")
             echo "BUILD_ANDROID=$BUILD_ANDROID" >> $GITHUB_ENV
             echo "BUILD_IOS=$BUILD_IOS" >> $GITHUB_ENV
             echo "Generate ANDROID build => $BUILD_ANDROID"
@@ -74,5 +74,5 @@ jobs:
       #     eas update --auto --branch "v$VERSION" --message "$MESSAGE"
       
       - name: Build com EAS
-        if: ${{ env.BUILD_IOS == 'true'}}
+        if: ${{ env.BUILD_ANDROID == 'true'}}
         run: eas build --platform android --profile production
