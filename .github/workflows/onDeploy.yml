@@ -2,8 +2,8 @@ name: Generate build
 
 on:
   pull_request: 
-    branches: 
-      - main  
+    # branches: 
+    #   - main  
 
 jobs:
   build:
