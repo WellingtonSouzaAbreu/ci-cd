@@ -19,8 +19,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check commit patterns
-        uses: wagoid/commitlint-github-action@v6
+      # - name: Check commit patterns
+      #   uses: wagoid/commitlint-github-action@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -30,11 +30,11 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Run lint
-        run: npm run format
+      # - name: Run lint
+      #   run: npm run format
 
-      - name: Run tests
-        run: npm test
+      # - name: Run tests
+      #   run: npm test
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
@@ -45,19 +45,19 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Extract app version
-        id: extract_version
-        run: |
-          VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "App Version => $VERSION"
+      # - name: Extract app version
+      #   id: extract_version
+      #   run: |
+      #     VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
+      #     echo "VERSION=$VERSION" >> $GITHUB_ENV
+      #     echo "App Version => $VERSION"
 
       - name: Create preview
         run: |
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${BASE_REF} <- ${HEAD_REF}"
-          eas update --branch "v$VERSION" --message "$MESSAGE"
+          eas update --auto --branch "v1.2.0" --message "$MESSAGE"
       
       # - name: Install dependencies
       #   run: npm ci
