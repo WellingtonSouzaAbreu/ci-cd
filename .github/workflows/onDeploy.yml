@@ -20,8 +20,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - name: Check commit patterns
-      #   uses: wagoid/commitlint-github-action@v6
+      - name: Check commit patterns
+        uses: wagoid/commitlint-github-action@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -63,17 +63,23 @@ jobs:
             echo "Generate ANDROID build => $BUILD_ANDROID"
             echo "Generate IOS build => $BUILD_IOS"
 
-      - name: Create preview
-        run: |
-          HEAD_REF="${{ github.event.pull_request.head.ref }}"
-          BASE_REF="${{ github.event.pull_request.base.ref }}"
-          MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-          eas update --auto --branch "v$VERSION" --message "$MESSAGE"
+      # - name: Create preview
+      #   run: |
+      #     HEAD_REF="${{ github.event.pull_request.head.ref }}"
+      #     BASE_REF="${{ github.event.pull_request.base.ref }}"
+      #     MESSAGE="${HEAD_REF} <- ${BASE_REF}"
+      #     eas update --auto --branch "v$VERSION" --message "$MESSAGE"
+
+      - name: Set build channel
+        run: echo "export BUILD_CHANNEL=4.4.4" >> $GITHUB_ENV # TODO Test
+
+      - name: Build Android
+        run: eas build --platform ios --profile $BUILD_CHANNEL
       
-      - name: Generate Build Android
-        if: ${{ env.BUILD_ANDROID == 'true'}}
-        run: eas build --platform android --profile production
+      # - name: Generate Build Android
+      #   if: ${{ env.BUILD_ANDROID == 'true'}}
+      #   run: eas build --platform android --profile production
       
-      - name: Generate Build IOS
-        if: ${{ env.BUILD_IOS == 'true'}}
-        run: eas build --platform ios --profile production
+      # - name: Generate Build IOS
+      #   if: ${{ env.BUILD_IOS == 'true'}}
+      #   run: eas build --platform ios --profile production
