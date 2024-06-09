@@ -44,10 +44,7 @@ jobs:
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
-          expo-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Extract app version
         id: extract_version
@@ -61,5 +58,5 @@ jobs:
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-          eas update --auto --branch "$VERSION" --message "$MESSAGE"
+          eas update --auto --branch "v$VERSION" --message "$MESSAGE"
 
