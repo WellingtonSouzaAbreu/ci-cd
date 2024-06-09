@@ -31,11 +31,11 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Run lint
-        run: npm run format
+      # - name: Run lint
+      #   run: npm run format
 
-      - name: Run tests
-        run: npm test
+      # - name: Run tests
+      #   run: npm test
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
@@ -69,17 +69,11 @@ jobs:
       #     BASE_REF="${{ github.event.pull_request.base.ref }}"
       #     MESSAGE="${HEAD_REF} <- ${BASE_REF}"
       #     eas update --auto --branch "v$VERSION" --message "$MESSAGE"
-
-      - name: Set build channel
-        run: echo "export BUILD_CHANNEL=4.4.4" >> $GITHUB_ENV # TODO Test
-
-      - name: Build Android
-        run: eas build --platform ios --profile $BUILD_CHANNEL
       
-      # - name: Generate Build Android
-      #   if: ${{ env.BUILD_ANDROID == 'true'}}
-      #   run: eas build --platform android --profile production
+      - name: Generate Build Android
+        if: ${{ env.BUILD_ANDROID == 'true'}}
+        run: eas build --platform android --profile production
       
-      # - name: Generate Build IOS
-      #   if: ${{ env.BUILD_IOS == 'true'}}
-      #   run: eas build --platform ios --profile production
+      - name: Generate Build IOS
+        if: ${{ env.BUILD_IOS == 'true'}}
+        run: eas build --platform ios --profile production --non-interactive

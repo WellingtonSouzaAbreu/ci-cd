@@ -4,7 +4,7 @@
 module.exports = {
 	version: '1.0.1',
 	generateBuild: {
-		android: true,
-		ios: false
+		android: false,
+		ios: true
 	}
 }
