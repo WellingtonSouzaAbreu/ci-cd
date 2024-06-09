@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update-preview:
+  preview:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -45,5 +45,5 @@ jobs:
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-          eas update --auto --branch preview --message "$MESSAGE" --no-wait
+          eas update --auto --branch preview --message "$MESSAGE"
 
