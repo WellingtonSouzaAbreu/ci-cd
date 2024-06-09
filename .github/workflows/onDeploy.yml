@@ -59,8 +59,8 @@ jobs:
       - name: Extract build config
         id: extract-build-config
         run: |
-            BUILD_ANDROID=$(node -e "console.log(require('./app.config.ci.js').generateBuild.ios)")
-            BUILD_IOS=$(node -e "console.log(require('./app.config.ci.js').generateBuild.android)")
+            BUILD_ANDROID=$(node -e "console.log(require('./app.config.ci.js').generateBuild.android)")
+            BUILD_IOS=$(node -e "console.log(require('./app.config.ci.js').generateBuild.ios)")
             echo "BUILD_ANDROID=$BUILD_ANDROID" >> $GITHUB_ENV
             echo "BUILD_IOS=$BUILD_IOS" >> $GITHUB_ENV
             echo "Generate ANDROID build => $BUILD_ANDROID"
