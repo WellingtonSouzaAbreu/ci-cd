@@ -1,7 +1,6 @@
 import { useFonts } from '@expo-google-fonts/inter'
 import * as Updates from 'expo-updates'
 import React, { useEffect } from 'react'
-import { Alert } from 'react-native'
 import { useTheme } from 'styled-components/native'
 
 import Logo from '@assets/icons/logo.svg'
