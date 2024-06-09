@@ -3,9 +3,7 @@ name: Check environment
 on:
   push:
     branches-ignore:
-      - '*'
-      # 
-      # - 'test/*'
+      - 'test/*'
 
 jobs:
   preview:

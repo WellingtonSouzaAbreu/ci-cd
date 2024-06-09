@@ -1,4 +1,4 @@
-name: Generate build
+name: Generate production preview
 
 on:
   pull_request: 
@@ -6,7 +6,7 @@ on:
       - main  
 
 jobs:
-  build:
+  production:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -52,15 +52,12 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "App Version => $VERSION"
 
-      - name: Install dependencies de ci
-        run: npm ci
-
       - name: Create preview
         run: |
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-          eas update --auto --branch "v$VERSION" --message "$MESSAGE"
+          eas update --auto --branch "v$VERSION" --message "$MESSAGE" --no-wait
       
       # - name: Build on EAS
       #   run: eas build --platform android --profile production --non-interactive --no-wait
