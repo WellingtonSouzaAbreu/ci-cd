@@ -76,4 +76,4 @@ jobs:
       
       - name: Generate Build IOS
         if: ${{ env.BUILD_IOS == 'true'}}
-        run: eas build --platform ios --profile production --non-interactive
+        run: eas build --platform ios --profile production # --non-interactive
