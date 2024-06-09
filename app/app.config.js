@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-default-export
-module.exports = {
+export default {
 	expo: {
 		name: 'Finance',
 		slug: 'Finance',
