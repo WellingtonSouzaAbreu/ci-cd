@@ -31,9 +31,11 @@ function Splash({ navigation }: SplashScreenProps) {
 		try {
 			const update = await hasUpdates()
 			if (update.isAvailable) {
-				Alert.alert('Atualização disponível', 'Vai ser rapidinho, você nem vai perceber!', [
-					{ text: 'OK', onPress: Updates.reloadAsync }
-				])
+				await Updates.fetchUpdateAsync()
+				await Updates.reloadAsync()
+				// Alert.alert('Atualização disponível', 'Vai ser rapidinho, você nem vai perceber!', [
+				// 	{ text: 'OK', onPress: Updates.reloadAsync }
+				// ])
 			}
 		} catch (error: any) {
 			console.log(error)
