@@ -1,1 +1,4 @@
-module.exports = { version: '1.0.0' }
+/* eslint-disable @typescript-eslint/no-var-requires */
+const config = require('./app.config.js')
+
+module.exports = { ...config.default.expo }
