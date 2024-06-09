@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-default-export
 module.exports = {
 	expo: {
-		name: 'Finance',
-		slug: 'Finance',
+		name: 'finance',
+		slug: 'finance',
 		version: '1.0.0',
 		scheme: 'com.finance.app',
 		orientation: 'portrait',
