@@ -31,8 +31,8 @@ jobs:
           # cache: npm
           # cache-dependency-path: app/package-lock.json
 
-      # - name: Install npm dependencies
-      #   run: npm install
+      - name: Install npm dependencies
+        run: npm install
 
       # - name: Run lint
       #   run: npm run format
@@ -40,21 +40,31 @@ jobs:
       # - name: Run tests
       #   run: npm test
 
-      # - name: Setup EAS
-      #   uses: expo/expo-github-action@v8
-      #   with:
-      #     eas-version: latest
-      #     expo-version: latest
-      #     token: ${{ secrets.EXPO_TOKEN }}
-      #   env:
-      #     EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
-      # - name: Extract app version
-      #   id: extract_version
-      #   run: |
-      #     VERSION=$(node -e "console.log(require('./app.config.ci.js').version)")
-      #     echo "VERSION=$VERSION" >> $GITHUB_ENV
-      #     echo "App Version => $VERSION"
+      - name: Extract app version
+        id: extract_version
+        run: |
+          VERSION=$(node -e "console.log(require('./app.config.ci.js').version)")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "App Version => $VERSION"
+
+      - name: Extract build config
+        id: extract-build-config
+        run: |
+            BUILD_IOS=$(node -e "console.log(require('./app.config.ci.js').version)")
+            BUILD_IOS=$(node -e "console.log(require('./app.config.ci.js').version)")
+            echo "BUILD_ANDROID=$BUILD_ANDROID" >> $GITHUB_ENV
+            echo "BUILD_IOS=$BUILD_IOS" >> $GITHUB_ENV
+            echo "Generate ANDROID build => $BUILD_ANDROID"
+            echo "Generate IOS build => $BUILD_IOS"
 
       # - name: Create preview
       #   run: |
@@ -62,15 +72,11 @@ jobs:
       #     BASE_REF="${{ github.event.pull_request.base.ref }}"
       #     MESSAGE="${HEAD_REF} <- ${BASE_REF}"
       #     eas update --auto --branch "v$VERSION" --message "$MESSAGE"
-
-      # - name: Create preview
-      #   run: |
-      #     HEAD_REF="${{ github.event.pull_request.head.ref }}"
-      #     BASE_REF="${{ github.event.pull_request.base.ref }}"
-      #     MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-      #     eas update --auto --branch "v$VERSION" --message "$MESSAGE"
-
-      - name: Create build - Android
-        if: ${{require('./app.config.ci.js').generateBuild.android }}
+      
+      - name: Build com EAS
+        if: ${{ env.BUILD_IOS == 'true'}}
         run: eas build --platform android --profile production
+
+      # - name: Create build - Android
+      #   if: ${{require('./app.config.ci.js').generateBuild.android }}
 
