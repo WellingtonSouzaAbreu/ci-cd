@@ -2,9 +2,8 @@ name: Generate build
 
 on:
   pull_request: 
-    # branches: 
-    #   - main  
-    # TODO Uncoment
+    branches: 
+      - main  
 
 jobs:
   build:
@@ -20,8 +19,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - name: Check commit patterns
-      #   uses: wagoid/commitlint-github-action@v6
+      - name: Check commit patterns
+        uses: wagoid/commitlint-github-action@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -31,11 +30,11 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      # - name: Run lint
-      #   run: npm run format
+      - name: Run lint
+        run: npm run format
 
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
