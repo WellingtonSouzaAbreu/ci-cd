@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { AlertProvider } from '@contexts/AlertContext'
 import { AuthProvider } from '@contexts/AuthContext'
+import { FinanceRegisterProvider } from '@contexts/FinanceRegisterContext'
 import { LoaderProvider } from '@contexts/LoaderContext/index'
 
 import { StartupStack } from '@routes/stacks/StartupStack'
@@ -20,14 +21,14 @@ export default function App() {
 			<ThemeProvider theme={defaultTheme}>
 				<AlertProvider>
 					<LoaderProvider>
-						<AuthProvider>
+						<FinanceRegisterProvider>
 							<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 								<Text>
 									{'Something'}
 								</Text>
 							</View>
 							{/* <StartupStack /> */}
-						</AuthProvider>
+						</FinanceRegisterProvider>
 					</LoaderProvider>
 				</AlertProvider>
 			</ThemeProvider>
