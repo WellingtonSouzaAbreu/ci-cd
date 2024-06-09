@@ -14,7 +14,6 @@ import { StartupStack } from '@routes/stacks/StartupStack'
 import { defaultTheme } from '@presentation/common/theme'
 
 export default function App() {
-	// TRY
 	return (
 		<NavigationContainer>
 			<ThemeProvider theme={defaultTheme}>
