@@ -4,6 +4,7 @@ on:
   pull_request: 
     # branches: 
     #   - main  
+    # TODO Uncoment
 
 jobs:
   build:
@@ -49,7 +50,7 @@ jobs:
       - name: Extract app version
         id: extract_version
         run: |
-          VERSION=$(node -e "vconsole.log(require('./app.config.js').expo.version)")
+          VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "App Version => $VERSION"
 
@@ -58,5 +59,5 @@ jobs:
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${HEAD_REF} <- ${BASE_REF}"
-          eas update --auto --branch "$VERSION" --message "$MESSAGE"
+          eas update --auto --branch "v$VERSION" --message "$MESSAGE"
 
