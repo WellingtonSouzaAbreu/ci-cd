@@ -7,12 +7,10 @@
 			"developmentClient": true,
 			"distribution": "internal",
 			"android": {
-				"buildType": "apk",
-				"image": "sdk-49"
+				"buildType": "apk"
 			},
 			"ios": {
-				"simulator": true,
-				"image": "sdk-49"
+				"simulator": true
 			}
 		},
 		"development": {
@@ -20,17 +18,11 @@
 			"distribution": "internal",
 			"channel": "development",
 			"android": {
-				"buildType": "apk",
-				"image": "sdk-49"
+				"buildType": "apk"
 			}
 		},
 		"production": {
-			"node": "20.12.1",
-			"channel": "1.0.0",
-			"android": {
-				"resourceClass": "medium",
-				"image": "sdk-49"
-			}
+			"channel": "1.0.0"
 		}
 	},
 	"submit": {
