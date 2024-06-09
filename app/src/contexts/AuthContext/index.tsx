@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { Alert } from 'react-native'
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
@@ -43,23 +43,24 @@ function AuthProvider({ children }: AuthProviderProps) {
 
 	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
-	// useEffect(() => {
-	// 	console.log('Sessão inciada!')
-	// 	const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
-	// 		console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
-	// 		if (user && await hasValidLocalUser()) {
-	// 			const { requestDevicePasswordOnAuth } = await UserUseCases.getUserPreferences(UserLocalRepository)
-	// 			console.log('requestDevicePasswordOnAuth =>', requestDevicePasswordOnAuth)
+	useEffect(() => {
+		Alert.alert('Iniciou o effect')
+		/* console.log('Sessão inciada!')
+		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
+			console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
+			if (user && await hasValidLocalUser()) {
+				const { requestDevicePasswordOnAuth } = await UserUseCases.getUserPreferences(UserLocalRepository)
+				console.log('requestDevicePasswordOnAuth =>', requestDevicePasswordOnAuth)
 
-	// 			return requestDevicePasswordOnAuth
-	// 				? navigateToQuickLogin()
-	// 				: performQuickSingin()
-	// 		}
-	// 		return navigateToAuthScreen()
-	// 	})
+				return requestDevicePasswordOnAuth
+					? navigateToQuickLogin()
+					: performQuickSingin()
+			}
+			return navigateToAuthScreen()
+		})
 
-	// 	return unsubscribe
-	// }, [])
+		return unsubscribe */
+	}, [])
 
 	const performQuickSingin = async () => { // Quick signin virar um caso de uso
 		try {
@@ -86,14 +87,15 @@ function AuthProvider({ children }: AuthProviderProps) {
 		setAuthenticatedUser({ ...authenticatedUser, ...data })
 	}
 
-	const authProviderData = {
+	const authProviderData = useMemo(() => ({
 		userRegistrationData,
 		setUserRegisterDataOnContext,
 		userAuthData,
 		setUserAuthDataOnContext,
 		authenticatedUser,
 		setUserDataOnContext
-	}
+
+	}), [userRegistrationData, userAuthData, authenticatedUser])
 
 	return (
 		<AuthContext.Provider value={authProviderData}>
