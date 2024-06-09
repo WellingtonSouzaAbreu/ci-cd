@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
@@ -85,15 +86,14 @@ function AuthProvider({ children }: AuthProviderProps) {
 		setAuthenticatedUser({ ...authenticatedUser, ...data })
 	}
 
-	const authProviderData = useMemo(() => ({
+	const authProviderData = {
 		userRegistrationData,
 		setUserRegisterDataOnContext,
 		userAuthData,
 		setUserAuthDataOnContext,
 		authenticatedUser,
 		setUserDataOnContext
-
-	}), [userRegistrationData, userAuthData, authenticatedUser])
+	}
 
 	return (
 		<AuthContext.Provider value={authProviderData}>
