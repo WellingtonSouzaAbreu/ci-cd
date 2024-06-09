@@ -1,19 +1,12 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useContext, useEffect } from 'react'
 import { Alert } from 'react-native'
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
-import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
 import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { useAlertContext } from '@contexts/AlertContext'
-
-import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
-import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
-
-import { UserLocalRepository } from '@data/user/UserLocalRespository'
-import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
+import { AuthContextType } from './types'
 
 const initialValue = {
 	userAuthData: {},
@@ -30,18 +23,14 @@ interface AuthProviderProps {
 
 const AuthContext = createContext<AuthContextType>(initialValue)
 
-const { firebaseAuth } = useFirebaseConfig()
-
-const { hasValidLocalUser } = useUserDomain()
-
 function AuthProvider({ children }: AuthProviderProps) {
-	const { showContextModal } = useAlertContext()
+	// const { showContextModal } = useAlertContext()
 
-	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
-	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
-	const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUserDate>()
+	// const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
+	// const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
+	// const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUserDate>()
 
-	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
+	// const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
 	useEffect(() => {
 		Alert.alert('Iniciou o effect')
@@ -62,43 +51,43 @@ function AuthProvider({ children }: AuthProviderProps) {
 		return unsubscribe */
 	}, [])
 
-	const performQuickSingin = async () => { // Quick signin virar um caso de uso
-		try {
-			const userId = firebaseAuth.currentUser.uid
-			const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
-			setUserDataOnContext(user)
-			navigateToHome()
-		} catch (error) {
-			console.log(error)
-			showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
-			navigateToAuthScreen()
-		}
-	}
+	// const performQuickSingin = async () => { // Quick signin virar um caso de uso
+	// 	try {
+	// 		const userId = firebaseAuth.currentUser.uid
+	// 		const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
+	// 		setUserDataOnContext(user)
+	// 		navigateToHome()
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 		showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
+	// 		navigateToAuthScreen()
+	// 	}
+	// }
 
-	const setUserRegisterDataOnContext = (data: UserRegisterData) => {
-		setUserRegisterDataContext({ ...userRegistrationData, ...data })
-	}
+	// const setUserRegisterDataOnContext = (data: UserRegisterData) => {
+	// 	setUserRegisterDataContext({ ...userRegistrationData, ...data })
+	// }
 
-	const setUserAuthDataOnContext = (data: UserAuthData) => {
-		setUserAuthDataContext({ ...userAuthData, ...data })
-	}
+	// const setUserAuthDataOnContext = (data: UserAuthData) => {
+	// 	setUserAuthDataContext({ ...userAuthData, ...data })
+	// }
 
-	const setUserDataOnContext = (data: AuthenticatedUserDate) => {
-		setAuthenticatedUser({ ...authenticatedUser, ...data })
-	}
+	// const setUserDataOnContext = (data: AuthenticatedUserDate) => {
+	// 	setAuthenticatedUser({ ...authenticatedUser, ...data })
+	// }
 
-	const authProviderData = useMemo(() => ({
-		userRegistrationData,
-		setUserRegisterDataOnContext,
-		userAuthData,
-		setUserAuthDataOnContext,
-		authenticatedUser,
-		setUserDataOnContext
+	// const authProviderData = useMemo(() => ({
+	// 	userRegistrationData,
+	// 	setUserRegisterDataOnContext,
+	// 	userAuthData,
+	// 	setUserAuthDataOnContext,
+	// 	authenticatedUser,
+	// 	setUserDataOnContext
 
-	}), [userRegistrationData, userAuthData, authenticatedUser])
+	// }), [userRegistrationData, userAuthData, authenticatedUser])
 
 	return (
-		<AuthContext.Provider value={authProviderData}>
+		<AuthContext.Provider value={'' as any}>
 			{children}
 		</AuthContext.Provider>
 	)
