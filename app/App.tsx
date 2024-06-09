@@ -20,14 +20,14 @@ export default function App() {
 			<ThemeProvider theme={defaultTheme}>
 				<AlertProvider>
 					<LoaderProvider>
-						<AuthProvider>
-							<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-								<Text>
-									{'Something'}
-								</Text>
-							</View>
-							{/* <StartupStack /> */}
-						</AuthProvider>
+						{/* <AuthProvider> */}
+						<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+							<Text>
+								{'Something'}
+							</Text>
+						</View>
+						{/* <StartupStack /> */}
+						{/* </AuthProvider> */}
 					</LoaderProvider>
 				</AlertProvider>
 			</ThemeProvider>
