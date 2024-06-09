@@ -46,6 +46,8 @@ jobs:
           eas-version: latest
           expo-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Extract app version
         id: extract_version
