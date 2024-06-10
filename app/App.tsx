@@ -3,7 +3,6 @@ import 'react-native-gesture-handler'
 
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-import { View, Text } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 
 import { AlertProvider } from '@contexts/AlertContext'
@@ -21,12 +20,7 @@ export default function App() {
 				<AlertProvider>
 					<LoaderProvider>
 						<AuthProvider>
-							<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-								<Text>
-									{'Something'}
-								</Text>
-							</View>
-							{/* <StartupStack /> */}
+							<StartupStack />
 						</AuthProvider>
 					</LoaderProvider>
 				</AlertProvider>
