@@ -19,8 +19,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - name: Check commit patterns
-      #   uses: wagoid/commitlint-github-action@v6
+      - name: Check commit patterns
+        uses: wagoid/commitlint-github-action@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -30,11 +30,11 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      # - name: Run lint
-      #   run: npm run format
+      - name: Run lint
+        run: npm run format
 
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
@@ -55,7 +55,7 @@ jobs:
       - name: Config environment variables
         run: |
           echo "${{ secrets.EAS_ENV_FILE }}" > .env
-          echo "environment=PROD" >> .env
+          echo "environment=prod" >> .env
           cat .env
 
       - name: Create preview

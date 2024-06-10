@@ -39,6 +39,13 @@ jobs:
           eas-version: latest
           expo-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Config environment variables
+        run: |
+          echo "${{ secrets.EAS_ENV_FILE }}" > .env
+          echo "environment=dev" >> .env
+          cat .env
+  
 #
       - name: Create preview
         run: |
