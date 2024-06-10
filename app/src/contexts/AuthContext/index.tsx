@@ -10,6 +10,7 @@ import { useUserDomain } from '@domain/user/useUserDomain'
 import { useAlertContext } from '@contexts/AlertContext'
 
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
+import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
 import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
@@ -30,6 +31,8 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextType>(initialValue)
 
 // const { firebaseAuth } = useFirebaseConfig()
+
+const { hasValidLocalUser } = useUserDomain()
 
 function AuthProvider({ children }: AuthProviderProps) {
 	// const { showContextModal } = useAlertContext()
