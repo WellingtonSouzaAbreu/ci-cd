@@ -17,7 +17,7 @@ import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { ciEnvironment } = require('app.config.ci')
+const { ciEnvironment } = require('../../../app.config.ci')
 
 // const { hasValidLocalUser } = useUserDomain()
 
