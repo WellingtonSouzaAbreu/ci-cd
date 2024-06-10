@@ -4,7 +4,6 @@ import { Alert } from 'react-native'
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 import { env_dev, env_prod } from '@env'
-import { ciEnvironment } from 'app.config.ci'
 
 import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
@@ -16,6 +15,9 @@ import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
 import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { ciEnvironment } = require('app.config.ci')
 
 // const { hasValidLocalUser } = useUserDomain()
 

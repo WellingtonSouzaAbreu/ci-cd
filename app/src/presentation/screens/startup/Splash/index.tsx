@@ -44,7 +44,6 @@ function Splash({ navigation }: SplashScreenProps) {
 	const hasUpdates = async () => {
 		// eslint-disable-next-line no-undef
 		if (__DEV__) return { isAvailable: false }
-		// AA
 		return Updates.checkForUpdateAsync()
 	}
 
