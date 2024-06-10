@@ -55,7 +55,7 @@ jobs:
       - name: Config environment variables
         run: |
           echo "${{ secrets.EAS_ENV_FILE }}" > .env
-          echo "environment=DEV" >> .env
+          echo "environment=PROD" >> .env
           cat .env
 
       - name: Create preview
