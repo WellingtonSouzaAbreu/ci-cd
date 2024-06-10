@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import { Alert } from 'react-native'
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
-import vars from '@env'
+import { env } from '@env'
 
 import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
@@ -44,7 +44,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
 	useEffect(() => {
-		Alert.alert('vars', vars.toString())
+		Alert.alert('vars', env)
 		// const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
 		// 	console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
 		// 	if (user /* && await hasValidLocalUser() */) {

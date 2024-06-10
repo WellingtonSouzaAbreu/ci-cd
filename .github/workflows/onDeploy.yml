@@ -53,9 +53,7 @@ jobs:
       #     echo "App Version => $VERSION"
 
       - name: Recovery environment variables
-        run: |
-          echo "${{ secrets.EAS_ENV_FILE }}" > .env
-          echo "${{ secrets.EAS_ENV_FILE }}"
+        run: echo "${{ secrets.EAS_ENV_FILE }}" > .env
       
       - name: Create preview
         run: |
