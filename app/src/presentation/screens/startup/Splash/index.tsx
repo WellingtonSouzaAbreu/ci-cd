@@ -5,7 +5,6 @@ import { useTheme } from 'styled-components/native'
 
 import Logo from '@assets/icons/logo.svg'
 import { ScreenContainer } from '@components/containers/ScreenContainer'
-import { env } from '@env'
 import { getAppFonts } from '@presentation/common/fonts'
 
 import { SplashScreenProps } from '@routes/stacks/StartupStack/screenProps'
@@ -53,7 +52,7 @@ function Splash({ navigation }: SplashScreenProps) {
 			<Logo
 				width={relativeScreenWidth(15)}
 				height={relativeScreenWidth(15)}
-				onPress={() => console.log(env)}
+				onPress={() => console.log('env')}
 			/>
 			<NativeLoader size={'large'} color={theme.green1} />
 			<Credits>{'from tonsa'}</Credits>

@@ -5,5 +5,6 @@ declare module '@env' {
 	export const firebaseMessagingSenderId: string
 	export const firebaseAppId: string
 	export const firebaseMeasurementId: string
-	export const env: string
+	export const env_dev: string
+	export const env_prod: string
 }
