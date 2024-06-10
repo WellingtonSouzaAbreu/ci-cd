@@ -10,7 +10,6 @@ import { useUserDomain } from '@domain/user/useUserDomain'
 import { useAlertContext } from '@contexts/AlertContext'
 
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
-import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
 import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
@@ -32,16 +31,12 @@ const AuthContext = createContext<AuthContextType>(initialValue)
 
 // const { firebaseAuth } = useFirebaseConfig()
 
-const { hasValidLocalUser } = useUserDomain()
-
 function AuthProvider({ children }: AuthProviderProps) {
 	// const { showContextModal } = useAlertContext()
 
 	const [userRegistrationData, setUserRegisterDataContext] = useState<UserRegisterData>()
 	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
 	const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUserDate>()
-
-	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
 	useEffect(() => {
 		Alert.alert('Iniciou o EFFECT')
