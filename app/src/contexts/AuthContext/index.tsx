@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { Alert } from 'react-native'
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
+import vars from '@env'
 
 import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
@@ -12,6 +14,8 @@ import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
 import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
+
+// const { hasValidLocalUser } = useUserDomain()
 
 const initialValue = {
 	userAuthData: {},
@@ -30,8 +34,6 @@ const AuthContext = createContext<AuthContextType>(initialValue)
 
 const { firebaseAuth } = useFirebaseConfig()
 
-// const { hasValidLocalUser } = useUserDomain()
-
 function AuthProvider({ children }: AuthProviderProps) {
 	const { showContextModal } = useAlertContext()
 
@@ -42,7 +44,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
 	useEffect(() => {
-		console.log('Sessão inciada!')
+		Alert.alert('vars', vars.toString())
 		// const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
 		// 	console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
 		// 	if (user /* && await hasValidLocalUser() */) {
