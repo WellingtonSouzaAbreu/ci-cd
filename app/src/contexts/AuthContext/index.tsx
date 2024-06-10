@@ -4,7 +4,6 @@ import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
 import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
-import { useUserDomain } from '@domain/user/useUserDomain'
 
 import { useAlertContext } from '@contexts/AlertContext'
 
@@ -44,20 +43,20 @@ function AuthProvider({ children }: AuthProviderProps) {
 
 	useEffect(() => {
 		console.log('Sessão inciada!')
-		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
-			console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
-			if (user /* && await hasValidLocalUser() */) {
-				const { requestDevicePasswordOnAuth } = await UserUseCases.getUserPreferences(UserLocalRepository)
-				console.log('requestDevicePasswordOnAuth =>', requestDevicePasswordOnAuth)
+		// const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
+		// 	console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
+		// 	if (user /* && await hasValidLocalUser() */) {
+		// 		const { requestDevicePasswordOnAuth } = await UserUseCases.getUserPreferences(UserLocalRepository)
+		// 		console.log('requestDevicePasswordOnAuth =>', requestDevicePasswordOnAuth)
 
-				return requestDevicePasswordOnAuth
-					? navigateToQuickLogin()
-					: performQuickSingin()
-			}
-			return navigateToAuthScreen()
-		})
+		// 		return requestDevicePasswordOnAuth
+		// 			? navigateToQuickLogin()
+		// 			: performQuickSingin()
+		// 	}
+		// 	return navigateToAuthScreen()
+		// })
 
-		return unsubscribe
+		// return unsubscribe
 	}, [])
 
 	const performQuickSingin = async () => { // Quick signin virar um caso de uso

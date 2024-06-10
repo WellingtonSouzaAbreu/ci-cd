@@ -52,6 +52,11 @@ jobs:
       #     echo "VERSION=$VERSION" >> $GITHUB_ENV
       #     echo "App Version => $VERSION"
 
+      - name: Recovery environment variables
+        run: |
+          echo "${{ secrets.EAS_ENV_FILE }}" > .env
+          echo "${{ secrets.EAS_ENV_FILE }}"
+      
       - name: Create preview
         run: |
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
