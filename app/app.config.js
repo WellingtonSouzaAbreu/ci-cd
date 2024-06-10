@@ -3,7 +3,7 @@ module.exports = {
 	expo: {
 		name: 'Finance',
 		slug: 'Finance',
-		version: '1.0.0',
+		version: '1.2.0',
 		scheme: 'com.finance.app',
 		orientation: 'portrait',
 		icon: './assets/icon.png',

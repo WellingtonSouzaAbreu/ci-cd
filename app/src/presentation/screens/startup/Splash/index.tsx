@@ -23,7 +23,7 @@ function Splash({ navigation }: SplashScreenProps) {
 	}, [navigation, fontsAreLoaded])
 
 	const checkUpdates = async () => {
-		await onFetchUpdateAsync()
+		// await onFetchUpdateAsync()
 	}
 
 	const onFetchUpdateAsync = async () => {
@@ -52,7 +52,7 @@ function Splash({ navigation }: SplashScreenProps) {
 			<Logo
 				width={relativeScreenWidth(15)}
 				height={relativeScreenWidth(15)}
-				onPress={() => navigation.navigate('RegisterStack')}
+				onPress={() => console.log('env')}
 			/>
 			<NativeLoader size={'large'} color={theme.green1} />
 			<Credits>{'from tonsa'}</Credits>
