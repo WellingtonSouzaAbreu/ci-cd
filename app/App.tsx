@@ -13,7 +13,7 @@ import { StartupStack } from '@routes/stacks/StartupStack'
 
 import { defaultTheme } from '@presentation/common/theme'
 
-// Dev a
+// Dev
 export default function App() {
 	return (
 		<NavigationContainer>
