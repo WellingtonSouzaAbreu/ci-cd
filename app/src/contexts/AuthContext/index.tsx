@@ -30,7 +30,7 @@ interface AuthProviderProps {
 
 const AuthContext = createContext<AuthContextType>(initialValue)
 
-const { firebaseAuth } = useFirebaseConfig()
+// const { firebaseAuth } = useFirebaseConfig()
 
 const { hasValidLocalUser } = useUserDomain()
 
@@ -62,18 +62,18 @@ function AuthProvider({ children }: AuthProviderProps) {
 		return unsubscribe */
 	}, [])
 
-	const performQuickSingin = async () => { // Quick signin virar um caso de uso
-		try {
-			const userId = firebaseAuth.currentUser.uid
-			const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
-			setUserDataOnContext(user)
-			navigateToHome()
-		} catch (error) {
-			console.log(error)
-			// showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
-			navigateToAuthScreen()
-		}
-	}
+	// const performQuickSingin = async () => { // Quick signin virar um caso de uso
+	// 	try {
+	// 		const userId = firebaseAuth.currentUser.uid
+	// 		const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
+	// 		setUserDataOnContext(user)
+	// 		navigateToHome()
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 		// showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
+	// 		navigateToAuthScreen()
+	// 	}
+	// }
 
 	const setUserRegisterDataOnContext = (data: UserRegisterData) => {
 		setUserRegisterDataContext({ ...userRegistrationData, ...data })
