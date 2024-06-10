@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import { Alert } from 'react-native'
 
 import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
-import { env_dev, env_prod } from '@env'
+import { environment } from '@env'
 
 import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
@@ -17,7 +17,6 @@ import { UserLocalRepository } from '@data/user/UserLocalRespository'
 import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { ciEnvironment } = require('../../../app.config.ci')
 
 // const { hasValidLocalUser } = useUserDomain()
 
@@ -38,14 +37,6 @@ const AuthContext = createContext<AuthContextType>(initialValue)
 
 const { firebaseAuth } = useFirebaseConfig()
 
-const getEnvVar = () => {
-	if (ciEnvironment === 'prod') {
-		return env_prod
-	}
-
-	return env_dev
-}
-
 function AuthProvider({ children }: AuthProviderProps) {
 	const { showContextModal } = useAlertContext()
 
@@ -56,7 +47,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
 	useEffect(() => {
-		Alert.alert('vars', getEnvVar())
+		Alert.alert('ENVIRONMENT', environment)
 		const unsubscribe = firebaseAuth.onAuthStateChanged(async (user) => {
 			console.log(user ? 'Usuário logado!' : 'Usuário não logado!')
 			if (user /* && await hasValidLocalUser() */) {

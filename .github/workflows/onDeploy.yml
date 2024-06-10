@@ -45,22 +45,32 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
-      # - name: Extract app version
-      #   id: extract_version
-      #   run: |
-      #     VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
-      #     echo "VERSION=$VERSION" >> $GITHUB_ENV
-      #     echo "App Version => $VERSION"
+      - name: Extract app version
+        id: extract_version
+        run: |
+          VERSION=$(node -e "console.log(require('./app.config.js').expo.version)")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "App Version => $VERSION"
 
-      - name: Recovery environment variables
-        run: echo "${{ secrets.EAS_ENV_FILE }}" > .env
-      
+      - name: Extract environment config
+        id: extract_environment
+        run: |
+          ENVIRONMENT=$(node -e "console.log(require('./app.config.ci.js').ciEnvironment)")
+          echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+          echo "App environment => $ENVIRONMENT"
+
+      - name: Config environment variables
+        run: |
+          echo "${{ secrets.EAS_ENV_FILE }}" > .env
+          echo "environment=DEV" >> .env
+          cat .env
+
       - name: Create preview
         run: |
           HEAD_REF="${{ github.event.pull_request.head.ref }}"
           BASE_REF="${{ github.event.pull_request.base.ref }}"
           MESSAGE="${BASE_REF} <- ${HEAD_REF}"
-          eas update --auto --branch "v1.2.0" --message "$MESSAGE"
+          eas update --auto --branch "v$VERSION" --message "$MESSAGE"
       
       # - name: Install dependencies
       #   run: npm ci

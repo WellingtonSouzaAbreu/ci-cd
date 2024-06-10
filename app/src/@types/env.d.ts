@@ -7,4 +7,5 @@ declare module '@env' {
 	export const firebaseMeasurementId: string
 	export const env_dev: string
 	export const env_prod: string
+	export const environment: string
 }
