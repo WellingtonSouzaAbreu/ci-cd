@@ -1,19 +1,19 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { Alert } from 'react-native'
 
-import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
+// import { useFirebaseConfig } from '@config/firebase/useFirebaseConfig'
 
-import { UserUseCases } from '@domain/user/adapter/UserUseCases'
+// import { UserUseCases } from '@domain/user/adapter/UserUseCases'
 import { UserEntity } from '@domain/user/model/entity/types'
-import { useUserDomain } from '@domain/user/useUserDomain'
+// import { useUserDomain } from '@domain/user/useUserDomain'
 
-import { useAlertContext } from '@contexts/AlertContext'
+// import { useAlertContext } from '@contexts/AlertContext'
 
 import { AuthContextType, AuthenticatedUserDate, UserAuthData, UserRegisterData } from './types'
-import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
+// import { useAuthNavigation } from '@routes/stacks/hooks/useAuthNavigation'
 
-import { UserLocalRepository } from '@data/user/UserLocalRespository'
-import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
+// import { UserLocalRepository } from '@data/user/UserLocalRespository'
+// import { UserRemoteRepository } from '@data/user/UserRemoteRepository'
 
 const initialValue = {
 	userAuthData: {},
@@ -30,9 +30,9 @@ interface AuthProviderProps {
 
 const AuthContext = createContext<AuthContextType>(initialValue)
 
-const { firebaseAuth } = useFirebaseConfig()
+// const { firebaseAuth } = useFirebaseConfig()
 
-const { hasValidLocalUser } = useUserDomain()
+// const { hasValidLocalUser } = useUserDomain()
 
 function AuthProvider({ children }: AuthProviderProps) {
 	// const { showContextModal } = useAlertContext()
@@ -41,7 +41,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 	const [userAuthData, setUserAuthDataContext] = useState<UserAuthData>({})
 	const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUserDate>()
 
-	const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
+	// const { navigateToAuthScreen, navigateToQuickLogin, navigateToHome } = useAuthNavigation()
 
 	useEffect(() => {
 		Alert.alert('Iniciou o EFFECT')
@@ -62,18 +62,18 @@ function AuthProvider({ children }: AuthProviderProps) {
 		return unsubscribe */
 	}, [])
 
-	const performQuickSingin = async () => { // Quick signin virar um caso de uso
-		try {
-			const userId = firebaseAuth.currentUser.uid
-			const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
-			setUserDataOnContext(user)
-			navigateToHome()
-		} catch (error) {
-			console.log(error)
-			// showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
-			navigateToAuthScreen()
-		}
-	}
+	// const performQuickSingin = async () => { // Quick signin virar um caso de uso
+	// try {
+	// 	const userId = firebaseAuth.currentUser.uid
+	// 	const user = await UserUseCases.performQuickSignin(UserRemoteRepository, UserLocalRepository, userId)
+	// 	setUserDataOnContext(user)
+	// 	navigateToHome()
+	// } catch (error) {
+	// 	console.log(error)
+	// 	// showContextModal('', 'Houve um erro ao tentar recuperar suas informações!')
+	// 	navigateToAuthScreen()
+	// }
+	// }
 
 	const setUserRegisterDataOnContext = (data: UserRegisterData) => {
 		setUserRegisterDataContext({ ...userRegistrationData, ...data })
